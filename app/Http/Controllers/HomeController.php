@@ -272,4 +272,9 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
     }
 
+    public function account()
+    {
+        return view('personal-account');
+    }
+
 }

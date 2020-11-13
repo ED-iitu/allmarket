@@ -21,6 +21,7 @@ Route::get('section/{id}', 'HomeController@getSectionById')->name('sectionById')
 Route::get('/product/{id}', 'HomeController@product')->name('product');
 Route::get('section/{section_id}/category/{category_id}', 'HomeController@getProductsByCategoryId')->name('category_products');
 Route::post('registration', 'HomeController@registration')->name('registration');
+Route::get('account', 'HomeController@account')->name('account');
 
 
 
