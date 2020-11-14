@@ -44,14 +44,14 @@
             height: 89px;
 
             background: #E3EDF7;
-            border-radius: 10px 10px 10px 0px;
+            border-radius: 10px 0px 0px 0px;
         }
         .signUp {
             width: 245px;
             height: 89px;
 
             background: #AFC5DB;
-            border-radius: 10px 10px 0px 0px;
+            border-radius: 0px 10px 0px 0px;
         }
         .login-btn-text {
             text-decoration: none;
@@ -114,6 +114,10 @@
         .signUp-form {
             width: 490px    ;
             background: #AFC5DB;
+        }
+        .signIn-form {
+            width: 490px    ;
+            background: #E3EDF7;
         }
         .reg-title {
             font-family: Montserrat;
@@ -290,6 +294,9 @@
             background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
             box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
             border-radius: 31px;
+        }
+        input{
+            padding: 0px 20px;
         }
     </style>
 
@@ -539,12 +546,10 @@
                     <ul class="tab-group" style="display: flex">
                         <li class="tab active signIn">
                             <div style="text-align: center; margin-top: 20px"><a href="#login" class="login-btn-text">Войти</a></div>
-
                             <div class="login-subtext">Покупали раньше?</div>
                         </li>
                         <li class="tab signUp">
                             <div style="text-align: center; margin-top: 20px"><a href="#signup" class="signUp-btn-text">Регистрация</a></div>
-
                             <div class="signUp-subtext">Пройди регистрацию за 1 минуту</div>
                         </li>
                     </ul>
@@ -552,7 +557,7 @@
                         <h1 class="login-title">Ведите свои данные</h1>
                         <div class="tab input-field d-flex flex-column">
                             <input type="text" class="input-text-login" placeholder="Номер телефона" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                            <a href="#signup-next" class="login-title-btn">Авторизоваться</a>
+                            <a href="#signup-next" class="login-title-btn btn-submit" style="padding-top: 12.5px;">Авторизоваться</a>
                         </div>
                     </form>
                     <form action="{{route('registration')}}" method="POST" id="signup" class="signUp-form" style="text-align: center">
@@ -581,8 +586,10 @@
                             </div>
                         </div>
                     </form>
-                    <form action="#" id="signup-next" class="signUp-form" style="text-align: center">
-
+                    <form action="#" id="signup-next" class="signIn-form" style="text-align: center">
+                        <h1 class="login-title">введите код подтверждения</h1>
+                        <input class="input-text" type="text" name="name" placeholder="sms-код" inputmode="numeric" pattern="[0-9]*" style="width: 100%;">
+                        <a type="submit" class="login-title-btn btn-submit" style="padding-top: 12.5px; display: block;">Авторизоваться</a>
                     </form>
                 </div>
             </div>
