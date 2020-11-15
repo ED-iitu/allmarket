@@ -401,14 +401,19 @@
                                                 <img class="fav-image" src="images/like.png" alt="">
                                             </div>
                                             <div class="container" style="padding: 15px">
+                                                <a href="{{route('product', $popular->id)}}">
                                                 <div class="product-image">
                                                     <img class="product-img" src="{{$popular->image}}" alt="">
                                                 </div>
+                                                </a>
+
                                                 <div class="product-info" style="margin-top: 15px; position: relative">
+                                                    <a href="{{route('product', $popular->id)}}">
                                                     <div class="product-title">
                                                         {{ Str::of($popular->title)->limit(30) }}
 
                                                     </div>
+                                                    </a>
                                                     <div class="product-category">
                                                         {{ Str::of($popular->category->title)->limit(22) }}
                                                     </div>
@@ -419,9 +424,11 @@
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$popular->price}} тг</div>
-                                                            <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                                                <img src="images/add_to_cart.png" alt="">
-                                                            </button>
+                                                            <form action="{{route('addToCart', $popular->id)}}" method="GET">
+                                                                <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -462,14 +469,18 @@
                                                 <img class="fav-image" src="images/like.png" alt="">
                                             </div>
                                             <div class="container" style="padding: 15px">
+                                                <a href="{{route('product', $sale->id)}}">
                                                 <div class="product-image">
                                                     <img class="product-img" src="{{$sale->image}}" alt="">
                                                 </div>
+                                                </a>
                                                 <div class="product-info" style="margin-top: 15px; position: relative">
+                                                    <a href="{{route('product', $sale->id)}}">
                                                     <div class="product-title">
                                                         {{ Str::of($sale->title)->limit(30) }}
 
                                                     </div>
+                                                    </a>
                                                     <div class="product-category">
                                                         {{ Str::of($sale->category->title)->limit(22) }}
                                                     </div>
@@ -480,9 +491,11 @@
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$sale->price}} тг</div>
-                                                            <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                                                <img src="images/add_to_cart.png" alt="">
-                                                            </button>
+                                                            <form action="{{route('addToCart', $sale->id)}}" method="GET">
+                                                                <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -521,14 +534,18 @@
                                                 <img class="fav-image" src="images/like.png" alt="">
                                             </div>
                                             <div class="container" style="padding: 15px">
+                                                <a href="{{route('product', $rec->id)}}">
                                                 <div class="product-image">
                                                     <img class="product-img" src="{{$rec->image}}" alt="">
                                                 </div>
+                                                </a>
                                                 <div class="product-info" style="margin-top: 15px; position: relative">
+                                                    <a href="{{route('product', $rec->id)}}">
                                                     <div class="product-title">
                                                         {{ Str::of($rec->title)->limit(30) }}
 
                                                     </div>
+                                                    </a>
                                                     <div class="product-category">
                                                         {{ Str::of($rec->category->title)->limit(22) }}
                                                     </div>
@@ -539,9 +556,11 @@
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$rec->price}} тг</div>
-                                                            <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                                                <img src="images/add_to_cart.png" alt="">
-                                                            </button>
+                                                            <form action="{{route('addToCart', $rec->id)}}" method="GET">
+                                                                <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

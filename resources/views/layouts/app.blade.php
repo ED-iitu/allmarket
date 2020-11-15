@@ -14,7 +14,6 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -26,278 +25,318 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
-        .forms form { padding: 30px; }
-        #signup { display: none; }
-        #signup-next {display: none; }
-        .forms .tab-group {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .forms .tab-group:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        .signIn {
-            width: 245px;
-            height: 89px;
+        .cart-title {
 
-            background: #E3EDF7;
-            border-radius: 10px 0px 0px 0px;
-        }
-        .signUp {
-            width: 245px;
-            height: 89px;
-
-            background: #AFC5DB;
-            border-radius: 0px 10px 0px 0px;
-        }
-        .login-btn-text {
-            text-decoration: none;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 29px;
-            align-items: center;
-            text-align: right;
-            text-transform: uppercase;
-
-            color: #637E99;
-        }
-        .login-subtext {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 11px;
-            line-height: 27px;
-            /* or 247% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #637E99;
-        }
-        .signUp-btn-text {
-            text-decoration: none;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 29px;
-            align-items: center;
-            text-align: center;
-            text-transform: uppercase;
-
-            color: #FFFFFF;
-        }
-
-        .signUp-subtext {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 11px;
-            line-height: 27px;
-            /* or 247% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #EFF7FF;
-        }
-
-        .login-form {
-            width: 490px;
-            background: #E3EDF7;
-        }
-        .signUp-form {
-            width: 490px    ;
-            background: #AFC5DB;
-        }
-        .signIn-form {
-            width: 490px    ;
-            background: #E3EDF7;
-        }
-        .reg-title {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 20px;
-            line-height: 24px;
-
-            align-items: center;
-            text-align: center;
-            text-transform: uppercase;
-
-            color: #FFFFFF;
-        }
-
-        .input-text {
-            color: white;
-            outline: none;
-            border: none;
-            height: 52.39px;
-            margin-top: 15px;
-            background: #B3C9DF;
-            box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.5);
-            border-radius: 31px;
-        }
-        .input-text::placeholder {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 27px;
-            /* or 124% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #FFFFFF;
-        }
-        .input-select {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 27px;
-            /* or 124% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #FFFFFF !important;
-
-            overflow: hidden;
-            margin-top: 15px;
-            height: 52.39px;
-            border: none;
-            background: linear-gradient(0deg, #B2C9DF, #B2C9DF);
-            box-shadow: -4px -4px 4px #C5D7EA, 3px 3px 4px rgba(93, 148, 204, 0.25);
-            border-radius: 31px;
-        }
-        .input-select-option {
-            color: white;
-            margin-top: 9px;
-            border: none;
-            background: linear-gradient(0deg, #B2C9DF, #B2C9DF);
-            outline: none;
-        }
-
-        .input-select-option-inside {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 27px;
-            /* or 124% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #FFFFFF;
-        }
-        .btn-submit {
-
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 27px;
-            /* or 124% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #FFFFFF;
-
-            margin-top: 15px;
-            height: 52.39px;
-
-            background: linear-gradient(0deg, #B2C9DF, #B2C9DF);
-            border: 0.3px solid #FFFFFF;
-            box-sizing: border-box;
-            box-shadow: -4px -4px 4px #C5D7EA, 3px 3px 4px rgba(93, 148, 204, 0.25);
-            border-radius: 31px;
-        }
-        .aggrement {
-
-            margin-top: 20px;
-            height: 32px;
 
             font-family: Montserrat;
             font-style: normal;
             font-weight: 500;
             font-size: 13px;
-            line-height: 16px;
-            align-items: center;
-            text-align: center;
-            font-variant: small-caps;
+            line-height: 21px;
+            /* or 159% */
 
-            color: #FFFFFF;
-        }
-        .input-text-login {color: white;
-            outline: none;
-            height: 52.39px;
-            border: none;
+            letter-spacing: -0.540636px;
 
-            background: #CDDFEF;
-            box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
-            border-radius: 31px;
+            color: #3E3B3B;
         }
 
-        .input-text-login::placeholder {
+        .cart-price {
+            width: 52px;
+            height: 16px;
+
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 21px;
+            /* or 138% */
+
+            letter-spacing: -0.540636px;
+
+            color: #3E3B3B;
+        }
+
+        .cart-image {
+            width: 95px !important;
+            height: 74px !important;
+        }
+
+        .cart-top-title {
+            margin-top: 20px;
+            margin-left: 20px;
             font-family: Montserrat;
             font-style: normal;
             font-weight: 500;
-            font-size: 22px;
-            line-height: 27px;
-            /* or 124% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #70889A;
-        }
-        .login-title {
-
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 29px;
+            font-size: 17px;
+            line-height: 21px;
             align-items: center;
-            text-align: center;
-            text-transform: uppercase;
 
-            color: #637E99;
-
-            margin-top: 30px;
+            color: #43637A;
         }
 
-        .login-title-btn {
-            height: 52.39px;
-            margin-top: 15px;
+        .cart-category {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 21px;
+            /* or 159% */
+
+            letter-spacing: -0.540636px;
+
+            color: #ADB5BD;
+        }
+        .remove-from-cart {
+            width: 12px;
+            height: 11px;
+
+            color: #ADB5BD;
+        }
+
+
+
+        .cart-qty .cart-count {
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 2px;
+            min-width: 15px;
+            text-align: center;
+            font-family: SF Pro Display;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+
+
+            background: #E3EFFB;
+
+            letter-spacing: -0.540636px;
+
+            color: #56708A;
+        }
+        .cart-qty #cart-plus {
+            font-family: SF Pro Display;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            text-align: center;
+            letter-spacing: -0.540636px;
+            color: #56708A;
+            display: inline-block;
+            vertical-align: top;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+
+
+            background: #E3EDF7;
+            box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.7), 2px 2px 2px rgba(93, 148, 204, 0.25), inset 1px 1px 3px rgba(93, 148, 204, 0.25), inset -1px -1px 3px rgba(255, 255, 255, 0.8);
+        }
+        .cart-qty #cart-minus {
+
+            font-family: SF Pro Display;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            text-align: center;
+            letter-spacing: -0.540636px;
+            color: #56708A;
+            display: inline-block;
+            vertical-align: top;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+
+
+            background: #E3EDF7;
+            box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.7), 2px 2px 2px rgba(93, 148, 204, 0.25), inset 1px 1px 3px rgba(93, 148, 204, 0.25), inset -1px -1px 3px rgba(255, 255, 255, 0.8);
+        }
+
+        /*Prevent text selection*/
+        span{
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .cart-count{
+            border: 0;
+            width: 2%;
+        }
+        .cart-count::-webkit-outer-spin-button,
+        .cart-count::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .cart-count:disabled{
+            background: #E3EDF7;
+        }
+
+        .cart-product-devider {
+            width: 288px;
+            height: 1px;
+
+            background: #FFFFFF;
+            border-radius: 0px 0px 1px 1px;
+        }
+        .cart-bottom {
+            padding: 20px;
+            width: 350px;
+
+            background: #E3EFFB;
+            box-shadow: 0px -4px 4px #D0E1F1;
+            border-radius: 10px;
+        }
+
+        .form-switch {
+            display: inline-block;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .form-switch i {
+            position: relative;
+            display: inline-block;
+            margin-right: .5rem;
+            width: 46px;
+            height: 26px;
+            background-color: #e6e6e6;
+            border-radius: 23px;
+            vertical-align: text-bottom;
+            transition: all 0.3s linear;
+        }
+
+        .form-switch i::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 42px;
+            height: 22px;
+            background-color: #fff;
+            border-radius: 11px;
+            transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+            transition: all 0.25s linear;
+        }
+
+        .form-switch i::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            background-color: #fff;
+            border-radius: 11px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+            transform: translate3d(2px, 2px, 0);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-switch:active i::after {
+            width: 28px;
+            transform: translate3d(2px, 2px, 0);
+        }
+
+        .form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
+
+        .form-switch input { display: none; }
+
+        .form-switch input:checked + i { background-color: #3F9B8A; }
+
+        .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
+
+        .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
+
+        .checkout-btn {
             font-family: Montserrat;
             font-style: normal;
             font-weight: bold;
-            font-size: 18px;
-            line-height: 27px;
-            /* or 151% */
+            font-size: 13px;
+            line-height: 21px;
+            /* or 159% */
 
             text-align: center;
             letter-spacing: -0.540636px;
 
-            color: #70889A;
+            color: #FFFFFF;
+            width: 306px;
+            height: 35px;
 
-            background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
-            box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
-            border-radius: 31px;
+            background: #3F9B8A;
+            border-radius: 12px;
         }
-        input{
-            padding: 0px 20px;
+
+        .cart-total-price-title {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 21px;
+            /* or 129% */
+
+            letter-spacing: -0.540636px;
+
+            color: #43637A;
+
         }
+        .cart-total-price-money {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+            /* or 129% */
+
+            letter-spacing: -0.540636px;
+
+            color: #43637A;
+        }
+
+        .bonus-price {
+            color: #3F9B8A;
+        }
+
+        .cart-promocode-input {
+            width: 140px;
+            height: 32px;
+
+            background: linear-gradient(0deg, #D6E5F4, #D6E5F4);
+            box-shadow: inset 3px 3px 4px rgba(93, 148, 204, 0.25);
+            border-radius: 12px 12px 0px 0px;
+
+        }
+
+        .cart-promocode-input::placeholder {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 11px;
+            line-height: 21px;
+            /* identical to box height, or 159% */
+
+            text-align: center;
+            letter-spacing: -0.540636px;
+
+            color: #7791A4;
+        }
+
+        .cart-promocode-btn {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 21px;
+            /* or 159% */
+
+            text-align: center;
+            letter-spacing: -0.540636px;
+
+            color: #FFFFFF;
+            width: 140px;
+            height: 30px;
+
+            background: #3F9B8A;
+            border-radius: 0px 0px 12px 12px;
+        }
+
+
     </style>
 
 </head>
@@ -331,9 +370,23 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
+                            @if ($message = Session::get('username'))
+                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                style=" font-family: Montserrat;color: #0EFEC3 !important;">
+                                    {{$message}}
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Избранные товары</a>
+                                        <a class="dropdown-item" href="#">История заказов</a>
+                                    <a class="dropdown-item" href="#">Мои данные</a>
+                                    <a class="dropdown-item" href="{{route('logout')}}">Выход</a>
+                                </div>
+                            @else
+
                             <a class="nav-link" href="#auth" uk-toggle>
                                 Вход / Регистрация
                             </a>
+                            @endif
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">Акции & Скидки</a>
@@ -379,10 +432,13 @@
                         </div>
                     </div>
                     <div class="p-2 search-div">
-                        <input type="text" class="search" placeholder="Что то искали?" style="outline:none;">
-                        <button class="btn-search" style="outline:none;">
-                            <img src="/images/search.png" alt="">
-                        </button>
+                        <form action="{{route('search')}}" method="GET">
+                            <input type="text" class="search" name="title" placeholder="Что то искали?" style="outline:none;" required>
+                            <button type="submit" class="btn-search" style="outline:none;">
+                                <img src="/images/search.png" alt="">
+                            </button>
+                        </form>
+
                     </div>
                     <div class="p-2">
                         <div class="d-flex" id="cart">
@@ -392,11 +448,24 @@
                             <div>
                                 <div style="display: flex;align-items: center;justify-content: space-between">
                                     <div class="cart-p">Товары:</div>
-                                    <div class="cart-p"><span>0 </span>шт</div>
+                                    @if(session('cart'))
+                                        <div class="cart-p"><span>{{count(session('cart'))}} </span>шт</div>
+                                    @else
+                                        <div class="cart-p"><span>0 </span>шт</div>
+                                    @endif
+
                                 </div>
                                 <div style="display: flex;align-items: center;justify-content: space-between; margin-top: -15px">
                                     <div class="cart-p">Сумма:</div>
-                                    <div class="cart-p"><span>0 </span>тг</div>
+                                    @if(session('cart'))
+                                        <?php $total = 0 ?>
+                                        @foreach(session('cart') as $id => $details)
+                                            <?php $total += $details['price'] ?>
+                                        @endforeach
+                                        <div class="cart-p"><span>{{$total}} </span>тг</div>
+                                    @else
+                                        <div class="cart-p"><span>0 </span>тг</div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -410,6 +479,18 @@
             <hr class="menu-line" style="margin-top: -18px;width: 1140px;height: 2px;background: #FFFFFF;border-radius: 0px 0px 1px 1px;">
         </div>
 
+        <div class="container">
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger">
+                    <p>{{ $message }}</p>
+                </div>
+            @elseif  ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
+
+        </div>
 
 
         <div class="container" style="margin-top: -15px">
@@ -565,7 +646,7 @@
                         <h1 class="reg-title">Введите свои данные</h1>
                         <div class="input-field d-flex flex-column">
                             <input type="text" class="input-text" placeholder="Ваше имя" name="name">
-                            <input type="text" class="input-text" name="phone" placeholder="Номер телефона" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                            <input type="text" class="input-text" name="phone" placeholder="Номер телефона">
                             <div class="input-select">
                                 <select id="" class="input-select-option" name="city_id">
                                     <option class="input-select-option-inside" value="">Выберите город</option>
@@ -587,9 +668,17 @@
                         </div>
                     </form>
                     <form action="#" id="signup-next" class="signIn-form" style="text-align: center">
-                        <h1 class="login-title">введите код подтверждения</h1>
-                        <input class="input-text" type="text" name="name" placeholder="sms-код" inputmode="numeric" pattern="[0-9]*" style="width: 100%;">
-                        <a type="submit" class="login-title-btn btn-submit" style="padding-top: 12.5px; display: block;">Авторизоваться</a>
+                        <div class="d-flex flex-column">
+                            <h1 class="login-title">введите код подтверждения</h1>
+                            <div class="flex-row">
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                            </div>
+                            {{--<input class="input-text" type="text" name="name" placeholder="sms-код" inputmode="numeric" pattern="[0-9]*" style="width: 100%;">--}}
+                            <a href="#signup-next" class="login-title-btn" style="padding-top: 12.5px;">Авторизоваться</a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -606,53 +695,81 @@
                 <div class="newcart" id="for_the_scroll">
                     <div id="newcart">
                         <div class="cart-content">
-                            <div class="empty_cart" id="empty_cart" style="">
-                                <h2>
-                                    Ваша корзина ещё пуста
-                                </h2>
-                                <img alt="cart-icon" src="http://test.4-it.kz/image/empty.jpg">
-                                <button onclick="window.location.href=' http://test.4-it.kz/wine-shop ';">
-                                    Выбрать вино
-                                </button>
-                            </div>
-                        </div>
-                        <div class="not_empty_cart" style="display: none;">
-                            <div class="cart-cart">
-                                <h3>Корзина</h3>
-                                <div class="cart-block" id="simplecheckout_cart">
-                                    <div class="table-responsive" id="for-cart">
-                                        <table class="ul-cart" id="cart_table">
-                                            <colgroup>
-                                                <col class="image">
-                                                <!-- <col class="name">
-                                                <col class="quantity">
-                                                <col class="total">
-                                                <col class="remove"> -->
-                                            </colgroup>
-                                            <tbody id="product_buy"></tbody>
-                                        </table>
-                                    </div>
-                                    <div id="itog">
-                                        <div class="row">
-                                            <div class="col-md-4 first_cl">
-                                                <span>Позиций (<span id="count-prods">0</span>) </span>
-                                                <div class=" simplecheckout-cart-total" id="total_sub_total">
-                                                        <span class="simplecheckout-cart-total-value">Итого <span id="total_price">0</span> р. </span>
+                            <div class="empty_cart" id="empty_cart">
+                                <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
+                                    <div class="top-cart-cart">Корзина</div>
+                                    <div ><a href="" class="clear-cart">очистить все</a></div>
+                                </div>
+                                @if(session('cart'))
+                                <div class="non-empty-cart">
+                                    <h2 class="cart-top-title">Товары:</h2>
+                                    <hr>
+                                    <?php $CartTotal = 0 ?>
+                                        @foreach(session('cart') as $id => $details)
 
+                                        <?php $CartTotal += $details['price'] * $details['quantity'] ?>
+                                            <div class="cart-product" style="padding: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <img class="cart-image" src="{{$details['image']}}" alt="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="cart-title">
+                                                            {{ Str::of($details['title'])->limit(15) }}
+                                                        </div>
+                                                        <div class="cart-category">{{$details['category']}}</div>
+                                                        <div class="cart-price" style="margin-top: 10px">{{$details['price']}} тг</div>
+                                                        <div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">
+                                                            <div class="cart-qty">
+                                                                <span id="cart-minus" class="cart-minus-{{$id}}">-</span>
+                                                                <input type="number" class="cart-count" name="qty" value="{{$details['quantity']}}">
+                                                                <span id="cart-plus" class="cart-plus-{{$id}}">+</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div><span class="remove-from-cart">x</span></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 second_cl">
-                                                <a id="oformlenie" class="btn-danger" href="http://test.4-it.kz/checkout">Оформить заявку</a>
+
+                                    <div class="container">
+                                        <hr class="cart-product-devider">
+                                    </div>
+
+                                        @endforeach
+                                </div>
+                                    <div class="cart-bottom">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="cart-total-price-title">Итого:</div>
+                                                <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span class="bonus-price">200</span></div>
                                             </div>
-                                            <div class="col-md-4 third_cl">
-                                                <p style="font-family: ProximaNova-reg;">Пожалуйста
-                                                    <a href="http://test.4-it.kz/wine-shop" style="color: #23252b;text-decoration:underline;" id="link_wine">добавьте</a>
-                                                    товары в корзину
-                                                </p>
+                                            <div class="col-md-4">
+                                                <div class="cart-total-price-money">{{$CartTotal}} тг</div>
+                                                <div style="margin-top: 10px">
+                                                    <label class="form-switch">
+                                                        <input type="checkbox">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4" style="margin-left: -45px">
+                                                <form action="">
+                                                    <input class="cart-promocode-input" type="text" placeholder="Ввести промокод">
+                                                    <input class="cart-promocode-btn" type="submit" value="Активировать">
+                                                </form>
                                             </div>
                                         </div>
+                                        <div class="flex-row" style="justify-content: center; align-items: center; margin-top: 10px">
+                                            <button type="submit" class="checkout-btn">Оформить заказ</button>
+                                        </div>
                                     </div>
+                                @else
+                                <div class="cart-empty" style="display:flex;align-items:center !important;justify-content:center;padding: 66px">
+                                    <h2 class="empty-title">Ваша корзина пуста</h2>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -670,142 +787,6 @@
 
     </script>
 
-    <style type="text/css">
-        
-    #cart-cont {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0
-    }
-    #cart-cont {
-    z-index: 100;
-    position: fixed;
-    left: 100vw;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    box-sizing: border-box;
-    transition: 0.8s;
-    display: none;
-    pointer-events: all;
-    }
-    #cart-cont h3 {
-        text-align: center
-    }
-    #cart-cont.open {
-        left: 0vw;
-        display: block;
-    }
-    #cart-cont.open #close-cart {
-        display: block;
-    }
-    #cart-cont input, #cart-cont button {
-        outline: 0 !important;
-    }
-    #close-cart, #closecheck {
-        cursor: pointer;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        width: 1.484vw;
-        height: 1.484vw;
-        background: url(/images/closecart.png);
-        top: 2.344vw;
-        right: 3.281vw;
-        position: absolute;
-        background-size: cover;
-        z-index: 120;
-    }
-    #close-cart, #closecheck {
-        z-index: 120;
-        cursor: pointer;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        width: 1.484vw;
-        height: 1.484vw;
-        background: url(/images/closecart.png);
-        top: 2.344vw;
-        right: 3.281vw;
-        background-position: center center;
-        position: absolute;
-        background-size: cover;
-    }
-    #cart-cont.open #close-mask {
-        transform: scale(1);
-        border-radius: 0;
-    }
-    #close-mask.empty-cart {
-        width: 56.1vw;
-    }
-    #close-mask {
-        z-index: 100;
-        position: fixed;
-        right: 62.500vw;
-        left: 0;
-        width: 29.167vw;
-        background: rgba(40, 44, 64, .3);
-        top: 0;
-        bottom: 0;
-        transform: scale(0);
-        transition: 0.4s;
-        border-radius: 100%;
-        pointer-events: all;
-    }
-    #cart-cart.empty-cart {
-        width: 44vw;
-        z-index: 111;
-    }
-    #cart-cart {
-        padding: 4.427vw 4.167vw 0;
-        width: 70.833vw;
-        background: #fff;
-        transition: 0.4s;
-        position: absolute;
-        background: #fff;
-        top: 0;
-        bottom: 0;
-        height: 100%;
-        overflow: auto;
-        right: 0;
-        left: auto;
-    }
-    #cart-cart.empty-cart h2 {
-        font: 3.128vw ProximaNova-Bold;
-        text-align: center;
-        padding: 0 4vw;
-        margin: 0;
-    }
-    #cart-cart.empty-cart img {
-        width: 90%;
-        max-width: 90%;
-        height: auto;
-    }
-    #cart-cart.empty-cart button {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        float: none !important;
-        display: block;
-        margin-top: 2.604vw;
-        margin-bottom: 3.385vw;
-        font: .887vw ProximaNova-bold;
-        line-height: normal;
-        text-align: center;
-        line-height: 2.604vw;
-        text-transform: uppercase;
-        float: left;
-        border-radius: 50px;
-        background: #da224d;
-        width: 10.416vw;
-        color: #fff;
-        border: none;
-        letter-spacing: .05em;
-    }
-    </style>
-
-
     <script type="text/javascript">
         $(document).ready(function(){
             $('.tab a').on('click', function (e) {
@@ -820,6 +801,73 @@
             });
         });
     </script>
+
+    <script>
+        $(function() {
+            'use strict';
+
+            var body = $('body');
+
+            function goToNextInput(e) {
+                console.log(e)
+                var key = e.which,
+                    t = $(e.target),
+                    sib = t.next('.verify-code-input');
+
+                if (key != 9 && (key < 48 || key > 57)) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                if (key === 9) {
+                    return true;
+                }
+                if (key === 8) {
+                    return false;
+                }
+
+                if (!sib || !sib.length) {
+                    sib = body.find('verify-code-input').eq(0);
+                }
+                sib.select().focus();
+            }
+
+            function onKeyDown(e) {
+                var key = e.which;
+
+                if (key === 9 || (key >= 48 && key <= 57)) {
+                    return true;
+                }
+
+                e.preventDefault();
+                return false;
+            }
+
+
+
+            body.on('keyup', '.verify-code-input', goToNextInput);
+            body.on('keydown', '.verify-code-input', onKeyDown);
+
+
+        })
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.count').prop('disabled', true);
+            $(document).on('click','.plus',function(){
+                $('.count').val(parseInt($('.count').val()) + 1 );
+            });
+            $(document).on('click','.minus',function(){
+                $('.count').val(parseInt($('.count').val()) - 1 );
+                if ($('.count').val() == 0) {
+                    $('.count').val(1);
+                }
+            });
+        });
+    </script>
+
 
 </body>
 </html>

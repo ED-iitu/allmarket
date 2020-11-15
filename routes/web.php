@@ -22,6 +22,9 @@ Route::get('/product/{id}', 'HomeController@product')->name('product');
 Route::get('section/{section_id}/category/{category_id}', 'HomeController@getProductsByCategoryId')->name('category_products');
 Route::post('registration', 'HomeController@registration')->name('registration');
 Route::get('account', 'HomeController@account')->name('account');
+Route::get('logout', 'HomeController@logout')->name('logout');
+Route::get('/search', 'HomeController@search')->name('search');
+Route::get('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
 
 
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ClientException;
+use Session;
 
 class HomeController extends Controller
 {
@@ -15,6 +18,10 @@ class HomeController extends Controller
 
     protected $client;
 
+    protected $response;
+
+    protected $errors;
+
     public function index()
     {
         $this->client = new Client();
@@ -24,7 +31,6 @@ class HomeController extends Controller
 
         $sale        = $this->getSaleProducts();
 
-       // dd($sale);
 
         return view('home', [
             'popular_products' => $popular->products,
@@ -254,27 +260,159 @@ class HomeController extends Controller
     public function registration(Request $request)
     {
         $client = new Client();
-        $response = $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/register', [
-            'auth' => [
-                'dev@allmarket.kz',
-                'dev'
-            ],
-            'form_params' =>
-                [
-                    'name'    => "ede",
-                    'phone'   => "+7(771)7469953",
+
+        $username = $request->name;
+        $phone = $request->phone;
+
+        try {
+
+            $request = $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/register', [
+                'auth' => [
+                    'dev@allmarket.kz',
+                    'dev'
+                ],
+                'form_params' => [
+                    'name'    => $request->name,
+                    'phone'   => $request->phone,
                     'city_id' => 6,
-                ]
+                ],
+                'headers' => [
+                    'Accept' => 'application/json'
+                ],
 
-        ]);
+            ]);
 
+            if (!$this->errors) {
+                session()->put('username', $username);
+                session()->put('phone', $phone);
+            }
 
-        $response = $response->getBody()->getContents();
+            return redirect()->back()->with('success', 'На ваш номер отправлен смс');
+
+        } catch (ClientException $e) {
+             $this->errors = json_decode($e->getResponse()->getBody()->getContents())->errors->phone[0];
+
+             if ($this->errors) {
+                 return redirect()->back()->with('error', $this->errors);
+             }
+        }
+
     }
 
     public function account()
     {
         return view('personal-account');
+    }
+
+    public function logout()
+    {
+        session()->remove('username');
+        session()->remove('phone');
+        return redirect()->back();
+    }
+
+
+    public function search(Request $request)
+    {
+
+        $client = new Client();
+
+        $url = 'https://allmarket.armenianbros.com/api/v2/products/search';
+
+        try {
+            $response = $client->request('GET', $url, [
+                'auth' => [
+                    'dev@allmarket.kz',
+                    'dev'
+                ],
+                'query' => [
+                   'city_id' => 2,
+                   'term' => $request->title
+                ],
+                'headers' => [
+                    'Accept' => 'application/json'
+                ],
+            ]);
+
+        }catch (ClientException $e) {
+            $this->errors = json_decode($e->getResponse()->getBody()->getContents())->errors->phone[0];
+
+            if ($this->errors) {
+                return redirect()->back()->with('error', $this->errors);
+            }
+        }
+
+        $response = $response->getBody()->getContents();
+
+        $res = json_decode($response);
+
+        return view('search-page', [
+            'products' => $res->products,
+            'title' => $request->title
+        ]);
+    }
+
+    public function addToCart($id)
+    {
+       $product = $this->getProductById($id);
+
+
+        if(!$product) {
+            abort(404);
+        }
+
+
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if(!$cart) {
+            $cart = [
+                $id => [
+                    "title" => $product->title,
+                    "category" => $product->category->title,
+                    "quantity" => 1,
+                    "price" => $product->price_sale,
+                    "image" => $product->image
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        }
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        }
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "title" => $product->title,
+            "category" => $product->category->title,
+            "quantity" => 1,
+            "price" => $product->price_sale,
+            "image" => $product->image
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+    }
+
+    public function getProductById($id)
+    {
+        $client = new Client();
+        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/'.$id, [
+            'query' => [
+                'city_id' => 6,
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+        $res = json_decode($response);
+
+        return $res->product;
     }
 
 }
