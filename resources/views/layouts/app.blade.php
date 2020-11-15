@@ -385,8 +385,8 @@
                         </button>
                     </div>
                     <div class="p-2">
-                        <div class="d-flex">
-                            <button class="btn-cart" style="outline:none;">
+                        <div class="d-flex" id="cart">
+                            <button class="btn-cart" style="outline:none;" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');">
                                 <img src="/images/corzina.png" alt="">
                             </button>
                             <div>
@@ -595,6 +595,216 @@
             </div>
         </div>
     </div>
+
+
+    <div id="cart-cont">
+        <div>
+            <button id="close-cart" onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1');
+                    $('body').removeClass('nooverflow');"></button>
+            <div id="close-mask" class="empty_cart_block empty-cart"></div>
+            <div id="cart-cart" class="empty_cart_block empty-cart">
+                <div class="newcart" id="for_the_scroll">
+                    <div id="newcart">
+                        <div class="cart-content">
+                            <div class="empty_cart" id="empty_cart" style="">
+                                <h2>
+                                    Ваша корзина ещё пуста
+                                </h2>
+                                <img alt="cart-icon" src="http://test.4-it.kz/image/empty.jpg">
+                                <button onclick="window.location.href=' http://test.4-it.kz/wine-shop ';">
+                                    Выбрать вино
+                                </button>
+                            </div>
+                        </div>
+                        <div class="not_empty_cart" style="display: none;">
+                            <div class="cart-cart">
+                                <h3>Корзина</h3>
+                                <div class="cart-block" id="simplecheckout_cart">
+                                    <div class="table-responsive" id="for-cart">
+                                        <table class="ul-cart" id="cart_table">
+                                            <colgroup>
+                                                <col class="image">
+                                                <!-- <col class="name">
+                                                <col class="quantity">
+                                                <col class="total">
+                                                <col class="remove"> -->
+                                            </colgroup>
+                                            <tbody id="product_buy"></tbody>
+                                        </table>
+                                    </div>
+                                    <div id="itog">
+                                        <div class="row">
+                                            <div class="col-md-4 first_cl">
+                                                <span>Позиций (<span id="count-prods">0</span>) </span>
+                                                <div class=" simplecheckout-cart-total" id="total_sub_total">
+                                                        <span class="simplecheckout-cart-total-value">Итого <span id="total_price">0</span> р. </span>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 second_cl">
+                                                <a id="oformlenie" class="btn-danger" href="http://test.4-it.kz/checkout">Оформить заявку</a>
+                                            </div>
+                                            <div class="col-md-4 third_cl">
+                                                <p style="font-family: ProximaNova-reg;">Пожалуйста
+                                                    <a href="http://test.4-it.kz/wine-shop" style="color: #23252b;text-decoration:underline;" id="link_wine">добавьте</a>
+                                                    товары в корзину
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('#close-mask').click(function () {
+            $('#cart-cont').removeClass('open');
+            $('body').removeClass('nooverflow1');
+            $('body').removeClass('nooverflow');
+        });
+
+    </script>
+
+    <style type="text/css">
+        
+    #cart-cont {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0
+    }
+    #cart-cont {
+    z-index: 100;
+    position: fixed;
+    left: 100vw;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    transition: 0.8s;
+    display: none;
+    pointer-events: all;
+    }
+    #cart-cont h3 {
+        text-align: center
+    }
+    #cart-cont.open {
+        left: 0vw;
+        display: block;
+    }
+    #cart-cont.open #close-cart {
+        display: block;
+    }
+    #cart-cont input, #cart-cont button {
+        outline: 0 !important;
+    }
+    #close-cart, #closecheck {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        width: 1.484vw;
+        height: 1.484vw;
+        background: url(/images/closecart.png);
+        top: 2.344vw;
+        right: 3.281vw;
+        position: absolute;
+        background-size: cover;
+        z-index: 120;
+    }
+    #close-cart, #closecheck {
+        z-index: 120;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        width: 1.484vw;
+        height: 1.484vw;
+        background: url(/images/closecart.png);
+        top: 2.344vw;
+        right: 3.281vw;
+        background-position: center center;
+        position: absolute;
+        background-size: cover;
+    }
+    #cart-cont.open #close-mask {
+        transform: scale(1);
+        border-radius: 0;
+    }
+    #close-mask.empty-cart {
+        width: 56.1vw;
+    }
+    #close-mask {
+        z-index: 100;
+        position: fixed;
+        right: 62.500vw;
+        left: 0;
+        width: 29.167vw;
+        background: rgba(40, 44, 64, .3);
+        top: 0;
+        bottom: 0;
+        transform: scale(0);
+        transition: 0.4s;
+        border-radius: 100%;
+        pointer-events: all;
+    }
+    #cart-cart.empty-cart {
+        width: 44vw;
+        z-index: 111;
+    }
+    #cart-cart {
+        padding: 4.427vw 4.167vw 0;
+        width: 70.833vw;
+        background: #fff;
+        transition: 0.4s;
+        position: absolute;
+        background: #fff;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        overflow: auto;
+        right: 0;
+        left: auto;
+    }
+    #cart-cart.empty-cart h2 {
+        font: 3.128vw ProximaNova-Bold;
+        text-align: center;
+        padding: 0 4vw;
+        margin: 0;
+    }
+    #cart-cart.empty-cart img {
+        width: 90%;
+        max-width: 90%;
+        height: auto;
+    }
+    #cart-cart.empty-cart button {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+        display: block;
+        margin-top: 2.604vw;
+        margin-bottom: 3.385vw;
+        font: .887vw ProximaNova-bold;
+        line-height: normal;
+        text-align: center;
+        line-height: 2.604vw;
+        text-transform: uppercase;
+        float: left;
+        border-radius: 50px;
+        background: #da224d;
+        width: 10.416vw;
+        color: #fff;
+        border: none;
+        letter-spacing: .05em;
+    }
+    </style>
+
 
     <script type="text/javascript">
         $(document).ready(function(){
