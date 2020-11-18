@@ -151,6 +151,7 @@
             box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.7), 2px 2px 2px rgba(93, 148, 204, 0.25), inset 1px 1px 3px rgba(93, 148, 204, 0.25), inset -1px -1px 3px rgba(255, 255, 255, 0.8);
         }
 
+
         /*Prevent text selection*/
         span{
             -webkit-user-select: none;
@@ -376,9 +377,9 @@
                                     {{$message}}
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Избранные товары</a>
-                                        <a class="dropdown-item" href="#">История заказов</a>
-                                    <a class="dropdown-item" href="#">Мои данные</a>
+                                    <a class="dropdown-item" href="/account#account-favorite">Избранные товары</a>
+                                        <a class="dropdown-item" href="/account#account-order">История заказов</a>
+                                    <a class="dropdown-item" href="/account#account-зкщашду">Мои данные</a>
                                     <a class="dropdown-item" href="{{route('logout')}}">Выход</a>
                                 </div>
                             @else
@@ -634,19 +635,19 @@
                             <div class="signUp-subtext">Пройди регистрацию за 1 минуту</div>
                         </li>
                     </ul>
-                    <form action="#" id="login" class="login-form" style="height: 350px">
+                    <form id="login" class="login-form" style="height: 350px">
                         <h1 class="login-title">Ведите свои данные</h1>
                         <div class="tab input-field d-flex flex-column">
-                            <input type="text" class="input-text-login" placeholder="Номер телефона" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                            <a href="#signup-next" class="login-title-btn btn-submit" style="padding-top: 12.5px;">Авторизоваться</a>
+                            <input type="text" id="tel" class="input-text-login" name="phone" placeholder="Номер телефона" value="" required>
+                            <a href="#signin-next" class="login-title-btn btn-submit" style="padding-top: 12.5px;" id="loginBtn">Авторизоваться</a>
                         </div>
                     </form>
-                    <form action="{{route('registration')}}" method="POST" id="signup" class="signUp-form" style="text-align: center">
+                    <form id="signup" class="signUp-form" style="text-align: center">
                         @csrf
                         <h1 class="reg-title">Введите свои данные</h1>
-                        <div class="input-field d-flex flex-column">
-                            <input type="text" class="input-text" placeholder="Ваше имя" name="name">
-                            <input type="text" class="input-text" name="phone" placeholder="Номер телефона">
+                        <div class="tab input-field d-flex flex-column">
+                            <input type="text" class="input-text" placeholder="Ваше имя" name="register-name" required>
+                            <input type="text" id="tel-reg" class="input-text" name="register-phone" placeholder="Номер телефона" value="" required>
                             <div class="input-select">
                                 <select id="" class="input-select-option" name="city_id">
                                     <option class="input-select-option-inside" value="">Выберите город</option>
@@ -659,7 +660,8 @@
                                     <option class="input-select-option-inside" value="6">Актау</option>
                                 </select>
                             </div>
-                            <input type="submit" class="btn-submit" value="Зарегистрироваться">
+
+                            <a href="#signup-finish"  class="btn-submit" id="RegisterBtn" style="padding-top: 12.5px;">Зарегистрироваться</a>
 
                             <div style="justify-content: center">
                                 <p class="aggrement">Нажимая «зарегистрироваться», вы соглашаетесь
@@ -667,17 +669,31 @@
                             </div>
                         </div>
                     </form>
-                    <form action="#" id="signup-next" class="signIn-form" style="text-align: center">
+                    <form action="{{route('sendSms')}}" method="POST" id="signin-next" class="signIn-form" style="text-align: center; display: none">
+                        @csrf
                         <div class="d-flex flex-column">
                             <h1 class="login-title">введите код подтверждения</h1>
                             <div class="flex-row">
-                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="one" />
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="two"/>
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="three"/>
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="four"/>
                             </div>
-                            {{--<input class="input-text" type="text" name="name" placeholder="sms-код" inputmode="numeric" pattern="[0-9]*" style="width: 100%;">--}}
-                            <a href="#signup-next" class="login-title-btn" style="padding-top: 12.5px;">Авторизоваться</a>
+                            <input type="submit" class="login-title-btn" value="Авторизоваться">
+                        </div>
+                    </form>
+
+                    <form action="{{route('sendSms')}}" method="POST" id="signup-finish" class="signUn-form" style="text-align: center; display: none; width: 490px;background: #AFC5DB;">
+                        @csrf
+                        <div class="d-flex flex-column">
+                            <h1 class="login-title">введите код подтверждения</h1>
+                            <div class="flex-row">
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="one" />
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="two"/>
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="three"/>
+                                <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="four"/>
+                            </div>
+                            <input type="submit" class="btn-submit" id="RegisterBtn" value="Завершить регистрацию">
                         </div>
                     </form>
                 </div>
@@ -867,6 +883,157 @@
             });
         });
     </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            function setCursorPosition(pos, elem) {
+                elem.focus();
+                if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
+                else if (elem.createTextRange) {
+                    var range = elem.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd("character", pos);
+                    range.moveStart("character", pos);
+                    range.select()
+                }
+            }
+
+            function mask(event) {
+                var matrix = "+7(___)_______",
+                    i = 0,
+                    def = matrix.replace(/\D/g, ""),
+                    val = this.value.replace(/\D/g, "");
+                if (def.length >= val.length) val = def;
+                this.value = matrix.replace(/./g, function(a) {
+                    return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+                });
+                if (event.type == "blur") {
+                    if (this.value.length == 2) this.value = ""
+                } else setCursorPosition(this.value.length, this)
+            };
+            var input = document.querySelector("#tel");
+            input.addEventListener("input", mask, false);
+            input.addEventListener("focus", mask, false);
+            input.addEventListener("blur", mask, false);
+        });
+    </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            function setCursorPosition(pos, elem) {
+                elem.focus();
+                if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
+                else if (elem.createTextRange) {
+                    var range = elem.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd("character", pos);
+                    range.moveStart("character", pos);
+                    range.select()
+                }
+            }
+
+            function mask(event) {
+                var matrix = "+7(___)_______",
+                    i = 0,
+                    def = matrix.replace(/\D/g, ""),
+                    val = this.value.replace(/\D/g, "");
+                if (def.length >= val.length) val = def;
+                this.value = matrix.replace(/./g, function(a) {
+                    return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+                });
+                if (event.type == "blur") {
+                    if (this.value.length == 2) this.value = ""
+                } else setCursorPosition(this.value.length, this)
+            };
+            var input = document.querySelector("#tel-reg");
+            input.addEventListener("input", mask, false);
+            input.addEventListener("focus", mask, false);
+            input.addEventListener("blur", mask, false);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#loginBtn").click(function(e) {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                e.preventDefault();
+                var phone = $("input[name='phone']").val();
+
+                $.ajax({
+                    url: '{{ route('login') }}',
+                    type: 'POST',
+                    data: {
+                        phone: phone
+                    },
+                    success: function(data) {
+                        if ($.isEmptyObject(data.error)) {
+                            console.log(data.success)
+                        } else {
+                            printErrorMsg(data.error);
+                        }
+                    }
+                });
+
+            });
+
+            function printErrorMsg(msg) {
+                $(".print-error-msg-login").find("ul").html('');
+                $(".print-error-msg-login").css('display', 'block');
+                $.each(msg, function(key, value) {
+                    $(".print-error-msg-login").find("ul").append('<li>' + value + '</li>');
+                });
+            }
+        });
+
+        $(document).ready(function() {
+            $("#RegisterBtn").click(function(e) {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                e.preventDefault();
+                var name = $("input[name='register-name']").val();
+                var phone = $("input[name='register-phone']").val();
+                var cityId = 6
+
+                $.ajax({
+                    url: '{{ route('registration') }}',
+                    type: 'POST',
+                    data: {
+                        name: name,
+                        phone: phone,
+                        city_id: cityId
+                    },
+                    success: function(data) {
+                        if ($.isEmptyObject(data.error)) {
+                            console.log(data.success)
+                        } else {
+                            printErrorMsg(data.error);
+                        }
+                    }
+                });
+
+            });
+
+            function printErrorMsg(msg) {
+                $(".print-error-msg-login").find("ul").html('');
+                $(".print-error-msg-login").css('display', 'block');
+                $.each(msg, function(key, value) {
+                    $(".print-error-msg-login").find("ul").append('<li>' + value + '</li>');
+                });
+            }
+        });
+    </script>
+
 
 
 </body>

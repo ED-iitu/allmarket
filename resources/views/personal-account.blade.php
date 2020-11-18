@@ -194,12 +194,8 @@
                 </div>
 
                 <div class="category-left-menu ">
-                    <div class="container">
-                        <hr class="left-menu-devider" style="margin-top: -10px">
-                    </div>
-
                     <div style="width: 320px;">
-                        <ul style="list-style: none;">
+                        <ul style="list-style: none; padding-top: 10px">
                             <div class="tab active">
                                 <a href="#account-favorite" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">Избранные товары</li></a>
                             </div>
@@ -210,7 +206,7 @@
                                 <a href="#account-profile" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">Мои данные</li></a>
                             </div>
                             <div>
-                                <a href="" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">Выход</li></a>
+                                <a  href="{{route('logout')}}" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">Выход</li></a>
                             </div>
                         </ul>
                     </div>

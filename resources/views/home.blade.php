@@ -424,11 +424,17 @@
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$popular->price}} тг</div>
-                                                            <form action="{{route('addToCart', $popular->id)}}" method="GET">
-                                                                <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                            @if (Session::get('username'))
+                                                                <form action="{{route('addToCart', $popular->id)}}" method="GET">
+                                                                    <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                        <img src="images/add_to_cart.png" alt="">
+                                                                    </button>
+                                                                </form>
+                                                            @else
+                                                                <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
                                                                     <img src="images/add_to_cart.png" alt="">
                                                                 </button>
-                                                            </form>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -491,11 +497,17 @@
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$sale->price}} тг</div>
-                                                            <form action="{{route('addToCart', $sale->id)}}" method="GET">
-                                                                <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                            @if (Session::get('username'))
+                                                                <form action="{{route('addToCart', $sale->id)}}" method="GET">
+                                                                    <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                        <img src="images/add_to_cart.png" alt="">
+                                                                    </button>
+                                                                </form>
+                                                            @else
+                                                                <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
                                                                     <img src="images/add_to_cart.png" alt="">
                                                                 </button>
-                                                            </form>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -556,11 +568,18 @@
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$rec->price}} тг</div>
+                                                            @if (Session::get('username'))
                                                             <form action="{{route('addToCart', $rec->id)}}" method="GET">
                                                                 <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
                                                                     <img src="images/add_to_cart.png" alt="">
                                                                 </button>
                                                             </form>
+                                                            @else
+                                                                <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                </button>
+                                                            @endif
+
                                                         </div>
                                                     </div>
                                                 </div>

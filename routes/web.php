@@ -21,8 +21,10 @@ Route::get('section/{id}', 'HomeController@getSectionById')->name('sectionById')
 Route::get('/product/{id}', 'HomeController@product')->name('product');
 Route::get('section/{section_id}/category/{category_id}', 'HomeController@getProductsByCategoryId')->name('category_products');
 Route::post('registration', 'HomeController@registration')->name('registration');
+Route::post('/login', 'HomeController@login')->name('login');
 Route::get('account', 'HomeController@account')->name('account');
 Route::get('logout', 'HomeController@logout')->name('logout');
+Route::post('sendSms', 'HomeController@sendSms')->name('sendSms');
 Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
 

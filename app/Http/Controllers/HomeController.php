@@ -266,7 +266,7 @@ class HomeController extends Controller
 
         try {
 
-            $request = $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/register', [
+            $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/register', [
                 'auth' => [
                     'dev@allmarket.kz',
                     'dev'
@@ -299,6 +299,131 @@ class HomeController extends Controller
 
     }
 
+    public function login(Request $request)
+    {
+        $client = new Client();
+
+        $phone = $request->phone;
+
+        try {
+
+            $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/login', [
+                'auth' => [
+                    'dev@allmarket.kz',
+                    'dev'
+                ],
+                'form_params' => [
+                    'phone'   => $phone,
+                ],
+                'headers' => [
+                    'Accept' => 'application/json'
+                ],
+
+            ]);
+
+            if (!$this->errors) {
+                session()->put('phone', $phone);
+            }
+
+            return [
+                'success' => 200,
+            ];
+
+        } catch (ClientException $e) {
+            $this->errors = json_decode($e->getResponse()->getBody()->getContents())->errors->phone[0];
+
+            if ($this->errors) {
+                return redirect()->back()->with('error', $this->errors);
+            }
+        }
+
+//        dd($request->phone);
+//        https://allmarket.armenianbros.com/api/v2/users
+    }
+
+    public function sendSms(Request $request)
+    {
+        $client = new Client();
+
+        if (!$request->one || !$request->two || !$request->three || !$request->four) {
+            return redirect()->back()->with('error', 'СМС введен не верно, попробуйте еще раз');
+        }
+        $sms = (int)$request->one . '' . $request->two .''. $request->three .''. $request->four;
+
+        $phone = session()->get('phone');
+
+        if (!$phone) {
+            return redirect()->back()->with('error', 'Произошла ошибка попробуйте позже');
+        }
+
+        try {
+
+            $responce = $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/verify', [
+                'auth' => [
+                    'dev@allmarket.kz',
+                    'dev'
+                ],
+                'form_params' => [
+                    'phone'   => $phone,
+                    'code'  => $sms
+                ],
+                'headers' => [
+                    'Accept' => 'application/json'
+                ],
+
+            ]);
+
+            $res =  json_decode($responce->getBody()->getContents());
+
+            $token = $res->token;
+
+            $username = $this->getUserData($token);
+
+            if (!$this->errors) {
+                session()->put('token', $token);
+                session()->put('phone', $phone);
+                session()->put('username', $username->user->name);
+            }
+
+            return redirect()->back()->with('success', 'Авторизация прошла успешно!');
+
+        } catch (ClientException $e) {
+            $this->errors = $e;
+
+            if ($this->errors) {
+                return redirect()->back()->with('error', 'Ошибка при отправке смс, либо смс введен не верно, попробуйте еще раз');
+            }
+        }
+
+
+    }
+
+    public function getUserData($token)
+    {
+        $client = new Client();
+
+        try {
+
+            $responce = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/users',
+                [
+                    'headers' =>
+                        [
+                            'Authorization' => 'Bearer ' . $token,
+                            'Accept' => 'application/json'
+                        ]
+                ]
+            );
+
+        } catch (ClientException $e) {
+
+            if ($this->errors) {
+                return redirect()->back()->with('error', 'Ошибка при отправке смс, попробуйте еще раз');
+            }
+        }
+
+        return json_decode($responce->getBody()->getContents());
+    }
+
     public function account()
     {
         return view('personal-account');
@@ -308,7 +433,7 @@ class HomeController extends Controller
     {
         session()->remove('username');
         session()->remove('phone');
-        return redirect()->back();
+        return redirect()->route('home');
     }
 
 

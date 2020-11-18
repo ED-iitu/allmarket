@@ -79,8 +79,15 @@
                                 </div>
                                 <hr class="product-devider">
 
+                                @if (Session::get('username'))
+                                    <form action="{{route('addToCart', $product->id)}}" method="GET">
+                                        <button type="submit" class="add_to_cart"><span class="add_to_cart_text">Добавить в корзину</span></button>
+                                    </form>
+                                @else
+                                    <button href="#auth" uk-toggle type="submit" class="add_to_cart"><span class="add_to_cart_text">Добавить в корзину</span></button>
 
-                                <button class="add_to_cart"><span class="add_to_cart_text">Добавить в корзину</span></button>
+                                @endif
+
 
                                 <hr class="product-devider">
                             </div>
