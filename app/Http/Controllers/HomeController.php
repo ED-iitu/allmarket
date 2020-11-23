@@ -22,14 +22,29 @@ class HomeController extends Controller
 
     protected $errors;
 
-    public function index()
+    public function __construct()
     {
         $this->client = new Client();
+    }
 
+    public function index()
+    {
         $popular     = $this->getPopularProduct();
         $recommended = $this->getRecommendedProducts();
-
         $sale        = $this->getSaleProducts();
+
+        $token = session()->get('token');
+        $favIds = [];
+
+        if ($token != null) {
+            $ids = $this->getFavorite($token);
+
+            foreach ($ids as $id) {
+                $favIds[$id->product->id] = $id->product->id;
+            }
+
+            session()->put('favorited', $favIds);
+        }
 
 
         return view('home', [
@@ -39,12 +54,81 @@ class HomeController extends Controller
         ]);
     }
 
+    public function getFavorite($token)
+    {
+        try {
+            $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/favorites', [
+                'query' => [
+                    'city_id' => 6,
+                ],
+                'headers' =>
+                    [
+                        'Authorization' => 'Bearer ' . $token,
+                        'Accept' => 'application/json'
+                    ]
+
+            ]);
+        } catch (ClientException $e) {
+            $this->errors = json_decode($e);
+
+            return redirect()->back()->with('error', 'Произошла ошибка попробуйте позже');
+        }
+
+        $response = json_decode($response->getBody()->getContents());
+
+
+        return $response->favorites;
+    }
+
+    public function addToFavorite(Request $request)
+    {
+        $token = session()->get('token');
+        $product_id = $request->product_id;
+        $successData['success'] = 'Товар успешно добавлен в избранное';
+        $deletedSuccess['success'] = 'Товар успешно удален из избранных';
+
+
+        if (null !== $token) {
+
+                $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/favorites', [
+                    'query' => [
+                        'city_id' => 6,
+                    ],
+                    'form_params' => [
+                        'product_id' => $product_id
+                    ],
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $token,
+                        'Accept' => 'application/json'
+                    ]
+                ]);
+
+                $alreadyInFav = (array)session()->get('favorited');
+
+                if (in_array($product_id, $alreadyInFav)) {
+                    unset($alreadyInFav[$product_id]);
+
+                    return $deletedSuccess;
+                } else {
+                    session()->put('favorited', array_push($alreadyInFav, $product_id));
+
+                    return $successData;
+                }
+
+        } else {
+            return [
+              'success' => "Вы должны быть авторизованным"
+            ];
+        }
+    }
+
     public function getPopularProduct()
     {
 
         $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/popular', [
             'query' => [
                 'city_id' => 6,
+                'paginate' =>15
                 ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -81,6 +165,7 @@ class HomeController extends Controller
         $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/sale', [
             'query' => [
                 'city_id' => 6,
+                'paginate' => 10
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -336,9 +421,6 @@ class HomeController extends Controller
                 return redirect()->back()->with('error', $this->errors);
             }
         }
-
-//        dd($request->phone);
-//        https://allmarket.armenianbros.com/api/v2/users
     }
 
     public function sendSms(Request $request)
@@ -426,13 +508,19 @@ class HomeController extends Controller
 
     public function account()
     {
-        return view('personal-account');
+        $token = session()->get('token');
+        $favorites = $this->getFavorite($token);
+
+        return view('personal-account', [
+            'favorites' => $favorites
+        ]);
     }
 
     public function logout()
     {
         session()->remove('username');
         session()->remove('phone');
+        session()->remove('favorited');
         return redirect()->route('home');
     }
 

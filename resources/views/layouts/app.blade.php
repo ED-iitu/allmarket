@@ -794,6 +794,17 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="your-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
         $('#close-mask').click(function () {
             $('#cart-cont').removeClass('open');
@@ -1032,6 +1043,35 @@
                 });
             }
         });
+
+
+        function addToFavourites(id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: '{{ route('addToFavorite') }}',
+                type: 'POST',
+                data: {
+                    product_id: id,
+                },
+                success: function (data) {
+                    $('#modal-body').html('')
+                    $('#modal-body').append(data.success)
+                    $('#your-modal').modal('toggle');
+                    location.reload();
+                },
+                error: function (XMLHttpRequest) {
+                    $('#modal-body').html('')
+                    $('#modal-body').append('Произошла ошибка попробуйте позже')
+                    $('#your-modal').modal('toggle');
+                }
+            });
+        }
+
     </script>
 
 

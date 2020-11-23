@@ -397,9 +397,15 @@
                                 @foreach ($popular_products as $popular)
                                     <li style="display: flex; justify-content: center">
                                         <div class="product">
-                                            <div class="favorite">
-                                                <img class="fav-image" src="images/like.png" alt="">
-                                            </div>
+                                            @if(in_array($popular->id, (array)Session::get('favorited')))
+                                                <div class="favorite">
+                                                    <img id="addToFavorite" class="fav-image" src="images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$popular->id}})">
+                                                </div>
+                                            @else
+                                                <div class="favorite">
+                                                    <img id="addToFavorite" class="fav-image" src="images/like.png" alt="" onClick="addToFavourites({{$popular->id}})">
+                                                </div>
+                                            @endif
                                             <div class="container" style="padding: 15px">
                                                 <a href="{{route('product', $popular->id)}}">
                                                 <div class="product-image">
@@ -471,9 +477,15 @@
                                 @foreach ($recommended_products as $sale)
                                     <li style="display: flex; justify-content: center">
                                         <div class="product">
-                                            <div class="favorite">
-                                                <img class="fav-image" src="images/like.png" alt="">
-                                            </div>
+                                            @if(in_array($sale->id, (array)Session::get('favorited')))
+                                                <div class="favorite">
+                                                    <img id="addToFavorite" class="fav-image" src="images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$sale->id}})">
+                                                </div>
+                                            @else
+                                                <div class="favorite">
+                                                    <img id="addToFavorite" class="fav-image" src="images/like.png" alt="" onClick="addToFavourites({{$sale->id}})">
+                                                </div>
+                                            @endif
                                             <div class="container" style="padding: 15px">
                                                 <a href="{{route('product', $sale->id)}}">
                                                 <div class="product-image">
@@ -542,9 +554,15 @@
                                 @foreach ($sale_products as $rec)
                                     <li style="display: flex; justify-content: center">
                                         <div class="product">
-                                            <div class="favorite">
-                                                <img class="fav-image" src="images/like.png" alt="">
-                                            </div>
+                                            @if(in_array($rec->id, (array)Session::get('favorited')))
+                                                <div class="favorite">
+                                                    <img id="addToFavorite" class="fav-image" src="images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$rec->id}})">
+                                                </div>
+                                            @else
+                                                <div class="favorite">
+                                                    <img id="addToFavorite" class="fav-image" src="images/like.png" alt="" onClick="addToFavourites({{$rec->id}})">
+                                                </div>
+                                            @endif
                                             <div class="container" style="padding: 15px">
                                                 <a href="{{route('product', $rec->id)}}">
                                                 <div class="product-image">
@@ -675,7 +693,6 @@
 
 
     </section>
-
 
 
 

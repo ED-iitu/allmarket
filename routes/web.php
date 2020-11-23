@@ -27,6 +27,7 @@ Route::get('logout', 'HomeController@logout')->name('logout');
 Route::post('sendSms', 'HomeController@sendSms')->name('sendSms');
 Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
+Route::post('addToFavorite', 'HomeController@addToFavorite')->name('addToFavorite');
 
 
 

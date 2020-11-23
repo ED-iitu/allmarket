@@ -214,37 +214,55 @@
             </div>
             <div class="col-md-8 form">
                 <div id="account-favorite" style="margin-top: 30px">
-                    <div class="product">
-                        <div class="favorite">
-                            <img class="fav-image" src="images/like.png" alt="">
+                    @if(!$favorites)
+                        <div>
+                            <h4 style="display: flex;justify-content: center;align-items: center">Здесь будут ваши избранные товары</h4>
                         </div>
-                        <div class="container" style="padding: 15px">
-                            <div class="product-image">
-                                <img class="product-img" src="images/logo.png" alt="">
-                            </div>
-                            <div class="product-info" style="margin-top: 15px; position: relative">
-                                <div class="product-title">
-                                   title
-
-                                </div>
-                                <div class="product-category">
-                                    category title
-                                </div>
-
-                                <div>
-                                    <div style="display: flex;align-items: center;justify-content: space-between;">
-                                        <div class="old-price">0 тг</div>
+                    @else
+                    <div class="row">
+                        @foreach($favorites as $favorite)
+                            <div class="col-md-4">
+                                <div class="product">
+                                    <div class="favorite">
+                                        <img class="fav-image" src="images/dislike.png" alt="" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" onClick="addToFavourites({{$favorite->product->id}})">
                                     </div>
-                                    <div style="display: flex;align-items: center;justify-content: space-between;">
-                                        <div class="new-price">100 тг</div>
-                                        <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                            <img src="images/add_to_cart.png" alt="">
-                                        </button>
+                                    <div class="container" style="padding: 15px">
+                                        <a href="{{route('product', $favorite->product->id)}}">
+                                        <div class="product-image">
+                                            <img class="product-img" src="{{$favorite->product->image}}" alt="">
+                                        </div>
+                                        </a>
+                                        <div class="product-info" style="margin-top: 15px; position: relative">
+                                            <div class="product-title">
+                                                {{$favorite->product->title}}
+
+                                            </div>
+                                            <div class="product-category">
+                                                {{$favorite->product->brand}}
+                                            </div>
+
+                                            <div>
+                                                <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                    <div class="old-price">{{$favorite->product->price}} тг</div>
+                                                </div>
+                                                <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                    <div class="new-price">{{$favorite->product->price}} тг</div>
+                                                    <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                        <img src="images/add_to_cart.png" alt="">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+
+                        @endforeach
                     </div>
+
+                        @endif
+
                 </div>
                 <div id="account-order" style="margin-top: 75px">
                     <div class="d-flex flex-row justify-content-between orders">
