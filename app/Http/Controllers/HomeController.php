@@ -509,11 +509,16 @@ class HomeController extends Controller
     public function account()
     {
         $token = session()->get('token');
-        $favorites = $this->getFavorite($token);
 
-        return view('personal-account', [
-            'favorites' => $favorites
-        ]);
+        if (null === $token) {
+            return redirect()->route('home');
+        } else {
+            $favorites = $this->getFavorite($token);
+
+            return view('personal-account', [
+                'favorites' => $favorites
+            ]);
+        }
     }
 
     public function logout()
@@ -521,6 +526,7 @@ class HomeController extends Controller
         session()->remove('username');
         session()->remove('phone');
         session()->remove('favorited');
+        session()->remove('cart');
         return redirect()->route('home');
     }
 

@@ -140,9 +140,15 @@
                     @foreach($products as $product)
                     <div class="col-md-4">
                         <div class="product">
-                            <div class="favorite">
-                                <img class="fav-image" src="/images/like.png" alt="">
-                            </div>
+                            @if(in_array($product->id, (array)Session::get('favorited')))
+                                <div class="favorite">
+                                    <img id="addToFavorite" class="fav-image" src="/images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$product->id}})">
+                                </div>
+                            @else
+                                <div class="favorite">
+                                    <img id="addToFavorite" class="fav-image" src="/images/like.png" alt="" onClick="addToFavourites({{$product->id}})">
+                                </div>
+                            @endif
                             <div class="container" style="padding: 15px">
                                 <a href="{{route('product', $product->id)}}" style="text-decoration: none">
                                     <div class="product-image">

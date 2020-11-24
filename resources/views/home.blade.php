@@ -326,6 +326,45 @@
             text-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px #8FACC1;
         }
 
+        .banner-home {
+            width: 1110px ;
+            height: 625px;
+
+            background: #3F9B8A;
+            border-radius: 10px 10px 10px 10px !important;
+        }
+
+        .uk-dotnav>.uk-active>* {
+            width: 15px;
+            height: 15px;
+        }
+
+        .uk-dotnav>*>* {
+            width: 15px;
+            height: 15px;
+        }
+
+        .dots-left {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            margin-top: -24px !important;
+            margin-left: -532px;
+        }
+
+        .dots-right {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            margin-top: -24px !important;
+            margin-left: 952px;
+        }
+
+
 
 
 
@@ -333,59 +372,48 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <!--Carousel Wrapper-->
-            <div id="carousel-home-1" class="carousel slide carousel-fade" data-ride="carousel">
-                <!--Indicators-->
-                <ol class="carousel-indicators" >
-                    <li data-target="#carousel-home-1" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-home-1" data-slide-to="1" style="margin-left: 10px"></li>
-                </ol>
-                <!--/.Indicators-->
-                <!--Slides-->
-                <div class="carousel-inner" role="listbox">
-                    <!--First slide-->
-                    <div class="carousel-item banner active">
-                        {{--<img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg"--}}
-                             {{--alt="First slide">--}}
-                    </div>
-                    <!--/First slide-->
-                    <!--Second slide-->
-                    <div class="carousel-item banner">
-                        {{--<img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg"--}}
-                             {{--alt="Second slide">--}}
-                    </div>
-                    <!--/Second slide-->
-                </div>
-                <!--/.Slides-->
-            </div>
-            <!--/.Carousel Wrapper-->
 
-            <!--Carousel Wrapper-->
-            <div id="carousel-home-2" class="carousel slide carousel-fade" data-ride="carousel" style="margin-top: 20px">
-                <!--Indicators-->
-                <ol class="carousel-indicators" >
-                    <li data-target="#carousel-home-2" data-slide-to="0" class="active" style="margin-right: 10px"></li>
-                    <li data-target="#carousel-home-2" data-slide-to="1"></li>
-                </ol>
-                <!--/.Indicators-->
-                <!--Slides-->
-                <div class="carousel-inner" role="listbox">
-                    <!--First slide-->
-                    <div class="carousel-item banner active">
-                        {{--<img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg"--}}
-                        {{--alt="First slide">--}}
-                    </div>
-                    <!--/First slide-->
-                    <!--Second slide-->
-                    <div class="carousel-item banner">
-                        {{--<img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg"--}}
-                        {{--alt="Second slide">--}}
-                    </div>
-                    <!--/Second slide-->
+            <div class="uk-position-relative uk-light" uk-slideshow>
+
+                <ul class="uk-slideshow-items">
+                    <li>
+                        <div class="banner-home" uk-cover></div>
+                        {{--<img src="images/photo.jpg" alt="" uk-cover>--}}
+                    </li>
+                    <li>
+                        <div class="banner-home" uk-cover></div>
+                    </li>
+                </ul>
+
+                <div class="uk-position-bottom-center uk-position-small">
+                    <ul class="uk-dotnav dots-left">
+                        <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
+                        <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+                    </ul>
                 </div>
-                <!--/.Slides-->
+
             </div>
-            <!--/.Carousel Wrapper-->
+
+            <div class="uk-position-relative uk-light" uk-slideshow style="margin-top: 20px">
+
+                <ul class="uk-slideshow-items">
+                    <li>
+                        <div class="banner-home" uk-cover></div>
+                        {{--<img src="images/photo.jpg" alt="" uk-cover>--}}
+                    </li>
+                    <li>
+                        <div class="banner-home" uk-cover></div>
+                    </li>
+                </ul>
+
+                <div class="uk-position-bottom-center uk-position-small">
+                    <ul class="uk-dotnav dots-right">
+                        <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
+                        <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+                    </ul>
+                </div>
+
+            </div>
 
             <section>
                 <h2 class="popular-title">Популярные товары <span class="popular-red"></span><hr class="popular-hr"><hr class="popular-hr-dark"></h2>

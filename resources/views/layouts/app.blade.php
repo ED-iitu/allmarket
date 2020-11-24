@@ -25,6 +25,28 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
+        input[type=radio]:checked {
+
+
+            background: rgba(27, 168, 143, 0.95) !important;
+        }
+
+        .item {
+            margin-left: 17px;
+        }
+
+        .item label {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 29px;
+            /* or 221% */
+
+            letter-spacing: -0.540636px;
+
+            color: #4A536A;
+        }
         .cart-title {
 
 
@@ -337,6 +359,214 @@
             border-radius: 0px 0px 12px 12px;
         }
 
+        .input-street {
+            border: none;
+            background: rgba(205, 223, 239, 0.85);
+            box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
+            border-radius: 17.5102px;
+            width: 296.92px;
+            height: 35.02px;
+        }
+
+        .input-street::placeholder {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 16px;
+            /* identical to box height */
+
+            color: #43637A;
+        }
+
+        .input-house {
+            border: none;
+            width: 141px;
+            height: 35.02px;
+
+            background: rgba(205, 223, 239, 0.85);
+            box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
+            border-radius: 17.5102px;
+        }
+
+        .input-house::placeholder {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 16px;
+
+
+            color: #43637A;
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+
+        @media only screen
+        and (min-device-width : 375px)
+        and (max-device-width : 812px)
+        and (-webkit-device-pixel-ratio : 3) {
+            .navbar {
+                display: none !important;
+            }
+
+            .category-web {
+                display: none;
+            }
+
+            .search {
+                border: none;
+                width: 278px;
+                height: 35.55px;
+                left: calc(50% - 300.03px/2 - 21.39px);
+                top: 66.99px;
+
+                background: rgba(205, 223, 239, 0.85);
+                box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
+                border-radius: 17.7773px;
+            }
+
+            .search::placeholder {
+                font-family: Montserrat;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 27px;
+                /* or 194% */
+
+                letter-spacing: -0.540636px;
+
+                color: #7591A7;
+            }
+
+            .search-div {
+                margin-left: 0px;
+            }
+
+            .cart-div {
+                display: none;
+            }
+
+            .btn-search {
+                border: none;
+                width: 36px;
+                height: 36px;
+                left: calc(50% - 36px/2 + 189.5px);
+                top: 103px;
+
+                background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
+                box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
+                border-radius: 18px;
+            }
+
+            .menu-line {
+                width: 334px !important;
+                height: 1px !important;
+            }
+
+            .menu-blackline {
+                width: 334px !important;
+                height: 1px !important;
+            }
+            .mobile-nav {
+                display: inline;
+            }
+
+            .mobile-phone {
+                width: 53px;
+                height: 53px;
+
+                background: rgba(38, 149, 151, 0.95);
+            }
+
+            .mobile-cart {
+                width: 53px;
+                height: 53px;
+
+                background: #608FBD;
+            }
+
+            .mobile-expand {
+                width: 53px;
+                height: 53px;
+
+                background: rgba(85, 174, 175, 0.95);
+            }
+            .mobile-logo {
+                background: #7791A4;
+                width: 216px;
+                height: 53px;
+            }
+
+            .home-banner {
+                width: 375px;
+                height: 589px;
+                left: calc(50% - 375px/2);
+                top: 137px;
+
+                background: #3F9B8A;
+                border-radius: 0px;
+            }
+
+            .dots-left {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                margin-left: -12px !important;
+            }
+
+            .dots-right {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                margin-left: -12px !important;
+            }
+
+            .nav-link {
+                padding: 0.8rem 1rem;
+            }
+
+            .content-mobile-menu {
+                padding: 20px;
+                margin-top: 7px;
+                background: #FFFFFF;
+                width: 100%;
+                z-index: 100;
+                position: absolute;
+                display: none;
+                margin-left: -322px;
+
+                font-family: Montserrat;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 20px;
+                line-height: 40px;
+                align-items: center;
+                text-transform: capitalize;
+
+                color: #7791A4;
+            }
+
+            .social-mobile {
+                margin: 10px;
+                width: 35px;
+                height: 36px;
+
+
+                background: radial-gradient(65.46% 77.72% at 41.48% 22.38%, #E7F2FF 0%, #FFFFFF 17.19%, #E7F2FF 47.92%, #80B5EF 81.76%, #9DDCFF 99.1%);
+                box-shadow: 0px 7.8125px 11.7187px rgba(0, 25, 88, 0.3), inset 7.8125px 14.2969px 19.5312px #FFFFFF, inset 36.6016px 56.1328px 91.2109px rgba(255, 255, 255, 0.7);
+                border-radius: 60px;
+            }
+
+
+        }
+
 
     </style>
 
@@ -413,10 +643,56 @@
             </div>
         </nav>
 
+        <nav class="mobile-nav">
+            <div class="d-flex flex-row">
+                <div class="mobile-logo">
+                    <a href="{{ url('/') }}">
+                        <img src="/images/logo.png" alt="" style="max-width: 95%">
+                    </a>
+                </div>
+                <div class="mobile-phone">
+                    <a class="nav-link" href="tel:+ 77476574712">
+                        <img src="/images/phone.png" alt="">
+                    </a>
+                </div>
+                <div class="mobile-cart">
+                    <a class="nav-link" href="">
+                        <img src="/images/corzina-mobile.png" alt="">
+                    </a>
+                </div>
+                <div class="mobile-expand">
+                    <img src="/images/collapse-mobile.png" class="nav-link collapsible" alt="">
+                    {{--<button type="button" class="collapsible">--}}
+                        {{--<span class="navbar-toggler-icon"></span>--}}
+                    {{--</button>--}}
+                    <div class="content-mobile-menu flex-column">
+                        <div>Категории</div>
+                        <hr>
+                        <div>Выбрать город</div>
+                        <hr>
+                        <div>Вход</div>
+                        <div>Регистрация</div>
+                        <div>Акции & Скидки</div>
+                        <div>F.A.Q</div>
+                        <div>О нас</div>
+                        <hr>
+                        <div class="d-flex flex-row" style="justify-content: center;">
+                            <div class="social-mobile">1</div>
+                            <div class="social-mobile">2</div>
+                            <div class="social-mobile">3</div>
+                            <div class="social-mobile">4</div>
+                            <div class="social-mobile">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
         <div class="navbar-second">
             <div class="container">
                 <div class="d-flex flex-row mb-3">
-                    <div class="p-2">
+                    <div class="p-2 category-web">
                         <div class="d-flex flex-row">
                             <div>
                                 <a href=><img src="/images/категории.png" alt=""></a>
@@ -441,7 +717,7 @@
                         </form>
 
                     </div>
-                    <div class="p-2">
+                    <div class="p-2 cart-div">
                         <div class="d-flex" id="cart">
                             <button class="btn-cart" style="outline:none;" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');">
                                 <img src="/images/corzina.png" alt="">
@@ -717,7 +993,7 @@
                                     <div ><a href="" class="clear-cart">очистить все</a></div>
                                 </div>
                                 @if(session('cart'))
-                                <div class="non-empty-cart">
+                                <div class="non-empty-cart" id="cart-after">
                                     <h2 class="cart-top-title">Товары:</h2>
                                     <hr>
                                     <?php $CartTotal = 0 ?>
@@ -778,7 +1054,7 @@
                                             </div>
                                         </div>
                                         <div class="flex-row" style="justify-content: center; align-items: center; margin-top: 10px">
-                                            <button type="submit" class="checkout-btn">Оформить заказ</button>
+                                            <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ</button>
                                         </div>
                                     </div>
                                 @else
@@ -1045,6 +1321,74 @@
         });
 
 
+        function checkout() {
+            $('#cart-cart').html(`
+                <div class="cart-checkout">
+                    <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
+                        <div class="top-cart-cart">Корзина: Оформить заказ</div>
+                    </div>
+                    <h2 class="cart-top-title">Оплата:</h2>
+                    <hr>
+                    <div class="payment-method d-flex flex-column">
+                        <div class="item" style="display: block;">
+                          <input type="radio" id="cash" name="cash" value="cash">
+                          <label for="cash" style="display: inline;">Наличными при получении заказа</label>
+                        </div>
+                        <div class="item" style="display: block;">
+                          <input type="radio" id="card-online" name="card-online" value="card-online">
+                          <label for="card-online" style="display: inline;">Банковской картой онлайн</label>
+                        </div>
+                        <div class="item" style="display: block;">
+                          <input type="radio" id="card-offline" name="card-offline" value="card-offline">
+                          <label for="card-offline" style="display: inline;">Банковской картой при получении заказа</label>
+                        </div>
+                    </div>
+                    <div class="address-cart">
+                        <h2 class="cart-top-title">Адрес доставки:</h2>
+                    </div>
+                    <hr>
+                    <div class="checkout-address" style="display: flex; justify-content: center; margin-top: -10px">
+                        <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
+                            <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
+                                <option class="input-select-option-inside" value="">Выберите город</option>
+                                <option class="input-select-option-inside" value="6">Алматы</option>
+                                <option class="input-select-option-inside" value="6">Нур-Султан</option>
+                                <option class="input-select-option-inside" value="6">Караганда</option>
+                                <option class="input-select-option-inside" value="6">Петропавлоск</option>
+                                <option class="input-select-option-inside" value="6">Усть-Каменогорск</option>
+                                <option class="input-select-option-inside" value="6">Атырау</option>
+                                <option class="input-select-option-inside" value="6">Актау</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 10px">
+                        <input type="text" class="input-street" placeholder="Улица">
+                    </div>
+                    <div class="flex-row" style="display: flex;justify-content: center; margin-top: 10px">
+                        <input type="" class="input-house" placeholder="Дом">
+                        <input type="" class="input-house" placeholder="Квартира" style="margin-left: 6px">
+                    </div>
+                    <div class="checkout-address" style="display: flex; justify-content: center">
+                        <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
+                            <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
+                                <option class="input-select-option-inside" value="">Время доставки</option>
+                                <option class="input-select-option-inside" value="6">Утром</option>
+                                <option class="input-select-option-inside" value="6">В обед</option>
+                                <option class="input-select-option-inside" value="6">Вечером</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-bottom" style="margin-top: 20px">
+                    <div class="flex-row" style="justify-content: center; align-items: center; margin-top: 10px">
+                        <button type="submit" class="checkout-btn" onclick="checkout()">Подтвердить заказ</button>
+                    </div>
+                </div>
+
+            `)
+        }
+
+
         function addToFavourites(id) {
             $.ajaxSetup({
                 headers: {
@@ -1072,6 +1416,23 @@
             });
         }
 
+    </script>
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
     </script>
 
 
