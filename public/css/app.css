@@ -11667,6 +11667,8 @@ body {
   background: #E3EDF7;
 }
 .signUp-form {
+  text-align: center;
+  display: none;
   width: 490px;
   background: #AFC5DB;
 }
@@ -12619,6 +12621,11 @@ span{
   border-radius: 0px 0px 12px 12px;
 }
 
+.authBtnText {
+  text-align: center;
+  margin-top: 20px
+}
+
 .input-street {
   border: none;
   background: rgba(205, 223, 239, 0.85);
@@ -12783,9 +12790,604 @@ and (max-device-width : 568px) {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen
 and (min-device-width : 414px)
 and (max-device-width : 812px) {
+
+  .cart-header {
+    width: 100% !important;
+  }
+
+  .cart-bottom {
+    width: 100% !important;
+  }
+
+  #cart-cart {
+    width: 100% !important;
+    right: 0 !important;
+    top: 55px !important;
+  }
+  .about-home-banner {
+    width: 90% !important;
+    margin: 5%;
+  }
+
+  .benefits-img {
+    max-width: 57px !important;
+  }
+  .partner-img {
+    margin: 5px !important;
+  }
+
+  .benefits {
+    width: 217px !important;
+    margin-top: 10px !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+  }
+
+
+  .benefits-description {
+    font-size: 12px !important;
+    line-height: 15px !important;
+    width: 338px !important;
+    margin-top: 0px !important;
+  }
+
+  .almarket-word {
+    width: 155px !important;
+    font-size: 24px !important;
+    line-height: 29px !important;
+
+  }
+
+  .home-about-banner {
+    background-position: left !important;
+  }
+
+  .banner-text-one {
+    width: 159px !important;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px !important;
+    line-height: 17px !important;
+    align-items: center;
+  }
+
+  .banner-text-two {
+    width: 159px !important;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px !important;
+    line-height: 17px !important;
+    align-items: center;
+  }
+
+  .banner-button {
+    width: 250px !important;
+    height: 49px !important;
+  }
+
+  .banner-button-text {
+    width: 260px !important;
+    font-size: 14px !important;
+    line-height: 17px !important;
+  }
+
+  .popular-hr {
+    width: 142px !important;
+  }
+
+  .sale-hr {
+    width: 142px !important;
+  }
+  .rec-hr {
+    width: 80px !important;
+  }
+
+  .product {
+    width: 175px !important;
+  }
+
+  .product-image {
+    width: 146px !important;
+  }
+
+  .new-price {
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    line-height: 21px !important;
+  }
+
+  .old-price {
+    font-weight: 500 !important;
+    font-size: 13px !important;
+  }
+
+  .product-title {
+    font-weight: 600 !important;
+    font-size: 10.827px !important;
+    line-height: 16px !important;
+    width: 128.62px !important;
+  }
+
+  .product-category {
+
+    font-weight: 500 !important;
+    font-size: 10.827px !important;
+    line-height: 16px !important;
+  }
+
+  .popular-title {
+    width: 100% !important;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px !important;
+    line-height: 24px !important;
+    align-items: center;
+    text-transform: capitalize;
+
+    color: #6D818F;
+
+    text-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px #8FACC1;
+  }
+
+  .supp_num {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    display: block !important;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #015442;
+
+    text-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px #8FACC1;
+  }
+
+  .section-item {
+    margin-top: 17px !important;
+    width: 370px !important;
+  }
+
+  .faq-text-div {
+    width: 385px !important;
+  }
+
+  .faq-text {
+    width: 350px !important;
+  }
+
+  button.btn.collapsed:before {
+    margin-top: -19px !important;
+    margin-left: -23px !important;
+  }
+
+  button.btn:before {
+    margin-top: -19px !important;
+    margin-left: -23px !important;
+  }
+
+  .faq-title {
+    margin-top: 20px !important;
+
+    height: 18px !important;
+
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px !important;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+
+    color: #637E99;
+  }
+
+  .faq {
+    width: 385px !important;
+    height: 54.84px !important;
+  }
+
+  .menu-links {
+    color: #7791A4;
+  }
+
+  .bread {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #7791A4;
+  }
+
+  #section-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section-banner {
+    width: 384px !important;
+  }
+  .signup-title {
+    width: 222px;
+    height: 16px;
+    left: 77px;
+    top: 356px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15.98px;
+    line-height: 19px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+  }
+
+  .authBtnText {
+    margin-top: 11px;
+  }
+  .signIn {
+    width: 163.05px;
+    height: 59.23px;
+
+
+    background: #E3EDF7;
+    border-radius: 6.65493px 0px 0px 0px;
+  }
+
+  .signUp {
+    width: 163.05px;
+    height: 59.23px;
+    left: 188.05px;
+    top: 240.29px;
+
+    background: #AFC5DB;
+    border-radius: 0px 6.65493px 0px 0px;
+  }
+
+  .login-form {
+    width: 324px;
+
+    background: #E3EDF7;
+    border-radius: 0px 0px 6.65493px 6.65493px;
+  }
+
+  .signUp-form {
+    width: 324px;
+
+
+
+    background: #AFC5DB;
+    border-radius: 0px 0px 6.65493px 6.65493px;
+  }
+
+  .uk-modal-dialog {
+    width: 670px !important;
+  }
+
+  .input-text-login {
+    width: 273px;
+    height: 37.99px;
+    left: 51px;
+    top: 406px;
+
+    background: #CDDFEF;
+    box-shadow: 1.33099px 1.33099px 1.33099px rgba(255, 255, 255, 0.49), inset 1.99648px 2.66197px 1.99648px rgba(93, 148, 204, 0.5);
+    border-radius: 20.6303px;
+  }
+
+  .input-text-login::placeholder {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14.6408px;
+    line-height: 18px;
+    /* identical to box height, or 124% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #738CA5;
+
+  }
+
+  .reg-title {
+    width: 243px;
+    height: 16px;
+    left: 77px;
+    top: 321px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15.98px;
+    line-height: 19px;
+    align-items: center;
+    text-align: right;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+  }
+
+  .input-text {
+    width: 273px;
+    height: 37.99px;
+    left: 51px;
+    top: 351px;
+
+    background: #B3C9DF;
+    box-shadow: 1.33099px 1.33099px 1.33099px rgba(255, 255, 255, 0.49), inset 1.99648px 2.66197px 1.99648px rgba(93, 148, 204, 0.5);
+    border-radius: 20.6303px;
+  }
+
+  .input-text::placeholder {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14.6408px;
+    line-height: 18px;
+    /* identical to box height, or 124% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #FFFFFF;
+
+  }
+
+  .input-select {
+    width: 272px;
+    height: 37.99px;
+    left: 328px;
+    top: 491.02px;
+
+    background: linear-gradient(0deg, #B2C9DF, #B2C9DF);
+    box-shadow: -2.66197px -2.66197px 2.66197px #C5D7EA, 1.99648px 1.99648px 2.66197px rgba(93, 148, 204, 0.25);
+    border-radius: 17.4339px;
+  }
+
+  .btn-submit {
+    width: 272.33px;
+    height: 37.85px;
+    left: 328px;
+    top: 543.89px;
+
+    background: linear-gradient(0deg, #B2C9DF, #B2C9DF);
+    border: 0.199648px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: -2.66197px -2.66197px 2.66197px #C5D7EA, 1.99648px 1.99648px 2.66197px rgba(93, 148, 204, 0.25);
+    border-radius: 17.4339px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 18px;
+    /* identical to box height, or 139% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #FFFFFF;
+  }
+
+  .login-title-btn {
+    padding-top: 0px !important;
+    width: 226px;
+    height: 38px;
+    left: 301px;
+    top: 517px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
+    border: 0.199648px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: -2.66197px -2.66197px 2.66197px #FFFFFF, 1.99648px 1.99648px 2.66197px rgba(93, 148, 204, 0.25);
+    border-radius: 17.4339px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 18px;
+    /* or 139% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #637E99;
+  }
+
+  .verify-code-input {
+    border: none;
+    width: 48.62px;
+    height: 48.62px;
+
+
+    background: #CDDFEF;
+    box-shadow: 1.33208px 1.33208px 1.33208px rgba(255, 255, 255, 0.49), inset 1.99812px 2.66417px 1.99812px rgba(93, 148, 204, 0.5);
+    border-radius: 31.637px;
+  }
+
+  .signIn-form{
+    width: 326px;
+
+    left: 25px;
+    top: 293px;
+
+    background: #E3EDF7;
+    border-radius: 0px 0px 6.65493px 6.65493px;
+  }
+
+
+  .uk-modal-body {
+    margin-top: 100px !important;
+  }
+
+  .input-select-option {
+    width: 147px;
+    height: 18.06px;
+    left: 122.16px;
+    top: 461.54px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14.6408px;
+    line-height: 18px;
+    /* identical to box height, or 124% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #FFFFFF;
+  }
+
+  .login-title-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 272.33px;
+    height: 37.85px;
+    left: 324.33px;
+    top: 495.85px;
+
+    background: #E3EDF7;
+    border: 0.199648px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: -2.66197px -2.66197px 2.66197px #FFFFFF, 1.99648px 1.99648px 2.66197px rgba(93, 148, 204, 0.25);
+    border-radius: 17.4339px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 18px;
+    /* identical to box height, or 139% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #738CA5;
+  }
+
+  .login-title {
+    width: 266px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15.98px;
+    line-height: 19px;
+
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #738CA5;
+  }
+
+  .login-btn-text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15.9718px;
+    line-height: 19px;
+    /* identical to box height */
+
+    align-items: center;
+    text-align: right;
+    text-transform: uppercase;
+
+    color: #637E99;
+  }
+
+  .signUp-btn-text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15.9718px;
+    line-height: 19px;
+    /* identical to box height */
+
+    align-items: center;
+    text-align: right;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+  }
+
+  .signUp-subtext {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 7.32042px;
+    line-height: 18px;
+    /* or 247% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #EFF7FF;
+  }
+
+  .login-subtext {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 7.32042px;
+    line-height: 18px;
+    /* or 247% */
+
+    text-align: center;
+    letter-spacing: -0.35979px;
+
+    color: #637E99;
+  }
   .navbar {
     display: none !important;
   }
@@ -12942,15 +13544,15 @@ and (-webkit-device-pixel-ratio : 3) {
     height: 53px;
   }
 
-  .home-banner {
-    width: 375px;
-    height: 589px;
-    left: calc(50% - 375px/2);
-    top: 137px;
+  /*.home-banner {*/
+    /*width: 375px;*/
+    /*height: 589px;*/
+    /*left: calc(50% - 375px/2);*/
+    /*top: 137px;*/
 
-    background: #3F9B8A;
-    border-radius: 0px;
-  }
+    /*background: #3F9B8A;*/
+    /*border-radius: 0px;*/
+  /*}*/
 
   .dots-left {
     display: flex;
@@ -13006,7 +13608,39 @@ and (-webkit-device-pixel-ratio : 3) {
     border-radius: 60px;
   }
 
+}
+
+
+.signup-title {
+    width: 244px;
+    height: 58px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
 
 }
 
+.about-home-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.home-about-banner {
+  margin-top: 30px;
+  background: #EDF4FB;
+  background-image: url('/images/main-banner.png');
+  background-position: right;
+  background-repeat: no-repeat
+}
 

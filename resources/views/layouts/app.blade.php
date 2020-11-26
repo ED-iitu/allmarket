@@ -115,8 +115,8 @@
                         <img src="/images/phone.png" alt="">
                     </a>
                 </div>
-                <div class="mobile-cart">
-                    <a class="nav-link" href="">
+                <div class="mobile-cart" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');">
+                    <a class="nav-link" href="#">
                         <img src="/images/corzina-mobile.png" alt="">
                     </a>
                 </div>
@@ -126,15 +126,30 @@
                         {{--<span class="navbar-toggler-icon"></span>--}}
                     {{--</button>--}}
                     <div class="content-mobile-menu flex-column">
-                        <div>Категории</div>
+                        <div><a class="menu-links" href="{{route('sections')}}">Категории</a></div>
                         <hr>
                         <div>Выбрать город</div>
                         <hr>
-                        <div>Вход</div>
-                        <div>Регистрация</div>
+
+                        @if ($message = Session::get('username'))
+                            <a class="menu-links dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                               style=" font-family: Montserrat;color: #0EFEC3 !important;">
+                                {{$message}}
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/account#account-favorite">Избранные товары</a>
+                                <a class="dropdown-item" href="/account#account-order">История заказов</a>
+                                <a class="dropdown-item" href="/account#account-зкщашду">Мои данные</a>
+                                <a class="dropdown-item" href="{{route('logout')}}">Выход</a>
+                            </div>
+                        @else
+
+                            <div href="#auth" uk-toggle>Вход</div>
+                            <div href="#auth" uk-toggle>Регистрация</div>
+                        @endif
                         <div>Акции & Скидки</div>
-                        <div>F.A.Q</div>
-                        <div>О нас</div>
+                        <div><a class="menu-links" href="{{route('faq')}}">F.A.Q</a></div>
+                        <div><a class="menu-links" href="{{route('about')}}">О нас</a></div>
                         <hr>
                         <div class="d-flex flex-row" style="justify-content: center;">
                             <div class="social-mobile">
@@ -373,15 +388,15 @@
                 <div class="forms">
                     <ul class="tab-group" style="display: flex">
                         <li class="tab active signIn">
-                            <div style="text-align: center; margin-top: 20px"><a href="#login" class="login-btn-text">Войти</a></div>
+                            <div class="authBtnText" ><a href="#login" class="login-btn-text">Войти</a></div>
                             <div class="login-subtext">Покупали раньше?</div>
                         </li>
                         <li class="tab signUp">
-                            <div style="text-align: center; margin-top: 20px"><a href="#signup" class="signUp-btn-text">Регистрация</a></div>
+                            <div class="authBtnText"><a href="#signup" class="signUp-btn-text">Регистрация</a></div>
                             <div class="signUp-subtext">Пройди регистрацию за 1 минуту</div>
                         </li>
                     </ul>
-                    <form id="login" class="login-form" style="height: 350px">
+                    <form id="login" class="login-form">
                         <h1 class="login-title">Ведите свои данные</h1>
                         <div class="tab input-field d-flex flex-column">
                             <input type="text" id="tel" class="input-text-login" name="phone" placeholder="Номер телефона" value="" required>
@@ -429,10 +444,10 @@
                         </div>
                     </form>
 
-                    <form action="{{route('sendSms')}}" method="POST" id="signup-finish" class="signUn-form" style="text-align: center; display: none; width: 490px;background: #AFC5DB;">
+                    <form action="{{route('sendSms')}}" method="POST" id="signup-finish" class="signUp-form">
                         @csrf
                         <div class="d-flex flex-column">
-                            <h1 class="login-title">введите код подтверждения</h1>
+                            <h1 class="signup-title">введите код подтверждения</h1>
                             <div class="flex-row">
                                 <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="one" />
                                 <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" name="two"/>

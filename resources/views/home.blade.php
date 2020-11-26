@@ -501,7 +501,7 @@
                 <div uk-slider>
                     <div class="uk-position-relative">
                         <div class="uk-slider-container uk-light">
-                            <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-4@m" style="margin-bottom: 20px">
+                            <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m" style="margin-bottom: 20px">
                                 @foreach ($recommended_products as $sale)
                                     <li style="display: flex; justify-content: center">
                                         <div class="product">
@@ -578,7 +578,7 @@
                 <div uk-slider autoplay="true">
                     <div class="uk-position-relative">
                         <div class="uk-slider-container uk-light">
-                            <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-4@m" style="margin-bottom: 20px">
+                            <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m" style="margin-bottom: 20px">
                                 @foreach ($sale_products as $rec)
                                     <li style="display: flex; justify-content: center">
                                         <div class="product">
@@ -653,7 +653,7 @@
     </div>
 </div>
 
-    <section style="margin-top: 30px; background: #EDF4FB;background-image: url('/images/main-banner.png'); background-position: right; background-repeat: no-repeat">
+    <section class="home-about-banner">
         <div class="d-flex flex-column banner-text">
             <div class="almarket-word">
                 <span style="color: #43637A"><span style="color: #2CD4B3">allmarket</span> в твоём телефоне</span>
@@ -680,37 +680,37 @@
             <div uk-slider >
                 <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
 
-                    <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-6@m">
-                        <li>
+                    <ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-3@s uk-child-width-1-6@m">
+                        <li class="partner-img">
                             <img src="images/mars_logo.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/splat.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/red_bull.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/ferrero.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/Danone.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/Ehrmann.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/uvelka.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/sady.png" alt="">
                         </li>
 
-                        <li>
+                        <li class="partner-img">
                             <img src="images/abbot.png" alt="">
                         </li>
 
-                        <li>
+                        <li class="partner-img">
                             <img src="images/johnson.png" alt="">
                         </li>
 
@@ -718,8 +718,6 @@
                 </div>
             </div>
         </div>
-
-
     </section>
 
 

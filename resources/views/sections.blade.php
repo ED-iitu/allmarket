@@ -52,8 +52,9 @@
     <div class="container">
         <div class="row">
             @foreach($sections as $section)
-            <div class="col-xs-6 col-sm-4 col-md-4">
-                 <a href="{{route('sectionById', $section->id)}}" style="text-decoration: none">
+                <a href="{{route('sectionById', $section->id)}}" style="text-decoration: none">
+            <div class="col-xs-6 col-sm-4 col-md-4" id="section-list">
+
                     <div class="section-item d-flex flex-row" >
                         <div>
                             <div style="display: flex;align-items: center;justify-content: space-between; margin-top: 10px; margin-left: 20px">
@@ -69,9 +70,10 @@
                             <a href=""><img  src="images/category/{{$section->system_key}}.png" alt=""></a>
                         </div>
                     </div>
-                </a>
+
 
             </div>
+                </a>
             @endforeach
         </div>
     </div>

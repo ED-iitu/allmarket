@@ -8,14 +8,18 @@
         <div class="bread">Главная / О нас</div>
     </div>
 
-    <div class="col-md-12 home-banner"></div>
+    {{--<div class="col-md-12 home-banner"></div>--}}
+    
+    <div class="about-home-banner">
+        <img src="/images/home-banner.png" alt="">
+    </div>
 
     <div class="container" style="padding: 50px">
         <div class="d-flex flex-column">
             <div class="benefits-block">
                 <div class="d-flex flex-row">
                     <div>
-                        <a href=""><img src="images/calculator.png" alt=""></a>
+                        <a href=""><img class="benefits-img" src="/images/calculator.png" alt=""></a>
                     </div>
                     <div>
                         <div style="display: flex;align-items: center;justify-content: space-between">
@@ -34,7 +38,7 @@
             <div class="benefits-block">
                 <div class="d-flex flex-row">
                     <div>
-                        <a href=""><img src="images/truck.png" alt=""></a>
+                        <a href=""><img class="benefits-img" src="/images/truck.png" alt=""></a>
                     </div>
                     <div>
                         <div style="display: flex;align-items: center;justify-content: space-between">
@@ -53,7 +57,7 @@
             <div class="benefits-block">
                 <div class="d-flex flex-row">
                     <div>
-                        <a href=""><img src="images/bag.png" alt=""></a>
+                        <a href=""><img class="benefits-img" src="/images/bag.png" alt=""></a>
                     </div>
                     <div>
                         <div style="display: flex;align-items: center;justify-content: space-between">
@@ -98,37 +102,37 @@
             <div uk-slider >
                 <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
 
-                    <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-6@m">
-                        <li>
+                    <ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-3@s uk-child-width-1-6@m">
+                        <li class="partner-img">
                             <img src="images/mars_logo.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/splat.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/red_bull.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/ferrero.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/Danone.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/Ehrmann.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/uvelka.png" alt="">
                         </li>
-                        <li>
+                        <li class="partner-img">
                             <img src="images/sady.png" alt="">
                         </li>
 
-                        <li>
+                        <li class="partner-img">
                             <img src="images/abbot.png" alt="">
                         </li>
 
-                        <li>
+                        <li class="partner-img">
                             <img src="images/johnson.png" alt="">
                         </li>
 
