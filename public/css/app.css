@@ -12768,7 +12768,7 @@ and (max-device-width : 568px) {
 
 
 @media only screen
-and (min-device-width : 414px)
+and (min-device-width : 400px)
 and (max-device-width : 812px) {
 
   .product-list-mobile {
