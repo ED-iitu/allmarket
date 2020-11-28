@@ -221,7 +221,7 @@
                     @else
                     <div class="row">
                         @foreach($favorites as $favorite)
-                            <div class="col-md-4">
+                            <div class="col-md-4 product-list-mobile">
                                 <div class="product">
                                     <div class="favorite">
                                         <img class="fav-image" src="images/dislike.png" alt="" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" onClick="addToFavourites({{$favorite->product->id}})">

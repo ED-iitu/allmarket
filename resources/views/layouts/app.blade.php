@@ -204,8 +204,8 @@
                     </div>
                     <div class="p-2 cart-div">
                         <div class="d-flex" id="cart">
-                            <button class="btn-cart" style="outline:none;" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');">
-                                <img src="/images/corzina.png" alt="">
+                            <button class="btn-cart" style="outline:none;" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow'); $('.carzina-sign').html('X')">
+                                <img class="carzina-sign" src="/images/corzina.png" alt="">
                             </button>
                             <div>
                                 <div style="display: flex;align-items: center;justify-content: space-between">
@@ -487,10 +487,10 @@
                                         <?php $CartTotal += $details['price'] * $details['quantity'] ?>
                                             <div class="cart-product" style="padding: 20px;">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-4" style="width: 170px">
                                                         <img class="cart-image" src="{{$details['image']}}" alt="">
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6" style="width: 170px">
                                                         <div class="cart-title">
                                                             {{ Str::of($details['title'])->limit(15) }}
                                                         </div>
@@ -504,7 +504,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-2" style="width: 50px">
                                                         <div><span class="remove-from-cart">x</span></div>
                                                     </div>
                                                 </div>
@@ -517,8 +517,8 @@
                                         @endforeach
                                 </div>
                                     <div class="cart-bottom">
-                                        <div class="row">
-                                            <div class="col-md-4">
+                                        <div class="row" style="flex-wrap: nowrap">
+                                            <div class="col-md-4 col-4">
                                                 <div class="cart-total-price-title">Итого:</div>
                                                 <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span class="bonus-price">200</span></div>
                                             </div>
@@ -538,7 +538,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <div class="flex-row" style="justify-content: center; align-items: center; margin-top: 10px">
+                                        <div class="flex-row" style="display:flex;justify-content: center; align-items: center; margin-top: 10px">
                                             <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ</button>
                                         </div>
                                     </div>
@@ -813,7 +813,7 @@
                         <div class="top-cart-cart">Корзина: Оформить заказ</div>
                     </div>
                     <h2 class="cart-top-title">Оплата:</h2>
-                    <hr>
+                    <hr class="cart-hr">
                     <div class="payment-method d-flex flex-column">
                         <div class="item" style="display: block;">
                           <input type="radio" id="cash" name="cash" value="cash">
@@ -831,8 +831,8 @@
                     <div class="address-cart">
                         <h2 class="cart-top-title">Адрес доставки:</h2>
                     </div>
-                    <hr>
-                    <div class="checkout-address" style="display: flex; justify-content: center; margin-top: -10px">
+                    <hr class="cart-hr">
+                    <div class="checkout-address" style="display: flex; justify-content: center; margin-top: 10px">
                         <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
                             <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                                 <option class="input-select-option-inside" value="">Выберите город</option>
@@ -849,10 +849,14 @@
                     <div style="display: flex; justify-content: center; margin-top: 10px">
                         <input type="text" class="input-street" placeholder="Улица">
                     </div>
-                    <div class="flex-row" style="display: flex;justify-content: center; margin-top: 10px">
+                    <div class="flex-row" style="display: flex;justify-content: center; margin-top:10px">
                         <input type="" class="input-house" placeholder="Дом">
                         <input type="" class="input-house" placeholder="Квартира" style="margin-left: 6px">
                     </div>
+                    <div class="address-cart">
+                        <h2 class="cart-top-title">Время доставки:</h2>
+                    </div>
+                    <hr class="cart-hr">
                     <div class="checkout-address" style="display: flex; justify-content: center">
                         <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
                             <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
@@ -863,15 +867,56 @@
                             </select>
                         </div>
                     </div>
+                    <div class="address-cart">
+                        <h2 class="cart-top-title">Комментарий:</h2>
+                    </div>
+                    <hr class="cart-hr">
+                     <div style="display: flex; justify-content: center; margin-top: 10px">
+                        <input type="text" class="input-street" placeholder="Необязательно">
+                    </div>
+
                 </div>
                 <div class="cart-bottom" style="margin-top: 20px">
-                    <div class="flex-row" style="justify-content: center; align-items: center; margin-top: 10px">
-                        <button type="submit" class="checkout-btn" onclick="checkout()">Подтвердить заказ</button>
+                    <div class="flex-row" style="display:flex;justify-content: center; align-items: center;">
+                        <button type="submit" class="checkout-btn" onclick="checkout_finish()">Подтвердить заказ</button>
                     </div>
                 </div>
 
             `)
         }
+
+        function checkout_finish() {
+            $('#cart-cart').html(`
+                <div class="cart-checkout">
+                    <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
+                        <div class="top-cart-cart">Корзина: Оформить заказ</div>
+                    </div>
+
+                <div class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
+                    <h2 class="thanks-cart" style="display: flex; justify-content: center; align-items: center">Спасибо за заказ</h2>
+                </div>
+                <div class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top:20px">
+                    <img src="/images/thanks.png" alt="">
+                </div>
+                 <div class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
+                    <h2 class="thanks-cart-subtitle" style="display: flex; justify-content: center; align-items: center">Наш оператор свяжется с Вами в течение 15 минут!</h2>
+                </div>
+
+
+                <div class="cart-bottom" style="margin-top: 20px">
+                    <div class="flex-row" style="display:flex;justify-content: center; align-items: center;">
+                        <button type="submit" class="checkout-btn" onclick="checkout_finish_reload()">Перейти на главную страницу</button>
+                    </div>
+                </div>
+
+            `)
+        }
+
+        function checkout_finish_reload() {
+            document.location.href = '/';
+        }
+
+
 
 
         function addToFavourites(id) {

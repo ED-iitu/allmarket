@@ -11158,24 +11158,6 @@ body {
   background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .banner {
   width: 1110px;
   height: 544px;
@@ -11496,8 +11478,6 @@ body {
 }
 
 
-
-
 .bread {
 
   height: 18px;
@@ -11566,20 +11546,6 @@ body {
 
   color: #405666;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .forms form { padding: 30px; }
 #signup { display: none; }
@@ -11727,7 +11693,7 @@ body {
   color: #FFFFFF !important;
 
   overflow: hidden;
-  margin-top: 15px;
+  margin-top: 10px;
   height: 52.39px;
   border: none;
   background: linear-gradient(0deg, #B2C9DF, #B2C9DF);
@@ -11998,25 +11964,6 @@ input{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .category-left-menu {
   width: 320px;
   left: 58px;
@@ -12275,21 +12222,7 @@ span{
   color: #4F7D8B;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 input[type=radio]:checked {
-
-
   background: rgba(27, 168, 143, 0.95) !important;
 }
 
@@ -12812,9 +12745,86 @@ and (max-device-width : 568px) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen
 and (min-device-width : 414px)
 and (max-device-width : 812px) {
+
+  .product-list-mobile {
+    width: 207px !important;
+  }
+
+  .sort-div-title {
+    display: none !important;
+  }
+
+  .section-category-title {
+    margin-top: 20px;
+  }
+
+  .category-sort {
+    display: none !important;
+  }
+
+  .cart-cart {
+    height: 100% !important;
+  }
+  .product-list-sections {
+    width: -1px !important;
+  }
+
+  .review-form {
+    width: 100% !important;
+  }
+  .rewiew-title-addition {
+    font-size: 20px !important;
+  }
+  .rewiew-title {
+    font-size: 23px !important;
+  }
+
+  .product-singe-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .category-left-menu {
+    width: 100% !important;
+  }
+
+  .raiting-title {
+    margin-left: 0.5rem !important;
+    font-size: 26px !important;
+  }
+
+  .raiting-first {
+    font-size: 36px !important;
+  }
+
+  .product-devider-last {
+    width: 350px !important;
+  }
 
   .cart-header {
     width: 100% !important;
@@ -13644,3 +13654,63 @@ and (-webkit-device-pixel-ratio : 3) {
   background-repeat: no-repeat
 }
 
+.product-category-title {
+  margin-left: 20px;font-family: Montserrat;font-size: 20px;text-transform: uppercase;color: #7791A4;font-weight: bold;
+}
+.product-section-title {
+  padding-top: 20px; margin-left: 20px; color: #7791A4;font-size: 18px;font-style: normal;font-weight: 600;text-transform: uppercase;
+}
+.product-devider-last {
+  width: 730px;height: 2px;left: calc(50% - 730px/2 + 190px);top: 1057px;background: #FFFFFF;border-radius: 0px 0px 1px 0.999997px;
+}
+
+.raiting-title {
+  font-family: SF Pro Display;font-style: normal;font-weight: bold;font-size: 35px;line-height: 32px;/* or 92% */letter-spacing: -0.540636px;color: #5C7084;
+}
+
+.single-product {
+  width: 350px !important;height: 532px !important;
+}
+
+.rewiew-title {
+  font-family: Montserrat;font-style: normal;font-weight: bold;font-size: 33px;line-height: 19px;/* or 57% */letter-spacing: -0.540636px;color: #5C7084;
+}
+
+.rewiew-title-addition {
+  font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 24px;line-height: 21px;/* or 86% */letter-spacing: -0.540636px;color: #637C8E;
+}
+
+.cart-hr {
+  margin: 0 !important;
+}
+
+.thanks-cart-subtitle {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #43637A;
+}
+
+.thanks-cart {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #43637A;
+}
+
+.section-category-title {
+  margin-left: 20px;font-family: Montserrat;font-size: 20px;text-transform: uppercase;color: #7791A4;font-weight: bold;
+}

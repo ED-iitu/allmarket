@@ -135,10 +135,10 @@
                 </div>
 
             </div>
-            <div class="col-md-8" style="margin-top: 30px">
+            <div class="col-md-8 product-list-sections" style="margin-top: 30px">
                 <div class="row">
                     @foreach($products as $product)
-                        <div class="col-md-4">
+                        <div class="col-md-8">
                             <div class="product">
                                 <div class="favorite">
                                     <img class="fav-image" src="/images/like.png" alt="">

@@ -1,12 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <style>
-
-
-
-    </style>
     <div class="container">
         <div class="bread">Главная / Категории / {{$product->category->title}} / {{$product->section->title}}</div>
     </div>
@@ -15,12 +9,12 @@
         <div class="row">
             <div class="col-md-4">
                 <div>
-                    <h2 style="margin-left: 20px;font-family: Montserrat;font-size: 20px;text-transform: uppercase;color: #7791A4;font-weight: bold;">Категория</h2>
+                    <h2 class="product-category-title">Категория</h2>
                 </div>
 
                 <div class="category-left-menu ">
                     <div class="menu-body">
-                        <h2 style="padding-top: 20px; margin-left: 20px; color: #7791A4;font-size: 18px;font-style: normal;font-weight: 600;text-transform: uppercase; ">{{$product->section->title}}</h2>
+                        <h2 class="product-section-title">{{$product->section->title}}</h2>
                     </div>
                     <div class="container">
                         <hr class="left-menu-devider" style="margin-top: -10px">
@@ -39,7 +33,7 @@
             </div>
             <div class="col-md-8" style="margin-top: 18px">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 product-singe-block">
                         <div class="product" style="width: 350px !important;height: 532px !important;">
                             <div class="favorite">
                                 <img class="fav-image" src="/images/like.png" alt="">
@@ -96,17 +90,17 @@
 
                     <div class=" container raiting mt-5">
                         <div class="d-flex flex-row justify-content-between">
-                            <div style="font-family: SF Pro Display;font-style: normal;font-weight: bold;font-size: 35px;line-height: 32px;/* or 92% */letter-spacing: -0.540636px;color: #5C7084;" class="ml-4">Рейтинг товара</div>
+                            <div class="ml-4 raiting-title">Рейтинг товара</div>
                             <div><span class="raiting-first">2</span>  <span class="raiting-second"> из 5</span></div>
                         </div>
                         <div class="mt-5">
-                            <hr style="width: 730px;height: 2px;left: calc(50% - 730px/2 + 190px);top: 1057px;background: #FFFFFF;border-radius: 0px 0px 1px 0.999997px;">
+                            <hr class="product-devider-last">
                         </div>
 
                         <div class="mt-2 mb-5">
                             <div class="d-flex flex-column">
-                                <div style="font-family: Montserrat;font-style: normal;font-weight: bold;font-size: 33px;line-height: 19px;/* or 57% */letter-spacing: -0.540636px;color: #5C7084;" class="mt-2 ml-4">Отзывы</div>
-                                <div style="font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 24px;line-height: 21px;/* or 86% */letter-spacing: -0.540636px;color: #637C8E;" class="mt-4 mb-3 ml-4">Отзывов нет будьте первымы</div>
+                                <div class="mt-2 ml-4 rewiew-title">Отзывы</div>
+                                <div class="mt-4 mb-3 ml-4 rewiew-title-addition">Отзывов нет будьте первыми</div>
                                 <div>
                                     <textarea class="review-form" name="" id="" cols="30" rows="10" style="outline:none;"></textarea>
                                 </div>

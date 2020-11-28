@@ -103,7 +103,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div>
-                    <h2 style="margin-left: 20px;font-family: Montserrat;font-size: 20px;text-transform: uppercase;color: #7791A4;font-weight: bold;">Категория</h2>
+                    <h2 class="section-category-title">Категория</h2>
                 </div>
 
                 <div class="category-left-menu ">
@@ -138,7 +138,7 @@
             <div class="col-md-8" style="margin-top: 30px">
                 <div class="row">
                     @foreach($products as $product)
-                    <div class="col-md-4">
+                    <div class="col-md-4 product-list-mobile">
                         <div class="product">
                             @if(in_array($product->id, (array)Session::get('favorited')))
                                 <div class="favorite">
