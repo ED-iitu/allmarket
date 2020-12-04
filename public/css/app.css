@@ -12768,8 +12768,25 @@ and (max-device-width : 568px) {
 
 
 @media only screen
-and (min-device-width : 400px)
+and (min-device-width : 414px)
 and (max-device-width : 812px) {
+
+  .almarket-word {
+    margin-left: 20px !important;
+  }
+
+  .banner-text-one {
+    margin-left: 20px !important;
+  }
+
+  .banner-text-two {
+    margin-left: 20px !important;
+  }
+
+  .banner-button {
+    margin-left: 20px !important;
+  }
+
 
   .product-list-mobile {
     width: 207px !important;
@@ -13713,4 +13730,8 @@ and (-webkit-device-pixel-ratio : 3) {
 
 .section-category-title {
   margin-left: 20px;font-family: Montserrat;font-size: 20px;text-transform: uppercase;color: #7791A4;font-weight: bold;
+}
+
+.account-input {
+  padding-left: 10px !important;
 }

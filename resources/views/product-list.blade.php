@@ -22,10 +22,10 @@
 
                         <div>
                             <div style="display: flex;align-items: center;justify-content: space-between;">
-                                <div class="old-price">{{$product->price_sale}} тг</div>
+                                <div class="old-price">{{$product->price}} тг</div>
                             </div>
                             <div style="display: flex;align-items: center;justify-content: space-between;">
-                                <div class="new-price">{{$product->price}} тг</div>
+                                <div class="new-price">{{$product->price_sale}} тг</div>
                                 <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
                                     <img src="/images/add_to_cart.png" alt="">
                                 </button>

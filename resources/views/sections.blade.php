@@ -38,6 +38,12 @@
             color: #4E565E;
         }
 
+        .sections-banner {
+            max-width: 33% !important;
+            height: 152px;
+            margin-top: 30px;
+        }
+
     </style>
 
 
@@ -51,28 +57,31 @@
 
     <div class="container">
         <div class="row">
-            @foreach($sections as $section)
-                <a href="{{route('sectionById', $section->id)}}" style="text-decoration: none">
-            <div class="col-xs-6 col-sm-4 col-md-4" id="section-list">
+            @foreach($sections as $index => $section)
 
-                    <div class="section-item d-flex flex-row" >
-                        <div>
-                            <div style="display: flex;align-items: center;justify-content: space-between; margin-top: 10px; margin-left: 20px">
-                                <div class="section-img">
-                                    <img src="images/category/icons/{{$section->system_key}}.png" alt="">
+                @if($index === 5)
+                    <div class="col-md-4 sections-banner">
+                        <img src="/images/test.jpg" alt="" style="border-radius: 20px;height: 333px;width: 345px;">
+                    </div>
+                @endif
+                <a href="{{route('sectionById', $section->id)}}" style="text-decoration: none">
+                    <div class="col-xs-6 col-sm-4 col-md-4" id="section-list">
+                        <div class="section-item d-flex flex-row" >
+                            <div>
+                                <div style="display: flex;align-items: center;justify-content: space-between; margin-top: 10px; margin-left: 20px">
+                                    <div class="section-img">
+                                        <img src="images/category/icons/{{$section->system_key}}.png" alt="">
+                                    </div>
+                                </div>
+                                <div style="display: flex;align-items: center;justify-content: space-between; margin-top: 20px; margin-left: 20px">
+                                    <div class="section-name">{{$section->title}}</div>
                                 </div>
                             </div>
-                            <div style="display: flex;align-items: center;justify-content: space-between; margin-top: 20px; margin-left: 20px">
-                                <div class="section-name">{{$section->title}}</div>
+                            <div style="margin-top: 10px;margin-right: 20px">
+                                <a href=""><img  src="images/category/{{$section->system_key}}.png" alt=""></a>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
-                            <a href=""><img  src="images/category/{{$section->system_key}}.png" alt=""></a>
-                        </div>
                     </div>
-
-
-            </div>
                 </a>
             @endforeach
         </div>

@@ -265,69 +265,87 @@
 
                 </div>
                 <div id="account-order" style="margin-top: 75px">
-                    <div class="d-flex flex-row justify-content-between orders">
+                    @if(!$orders)
+                        <div style="display: flex; justify-content: center; align-items: center">
+                            Вы не совершали покупок
+                        </div>
+                    @else
+
+                    @foreach($orders as $order)
+                    <div class="d-flex flex-row justify-content-between orders mt-3">
                         <div class="d-flex flex-row" style="padding: 8px;">
                             <div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #EE3030;border-radius: 5px">
                                 <span style="color: white; font-size: 25px">X</span>
                             </div>
                             <div style="margin-top: -4px">
                                 <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <a href="{{route('sections')}}"><div class="order-num">Заказ №1</div></a>
+                                    <a href="{{route('sections')}}"><div class="order-num">Заказ №{{$order->id}}</div></a>
                                 </div>
                                 <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <div class="order-status">Статус: Отменен</div>
+                                    <div class="order-status">Статус: {{$order->status->title}}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex flex-row" style="padding: 8px;">
-                            <button style="background: none; border: none; outline: none"><img src="images/repeat_cart.png" alt=""></button>
+                            <form action="{{route('cloneOrder')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$order->id}}">
+                                <button type="submit" style="background: none; border: none; outline: none"><img src="images/repeat_cart.png" alt=""></button>
+                            </form>
+
                         </div>
                     </div>
 
-                    <div class="d-flex flex-row justify-content-between orders" style="margin-top: 20px">
-                        <div class="d-flex flex-row" style="padding: 8px;">
-                            <div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #30EE4E;;border-radius: 5px">
-                                <span style="color: white; font-size: 25px">OK</span>
-                            </div>
-                            <div style="margin-top: -4px">
-                                <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <a href="{{route('sections')}}"><div class="order-num">Заказ №1</div></a>
-                                </div>
-                                <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <div class="order-status">Статус: Выполнен</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row" style="padding: 8px;">
-                            <button style="background: none; border: none; outline: none"><img src="images/repeat_cart.png" alt=""></button>
-                        </div>
-                    </div>
+                    @endforeach
+
+                    {{--<div class="d-flex flex-row justify-content-between orders" style="margin-top: 20px">--}}
+                        {{--<div class="d-flex flex-row" style="padding: 8px;">--}}
+                            {{--<div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #30EE4E;;border-radius: 5px">--}}
+                                {{--<span style="color: white; font-size: 25px">OK</span>--}}
+                            {{--</div>--}}
+                            {{--<div style="margin-top: -4px">--}}
+                                {{--<div style="display: flex;align-items: center;justify-content: space-between">--}}
+                                    {{--<a href="{{route('sections')}}"><div class="order-num">Заказ №1</div></a>--}}
+                                {{--</div>--}}
+                                {{--<div style="display: flex;align-items: center;justify-content: space-between">--}}
+                                    {{--<div class="order-status">Статус: Выполнен</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="d-flex flex-row" style="padding: 8px;">--}}
+                            {{--<button style="background: none; border: none; outline: none"><img src="images/repeat_cart.png" alt=""></button>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    @endif
                 </div>
+
+
                 <div id="account-profile" style="margin-top: 75px;">
                     <div class="container">
-                        <form>
+                        <form action="{{route('account-update')}}" method="GET">
                             <div class="form-group row">
                                 <label for="username" class="col-sm-4 col-form-label account-label">Имя</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control-plaintext account-input" id="username" placeholder="Имя">
+                                    <input type="text" class="form-control-plaintext account-input" name="name" id="username" placeholder="Имя" value="{{$user->name}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="phone" class="col-sm-4 col-form-label account-label">Номер телефона</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control-plaintext account-input" id="phone" placeholder="Номер телефона">
+                                    <input type="text" class="form-control-plaintext account-input" id="phone" name="phone" placeholder="Номер телефона" value="{{$user->phone}}">
                                 </div>
                             </div>
+                            <input type="hidden" name="city_id" value="2">
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label account-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control-plaintext account-input" id="email" placeholder="E-main">
+                                    <input type="text" class="form-control-plaintext account-input" name="email" id="email" placeholder="E-main" value="{{$user->email}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label account-label"></label>
                                 <div class="col-sm-8" style="display: flex">
-                                    <input type="checkbox" id="happy" name="happy" value="yes">
+                                    <input type="checkbox" id="happy" name="happy" value="yes" required>
                                     <label for="happy"  style="margin-left: 10px" class="account-agree">Я принимаю условия Политики и даю согласие на обработку моих персональных данных данных</label>
                                 </div>
                             </div>

@@ -25,8 +25,64 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
+        .dropdown-item {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 21px;
+            /* identical to box height */
 
+            display: flex;
+            align-items: center;
+            text-align: center;
 
+            color: #849CAE;
+
+        }
+        .verify-code-input {
+            border: none;
+        }
+        .showSubCategory {
+            width: 333px;
+            height: 270px;
+            left: 490px;
+            top: 140px;
+            padding: 20px;
+
+            background: #E6F1FA;
+            border-radius: 0px 8px 8px 0px;
+        }
+
+        .showCategory {
+            height: 270px;
+            width: 333px;
+            left: 158px;
+            top: 140px;
+            padding: 20px;
+
+            background: #F7FBFF;
+            border-radius: 8px;
+        }
+
+        .showCategoryLink {
+
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 33px;
+            /* or 90% */
+
+            letter-spacing: -0.54px;
+
+            color: #5B5B5B;
+            text-decoration: none !important;
+        }
+
+        .showCategoryLink:hover {
+            color: #5B5B5B;
+        }
 
     </style>
 
@@ -36,7 +92,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo.png" alt="">
+                    <img src="/images/logo.png" alt="" style="max-width: 90% !important;">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -159,13 +215,13 @@
                                 <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
                             </div>
                             <div class="social-mobile">
-                                <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                                <img class="social-img" src="/images/facebook.png" alt="" width="48px" height="49px">
                             </div>
                             <div class="social-mobile">
                                 <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
                             </div>
                             <div class="social-mobile">
-                                <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                                <img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px">
                             </div>
                         </div>
                     </div>
@@ -177,14 +233,14 @@
         <div class="navbar-second">
             <div class="container">
                 <div class="d-flex flex-row mb-3">
-                    <div class="p-2 category-web">
-                        <div class="d-flex flex-row">
+                    <div class="p-2 category-web hover-category">
+                        <div class="d-flex flex-row ">
                             <div>
                                 <a href=><img src="/images/категории.png" alt=""></a>
                             </div>
                             <div style="margin-top: -4px">
                                 <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <a href="{{route('sections')}}"><div class="category">Категории</div></a>
+                                    <a href="{{route('sections')}}"><div class="category ">Категории</div></a>
                                 </div>
                                 <div style="display: flex;align-items: center;justify-content: space-between">
                                     <div class="category-title">все товары по разделам</div>
@@ -213,7 +269,7 @@
                                     @if(session('cart'))
                                         <div class="cart-p"><span>{{count(session('cart'))}} </span>шт</div>
                                     @else
-                                        <div class="cart-p"><span>0 </span>шт</div>
+                                        <div class="cart-p"><span id="cart-count">0 </span>шт</div>
                                     @endif
 
                                 </div>
@@ -224,9 +280,9 @@
                                         @foreach(session('cart') as $id => $details)
                                             <?php $total += $details['price'] ?>
                                         @endforeach
-                                        <div class="cart-p"><span>{{$total}} </span>тг</div>
+                                        <div class="cart-p" id="cart-sum"><span>{{$total}} </span>тг</div>
                                     @else
-                                        <div class="cart-p"><span>0 </span>тг</div>
+                                        <div class="cart-p"><span id="cart-sum">0 </span>тг</div>
                                     @endif
                                 </div>
                             </div>
@@ -236,10 +292,45 @@
             </div>
         </div>
 
+        <div class="showCategory"  style="display: none; position: absolute; z-index: 100">
+            <ul style="padding-left: 5px">
+                @foreach($sections as $section)
+                    <li style="display: flex; justify-content: space-between" class="showSub">
+                        <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink">
+                            <img src="/images/category/icons/{{$section->system_key}}.png" alt="" style="margin-right: 10px" height="25px" width="25px">
+                            {{$section->title}}
+                        </a>
+                        <img src="/images/arrow.png" alt="" style="height: 15px; margin-top: 7px;">
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="showSubCategory" style="display: none; position: absolute; z-index: 100">
+            <ul style="padding-left: 10px">
+                <li style="display: flex; justify-content: space-between" class="showSub">
+                    <a href="#" class="showCategoryLink">
+                        Средства для стирки
+                    </a>
+                </li>
+                <li style="display: flex; justify-content: space-between" class="showSub">
+                    <a href="#" class="showCategoryLink">
+                        Средства для ухода за домом
+                    </a>
+                </li>
+                <li style="display: flex; justify-content: space-between" class="showSub">
+                    <a href="#" class="showCategoryLink">
+                        Посудомоечные средства
+                    </a>
+                </li>
+            </ul>
+        </div>
+
         <div class="container">
             <hr class="menu-blackline" style="width: 1140px;height: 2px;background: #C9DBEF; border-radius: 1px 1px 0px 0px;">
             <hr class="menu-line" style="margin-top: -18px;width: 1140px;height: 2px;background: #FFFFFF;border-radius: 0px 0px 1px 1px;">
         </div>
+
+        <input type="hidden" name="hidden_session_phone" value="{{Session::get('phone')}}">
 
         <div class="container">
             @if ($message = Session::get('error'))
@@ -303,7 +394,7 @@
                                 </div>
                                 <div class="social">
                                     <a href="">
-                                        <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                                        <img class="social-img" src="/images/facebook.png" alt="" width="48px" height="49px">
                                     </a>
                                 </div>
                                 <div class="social">
@@ -313,7 +404,7 @@
                                 </div>
                                 <div class="social">
                                     <a href="">
-                                        <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                                        <img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px">
                                     </a>
                                 </div>
                             </div>
@@ -475,7 +566,7 @@
                             <div class="empty_cart" id="empty_cart">
                                 <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
                                     <div class="top-cart-cart">Корзина</div>
-                                    <div ><a href="" class="clear-cart">очистить все</a></div>
+                                    <div ><a href="#" class="clear-cart" onclick="clearCart()">очистить все</a></div>
                                 </div>
                                 @if(session('cart'))
                                 <div class="non-empty-cart" id="cart-after">
@@ -807,6 +898,21 @@
 
 
         function checkout() {
+
+            $.ajax({
+                url: '{{ route('checkoutCart') }}',
+                type: 'GET',
+                success: function (data) {
+                    console.log("checkout")
+                },
+                error: function (XMLHttpRequest) {
+                    $('#modal-body').html('')
+                    $('#modal-body').append('Произошла ошибка попробуйте позже')
+                    $('#your-modal').modal('toggle');
+                }
+            });
+
+
             $('#cart-cart').html(`
                 <div class="cart-checkout">
                     <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
@@ -816,15 +922,15 @@
                     <hr class="cart-hr">
                     <div class="payment-method d-flex flex-column">
                         <div class="item" style="display: block;">
-                          <input type="radio" id="cash" name="cash" value="cash">
+                          <input type="radio" id="cash" name="cash" value="1">
                           <label for="cash" style="display: inline;">Наличными при получении заказа</label>
                         </div>
                         <div class="item" style="display: block;">
-                          <input type="radio" id="card-online" name="card-online" value="card-online">
+                          <input type="radio" id="card-online" name="card-online" value="2">
                           <label for="card-online" style="display: inline;">Банковской картой онлайн</label>
                         </div>
                         <div class="item" style="display: block;">
-                          <input type="radio" id="card-offline" name="card-offline" value="card-offline">
+                          <input type="radio" id="card-offline" name="card-offline" value="3">
                           <label for="card-offline" style="display: inline;">Банковской картой при получении заказа</label>
                         </div>
                     </div>
@@ -836,22 +942,22 @@
                         <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
                             <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                                 <option class="input-select-option-inside" value="">Выберите город</option>
-                                <option class="input-select-option-inside" value="6">Алматы</option>
-                                <option class="input-select-option-inside" value="6">Нур-Султан</option>
-                                <option class="input-select-option-inside" value="6">Караганда</option>
-                                <option class="input-select-option-inside" value="6">Петропавлоск</option>
-                                <option class="input-select-option-inside" value="6">Усть-Каменогорск</option>
-                                <option class="input-select-option-inside" value="6">Атырау</option>
-                                <option class="input-select-option-inside" value="6">Актау</option>
+                                <option class="input-select-option-inside" value="Алматы">Алматы</option>
+                                <option class="input-select-option-inside"  value="Нур-Султан">Нур-Султан</option>
+                                <option class="input-select-option-inside"  value="Караганда">Караганда</option>
+                                <option class="input-select-option-inside"  value="Петропавлоск">Петропавлоск</option>
+                                <option class="input-select-option-inside"   value="Усть-Каменогорск">Усть-Каменогорск</option>
+                                <option class="input-select-option-inside"  value="Атырау">Атырау</option>
+                                <option class="input-select-option-inside"  value="Актау">Актау</option>
                             </select>
                         </div>
                     </div>
                     <div style="display: flex; justify-content: center; margin-top: 10px">
-                        <input type="text" class="input-street" placeholder="Улица">
+                        <input type="text" class="input-street" name="street" placeholder="Улица">
                     </div>
                     <div class="flex-row" style="display: flex;justify-content: center; margin-top:10px">
-                        <input type="" class="input-house" placeholder="Дом">
-                        <input type="" class="input-house" placeholder="Квартира" style="margin-left: 6px">
+                        <input type="" class="input-house" name="home" placeholder="Дом">
+                        <input type="" class="input-house" name="apt" placeholder="Квартира" style="margin-left: 6px">
                     </div>
                     <div class="address-cart">
                         <h2 class="cart-top-title">Время доставки:</h2>
@@ -859,11 +965,11 @@
                     <hr class="cart-hr">
                     <div class="checkout-address" style="display: flex; justify-content: center">
                         <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
-                            <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
+                            <select id="" class="input-select-option" name="delivery_time_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                                 <option class="input-select-option-inside" value="">Время доставки</option>
-                                <option class="input-select-option-inside" value="6">Утром</option>
-                                <option class="input-select-option-inside" value="6">В обед</option>
-                                <option class="input-select-option-inside" value="6">Вечером</option>
+                                <option class="input-select-option-inside" value="1">Утром</option>
+                                <option class="input-select-option-inside" value="2">В обед</option>
+                                <option class="input-select-option-inside" value="3">Вечером</option>
                             </select>
                         </div>
                     </div>
@@ -872,7 +978,7 @@
                     </div>
                     <hr class="cart-hr">
                      <div style="display: flex; justify-content: center; margin-top: 10px">
-                        <input type="text" class="input-street" placeholder="Необязательно">
+                        <input type="text" class="input-street" name="comment" placeholder="Необязательно">
                     </div>
 
                 </div>
@@ -881,11 +987,49 @@
                         <button type="submit" class="checkout-btn" onclick="checkout_finish()">Подтвердить заказ</button>
                     </div>
                 </div>
-
             `)
         }
 
         function checkout_finish() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var address = $("input[name='street']").val() +" " + $("input[name='home']").val() + " " + $("input[name='apt']").val();
+            var phone = $("input[name='hidden_session_phone']").val();
+            var delivery_time_id = $("select[name='delivery_time_id']").val();
+            var comment = $("input[name='comment']").val();
+            var payment_type = $("input[type='radio']").val();
+
+            console.log(payment_type)
+
+
+
+            $.ajax({
+                url: '{{ route('createOrder') }}',
+                type: 'POST',
+                data: {
+                    address: address,
+                    phone: phone,
+                    delivery_time_id: delivery_time_id,
+                    comment:comment,
+                    payment_type: payment_type
+
+                },
+                success: function (data) {
+                    console.log("order created")
+                },
+                error: function (XMLHttpRequest) {
+                    $('#modal-body').html('')
+                    $('#modal-body').append('Произошла ошибка попробуйте позже')
+                    $('#your-modal').modal('toggle');
+                }
+            });
+
+
             $('#cart-cart').html(`
                 <div class="cart-checkout">
                     <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
@@ -914,6 +1058,31 @@
 
         function checkout_finish_reload() {
             document.location.href = '/';
+        }
+
+        function clearCart() {
+            $.ajax({
+                url: '{{ route('deleteCart') }}',
+                type: 'GET',
+                success: function (data) {
+                    $('#cart-cart').html(`
+                        <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
+                            <div class="top-cart-cart">Корзина</div>
+                        </div>
+                        <div class="cart-empty" style="display:flex;align-items:center !important;justify-content:center;padding: 66px">
+                            <h2 class="empty-title">Ваша корзина пуста</h2>
+                        </div>
+                    `);
+
+                    $('#cart-sum').html('0 тг');
+                    $('#cart-count').html('0 шт');
+                },
+                error: function (XMLHttpRequest) {
+                    $('#modal-body').html('')
+                    $('#modal-body').append('Произошла ошибка попробуйте позже')
+                    $('#your-modal').modal('toggle');
+                }
+            });
         }
 
 
@@ -965,7 +1134,33 @@
         }
     </script>
 
+    <script>
+        $(document).ready(function(){
+            $(".hover-category").hover(function(){
+                $('.showCategory').css("display", "block");
+            }, function(){
+                $('.showCategory').css("display", "none");
+            });
 
+            $(".showCategory").hover(function(){
+                $('.showCategory').css("display", "block");
+            }, function(){
+                $('.showCategory').css("display", "none");
+            });
 
+            $(".showSub").hover(function(){
+                $('.showSubCategory').css("display", "block");
+            }, function(){
+                $('.showSubCategory').css("display", "none");
+            });
+
+            $(".showSubCategory").hover(function(){
+                $('.showCategory').css("display", "block");
+                $('.showSubCategory').css("display", "block");
+            }, function(){
+                $('.showSubCategory').css("display", "none");
+            });
+        });
+    </script>
 </body>
 </html>

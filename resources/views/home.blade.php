@@ -33,21 +33,26 @@
         .popular-hr {
             width: 754px;
             height: 2px;
-            background: #C9DBEF;
+            background: #FFFFFF;
+            border-radius: 0px 0px 1px 1px;
+        }
+
+        .popular-hr-dark {
+            background: #C9DBEF ;
             border-radius: 0px 0px 1px 1px;
         }
 
         .rec-hr {
              width: 654px;
              height: 2px;
-             background: #C9DBEF;
+             background: #ffffff;
              border-radius: 0px 0px 1px 1px;
          }
 
         .sale-hr {
             width: 765px;
             height: 2px;
-            background: #C9DBEF;
+            background: #ffffff;
             border-radius: 0px 0px 1px 1px;
         }
 
@@ -89,7 +94,7 @@
         }
         .product {
             margin-top: 30px;
-            width: 241px;
+            width: 252px;
             height: 400px;
             left: calc(50% - 241px/2 - 153.5px);
             top: 1919px;
@@ -101,7 +106,7 @@
 
         .product-image {
             padding: 15px;
-            width: 211px;
+            width: 220px;
             height: 217px;
 
             background: #FFFFFF;
@@ -227,7 +232,7 @@
             width: 609px;
             height: 140px;
 
-            margin-left: 100px;
+            margin-left: 7px;
 
             font-family: Montserrat;
             font-style: normal;
@@ -245,7 +250,7 @@
             width: 443px;
             height: 120px;
 
-            margin-left: 100px;
+            margin-left: 7px;
 
 
             font-family: Montserrat;
@@ -263,7 +268,7 @@
             width: 450px;
             height: 100px;
 
-            margin-left: 100px;
+            margin-left: 7px;
 
 
             font-family: Montserrat;
@@ -278,7 +283,8 @@
         }
 
         .banner-button {
-            margin-left: 100px;
+            border: none;
+            margin-left: 7px;
 
             width: 388px;
             height: 71px;
@@ -292,8 +298,6 @@
         .banner-button-text {
             width: 331px;
             height: 40px;
-
-            margin-left: 30px;
 
             font-family: Montserrat;
             font-style: normal;
@@ -416,7 +420,9 @@
             </div>
 
             <section>
-                <h2 class="popular-title">Популярные товары <span class="popular-red"></span><hr class="popular-hr"><hr class="popular-hr-dark"></h2>
+                <h2 class="popular-title">Популярные товары <span class="popular-red"></span>
+                    <hr class="popular-hr"><hr class="popular-hr-dark">
+                </h2>
 
                 <div uk-slider>
                     <div class="uk-position-relative">
@@ -454,10 +460,10 @@
 
                                                     <div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="old-price">{{$popular->price_sale}} тг</div>
+                                                            <div class="old-price">{{$popular->price}} тг</div>
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="new-price">{{$popular->price}} тг</div>
+                                                            <div class="new-price">{{$popular->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $popular->id)}}" method="GET">
                                                                     <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
@@ -496,7 +502,11 @@
             </section>
 
             <section >
-                <h2 class="popular-title">Товары со скидкой <span class="sale-green"></span><hr class="sale-hr"><hr class="popular-hr-dark"></h2>
+                <h2 class="popular-title">Товары со скидкой <span class="sale-green"></span>
+                    <hr class="sale-hr"><hr class="popular-hr-dark">
+
+
+                </h2>
 
                 <div uk-slider>
                     <div class="uk-position-relative">
@@ -533,10 +543,10 @@
 
                                                     <div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="old-price">{{$sale->price_sale}} тг</div>
+                                                            <div class="old-price">{{$sale->price}} тг</div>
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="new-price">{{$sale->price}} тг</div>
+                                                            <div class="new-price">{{$sale->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $sale->id)}}" method="GET">
                                                                     <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
@@ -610,10 +620,10 @@
 
                                                     <div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="old-price">{{$rec->price_sale}} тг</div>
+                                                            <div class="old-price">{{$rec->price}} тг</div>
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="new-price">{{$rec->price}} тг</div>
+                                                            <div class="new-price">{{$rec->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                             <form action="{{route('addToCart', $rec->id)}}" method="GET">
                                                                 <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
@@ -654,67 +664,71 @@
 </div>
 
     <section class="home-about-banner">
-        <div class="d-flex flex-column banner-text">
-            <div class="almarket-word">
-                <span style="color: #43637A"><span style="color: #2CD4B3">allmarket</span> в твоём телефоне</span>
-            </div>
-            <div class="banner-text-one">
-                Скачивай наше мобильное приложение, доступное на Google play и App store
-            </div>
-            <div class="banner-text-two">
-                Получай больше <br>выгодных предложений и акций!
-            </div>
-            <div style="margin-top: 30px; margin-bottom: 30px">
-                <button class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
+        <div class="container">
+            <div class="d-flex flex-column banner-text">
+                <div class="almarket-word">
+                    <span style="color: #43637A"><span style="color: #2CD4B3">allmarket</span> в твоём телефоне</span>
+                </div>
+                <div class="banner-text-one">
+                    Скачивай наше мобильное приложение, доступное на Google play и App store
+                </div>
+                <div class="banner-text-two">
+                    Получай больше <br>выгодных предложений и акций!
+                </div>
+                <div style="margin-top: 30px; margin-bottom: 30px">
+                    <button class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
+                </div>
             </div>
         </div>
     </section>
 
 
     <section style="margin-top: 50px; margin-bottom: 50px">
-        <div class="partners" style="display: flex; justify-content: center">
-            <h2 class="partner-heading">НАШИ ПАРТНЕРЫ</h2>
-        </div>
+        <div class="container">
+            <div class="partners" style="display: flex; justify-content: center">
+                <h2 class="partner-heading">НАШИ ПАРТНЕРЫ</h2>
+            </div>
 
-        <div style="margin-left: 50px; margin-right: 10px; margin-top: 30px">
-            <div uk-slider >
-                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+            <div style="margin-left: 30px; margin-right: 10px; margin-top: 30px">
+                <div uk-slider >
+                    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
 
-                    <ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-3@s uk-child-width-1-6@m">
-                        <li class="partner-img">
-                            <img src="images/mars_logo.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/splat.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/red_bull.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/ferrero.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/Danone.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/Ehrmann.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/uvelka.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/sady.png" alt="">
-                        </li>
+                        <ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-3@s uk-child-width-1-6@m">
+                            <li class="partner-img">
+                                <img src="images/mars_logo.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/splat.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/red_bull.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/ferrero.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/Danone.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/Ehrmann.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/uvelka.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/sady.png" alt="">
+                            </li>
 
-                        <li class="partner-img">
-                            <img src="images/abbot.png" alt="">
-                        </li>
+                            <li class="partner-img">
+                                <img src="images/abbot.png" alt="">
+                            </li>
 
-                        <li class="partner-img">
-                            <img src="images/johnson.png" alt="">
-                        </li>
+                            <li class="partner-img">
+                                <img src="images/johnson.png" alt="">
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

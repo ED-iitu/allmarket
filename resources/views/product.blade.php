@@ -67,8 +67,8 @@
                                         <span class="plus">+</span>
                                     </div>
                                     <div class="flex-column">
-                                        <div class="old-price">{{$product->price_sale}} тг</div>
-                                        <div class="new-price">{{$product->price}} тг</div>
+                                        <div class="old-price">{{$product->price}} тг</div>
+                                        <div class="new-price">{{$product->price_sale}} тг</div>
                                     </div>
                                 </div>
                                 <hr class="product-devider">

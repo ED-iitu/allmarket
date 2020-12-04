@@ -138,11 +138,17 @@
             <div class="col-md-8 product-list-sections" style="margin-top: 30px">
                 <div class="row">
                     @foreach($products as $product)
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="product">
-                                <div class="favorite">
-                                    <img class="fav-image" src="/images/like.png" alt="">
-                                </div>
+                                @if(in_array($product->id, (array)Session::get('favorited')))
+                                    <div class="favorite">
+                                        <img id="addToFavorite" class="fav-image" src="/images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$product->id}})">
+                                    </div>
+                                @else
+                                    <div class="favorite">
+                                        <img id="addToFavorite" class="fav-image" src="/images/like.png" alt="" onClick="addToFavourites({{$product->id}})">
+                                    </div>
+                                @endif
                                 <div class="container" style="padding: 15px">
                                     <a href="{{route('product', $product->id)}}" style="text-decoration: none">
                                         <div class="product-image">
@@ -164,9 +170,17 @@
                                             </div>
                                             <div style="display: flex;align-items: center;justify-content: space-between;">
                                                 <div class="new-price">{{$product->price}} тг</div>
-                                                <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                                    <img src="/images/add_to_cart.png" alt="">
-                                                </button>
+                                                @if (Session::get('username'))
+                                                    <form action="{{route('addToCart', $product->id)}}" method="GET">
+                                                        <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                            <img src="/images/add_to_cart.png" alt="">
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                        <img src="/images/add_to_cart.png" alt="">
+                                                    </button>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

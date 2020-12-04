@@ -28,6 +28,11 @@ Route::post('sendSms', 'HomeController@sendSms')->name('sendSms');
 Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
 Route::post('addToFavorite', 'HomeController@addToFavorite')->name('addToFavorite');
+Route::get('account/update', 'HomeController@updateUserData')->name('account-update');
+Route::get('cart/deleteAll', 'HomeController@basketDelete')->name('deleteCart');
+Route::get('cart/checkout', 'HomeController@checkout')->name('checkoutCart');
+Route::post('cart/createOrder', 'HomeController@createUserOrder')->name('createOrder');
+Route::post('order/repeat', 'HomeController@cloneOrder')->name('cloneOrder');
 
 
 

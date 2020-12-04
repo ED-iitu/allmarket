@@ -32,6 +32,7 @@ class HomeController extends Controller
         $popular     = $this->getPopularProduct();
         $recommended = $this->getRecommendedProducts();
         $sale        = $this->getSaleProducts();
+        $sections    = $this->getAllSections();
 
         $token = session()->get('token');
         $favIds = [];
@@ -50,7 +51,8 @@ class HomeController extends Controller
         return view('home', [
             'popular_products' => $popular->products,
             'recommended_products' => $recommended->products,
-            'sale_products' => $sale->products
+            'sale_products' => $sale->products,
+            'sections' => $sections->sections,
         ]);
     }
 
@@ -197,12 +199,19 @@ class HomeController extends Controller
 
     public function about()
     {
-        return view('about');
+        $sections    = $this->getAllSections();
+
+        return view('about', [
+            'sections' => $sections->sections
+        ]);
     }
 
     public function faq()
     {
-        return view('faq');
+        $sections    = $this->getAllSections();
+        return view('faq', [
+            'sections' => $sections->sections
+        ]);
     }
 
     public function sections()
@@ -230,6 +239,7 @@ class HomeController extends Controller
         $products = $this->getProductsBySectionId($sectionId);
 
         $response = $response->getBody()->getContents();
+        $sections    = $this->getAllSections();
 
 
 
@@ -238,6 +248,7 @@ class HomeController extends Controller
 
         return view('section', [
             'section' => $res->section,
+            'sections' => $sections->sections,
             'products' => $products->products,
             'links'    => $products->links
         ]);
@@ -427,9 +438,6 @@ class HomeController extends Controller
     {
         $client = new Client();
 
-        if (!$request->one || !$request->two || !$request->three || !$request->four) {
-            return redirect()->back()->with('error', 'СМС введен не верно, попробуйте еще раз');
-        }
         $sms = (int)$request->one . '' . $request->two .''. $request->three .''. $request->four;
 
         $phone = session()->get('phone');
@@ -510,15 +518,41 @@ class HomeController extends Controller
     {
         $token = session()->get('token');
 
+
+
         if (null === $token) {
             return redirect()->route('home');
         } else {
             $favorites = $this->getFavorite($token);
+            $orders = $this->getUserOrders();
+            $userData = $this->getUserData($token);
+            $sections    = $this->getAllSections();
 
             return view('personal-account', [
-                'favorites' => $favorites
+                'favorites' => $favorites,
+                'orders' => $orders->orders,
+                'user' => $userData->user,
+                'sections' => $sections->sections
             ]);
         }
+    }
+
+    public function cloneOrder(Request $request)
+    {
+        $token = session()->get('token');
+        //https://allmarket.armenianbros.com/api/v2/orders/633/clone?city_id=2
+
+        $responce =  $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/orders/'.$request->id . '/clone', [
+            'query' => [
+                'city_id' => 6,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+       return redirect()->back()->with('success', 'Вы успешно повторили заказ');
     }
 
     public function logout()
@@ -565,20 +599,49 @@ class HomeController extends Controller
 
         $res = json_decode($response);
 
+        $sections    = $this->getAllSections();
+
         return view('search-page', [
             'products' => $res->products,
-            'title' => $request->title
+            'title' => $request->title,
+            'sections' => $sections->section
+        ]);
+    }
+
+    public function addToServerCart($token, $product_id, $quantity = 1)
+    {
+        //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=2
+
+        return  $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/baskets/increase', [
+            'query' => [
+                'city_id' => 6,
+            ],
+            'form_params' => [
+                'count' => $quantity,
+                'product_id' => $product_id
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
         ]);
     }
 
     public function addToCart($id)
     {
        $product = $this->getProductById($id);
+       $token = session()->get('token');
+
+       if (null === $token) {
+           return redirect()->back()->with('error', 'Не удалось найти пользователя');
+       }
 
 
         if(!$product) {
             abort(404);
         }
+
+        $this->addToServerCart($token, $id, 1);
 
 
         $cart = session()->get('cart');
@@ -589,7 +652,7 @@ class HomeController extends Controller
                     "title" => $product->title,
                     "category" => $product->category->title,
                     "quantity" => 1,
-                    "price" => $product->price_sale,
+                    "price" => $product->price,
                     "image" => $product->image
                 ]
             ];
@@ -632,6 +695,149 @@ class HomeController extends Controller
         $res = json_decode($response);
 
         return $res->product;
+    }
+
+    public function getUserOrders()
+    {
+        //https://allmarket.armenianbros.com/api/v2/orders
+
+        $token = session()->get('token');
+        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/orders', [
+            'query' => [
+                'city_id' => 6,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+        return json_decode($response);
+    }
+
+
+    public function updateUserData(Request $request)
+    {
+        $token = session()->get('token');
+
+        if (null == $token) {
+            return redirect()->route('home');
+        }
+
+        try {
+            $responce = $this->client->request('PUT', 'https://allmarket.armenianbros.com/api/v2/users',
+                [
+                    'headers' =>
+                        [
+                            'Authorization' => 'Bearer ' . $token,
+                            'Accept' => 'application/json'
+                        ],
+                    'query'            => [
+                        'name' => $request->name,
+                        'phone' => $request->phone,
+                        'city_id' => $request->city_id,
+                        'email' => $request->email,
+                    ],
+                ]
+            );
+
+            if ($responce) {
+                return redirect()->back()->with('success', 'Данные успешно обновлены');
+            }
+
+        } catch (ClientException $e) {
+
+            if ($this->errors) {
+                return redirect()->back()->with('error', 'Ошибка при отправке смс, попробуйте еще раз');
+            }
+        }
+    }
+
+    public function basketDelete()
+    {
+        $token = session()->get('token');
+
+        if (null === $token) {
+            return redirect()->back();
+        }
+
+        $responce = $this->client->request('DELETE', 'https://allmarket.armenianbros.com/api/v2/baskets', [
+            'query' => [
+                'city_id' => 6,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        session()->remove('cart');
+
+        return $responce->getBody()->getContents();
+    }
+
+    public function checkout()
+    {
+        $token = session()->get('token');
+
+        $responce = $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/checkout', [
+            'query' => [
+                'city_id' => 6,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        return $responce->getBody()->getContents();
+    }
+
+    public function createUserOrder(Request $request)
+    {
+        $token = session()->get('token');
+
+        $responce = $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/orders', [
+            'query' => [
+                'city_id' => 6,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'delivery_time_id' => $request->delivery_time_id,
+                'comment' => $request->comment ?? null
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        $res = $responce->getBody()->getContents();
+
+        session()->remove('cart');
+
+        return $responce->getBody()->getContents();
+    }
+
+    public function createPayment($orderId, $type, $promo_code, $decrease)
+    {
+        //https://allmarket.armenianbros.com/api/v2/order_payments
+
+        $token = session()->get('token');
+
+        $responce = $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/order_payments', [
+            'query' => [
+                'order_id' => $orderId,
+                'type_id' => $type,
+                'promo_code' => $promo_code ?? '',
+                'decrease_balance' => $decrease
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
     }
 
 }

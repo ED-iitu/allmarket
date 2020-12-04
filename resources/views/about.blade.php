@@ -76,67 +76,72 @@
         </div>
     </div>
 
-    <section style="margin-top: 30px; background: #EDF4FB;background-image: url('/images/main-banner.png'); background-position: right; background-repeat: no-repeat">
-        <div class="d-flex flex-column banner-text">
-            <div class="almarket-word">
-                <span style="color: #43637A"><span style="color: #2CD4B3">allmarket</span> в твоём телефоне</span>
-            </div>
-            <div class="banner-text-one">
-                Скачивай наше мобильное приложение, доступное на Google play и App store
-            </div>
-            <div class="banner-text-two">
-                Получай больше <br>выгодных предложений и акций!
-            </div>
-            <div style="margin-top: 30px; margin-bottom: 30px">
-                <button class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
+    <section class="home-about-banner">
+        <div class="container">
+            <div class="d-flex flex-column banner-text">
+                <div class="almarket-word">
+                    <span style="color: #43637A"><span style="color: #2CD4B3">allmarket</span> в твоём телефоне</span>
+                </div>
+                <div class="banner-text-one">
+                    Скачивай наше мобильное приложение, доступное на Google play и App store
+                </div>
+                <div class="banner-text-two">
+                    Получай больше <br>выгодных предложений и акций!
+                </div>
+                <div style="margin-top: 30px; margin-bottom: 30px">
+                    <button class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
+                </div>
             </div>
         </div>
     </section>
 
+
     <section style="margin-top: 50px; margin-bottom: 50px">
-        <div class="partners" style="display: flex; justify-content: center">
-            <h2 class="partner-heading">НАШИ ПАРТНЕРЫ</h2>
-        </div>
+        <div class="container">
+            <div class="partners" style="display: flex; justify-content: center">
+                <h2 class="partner-heading">НАШИ ПАРТНЕРЫ</h2>
+            </div>
 
-        <div style="margin-left: 50px; margin-right: 10px; margin-top: 30px">
-            <div uk-slider >
-                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+            <div style="margin-left: 15px; margin-top: 30px">
+                <div uk-slider >
+                    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
 
-                    <ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-3@s uk-child-width-1-6@m">
-                        <li class="partner-img">
-                            <img src="images/mars_logo.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/splat.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/red_bull.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/ferrero.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/Danone.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/Ehrmann.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/uvelka.png" alt="">
-                        </li>
-                        <li class="partner-img">
-                            <img src="images/sady.png" alt="">
-                        </li>
+                        <ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-3@s uk-child-width-1-6@m">
+                            <li class="partner-img">
+                                <img src="images/mars_logo.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/splat.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/red_bull.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/ferrero.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/Danone.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/Ehrmann.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/uvelka.png" alt="">
+                            </li>
+                            <li class="partner-img">
+                                <img src="images/sady.png" alt="">
+                            </li>
 
-                        <li class="partner-img">
-                            <img src="images/abbot.png" alt="">
-                        </li>
+                            <li class="partner-img">
+                                <img src="images/abbot.png" alt="">
+                            </li>
 
-                        <li class="partner-img">
-                            <img src="images/johnson.png" alt="">
-                        </li>
+                            <li class="partner-img">
+                                <img src="images/johnson.png" alt="">
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
