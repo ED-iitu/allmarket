@@ -309,8 +309,11 @@ class HomeController extends Controller
 
         $categories = $this->getSections($res->product->section->id);
 
+        $sections    = $this->getAllSections();
+
 
         return view('product', [
+            'sections' => $sections->sections,
             'product' => $res->product,
             'categories' => $categories,
         ]);

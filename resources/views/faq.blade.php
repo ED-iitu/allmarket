@@ -152,7 +152,7 @@
         }
     </style>
     <div class="container">
-        <div class="bread">Главная / F.A.Q</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a>/ F.A.Q</div>
     </div>
 
     <div class="container" style="margin-top: 30px">

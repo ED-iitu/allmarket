@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="bread">Главная / Категории / {{$product->category->title}} / {{$product->section->title}}</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / <a class="bredLink" href="{{route('sections')}}">Категории</a> /
+            <a class="bredLink" href="{{route('category_products', [$product->section->id, $product->category->id])}}">{{$product->category->title}}</a> / {{$product->section->title}}</div>
     </div>
 
     <div class="container" style="margin-top: 30px">

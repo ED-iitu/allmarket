@@ -13735,3 +13735,8 @@ and (-webkit-device-pixel-ratio : 3) {
 .account-input {
   padding-left: 10px !important;
 }
+
+.bredLink {
+  padding: 5px;
+  color: #7791A4;
+}

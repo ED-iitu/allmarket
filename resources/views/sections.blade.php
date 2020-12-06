@@ -48,7 +48,7 @@
 
 
     <div class="container">
-        <div class="bread">Главная / Разделы</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / Разделы</div>
     </div>
 
     <div class="container">

@@ -5,7 +5,7 @@
 
     </style>
     <div class="container">
-        <div class="bread">Главная / О нас</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / О нас</div>
     </div>
 
     {{--<div class="col-md-12 home-banner"></div>--}}

@@ -84,7 +84,7 @@
     </style>
 
     <div class="container">
-        <div class="bread">Главная / Категории / {{$section->title}}</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / <a class="bredLink" href="{{route('sections')}}">Категории</a> / {{$section->title}}</div>
     </div>
 
     <div class="container">
