@@ -345,11 +345,13 @@ class HomeController extends Controller
 
 
         $categories = $this->getSections($section_id);
+        $sections    = $this->getAllSections();
 
 
         return view('category-products', [
             'category' => $category,
-            'sections' => $categories,
+            'categories' => $categories,
+            'sections' => $sections->sections,
             'section_id' => $section_id,
             'products' => $res->products,
             'links'    => $res->links
@@ -478,7 +480,7 @@ class HomeController extends Controller
                 session()->put('username', $username->user->name);
             }
 
-            return redirect()->back()->with('success', 'Авторизация прошла успешно!');
+            return redirect()->back();
 
         } catch (ClientException $e) {
             $this->errors = $e;
@@ -660,13 +662,13 @@ class HomeController extends Controller
                 ]
             ];
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+            return redirect()->back();
         }
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+            return redirect()->back();
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
@@ -677,7 +679,7 @@ class HomeController extends Controller
             "image" => $product->image
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        return redirect()->back();
     }
 
     public function getProductById($id)

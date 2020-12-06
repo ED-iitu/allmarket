@@ -86,6 +86,14 @@
             color: #5B5B5B;
         }
 
+        .menu-line {
+            margin-top: -18px;width: 1140px;height: 2px;background: #FFFFFF;border-radius: 0px 0px 1px 1px;
+        }
+
+        .menu-blackline {
+            width: 1140px;height: 2px;background: #C9DBEF; border-radius: 1px 1px 0px 0px;
+        }
+
     </style>
 
 </head>
@@ -184,7 +192,7 @@ $('#mobile_close').show(); $('#mobile_cart').hide()">
 
             </div>
             <div class="mobile-cart" id='mobile_close' onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1');$('body').removeClass('nooverflow');
-$('#mobile_cart').show(); $('#mobile_close').hide()" style="display: none">
+$('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide();$('.menu-line').hide();" style="display: none">
                 <a class="nav-link close" href="#" style="filter: invert(1)">
                     <img src="/images/closecart.png" alt="">
                 </a>
@@ -344,11 +352,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide()" style="display: none">
         </ul>
     </div>
 
-    <div class="container">
-        <hr class="menu-blackline"
-            style="width: 1140px;height: 2px;background: #C9DBEF; border-radius: 1px 1px 0px 0px;">
-        <hr class="menu-line"
-            style="margin-top: -18px;width: 1140px;height: 2px;background: #FFFFFF;border-radius: 0px 0px 1px 1px;">
+    <div class="container" id="munu_line_devider">
+        <hr class="menu-blackline">
+        <hr class="menu-line">
     </div>
 
     <input type="hidden" name="hidden_session_phone" value="{{Session::get('phone')}}">

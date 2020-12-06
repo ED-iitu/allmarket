@@ -116,7 +116,7 @@
 
                     <div style="width: 320px;">
                         <ul style="list-style: none; padding-left: 15px !important">
-                            @foreach($sections as $category)
+                            @foreach($categories as $category)
                                 <div >
                                     <a href="{{route('category_products', [$section_id, $category->id])}}" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">{{$category->title}}</li></a>
                                 </div>

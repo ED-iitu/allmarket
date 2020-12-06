@@ -61,9 +61,28 @@
             color: #43637A;
         }
 
-        .sort-by {
+        .priceFrom {
+            width: 100.82px;
+            height: 35.67px;
+            left: calc(50% - 100.82px/2 - 455.57px);
+            top: 1035px;
 
+            background: rgba(205, 223, 239, 0.85);
+            box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
+            border-radius: 17.8334px;
         }
+
+        .priceTo {
+            width: 100.82px;
+            height: 35.67px;
+            left: calc(50% - 100.82px/2 - 455.57px);
+            top: 1035px;
+
+            background: rgba(205, 223, 239, 0.85);
+            box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
+            border-radius: 17.8334px;
+        }
+
 
         .sort-div-title {
             margin: 30px;
@@ -80,6 +99,16 @@
             text-transform: uppercase;
 
             color: #7791A4;
+        }
+
+        .ui-corner-all {
+            width: 279px;
+            height: 32px;
+
+
+            background: #EDF4FC;
+            box-shadow: inset 0px 1px 2px #8FACC1;
+            border-radius: 16px;
         }
 
         .category-list:hover {
@@ -137,9 +166,9 @@
 
                 </div>
 
-                <div>
+                <div style="width: 320px">
                     <h2 class="sort-div-title" style="font-weight: bold;">Сортировать по</h2>
-                    <div class="sort-by">
+                    <div class="container sort-by">
                         <div class="menu-body">
                             <h2 style="padding-top: 20px; margin-left: 20px; color: #7791A4;font-size: 18px;font-style: normal;font-weight: 600;text-transform: uppercase; ">
                                 Цена:</h2>
@@ -148,10 +177,10 @@
                             <hr class="left-menu-devider" style="margin-top: -10px">
                         </div>
                         <p>
-                            <label for="price-to" class="price-title">От</label>
-                            <input type="number" value="0" id="price-to">
-                            <label for="price-from" class="price-title">До</label>
-                            <input type="number" value="12000" id="price-from">
+                            <label for="price-to" class="price-title" style="font-weight: lighter">От</label>
+                            <input class="priceFrom" type="number" value="0" id="price-to" style="color: #7791A4;">
+                            <label for="price-from" class="price-title" style="font-weight: lighter">До</label>
+                            <input class="priceTo" type="number" value="12000" id="price-from" style="color: #7791A4;">
                         </p>
                         <div id="slider-range"
                              class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">

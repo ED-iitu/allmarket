@@ -11028,7 +11028,14 @@ a.text-dark:focus {
 .cart-div {
 
 }
-.minus-z-index .navbar, .minus-z-index .search-div, .minus-z-index .cart-div, .minus-z-index .uk-position-relative  {
+.minus-z-index .navbar, .minus-z-index .search-div, .minus-z-index #section-list,
+.minus-z-index .container,
+.minus-z-index .faq,
+.minus-z-index #munu_line_devider,
+.minus-z-index .category-left-menu, .minus-z-index .product-list-mobile,
+.minus-z-index .home-about-banner, .minus-z-index .cart-div,
+.minus-z-index .uk-position-relative,
+.minus-z-index .menu-line, .minus-z-index .menu-blackline  {
     z-index: -1;
 }
 /*.menu-line {*/
@@ -11573,14 +11580,18 @@ body {
 }
 
 .signIn {
-    width: 245px;
+    position: relative;
+    width: 253px;
     height: 89px;
+    z-index: 10;
 
     background: #E3EDF7;
-    border-radius: 10px 0px 0px 0px;
+    border-radius: 10px 0px 10px 0px;
 }
 
 .signUp {
+    margin-left: 245px;
+    position: absolute;
     width: 245px;
     height: 89px;
 
@@ -11969,7 +11980,7 @@ input {
     background: url(/images/closecart.png);
     filter: invert(1);
     top: 12px;
-    right: 30rem;
+    right: 24rem;
     background-position: center center;
     position: fixed;
     background-size: cover;
@@ -13142,6 +13153,8 @@ and (max-device-width: 812px) {
     }
 
     .signUp {
+        position: inherit;
+        margin-left: 0px;
         width: 163.05px;
         height: 59.23px;
         left: 188.05px;
@@ -13833,4 +13846,9 @@ and (-webkit-device-pixel-ratio: 3) {
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
+}
+
+* {
+    border: none;
+    outline: none;
 }
