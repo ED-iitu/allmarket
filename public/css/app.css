@@ -12883,8 +12883,8 @@ and (max-device-width: 812px) {
     }
 
     #cart-cart {
-        width: 100% !important;
-        right: 0 !important;
+        width: 47% !important;
+        right: 33.3rem !important;
         top: 55px !important;
     }
 
