@@ -260,7 +260,7 @@
                     </div>
                     <div class="p-2 cart-div">
                         <div class="d-flex" id="cart">
-                            <button class="btn-cart" style="outline:none;" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow'); $('.carzina-sign').html('X')">
+                            <button class="btn-cart" style="outline:none;" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1 cart-active-bg minus-z-index');$('body').addClass('nooverflow'); $('.carzina-sign').html('X')">
                                 <img class="carzina-sign" src="/images/corzina.png" alt="">
                             </button>
                             <div>
@@ -556,7 +556,7 @@
 
     <div id="cart-cont">
         <div>
-            <button id="close-cart" onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1');
+            <button id="close-cart" onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1 cart-active-bg minus-z-index');
                     $('body').removeClass('nooverflow');"></button>
             <div id="close-mask" class="empty_cart_block empty-cart"></div>
             <div id="cart-cart" class="empty_cart_block empty-cart">
