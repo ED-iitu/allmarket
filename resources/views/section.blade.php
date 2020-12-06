@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
+        .ui-draggable, .ui-droppable {
+            background-position: top;
+        }
+
         .category-sort {
             width: 242px;
             height: 45px;
-            left: calc(50% - 242px/2 + 676px);
+            left: calc(50% - 242px / 2 + 676px);
             top: 321px;
             border: none;
             display: flex;
@@ -35,7 +39,7 @@
         .left-menu-devider {
             width: 281px;
             height: 2px;
-            left: calc(50% - 281px/2 - 393.5px);
+            left: calc(50% - 281px / 2 - 393.5px);
             top: 399px;
 
             background: #FFFFFF;
@@ -78,19 +82,22 @@
             color: #7791A4;
         }
 
-        .category-list:hover{
+        .category-list:hover {
             background: #F8FBFF;
         }
     </style>
 
     <div class="container">
-        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / <a class="bredLink" href="{{route('sections')}}">Категории</a> / {{$section->title}}</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / <a class="bredLink"
+                                                                                         href="{{route('sections')}}">Категории</a>
+            / {{$section->title}}</div>
     </div>
 
     <div class="container">
         <div class="d-flex flex-row-reverse">
             <form>
-                <select class="category-sort" id="sort" style="text-align-last:center;font-size: 18px;font-family: Montserrat; font-weight: 600; color: #43637A;">
+                <select class="category-sort" id="sort"
+                        style="text-align-last:center;font-size: 18px;font-family: Montserrat; font-weight: 600; color: #43637A;">
                     <option>По популярности</option>
                     <option>По уменьшению цены</option>
                     <option>По возрастанию цены</option>
@@ -117,8 +124,11 @@
                     <div style="width: 320px;">
                         <ul style="list-style: none; padding-left: 15px !important">
                             @foreach($section->categories as $category)
-                                <div >
-                                    <a href="{{route('category_products', [$section->id, $category->id])}}" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">{{$category->title}}</li></a>
+                                <div>
+                                    <a href="{{route('category_products', [$section->id, $category->id])}}"
+                                       class="showproduct" style="text-decoration: none">
+                                        <li class="category-list" style="font-size: 18px;">{{$category->title}}</li>
+                                    </a>
                                 </div>
                             @endforeach
                         </ul>
@@ -130,7 +140,22 @@
                 <div>
                     <h2 class="sort-div-title" style="font-weight: bold;">Сортировать по</h2>
                     <div class="sort-by">
-
+                        <div class="menu-body">
+                            <h2 style="padding-top: 20px; margin-left: 20px; color: #7791A4;font-size: 18px;font-style: normal;font-weight: 600;text-transform: uppercase; ">
+                                Цена:</h2>
+                        </div>
+                        <div class="container">
+                            <hr class="left-menu-devider" style="margin-top: -10px">
+                        </div>
+                        <p>
+                            <label for="price-to" class="price-title">От</label>
+                            <input type="number" value="0" id="price-to">
+                            <label for="price-from" class="price-title">До</label>
+                            <input type="number" value="12000" id="price-from">
+                        </p>
+                        <div id="slider-range"
+                             class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                        </div>
                     </div>
                 </div>
 
@@ -138,58 +163,95 @@
             <div class="col-md-8" style="margin-top: 30px">
                 <div class="row">
                     @foreach($products as $product)
-                    <div class="col-md-4 product-list-mobile">
-                        <div class="product">
-                            @if(in_array($product->id, (array)Session::get('favorited')))
-                                <div class="favorite">
-                                    <img id="addToFavorite" class="fav-image" src="/images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$product->id}})">
-                                </div>
-                            @else
-                                <div class="favorite">
-                                    <img id="addToFavorite" class="fav-image" src="/images/like.png" alt="" onClick="addToFavourites({{$product->id}})">
-                                </div>
-                            @endif
-                            <div class="container" style="padding: 15px">
-                                <a href="{{route('product', $product->id)}}" style="text-decoration: none">
-                                    <div class="product-image">
-                                        <img class="product-img" src="{{$product->image}}" alt="">
+                        <div class="col-md-4 product-list-mobile">
+                            <div class="product">
+                                @if(in_array($product->id, (array)Session::get('favorited')))
+                                    <div class="favorite">
+                                        <img id="addToFavorite" class="fav-image" src="/images/dislike.png"
+                                             style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt=""
+                                             onClick="addToFavourites({{$product->id}})">
                                     </div>
-                                </a>
-                                <div class="product-info" style="margin-top: 15px; position: relative">
-                                    <div class="product-title">
-                                        {{ Str::of($product->title)->limit(30) }}
-
+                                @else
+                                    <div class="favorite">
+                                        <img id="addToFavorite" class="fav-image" src="/images/like.png" alt=""
+                                             onClick="addToFavourites({{$product->id}})">
                                     </div>
-                                    <div class="product-category">
-                                        {{ Str::of($product->category->title)->limit(22) }}
-                                    </div>
-
-                                    <div>
-                                        <div style="display: flex;align-items: center;justify-content: space-between;">
-                                            <div class="old-price">{{$product->price_sale}} тг</div>
+                                @endif
+                                <div class="container" style="padding: 15px">
+                                    <a href="{{route('product', $product->id)}}" style="text-decoration: none">
+                                        <div class="product-image">
+                                            <img class="product-img" src="{{$product->image}}" alt="">
                                         </div>
-                                        <div style="display: flex;align-items: center;justify-content: space-between;">
-                                            <div class="new-price">{{$product->price}} тг</div>
-                                            @if (Session::get('username'))
-                                                <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                                    <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                    </a>
+                                    <div class="product-info" style="margin-top: 15px; position: relative">
+                                        <div class="product-title">
+                                            {{ Str::of($product->title)->limit(30) }}
+
+                                        </div>
+                                        <div class="product-category">
+                                            {{ Str::of($product->category->title)->limit(22) }}
+                                        </div>
+
+                                        <div>
+                                            <div
+                                                style="display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="old-price">{{$product->price_sale}} тг</div>
+                                            </div>
+                                            <div
+                                                style="display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="new-price">{{$product->price}} тг</div>
+                                                @if (Session::get('username'))
+                                                    <form action="{{route('addToCart', $product->id)}}" method="GET">
+                                                        <button type="submit" class="add-to-cart"
+                                                                style="position: absolute; bottom: 15px; right: 5px">
+                                                            <img src="/images/add_to_cart.png" alt="">
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <button href="#auth" uk-toggle class="add-to-cart"
+                                                            style="position: absolute; bottom: 15px; right: 5px">
                                                         <img src="/images/add_to_cart.png" alt="">
                                                     </button>
-                                                </form>
-                                            @else
-                                                <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                                    <img src="/images/add_to_cart.png" alt="">
-                                                </button>
-                                            @endif
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        var slider_range = $("#slider-range"),
+            price_min = $("#price-to");
+        price_max = $("#price-from");
+        SliderRange()
+        function SliderRange(start = 0, end = 12000) {
+            slider_range.slider({
+                range: true,
+                min: 0,
+                max: 12000,
+                values: [start, end],
+                slide: function (event, ui) {
+                    price_min.val(ui.values[0])
+                    price_max.val(ui.values[1])
+
+                }
+            });
+        }
+        price_min.val(slider_range.slider("values", 0))
+        price_max.val(slider_range.slider("values", 1))
+        price_min.on('keyup', function () {
+            SliderRange(price_min.val(), price_max.val())
+        })
+        price_max.on('keyup', function () {
+            SliderRange(price_min.val(), price_max.val())
+        })
+
+    </script>
 @endsection

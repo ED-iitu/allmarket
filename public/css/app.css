@@ -13823,3 +13823,14 @@ and (-webkit-device-pixel-ratio: 3) {
   padding: 5px;
   color: #7791A4;
 }
+.sort-by {
+    background: #E3EDF7;
+    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.5), inset 0px 4px 4px rgba(93, 148, 204, 0.22);
+    border-radius: 11px;
+}
+.price-title {
+    color: #7791A4;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+}
