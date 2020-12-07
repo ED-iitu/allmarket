@@ -12809,6 +12809,22 @@ and (max-device-width: 568px) {
 and (min-device-width: 414px)
 and (max-device-width: 812px) {
 
+    .sections-banner {
+        display: none;
+    }
+
+    .sections-banner-mobile {
+        display: flex !important;
+
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .searchRes {
+        width: 325px !important;
+    }
+
     .almarket-word {
         margin-left: 20px !important;
     }
@@ -13054,6 +13070,7 @@ and (max-device-width: 812px) {
 
     .faq-text-div {
         width: 385px !important;
+        border: 3px solid #C9DBEF;
     }
 
     .faq-text {
@@ -13071,7 +13088,6 @@ and (max-device-width: 812px) {
     }
 
     .faq-title {
-        margin-top: 20px !important;
 
         height: 18px !important;
 
@@ -13081,14 +13097,20 @@ and (max-device-width: 812px) {
         font-weight: bold;
         font-size: 15px !important;
         line-height: 18px;
-        display: flex;
         align-items: center;
 
         color: #637E99;
     }
 
+    .faq-mobile {
+        padding: 0px 10px !important;
+    }
+
+    .uk-accordion-title::before {
+        font-size: 24px !important;
+    }
+
     .faq {
-        width: 385px !important;
         height: 54.84px !important;
     }
 

@@ -607,9 +607,10 @@ class HomeController extends Controller
         $sections    = $this->getAllSections();
 
         return view('search-page', [
+            'sections' => $sections->sections,
             'products' => $res->products,
             'title' => $request->title,
-            'sections' => $sections->section
+            'sections' => $sections->sections
         ]);
     }
 

@@ -94,6 +94,43 @@
             width: 1140px;height: 2px;background: #C9DBEF; border-radius: 1px 1px 0px 0px;
         }
 
+        .searchRes {
+            position: absolute;
+            margin-top: 5px;
+            width: 505px;
+            z-index: 10;
+
+            background: #F7FBFF;
+            border-radius: 8px;
+        }
+
+        .search-res-title {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 19px;
+            line-height: 50px;
+            /* or 143% */
+
+            letter-spacing: -0.540636px;
+
+            color: #7591A7;
+        }
+
+        .searchItems {
+            text-decoration: none   ;
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 17px;
+            line-height: 27px;
+            /* or 160% */
+
+            letter-spacing: -0.540636px;
+
+            color: #7591A7;
+        }
+
     </style>
 
 </head>
@@ -274,12 +311,42 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                 </div>
                 <div class="p-2 search-div">
                     <form action="{{route('search')}}" method="GET">
-                        <input type="text" class="search" name="title" placeholder="Что то искали?"
+                        <input id="search" type="text" class="search" name="title" placeholder="Что то искали?"
                                style="outline:none;" required>
                         <button type="submit" class="btn-search" style="outline:none;">
                             <img src="/images/search.png" alt="">
                         </button>
                     </form>
+
+                    <div class="searchRes" style="display: none">
+                        <div>
+                            <h4 class="search-res-title" style="margin-left: 30px">Товары</h4>
+                            <ul style="list-style: none; margin-top: -15px">
+                                <li class="searchItems">
+                                    <img src="/images/search.png" alt="">
+                                    <a href="https://allmarket.sigdev.kz/search?title='лук'">Лук</a>
+                                </li>
+                                <li class="searchItems">
+                                    <img src="/images/search.png" alt="">
+                                    Лук репчатый
+                                </li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div>
+                            <h4 class="search-res-title" style="margin-left: 30px">Категории</h4>
+                            <ul style="list-style: none; margin-top: -15px">
+                                <li class="searchItems">
+                                    Овощи / Фрукты
+                                </li>
+                                <li class="searchItems">
+                                    Детские товары
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
 
                 </div>
                 <div class="p-2 cart-div">
@@ -1185,6 +1252,15 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 
 <script>
     $(document).ready(function () {
+
+        $('.search').focusin(function() {
+            $('.searchRes').show();
+        });
+
+        $('.search').focusout(function() {
+            $('.searchRes').hide();
+        });
+
         $(".hover-category").hover(function () {
             $('.showCategory').css("display", "block");
         }, function () {
@@ -1211,5 +1287,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
         });
     });
 </script>
+
 </body>
 </html>

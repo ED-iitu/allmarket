@@ -84,6 +84,10 @@
                     </div>
                 </a>
             @endforeach
+
+                <div class="col-md-4 sections-banner-mobile" style="display: none">
+                    <img src="/images/test.jpg" alt="" style="border-radius: 20px;height: 333px;width: 345px;">
+                </div>
         </div>
     </div>
 
