@@ -8,7 +8,6 @@
         <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / О нас</div>
     </div>
 
-    {{--<div class="col-md-12 home-banner"></div>--}}
     
     <div class="about-home-banner">
         <img src="/images/home-banner.png" alt="">
@@ -19,7 +18,7 @@
             <div class="benefits-block">
                 <div class="d-flex flex-row">
                     <div>
-                        <a href=""><img class="benefits-img" src="/images/calculator.png" alt=""></a>
+                        <img class="benefits-img" src="/images/calculator.png" alt="">
                     </div>
                     <div>
                         <div style="display: flex;align-items: center;justify-content: space-between">

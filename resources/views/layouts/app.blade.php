@@ -46,6 +46,10 @@
             border: none;
         }
 
+        .submenu {
+            width: 420px !important;
+        }
+
 
 
         .showCategory {
@@ -72,6 +76,10 @@
 
             color: #5B5B5B;
             text-decoration: none !important;
+        }
+
+        .searchLink {
+            color: #7591A7;
         }
 
         .showCategoryLink:hover {
@@ -129,6 +137,7 @@
 
             color: #7591A7;
         }
+
 
     </style>
 
@@ -324,11 +333,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                             <ul style="list-style: none; margin-top: -15px">
                                 <li class="searchItems">
                                     <img src="/images/search.png" alt="">
-                                    <a href="https://allmarket.sigdev.kz/search?title='лук'">Лук</a>
+                                    <a class="searchLink" href="https://allmarket.sigdev.kz/search?title='лук'">Лук</a>
                                 </li>
                                 <li class="searchItems">
                                     <img src="/images/search.png" alt="">
-                                    Лук репчатый
+                                    <a class="searchLink" href="https://allmarket.sigdev.kz/search?title='лук'">Лук репчатый</a>
                                 </li>
                             </ul>
                         </div>
@@ -337,10 +346,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                             <h4 class="search-res-title" style="margin-left: 30px">Категории</h4>
                             <ul style="list-style: none; margin-top: -15px">
                                 <li class="searchItems">
-                                    Овощи / Фрукты
+                                    <a class="searchLink" href="">Овощи / Фрукты</a>
                                 </li>
                                 <li class="searchItems">
-                                    Детские товары
+                                    <a class="searchLink" href="">Детские товары</a>
                                 </li>
                             </ul>
                         </div>
@@ -397,73 +406,72 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                         </a>
                         <img src="/images/arrow.png" alt="" style="height: 15px; margin-top: 7px;">
                         @if($loop->index == 0)
-                            <div class="showSubCategory" style="z-index: -1">
-                                <ul>
-                                    <li><a href="#m2_1">Выпадашка 1</a></li>
-                                    <li><a href="#m2_2">Выпадашка 2</a></li>
+                            <div class="showSubCategory" style="z-index: -1;">
+                                <ul class="submenu" >
+                                    <li><a href="{{route('category_products', [$section->id, 5])}}">Крупы и хлопья</a></li>
+                                    <li><a href="{{route('category_products', [$section->id, 12])}}">Конфеты и кондитерские изделия</a></li>
+                                    <li><a href="{{route('category_products', [$section->id, 13])}}">Лапша и макаронные изделия</a></li>
+                                    <li><a href="{{route('category_products', [$section->id, 14])}}">Молочная продукция</a></li>
+                                    <li><a href="{{route('category_products', [$section->id, 15])}}">Масло</a></li>
                                 </ul>
                             </div>
                         @elseif($loop->index == 1)
                             <div class="showSubCategory" style="z-index: -1">
-                            <ul>
-                                <li><a href="#m2_1">Выпадашка 3</a></li>
-                                <li><a href="#m2_2">Выпадашка 4</a></li>
-                            </ul>
+                                <ul class="submenu">
+                                    <li><a href="#m2_1">Кофе, какао</a></li>
+                                    <li><a href="#m2_2">Чай</a></li>
+                                    <li><a href="#m2_2">Сокии морсы</a></li>
+                                    <li><a href="#m2_2">Вода</a></li>
+                                    <li><a href="#m2_2">Алкоголь</a></li>
+                                </ul>
+                            </div>
+                        @elseif($loop->index == 2)
+                            <div class="showSubCategory" style="z-index: -1">
+                                <ul class="submenu">
+                                    <li><a href="{{route('category_products', [3, 26])}}">Уход за волосами</a></li>
+                                    <li><a href="#m2_2">Уход за телом</a></li>
+                                    <li><a href="#m2_2">Уход за полостью рта</a></li>
+                                    <li><a href="#m2_2">Средства для бритья</a></li>
+                                </ul>
+                            </div>
+                        @elseif($loop->index == 3)
+                            <div class="showSubCategory" style="z-index: -1">
+                                <ul class="submenu">
+                                    <li><a href="#m2_1">Средства для стирки</a></li>
+                                    <li><a href="#m2_2">Средства для ухода за домом</a></li>
+                                </ul>
+                            </div>
+                        @elseif($loop->index == 4)
+                            <div class="showSubCategory" style="z-index: -1">
+                                <ul class="submenu">
+                                    <li><a href="#m2_1">Подгузники</a></li>
+                                    <li><a href="#m2_2">Детское питание</a></li>
+                                </ul>
+                            </div>
+                        @elseif($loop->index == 5)
+                            <div class="showSubCategory" style="z-index: -1">
+                                <ul class="submenu">
+                                    <li><a href="#m2_1">Корма для собак</a></li>
+                                    <li><a href="#m2_2">Корма для кошек</a></li>
+                                </ul>
+                            </div>
+                        @elseif($loop->index == 6)
+                            <div class="showSubCategory" style="z-index: -1">
+                                <ul class="submenu">
+                                    <li><a href="{{route('category_products', [7, 39])}}">Бумага</a></li>
+                                    <li><a href="{{route('category_products', [7, 41])}}">Пакеты</a></li>
+                                    <li><a href="{{route('category_products', [7, 42])}}">Перчатки</a></li>
+                                    <li><a href="#m2_2">Инсектициды</a></li>
+                                    <li><a href="#m2_2">Инсектициды</a></li>
+                                </ul>
                             </div>
                         @endif
                     </li>
                 @endforeach
             </ul>
         </nav>
-        {{--            <ul>--}}
-        {{--                <li><a href="#m1">Первая услуга</a></li>--}}
-        {{--                <li><a href="#m2">Вторая услуга</a>--}}
-        {{--                    <ul>--}}
-        {{--                        <li><a href="#m2_1">Выпадашка 1</a></li>--}}
-        {{--                        <li><a href="#m2_2">Выпадашка 2</a></li>--}}
-        {{--                    </ul>--}}
-        {{--                </li>--}}
-        {{--                <li><a href="#m3">Третья</a>--}}
-        {{--                    <ul>--}}
-        {{--                        <li><a href="#m3_1">Выпадашка с третьей услуги 1</a></li>--}}
-        {{--                        <li><a href="#m3_2">Выпадашка с третьей услуги 2</a></li>--}}
-        {{--                        <li><a href="#m3_3">Краткая выпадашка</a></li>--}}
-        {{--                        <li><a href="#m3_4">Краткая выпадашка</a></li>--}}
-        {{--                        <li><a href="#m3_5">Краткая выпадашка</a></li>--}}
-        {{--                    </ul>--}}
-        {{--                </li>--}}
-        {{--                <li><a href="#m4">4 услуга</a></li>--}}
-        {{--                <li><a href="#m5">5 услуга</a>--}}
-        {{--                    <ul>--}}
-        {{--                        <li><a href="#m5_1">111111</a></li>--}}
-        {{--                        <li><a href="#m5_2">2222 2222</a></li>--}}
-        {{--                    </ul>--}}
-        {{--                </li>--}}
-        {{--                <li><a href="#m6">6 услуга</a></li>--}}
-        {{--                <li><a href="#m7">7 услуга</a></li>--}}
-        {{--                <li><a href="#m8">8 услуга</a></li>--}}
-        {{--            </ul>--}}
 
     </div>
-    {{--    <div class="showSubCategory" style="display: none; position: absolute; z-index: 100">--}}
-    {{--        <ul style="padding-left: 10px">--}}
-    {{--            <li style="display: flex; justify-content: space-between" class="showSub">--}}
-    {{--                <a href="#" class="showCategoryLink">--}}
-    {{--                    Средства для стирки--}}
-    {{--                </a>--}}
-    {{--            </li>--}}
-    {{--            <li style="display: flex; justify-content: space-between" class="showSub">--}}
-    {{--                <a href="#" class="showCategoryLink">--}}
-    {{--                    Средства для ухода за домом--}}
-    {{--                </a>--}}
-    {{--            </li>--}}
-    {{--            <li style="display: flex; justify-content: space-between" class="showSub">--}}
-    {{--                <a href="#" class="showCategoryLink">--}}
-    {{--                    Посудомоечные средства--}}
-    {{--                </a>--}}
-    {{--            </li>--}}
-    {{--        </ul>--}}
-    {{--    </div>--}}
 
     <div class="container" id="munu_line_devider">
         <hr class="menu-blackline">
