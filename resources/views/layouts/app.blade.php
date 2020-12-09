@@ -17,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dropdown-menu.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/css/uikit.min.css"/>
 
@@ -45,16 +46,7 @@
             border: none;
         }
 
-        .showSubCategory {
-            width: 333px;
-            height: 270px;
-            left: 490px;
-            top: 140px;
-            padding: 20px;
 
-            background: #E6F1FA;
-            border-radius: 0px 8px 8px 0px;
-        }
 
         .showCategory {
             height: 270px;
@@ -87,11 +79,18 @@
         }
 
         .menu-line {
-            margin-top: -18px;width: 1140px;height: 2px;background: #FFFFFF;border-radius: 0px 0px 1px 1px;
+            margin-top: -18px;
+            width: 1140px;
+            height: 2px;
+            background: #FFFFFF;
+            border-radius: 0px 0px 1px 1px;
         }
 
         .menu-blackline {
-            width: 1140px;height: 2px;background: #C9DBEF; border-radius: 1px 1px 0px 0px;
+            width: 1140px;
+            height: 2px;
+            background: #C9DBEF;
+            border-radius: 1px 1px 0px 0px;
         }
 
         .searchRes {
@@ -118,7 +117,7 @@
         }
 
         .searchItems {
-            text-decoration: none   ;
+            text-decoration: none;
             font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
@@ -229,7 +228,8 @@ $('#mobile_close').show(); $('#mobile_cart').hide()">
 
             </div>
             <div class="mobile-cart" id='mobile_close' onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1');$('body').removeClass('nooverflow');
-$('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide();$('.menu-line').hide();" style="display: none">
+$('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide();$('.menu-line').hide();"
+                 style="display: none">
                 <a class="nav-link close" href="#" style="filter: invert(1)">
                     <img src="/images/closecart.png" alt="">
                 </a>
@@ -347,7 +347,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                     </div>
 
 
-
                 </div>
                 <div class="p-2 cart-div">
                     <div class="d-flex" id="cart">
@@ -386,38 +385,85 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
     </div>
 
     <div class="showCategory" style="display: none; position: absolute; z-index: 100">
-        <ul style="padding-left: 5px">
-            @foreach($sections as $section)
-                <li style="display: flex; justify-content: space-between" class="showSub">
-                    <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink">
-                        <img src="/images/category/icons/{{$section->system_key}}.png" alt="" style="margin-right: 10px"
-                             height="25px" width="25px">
-                        {{$section->title}}
-                    </a>
-                    <img src="/images/arrow.png" alt="" style="height: 15px; margin-top: 7px;">
-                </li>
-            @endforeach
-        </ul>
+        <nav id="menuVertical">
+            <ul style="padding-left: 5px">
+                @foreach($sections as $section)
+                    <li style="display: flex; justify-content: space-between" class="showSub">
+                        <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink">
+                            <img src="/images/category/icons/{{$section->system_key}}.png" alt=""
+                                 style="margin-right: 10px"
+                                 height="25px" width="25px">
+                            {{$section->title}}
+                        </a>
+                        <img src="/images/arrow.png" alt="" style="height: 15px; margin-top: 7px;">
+                        @if($loop->index == 0)
+                            <div class="showSubCategory" style="z-index: -1">
+                                <ul>
+                                    <li><a href="#m2_1">Выпадашка 1</a></li>
+                                    <li><a href="#m2_2">Выпадашка 2</a></li>
+                                </ul>
+                            </div>
+                        @elseif($loop->index == 1)
+                            <div class="showSubCategory" style="z-index: -1">
+                            <ul>
+                                <li><a href="#m2_1">Выпадашка 3</a></li>
+                                <li><a href="#m2_2">Выпадашка 4</a></li>
+                            </ul>
+                            </div>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        </nav>
+        {{--            <ul>--}}
+        {{--                <li><a href="#m1">Первая услуга</a></li>--}}
+        {{--                <li><a href="#m2">Вторая услуга</a>--}}
+        {{--                    <ul>--}}
+        {{--                        <li><a href="#m2_1">Выпадашка 1</a></li>--}}
+        {{--                        <li><a href="#m2_2">Выпадашка 2</a></li>--}}
+        {{--                    </ul>--}}
+        {{--                </li>--}}
+        {{--                <li><a href="#m3">Третья</a>--}}
+        {{--                    <ul>--}}
+        {{--                        <li><a href="#m3_1">Выпадашка с третьей услуги 1</a></li>--}}
+        {{--                        <li><a href="#m3_2">Выпадашка с третьей услуги 2</a></li>--}}
+        {{--                        <li><a href="#m3_3">Краткая выпадашка</a></li>--}}
+        {{--                        <li><a href="#m3_4">Краткая выпадашка</a></li>--}}
+        {{--                        <li><a href="#m3_5">Краткая выпадашка</a></li>--}}
+        {{--                    </ul>--}}
+        {{--                </li>--}}
+        {{--                <li><a href="#m4">4 услуга</a></li>--}}
+        {{--                <li><a href="#m5">5 услуга</a>--}}
+        {{--                    <ul>--}}
+        {{--                        <li><a href="#m5_1">111111</a></li>--}}
+        {{--                        <li><a href="#m5_2">2222 2222</a></li>--}}
+        {{--                    </ul>--}}
+        {{--                </li>--}}
+        {{--                <li><a href="#m6">6 услуга</a></li>--}}
+        {{--                <li><a href="#m7">7 услуга</a></li>--}}
+        {{--                <li><a href="#m8">8 услуга</a></li>--}}
+        {{--            </ul>--}}
+
     </div>
-    <div class="showSubCategory" style="display: none; position: absolute; z-index: 100">
-        <ul style="padding-left: 10px">
-            <li style="display: flex; justify-content: space-between" class="showSub">
-                <a href="#" class="showCategoryLink">
-                    Средства для стирки
-                </a>
-            </li>
-            <li style="display: flex; justify-content: space-between" class="showSub">
-                <a href="#" class="showCategoryLink">
-                    Средства для ухода за домом
-                </a>
-            </li>
-            <li style="display: flex; justify-content: space-between" class="showSub">
-                <a href="#" class="showCategoryLink">
-                    Посудомоечные средства
-                </a>
-            </li>
-        </ul>
-    </div>
+    {{--    <div class="showSubCategory" style="display: none; position: absolute; z-index: 100">--}}
+    {{--        <ul style="padding-left: 10px">--}}
+    {{--            <li style="display: flex; justify-content: space-between" class="showSub">--}}
+    {{--                <a href="#" class="showCategoryLink">--}}
+    {{--                    Средства для стирки--}}
+    {{--                </a>--}}
+    {{--            </li>--}}
+    {{--            <li style="display: flex; justify-content: space-between" class="showSub">--}}
+    {{--                <a href="#" class="showCategoryLink">--}}
+    {{--                    Средства для ухода за домом--}}
+    {{--                </a>--}}
+    {{--            </li>--}}
+    {{--            <li style="display: flex; justify-content: space-between" class="showSub">--}}
+    {{--                <a href="#" class="showCategoryLink">--}}
+    {{--                    Посудомоечные средства--}}
+    {{--                </a>--}}
+    {{--            </li>--}}
+    {{--        </ul>--}}
+    {{--    </div>--}}
 
     <div class="container" id="munu_line_devider">
         <hr class="menu-blackline">
@@ -1253,11 +1299,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 <script>
     $(document).ready(function () {
 
-        $('.search').focusin(function() {
+        $('.search').focusin(function () {
             $('.searchRes').show();
         });
 
-        $('.search').focusout(function() {
+        $('.search').focusout(function () {
             $('.searchRes').hide();
         });
 
@@ -1266,7 +1312,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
         }, function () {
             $('.showCategory').css("display", "none");
         });
-
+        //
         $(".showCategory").hover(function () {
             $('.showCategory').css("display", "block");
         }, function () {
@@ -1275,16 +1321,14 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 
         $(".showSub").hover(function () {
             $('.showSubCategory').css("display", "block");
-        }, function () {
-            $('.showSubCategory').css("display", "none");
         });
 
-        $(".showSubCategory").hover(function () {
-            $('.showCategory').css("display", "block");
-            $('.showSubCategory').css("display", "block");
-        }, function () {
-            $('.showSubCategory').css("display", "none");
-        });
+        // $(".showSubCategory").hover(function () {
+        //     $('.showCategory').css("display", "block");
+        //     $('.showSubCategory').css("display", "block");
+        // }, function () {
+        //     $('.showSubCategory').css("display", "none");
+        // });
     });
 </script>
 
