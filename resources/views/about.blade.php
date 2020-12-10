@@ -18,7 +18,7 @@
             <div class="benefits-block">
                 <div class="d-flex flex-row">
                     <div>
-                        <img class="benefits-img" src="/images/calculator.png" alt="">
+                        <img class="benefits-img" src="/images/Calculator.png" alt="">
                     </div>
                     <div>
                         <div style="display: flex;align-items: center;justify-content: space-between">
@@ -37,7 +37,7 @@
             <div class="benefits-block">
                 <div class="d-flex flex-row">
                     <div>
-                        <a href=""><img class="benefits-img" src="/images/truck.png" alt=""></a>
+                        <a href=""><img class="benefits-img" src="/images/Truck.png" alt=""></a>
                     </div>
                     <div>
                         <div style="display: flex;align-items: center;justify-content: space-between">
@@ -56,7 +56,7 @@
             <div class="benefits-block">
                 <div class="d-flex flex-row">
                     <div>
-                        <a href=""><img class="benefits-img" src="/images/bag.png" alt=""></a>
+                        <a href=""><img class="benefits-img" src="/images/Bag.png" alt=""></a>
                     </div>
                     <div>
                         <div style="display: flex;align-items: center;justify-content: space-between">
