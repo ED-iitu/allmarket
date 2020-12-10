@@ -32,8 +32,8 @@
       <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="754" selection-start-line="754" selection-end-line="754" />
+            <state relative-caret-position="88">
+              <caret line="752" column="30" selection-start-line="752" selection-start-column="20" selection-end-line="752" selection-end-column="30" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -155,8 +155,8 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="12912" column="29" selection-start-line="12912" selection-start-column="29" selection-end-line="12912" selection-end-column="29" />
+            <state relative-caret-position="333">
+              <caret line="12819" column="22" lean-forward="true" selection-start-line="12819" selection-start-column="22" selection-end-line="12819" selection-end-column="22" />
               <folding>
                 <element signature="e#35396#35651#2" expanded="true" />
                 <element signature="e#36336#36510#1" expanded="true" />
@@ -257,7 +257,6 @@
       <find>upper</find>
       <find>.faq-tit</find>
       <find>sections-banner</find>
-      <find>414</find>
       <find>выпа</find>
       <find>showSubCategory</find>
       <find>345</find>
@@ -273,6 +272,7 @@
       <find>showSu</find>
       <find>showSubCa</find>
       <find>showSub</find>
+      <find>414</find>
       <find>cart-ca</find>
     </findStrings>
   </component>
@@ -565,7 +565,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256127000" />
+    <option name="totallyTimeSpent" value="256651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="816" extended-state="6" />
@@ -1143,8 +1143,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="754" selection-start-line="754" selection-end-line="754" />
+        <state relative-caret-position="88">
+          <caret line="752" column="30" selection-start-line="752" selection-start-column="20" selection-end-line="752" selection-end-column="30" />
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1246,8 +1246,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="12912" column="29" selection-start-line="12912" selection-start-column="29" selection-end-line="12912" selection-end-column="29" />
+        <state relative-caret-position="333">
+          <caret line="12819" column="22" lean-forward="true" selection-start-line="12819" selection-start-column="22" selection-end-line="12819" selection-end-column="22" />
           <folding>
             <element signature="e#35396#35651#2" expanded="true" />
             <element signature="e#36336#36510#1" expanded="true" />

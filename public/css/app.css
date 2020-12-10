@@ -12804,6 +12804,15 @@ and (max-device-width: 568px) {
 
 
 @media only screen
+and (min-device-width: 414px) {
+
+    #close-cart {
+        display: none !important;
+    }
+
+}
+
+@media only screen
 and (min-device-width: 414px)
 and (max-device-width: 736px) {
 
