@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="Added bg for cart">
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -156,8 +155,8 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="12908" lean-forward="true" selection-start-line="12908" selection-end-line="12908" />
+            <state relative-caret-position="221">
+              <caret line="12912" column="29" selection-start-line="12912" selection-start-column="29" selection-end-line="12912" selection-end-column="29" />
               <folding>
                 <element signature="e#35396#35651#2" expanded="true" />
                 <element signature="e#36336#36510#1" expanded="true" />
@@ -566,7 +565,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255780000" />
+    <option name="totallyTimeSpent" value="256127000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="816" extended-state="6" />
@@ -1247,8 +1246,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="12908" lean-forward="true" selection-start-line="12908" selection-end-line="12908" />
+        <state relative-caret-position="221">
+          <caret line="12912" column="29" selection-start-line="12912" selection-start-column="29" selection-end-line="12912" selection-end-column="29" />
           <folding>
             <element signature="e#35396#35651#2" expanded="true" />
             <element signature="e#36336#36510#1" expanded="true" />
