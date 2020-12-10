@@ -401,9 +401,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                             <div style="display: flex;align-items: center;justify-content: space-between">
                                 <div class="cart-p">Товары:</div>
                                 @if(session('cart'))
-                                    <div class="cart-p"><span>{{count(session('cart'))}} </span>шт</div>
+                                    <div class="cart-p" style="margin-left: 15px"><span>{{count(session('cart'))}} </span>шт</div>
                                 @else
-                                    <div class="cart-p"><span id="cart-count">0 </span>шт</div>
+                                    <div class="cart-p" style="margin-left: 15px"><span id="cart-count">0 </span>шт</div>
                                 @endif
 
                             </div>
@@ -415,9 +415,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                                     @foreach(session('cart') as $id => $details)
                                         <?php $total += $details['price'] ?>
                                     @endforeach
-                                    <div class="cart-p" id="cart-sum"><span>{{$total}} </span>тг</div>
+                                    <div class="cart-p" style="margin-left: 15px" id="cart-sum"><span>{{$total}} </span>тг</div>
                                 @else
-                                    <div class="cart-p"><span id="cart-sum">0 </span>тг</div>
+                                    <div class="cart-p" style="margin-left: 15px"><span id="cart-sum">0 </span>тг</div>
                                 @endif
                             </div>
                         </div>
@@ -438,7 +438,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                                  height="25px" width="25px">
                             {{$section->title}}
                         </a>
-                        <img src="/images/arrow.png" alt="" style="height: 15px; margin-top: 7px; margin-left: -63px">
+                        <img src="/images/Arrow.png" alt="" style="height: 15px; margin-top: 7px; margin-left: -63px">
                         @if($loop->index == 0)
                             <div class="showSubCategory" style="z-index: -1;">
                                 <ul class="submenu" >
