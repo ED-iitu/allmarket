@@ -11382,7 +11382,7 @@ body {
     width: 609px;
     height: 140px;
 
-    margin-left: 100px;
+    margin-left: 40px;
 
     font-family: Montserrat;
     font-style: normal;
@@ -11400,7 +11400,7 @@ body {
     width: 443px;
     height: 120px;
 
-    margin-left: 100px;
+    margin-left: 40px;
 
 
     font-family: Montserrat;
@@ -11418,7 +11418,7 @@ body {
     width: 450px;
     height: 100px;
 
-    margin-left: 100px;
+    margin-left: 40px;
 
 
     font-family: Montserrat;
@@ -11433,7 +11433,7 @@ body {
 }
 
 .banner-button {
-    margin-left: 100px;
+    margin-left: 40px;
 
     width: 388px;
     height: 71px;
@@ -12908,8 +12908,8 @@ and (max-device-width: 812px) {
     }
 
     #cart-cart {
-        width: 47% !important;
-        right: 33.3rem !important;
+        width: 41% !important;
+        right: 37rem !important;
         top: 55px !important;
     }
 

@@ -752,7 +752,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
     <div>
         <button id="close-cart" onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1 cart-active-bg minus-z-index');
                     $('body').removeClass('nooverflow');"></button>
-        <div id="close-mask" class="empty_cart_block empty-cart"></div>
         <div id="cart-cart" class="empty_cart_block empty-cart">
             <div class="newcart" id="for_the_scroll">
                 <div id="newcart">
