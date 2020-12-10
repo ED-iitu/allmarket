@@ -16,9 +16,11 @@
 
         .uk-accordion-title::before {
             font-size: 30px ;
+            background-image: url("/images/plus.png");
         }
         .uk-open>.uk-accordion-title::before {
             font-size: 30px ;
+            background-image: url("/images/minus.png");
         }
 
         .uk-open>.faq {

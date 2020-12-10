@@ -13874,3 +13874,7 @@ and (-webkit-device-pixel-ratio: 3) {
     border: none;
     outline: none;
 }
+
+.showSub:hover {
+    background: #E6F1FA;
+}

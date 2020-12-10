@@ -26,12 +26,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
-        .dropdown-item {
+        .select_city {
             font-family: Montserrat;
             font-style: normal;
             font-weight: 600;
             font-size: 17px;
-            line-height: 21px;
+            line-height: 36px;
             /* identical to box height */
 
             display: flex;
@@ -53,11 +53,10 @@
 
 
         .showCategory {
-            height: 270px;
+            height: 320px;
             width: 333px;
             left: 158px;
             top: 140px;
-            padding: 20px;
 
             background: #F7FBFF;
             border-radius: 8px;
@@ -138,6 +137,41 @@
             color: #7591A7;
         }
 
+        .dropdown-city {
+            margin-top: 10px;
+            width: 224px;
+            height: 337px;
+
+            background: #F6FBFF;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 0px 0px 8px 8px;
+        }
+
+        .profile-menu{
+            margin-top: 10px;
+            width: 225px;
+            height: 203px;
+
+            background: #F6FBFF;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 0px 0px 8px 8px;
+        }
+        .profile-list {
+
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 35px;
+            /* identical to box height */
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+
+            color: #849CAE;
+        }
+
 
     </style>
 
@@ -163,7 +197,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Выбрать город
                         </a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu dropdown-city">
                             <a class="dropdown-item select_city">Алматы</a>
                             <a class="dropdown-item select_city">Нур-Султан</a>
                             <a class="dropdown-item select_city">Караганда</a>
@@ -179,11 +213,11 @@
                                style=" font-family: Montserrat;color: #0EFEC3 !important;">
                                 {{$message}}
                             </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/account#account-favorite">Избранные товары</a>
-                                <a class="dropdown-item" href="/account#account-order">История заказов</a>
-                                <a class="dropdown-item" href="/account#account-зкщашду">Мои данные</a>
-                                <a class="dropdown-item" href="{{route('logout')}}">Выход</a>
+                            <div class="dropdown-menu profile-menu">
+                                <a class="dropdown-item profile-list" href="/account#account-favorite">Избранные товары</a>
+                                <a class="dropdown-item profile-list" href="/account#account-order">История заказов</a>
+                                <a class="dropdown-item profile-list" href="/account#account-зкщашду">Мои данные</a>
+                                <a class="dropdown-item profile-list" href="{{route('logout')}}">Выход</a>
                             </div>
                         @else
 
@@ -279,13 +313,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                             <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
                         </div>
                         <div class="social-mobile">
-                            <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                            <img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px">
                         </div>
                         <div class="social-mobile">
                             <img class="social-img" src="/images/facebook.png" alt="" width="48px" height="49px">
                         </div>
                         <div class="social-mobile">
-                            <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                            <img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px">
                         </div>
                         <div class="social-mobile">
                             <img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px">
@@ -395,16 +429,16 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 
     <div class="showCategory" style="display: none; position: absolute; z-index: 100">
         <nav id="menuVertical">
-            <ul style="padding-left: 5px">
+            <ul style="padding: 0; margin: 0">
                 @foreach($sections as $section)
-                    <li style="display: flex; justify-content: space-between" class="showSub">
-                        <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink">
+                    <li style="display: flex; justify-content: space-between; margin-top: 10px" class="showSub">
+                        <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink" style="margin-left: 20px;">
                             <img src="/images/category/icons/{{$section->system_key}}.png" alt=""
                                  style="margin-right: 10px"
                                  height="25px" width="25px">
                             {{$section->title}}
                         </a>
-                        <img src="/images/arrow.png" alt="" style="height: 15px; margin-top: 7px;">
+                        <img src="/images/arrow.png" alt="" style="height: 15px; margin-top: 7px; margin-left: -63px">
                         @if($loop->index == 0)
                             <div class="showSubCategory" style="z-index: -1;">
                                 <ul class="submenu" >
@@ -535,7 +569,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                             </div>
                             <div class="social">
                                 <a href="">
-                                    <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                                    <img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px">
                                 </a>
                             </div>
                             <div class="social">
@@ -546,7 +580,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                             </div>
                             <div class="social">
                                 <a href="">
-                                    <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                                    <img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px">
                                 </a>
                             </div>
                             <div class="social">
