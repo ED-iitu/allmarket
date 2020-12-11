@@ -26,151 +26,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
-        .select_city {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 17px;
-            line-height: 36px;
-            /* identical to box height */
 
-            display: flex;
-            align-items: center;
-            text-align: center;
-
-            color: #849CAE;
-
-        }
-
-        .verify-code-input {
-            border: none;
-        }
-
-        .submenu {
-            width: 420px !important;
-        }
-
-
-
-        .showCategory {
-            height: 320px;
-            width: 333px;
-            left: 158px;
-            top: 140px;
-
-            background: #F7FBFF;
-            border-radius: 8px;
-        }
-
-        .showCategoryLink {
-
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 33px;
-            /* or 90% */
-
-            letter-spacing: -0.54px;
-
-            color: #5B5B5B;
-            text-decoration: none !important;
-        }
-
-        .searchLink {
-            color: #7591A7;
-        }
-
-        .showCategoryLink:hover {
-            color: #5B5B5B;
-        }
-
-        .menu-line {
-            margin-top: -18px;
-            width: 1140px;
-            height: 2px;
-            background: #FFFFFF;
-            border-radius: 0px 0px 1px 1px;
-        }
-
-        .menu-blackline {
-            width: 1140px;
-            height: 2px;
-            background: #C9DBEF;
-            border-radius: 1px 1px 0px 0px;
-        }
-
-        .searchRes {
-            position: absolute;
-            margin-top: 5px;
-            width: 505px;
-            z-index: 10;
-
-            background: #F7FBFF;
-            border-radius: 8px;
-        }
-
-        .search-res-title {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 19px;
-            line-height: 50px;
-            /* or 143% */
-
-            letter-spacing: -0.540636px;
-
-            color: #7591A7;
-        }
-
-        .searchItems {
-            text-decoration: none;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 17px;
-            line-height: 27px;
-            /* or 160% */
-
-            letter-spacing: -0.540636px;
-
-            color: #7591A7;
-        }
-
-        .dropdown-city {
-            margin-top: 10px;
-            width: 224px;
-            height: 337px;
-
-            background: #F6FBFF;
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-            border-radius: 0px 0px 8px 8px;
-        }
-
-        .profile-menu{
-            margin-top: 10px;
-            width: 225px;
-            height: 203px;
-
-            background: #F6FBFF;
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-            border-radius: 0px 0px 8px 8px;
-        }
-        .profile-list {
-
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 17px;
-            line-height: 35px;
-            /* identical to box height */
-
-            display: flex;
-            align-items: center;
-            text-align: center;
-
-            color: #849CAE;
-        }
 
 
     </style>
@@ -403,7 +259,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                                 @if(session('cart'))
                                     <div class="cart-p" style="margin-left: 15px"><span>{{count(session('cart'))}} </span>шт</div>
                                 @else
-                                    <div class="cart-p" style="margin-left: 15px"><span id="cart-count">0 </span>шт</div>
+                                    <div class="cart-p" style="margin-left: 50px"><span id="cart-count">0 </span>шт</div>
                                 @endif
 
                             </div>
@@ -752,6 +608,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
     <div>
         <button id="close-cart" onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1 cart-active-bg minus-z-index');
                     $('body').removeClass('nooverflow');"></button>
+        <div id="close-mask" class="empty_cart_block empty-cart"></div>
         <div id="cart-cart" class="empty_cart_block empty-cart">
             <div class="newcart" id="for_the_scroll">
                 <div id="newcart">
@@ -1339,6 +1196,33 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 
 <script>
     $(document).ready(function () {
+
+        if ($(window).width() > 700) {
+            console.log("BIG")
+            $('.signUp').click(function () {
+                console.log("Clicked")
+                $('.signIn').css('border-radius', '10px 0px 10px 0px');
+                $('.signIn').css('width', '253px');
+                $('.signIn').css('z-index', '10');
+
+                $('.signUp').css('width', '245px');
+                $('.signUp').css('border-radius', '0px 10px 0px 0px');
+                $('.signUp').css('z-index', '0');
+            });
+
+            $('.signIn').click(function () {
+                console.log("Clicked")
+                $('.signUp').css('border-radius', '0px 10px 0px 10px');
+                $('.signUp').css('width', '253px');
+                $('.signUp').css('z-index', '11');
+
+                $('.signIn').css('width', '245px');
+                $('.signIn').css('border-radius', '10px 0px 0px 0px');
+                $('.signIn').css('z-index', '0');
+            });
+        }
+
+
 
         $('.search').focusin(function () {
             $('.searchRes').show();

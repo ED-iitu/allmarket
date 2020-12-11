@@ -11578,23 +11578,21 @@ body {
 }
 
 .signIn {
+    width: 245px;
+    position: relative;
+    height: 89px;
+    background: #E3EDF7;
+    border-radius: 10px 0px 0px 0px;
+}
+
+.signUp {
+    margin-left: -8px;
     position: relative;
     width: 253px;
     height: 89px;
     z-index: 10;
-
-    background: #E3EDF7;
-    border-radius: 10px 0px 10px 0px;
-}
-
-.signUp {
-    margin-left: 245px;
-    position: absolute;
-    width: 245px;
-    height: 89px;
-
     background: #AFC5DB;
-    border-radius: 0px 10px 0px 0px;
+    border-radius: 0px 10px 0px 10px;
 }
 
 .login-btn-text {
@@ -12802,22 +12800,21 @@ and (max-device-width: 568px) {
     }
 }
 
-
-@media only screen
-and (min-device-width: 414px) {
-
-    #close-cart {
-        display: none !important;
-    }
-
-}
-
 @media only screen
 and (min-device-width: 414px)
 and (max-device-width: 736px) {
 
     .sections-banner {
         display: none;
+    }
+
+    .cart-content {
+        height: 600px;
+        overflow: scroll;
+    }
+    .cart-checkout {
+        height: 600px;
+        overflow: scroll;
     }
 
     .sections-banner-mobile {
@@ -13175,13 +13172,14 @@ and (max-device-width: 736px) {
     .signIn {
         width: 163.05px;
         height: 59.23px;
-
+        position: relative;
 
         background: #E3EDF7;
         border-radius: 6.65493px 0px 0px 0px;
     }
 
     .signUp {
+
         position: inherit;
         margin-left: 0px;
         width: 163.05px;
@@ -13886,4 +13884,175 @@ and (-webkit-device-pixel-ratio: 3) {
 
 .showSub:hover {
     background: #E6F1FA;
+}
+
+.select_city {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 36px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #849CAE;
+
+}
+
+.verify-code-input {
+    border: none;
+}
+
+.submenu {
+    width: 420px !important;
+}
+
+
+
+.showCategory {
+    height: 320px;
+    width: 333px;
+    left: 158px;
+    top: 140px;
+
+    background: #F7FBFF;
+    border-radius: 8px;
+}
+
+.showCategoryLink {
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 33px;
+    /* or 90% */
+
+    letter-spacing: -0.54px;
+
+    color: #5B5B5B;
+    text-decoration: none !important;
+}
+
+.searchLink {
+    color: #7591A7;
+}
+
+.showCategoryLink:hover {
+    color: #5B5B5B;
+}
+
+.menu-line {
+    margin-top: -18px;
+    width: 1140px;
+    height: 2px;
+    background: #FFFFFF;
+    border-radius: 0px 0px 1px 1px;
+}
+
+.menu-blackline {
+    width: 1140px;
+    height: 2px;
+    background: #C9DBEF;
+    border-radius: 1px 1px 0px 0px;
+}
+
+.searchRes {
+    position: absolute;
+    margin-top: 5px;
+    width: 505px;
+    z-index: 10;
+
+    background: #F7FBFF;
+    border-radius: 8px;
+}
+
+.search-res-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 50px;
+    /* or 143% */
+
+    letter-spacing: -0.540636px;
+
+    color: #7591A7;
+}
+
+.searchItems {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 27px;
+    /* or 160% */
+
+    letter-spacing: -0.540636px;
+
+    color: #7591A7;
+}
+
+.dropdown-city {
+    margin-top: 10px;
+    width: 224px;
+    height: 337px;
+
+    background: #F6FBFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 8px 8px;
+}
+
+.profile-menu{
+    margin-top: 10px;
+    width: 225px;
+    height: 203px;
+
+    background: #F6FBFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 8px 8px;
+}
+.profile-list {
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 35px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #849CAE;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------*/
+/*Малые девайсы («ландшафтные телефоны», >= 576px)*/
+@media (min-width: 576px) {
+
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+ /*Средние девайсы («таблетки», >= 768px)*/
+@media (min-width: 768px) {
+
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+/*// Большие девайсы (десктопы, >= 992px)*/
+@media (min-width: 992px) {
+
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+/*// Экстрабольшие девайсы (большие десктопы, >= 1200px)*/
+@media (min-width: 1200px) {
+
 }
