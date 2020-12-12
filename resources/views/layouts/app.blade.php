@@ -384,7 +384,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
     </div>
 
 
-    <div class="container" style="margin-top: -15px">
+    <div class="container additional-menu" style="margin-top: -15px">
         <div class="d-flex flex-row-reverse">
             <p class="p-2" style="margin-top: 0px !important;">
                 <a href="{{route('about')}}" class="under-line-menu">О нас</a>
