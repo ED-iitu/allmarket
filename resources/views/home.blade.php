@@ -361,12 +361,12 @@
                                                 <div class="product-info" style="margin-top: 15px; position: relative">
                                                     <a href="{{route('product', $popular->id)}}">
                                                     <div class="product-title">
-                                                        {{ Str::of($popular->title)->limit(30) }}
+                                                        {{ Str::of($popular->title)->limit(25) }}
 
                                                     </div>
                                                     </a>
                                                     <div class="product-category">
-                                                        {{ Str::of($popular->category->title)->limit(22) }}
+                                                        {{ Str::of($popular->category->title)->limit(15) }}
                                                     </div>
 
                                                     <div>
@@ -377,12 +377,12 @@
                                                             <div class="new-price">{{$popular->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $popular->id)}}" method="GET">
-                                                                    <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                    <button type="submit" class="add-to-cart">
                                                                         <img src="images/add_to_cart.png" alt="">
                                                                     </button>
                                                                 </form>
                                                             @else
-                                                                <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                <button href="#auth" uk-toggle class="add-to-cart">
                                                                     <img src="images/add_to_cart.png" alt="">
                                                                 </button>
                                                             @endif
@@ -444,12 +444,12 @@
                                                 <div class="product-info" style="margin-top: 15px; position: relative">
                                                     <a href="{{route('product', $sale->id)}}">
                                                     <div class="product-title">
-                                                        {{ Str::of($sale->title)->limit(30) }}
+                                                        {{ Str::of($sale->title)->limit(25) }}
 
                                                     </div>
                                                     </a>
                                                     <div class="product-category">
-                                                        {{ Str::of($sale->category->title)->limit(22) }}
+                                                        {{ Str::of($sale->category->title)->limit(15) }}
                                                     </div>
 
                                                     <div>
@@ -460,12 +460,12 @@
                                                             <div class="new-price">{{$sale->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $sale->id)}}" method="GET">
-                                                                    <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                    <button type="submit" class="add-to-cart">
                                                                         <img src="images/add_to_cart.png" alt="">
                                                                     </button>
                                                                 </form>
                                                             @else
-                                                                <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                <button href="#auth" uk-toggle class="add-to-cart">
                                                                     <img src="images/add_to_cart.png" alt="">
                                                                 </button>
                                                             @endif
@@ -521,12 +521,12 @@
                                                 <div class="product-info" style="margin-top: 15px; position: relative">
                                                     <a href="{{route('product', $rec->id)}}">
                                                     <div class="product-title">
-                                                        {{ Str::of($rec->title)->limit(30) }}
+                                                        {{ Str::of($rec->title)->limit(25) }}
 
                                                     </div>
                                                     </a>
                                                     <div class="product-category">
-                                                        {{ Str::of($rec->category->title)->limit(22) }}
+                                                        {{ Str::of($rec->category->title)->limit(15) }}
                                                     </div>
 
                                                     <div>
@@ -537,12 +537,12 @@
                                                             <div class="new-price">{{$rec->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                             <form action="{{route('addToCart', $rec->id)}}" method="GET">
-                                                                <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                <button type="submit" class="add-to-cart">
                                                                     <img src="images/add_to_cart.png" alt="">
                                                                 </button>
                                                             </form>
                                                             @else
-                                                                <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
+                                                                <button href="#auth" uk-toggle class="add-to-cart">
                                                                     <img src="images/add_to_cart.png" alt="">
                                                                 </button>
                                                             @endif

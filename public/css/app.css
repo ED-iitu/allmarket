@@ -11269,7 +11269,7 @@ body {
 }
 
 .product-title {
-    width: 230px;
+    width: 190px;
 
 
     font-family: Montserrat;
@@ -11337,6 +11337,9 @@ body {
 }
 
 .add-to-cart {
+    position: absolute;
+    right: 0;
+    bottom: 0;
     width: 54.19px;
     height: 54.19px;
     border: none;
@@ -11381,7 +11384,7 @@ body {
     width: 609px;
     height: 140px;
 
-    margin-left: 40px;
+    margin-left: 17px;
 
     font-family: Montserrat;
     font-style: normal;
@@ -11399,7 +11402,7 @@ body {
     width: 443px;
     height: 120px;
 
-    margin-left: 40px;
+    margin-left: 17px;
 
 
     font-family: Montserrat;
@@ -11417,7 +11420,7 @@ body {
     width: 450px;
     height: 100px;
 
-    margin-left: 40px;
+    margin-left: 17px;
 
 
     font-family: Montserrat;
@@ -11432,7 +11435,7 @@ body {
 }
 
 .banner-button {
-    margin-left: 40px;
+    margin-left: 17px;
 
     width: 388px;
     height: 71px;
@@ -11445,7 +11448,7 @@ body {
 
 .banner-button-text {
     width: 331px;
-    height: 40px;
+    height: 17px;
 
     margin-left: 30px;
 
@@ -11540,6 +11543,7 @@ body {
     left: 90px;
     top: 593px;
     margin-top: 30px;
+    margin-bottom: 30px;
 
     font-family: Montserrat;
     font-style: normal;
@@ -11858,6 +11862,9 @@ input {
 
 .verify-code-input[type="text"] {
     text-align: center;
+    color: white;
+    font-size: 15px;
+
 }
 
 
@@ -12801,6 +12808,26 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
+    .product-category-title {
+        margin-left: 5px !important;
+        font-size: 15px !important;
+    }
+
+    .product-section-title {
+        font-size: 15px !important;
+    }
+
+    .category-list {
+        font-size: 15px !important;
+    }
+
+    .submit-review {
+        font-size: 23px;
+    }
+    .product_name {
+        font-size: 20px;
+    }
+
     .additional-menu {
         display: none;
     }
@@ -12848,7 +12875,10 @@ and (max-width: 768px) {
 
 
     .product-list-mobile {
-        width: 207px ;
+        align-items: center;
+        width: 186px;
+        display: flex;
+        justify-content: center;
     }
 
     .sort-div-title {
@@ -12944,8 +12974,9 @@ and (max-width: 768px) {
     .benefits-description {
         font-size: 12px !important;
         line-height: 15px !important;
-        width: 338px !important;
-        margin-top: 0px !important;
+        width: 367px !important;
+        margin-top: 15px !important;
+        margin-bottom: 15px;
     }
 
     .almarket-word {
@@ -13005,36 +13036,60 @@ and (max-width: 768px) {
     }
 
     .product {
-        width: 175px ;
+        width: 152.69px;
+        height: 249px;
     }
 
     .product-image {
-        width: 146px ;
+        width: 124.69px;
+        height: 137.49px;
+    }
+
+    .product-img {
+        width: 113.24px;
+        height: 87.72px;
     }
 
     .new-price {
         font-weight: 500 !important;
         font-size: 13px !important;
-        line-height: 21px !important;
     }
 
     .old-price {
-        font-weight: 500 !important;
-        font-size: 13px !important;
+        font-weight: 500;
+    }
+
+    .uk-child-width-1-2>* {
+        width: 45% !important;
     }
 
     .product-title {
+        margin-top: -5px;
         font-weight: 600 !important;
-        font-size: 10.827px !important;
-        line-height: 16px !important;
+        font-size: 9.827px !important;
+        line-height: 11px !important;
         width: 128.62px !important;
+    }
+
+    .add-to-cart {
+        position: absolute;
+        bottom: 25px;
+        right: 0px;
+        width: 28.23px ;
+        height: 28.23px ;
     }
 
     .product-category {
 
         font-weight: 500 !important;
-        font-size: 10.827px !important;
+        font-size: 8.827px !important;
         line-height: 16px !important;
+        margin-top: 2px;
+    }
+
+    .old-price {
+        margin-top: -3px;
+        font-size: 9px;
     }
 
     .popular-title {
@@ -13127,8 +13182,9 @@ and (max-width: 768px) {
         font-family: Montserrat;
         font-style: normal;
         font-weight: 500;
-        font-size: 13px;
+        font-size: 9px;
         line-height: 16px;
+        margin-left: 0;
         /* identical to box height */
 
         display: flex;
@@ -13556,6 +13612,10 @@ and (max-width: 768px) {
 
 @media only screen
 and (max-device-width: 375px) {
+
+    .uk-child-width-1-2>* {
+        width: 47% !important;
+    }
     .navbar {
         display: none !important;
     }

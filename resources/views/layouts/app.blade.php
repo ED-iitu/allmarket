@@ -583,7 +583,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 
                 <form action="{{route('sendSms')}}" method="POST" id="signup-finish" class="signUp-form">
                     @csrf
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column" style="display: flex; justify-content: center; align-items: center">
                         <h1 class="signup-title">введите код подтверждения</h1>
                         <div class="flex-row">
                             <input class="verify-code-input" type="text" maxLength="1" size="1" min="0" max="9"

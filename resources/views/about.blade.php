@@ -13,7 +13,7 @@
         <img src="/images/home-banner.png" alt="">
     </div>
 
-    <div class="container" style="padding: 50px">
+    <div class="container">
         <div class="d-flex flex-column">
             <div class="benefits-block">
                 <div class="d-flex flex-row">
