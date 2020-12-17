@@ -116,13 +116,13 @@
             </div>
             <div class="mobile-phone">
                 <a class="nav-link" href="tel:+ 77476574712">
-                    <img src="/images/phone.png" alt="">
+                    <img class="mobile-nav-icons" src="/images/phone.png" alt="">
                 </a>
             </div>
             <div class="mobile-cart" id="mobile_cart" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');
 $('#mobile_close').show(); $('#mobile_cart').hide()">
-                <a class="nav-link" href="#">
-                    <img src="/images/corzina-mobile.png" alt="">
+                <a class="" href="#">
+                    <img class="nav-link " src="/images/corzina-mobile.png" alt="">
                 </a>
 
             </div>
@@ -130,7 +130,7 @@ $('#mobile_close').show(); $('#mobile_cart').hide()">
 $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide();$('.menu-line').hide();"
                  style="display: none">
                 <a class="nav-link close" href="#" style="filter: invert(1)">
-                    <img src="/images/closecart.png" alt="">
+                    <img  src="/images/closecart.png" alt="">
                 </a>
             </div>
             <div class="mobile-expand">

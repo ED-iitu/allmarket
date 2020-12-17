@@ -11760,7 +11760,7 @@ body {
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
-    line-height: 27px;
+    line-height: 50px;
     /* or 124% */
 
     text-align: center;
@@ -12807,6 +12807,13 @@ and (max-device-width: 568px) {
 
 @media only screen
 and (max-width: 768px) {
+    #close-cart {
+        z-index: -1;
+    }
+
+    .nav-link {
+        padding: 0.8rem 1rem;
+    }
 
     .product-category-title {
         margin-left: 5px !important;
@@ -13060,7 +13067,7 @@ and (max-width: 768px) {
     }
 
     .uk-child-width-1-2>* {
-        width: 45% !important;
+        width: 43% !important;
     }
 
     .product-title {
@@ -13093,6 +13100,7 @@ and (max-width: 768px) {
     }
 
     .popular-title {
+        margin-left: 20px;
         width: 100% !important;
         font-family: Montserrat;
         font-style: normal;
@@ -13558,7 +13566,7 @@ and (max-width: 768px) {
 
     .content-mobile-menu {
         padding: 20px;
-        margin-top: 17px;
+        margin-top: 7px;
         background: #FFFFFF;
         width: 100%;
         z-index: 100;
@@ -13592,7 +13600,6 @@ and (max-width: 768px) {
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
-        line-height: 27px;
         /* or 194% */
 
         letter-spacing: -0.540636px;
@@ -13759,11 +13766,12 @@ and (max-device-width: 375px) {
 
     .nav-link {
         padding: 0.8rem 1rem;
+        margin-top: 2px;
     }
 
     .content-mobile-menu {
         padding: 20px;
-        margin-top: 7px;
+        margin-top: 11px;
         background: #FFFFFF;
         width: 100%;
         z-index: 100;
@@ -14126,6 +14134,11 @@ and (max-device-width: 375px) {
 
 
 @media only screen and (max-width: 320px) {
+    .nav-link {
+        padding: 0.8rem 0.7rem;
+        margin-top: 2px;
+    }
+
     .sort-div {
         width: 100%;
     }
@@ -14156,11 +14169,56 @@ and (min-width: 376px){
     }
 }
 
-@media only screen and (max-width: 374px)
-and (min-width: 319px){
+@media only screen and (max-width: 371px) {
+    .search {
+        width: 260px;
+    }
 
+    .product {
+        width: 140px;
+    }
+
+    .product-image {
+        width: 116px;
+    }
+
+    .nav-link {
+        padding: 0.8rem 0.7rem;
+        margin-top: 2px;
+    }
+    .popular-title {
+        font-size: 13px;
+    }
+
+    .empty-title {
+        font-size: 18px;
+    }
+
+    .content-mobile-menu {
+        margin-top: 6px;
+        margin-left: -291px;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 365px) {
+    .search {
+        width: 250px;
+    }
+
+@media only screen and (max-width: 345px) {
+    .search {
+        width: 224px;
+    }
 }
 
 .sort-div{
     width: 320px;
+}
+
+.mobile-nav-icons {
+    width: 20px;
+    height: 20px;
 }
