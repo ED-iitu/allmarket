@@ -554,7 +554,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                             </select>
                         </div>
 
-                        <a href="#signup-finish" class="btn-submit" id="RegisterBtn" style="padding-top: 12.5px;">Зарегистрироваться</a>
+                        <a href="#signup-finish" class="btn-submit" id="RegisterBtn">Зарегистрироваться</a>
 
                         <div style="justify-content: center">
                             <p class="aggrement">Нажимая «зарегистрироваться», вы соглашаетесь
@@ -748,7 +748,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
         var body = $('body');
 
         function goToNextInput(e) {
-            console.log(e)
             var key = e.which,
                 t = $(e.target),
                 sib = t.next('.verify-code-input');
@@ -1198,9 +1197,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
     $(document).ready(function () {
 
         if ($(window).width() > 700) {
-            console.log("BIG")
             $('.signUp').click(function () {
-                console.log("Clicked")
                 $('.signIn').css('border-radius', '10px 0px 10px 0px');
                 $('.signIn').css('width', '253px');
                 $('.signIn').css('z-index', '10');
@@ -1211,7 +1208,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
             });
 
             $('.signIn').click(function () {
-                console.log("Clicked")
                 $('.signUp').css('border-radius', '0px 10px 0px 10px');
                 $('.signUp').css('width', '253px');
                 $('.signUp').css('z-index', '11');

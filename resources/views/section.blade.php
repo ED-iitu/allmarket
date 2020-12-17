@@ -166,7 +166,7 @@
 
                 </div>
 
-                <div style="width: 320px">
+                <div class="sort-div">
                     <h2 class="sort-div-title" style="font-weight: bold;">Сортировать по</h2>
                     <div class="container sort-by">
                         <div class="menu-body">
