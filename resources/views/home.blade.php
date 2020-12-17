@@ -286,49 +286,52 @@
     </style>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="slider-div" style="width: 100vw; overflow: hidden">
+            <div class="col-md-12">
 
-            <div class="uk-position-relative uk-light" uk-slideshow>
+                <div class="uk-position-relative uk-light" uk-slideshow>
 
-                <ul class="uk-slideshow-items">
-                    <li>
-                        <div class="banner-home" uk-cover></div>
-                        {{--<img src="images/photo.jpg" alt="" uk-cover>--}}
-                    </li>
-                    <li>
-                        <div class="banner-home" uk-cover></div>
-                    </li>
-                </ul>
-
-                <div class="uk-position-bottom-center uk-position-small">
-                    <ul class="uk-dotnav dots-left">
-                        <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
-                        <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+                    <ul class="uk-slideshow-items">
+                        <li>
+                            <div class="banner-home" uk-cover></div>
+                            {{--<img src="images/photo.jpg" alt="" uk-cover>--}}
+                        </li>
+                        <li>
+                            <div class="banner-home" uk-cover></div>
+                        </li>
                     </ul>
+
+                    <div class="uk-position-bottom-center uk-position-small">
+                        <ul class="uk-dotnav dots-left">
+                            <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
+                            <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
-            </div>
+                <div class="uk-position-relative uk-light" uk-slideshow style="margin-top: 20px">
 
-            <div class="uk-position-relative uk-light" uk-slideshow style="margin-top: 20px">
-
-                <ul class="uk-slideshow-items">
-                    <li>
-                        <div class="banner-home" uk-cover></div>
-                        {{--<img src="images/photo.jpg" alt="" uk-cover>--}}
-                    </li>
-                    <li>
-                        <div class="banner-home" uk-cover></div>
-                    </li>
-                </ul>
-
-                <div class="uk-position-bottom-center uk-position-small">
-                    <ul class="uk-dotnav dots-right">
-                        <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
-                        <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+                    <ul class="uk-slideshow-items">
+                        <li>
+                            <div class="banner-home" uk-cover></div>
+                            {{--<img src="images/photo.jpg" alt="" uk-cover>--}}
+                        </li>
+                        <li>
+                            <div class="banner-home" uk-cover></div>
+                        </li>
                     </ul>
-                </div>
 
-            </div>
+                    <div class="uk-position-bottom-center uk-position-small">
+                        <ul class="uk-dotnav dots-right">
+                            <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
+                            <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+        </div>
+
 
             <section>
                 <h2 class="popular-title">Популярные товары <span class="popular-red"></span>
@@ -378,12 +381,12 @@
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $popular->id)}}" method="GET">
                                                                     <button type="submit" class="add-to-cart">
-                                                                        <img src="images/add_to_cart.png" alt="">
+                                                                        <img src="/images/add_to_cart.png" alt="">
                                                                     </button>
                                                                 </form>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                    <img src="/images/add_to_cart.png" alt="">
                                                                 </button>
                                                             @endif
                                                         </div>
@@ -461,12 +464,12 @@
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $sale->id)}}" method="GET">
                                                                     <button type="submit" class="add-to-cart">
-                                                                        <img src="images/add_to_cart.png" alt="">
+                                                                        <img src="/images/add_to_cart.png" alt="">
                                                                     </button>
                                                                 </form>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                    <img src="/images/add_to_cart.png" alt="">
                                                                 </button>
                                                             @endif
                                                         </div>
@@ -538,12 +541,12 @@
                                                             @if (Session::get('username'))
                                                             <form action="{{route('addToCart', $rec->id)}}" method="GET">
                                                                 <button type="submit" class="add-to-cart">
-                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                    <img src="/images/add_to_cart.png" alt="">
                                                                 </button>
                                                             </form>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img src="images/add_to_cart.png" alt="">
+                                                                    <img src="/images/add_to_cart.png" alt="">
                                                                 </button>
                                                             @endif
 
