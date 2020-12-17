@@ -13845,7 +13845,8 @@ and (max-device-width: 375px) {
     background: #EDF4FB;
     background-image: url('/images/main-banner.png');
     background-position: right;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    background-size: 900px 600px;
 }
 
 .product-category-title {

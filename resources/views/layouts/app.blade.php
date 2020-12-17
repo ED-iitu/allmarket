@@ -27,7 +27,9 @@
 
     <style>
 
-
+        .uk-select:not([multiple]):not([size]) {
+            display: none;
+        }
 
     </style>
 
@@ -141,7 +143,23 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
                 <div class="content-mobile-menu flex-column">
                     <div><a class="menu-links" href="{{route('sections')}}">Категории</a></div>
                     <hr>
-                    <div>Выбрать город</div>
+                    <div>
+                        <div class="uk-margin">
+                            <div uk-form-custom="target: true">
+                                <select class="uk-select" id="form-stacked-select" style="border: none; color: #7791A4 ">
+                                    <option>Выберите город</option>
+                                    <option>Алматы</option>
+                                    <option>Нур-Султан</option>
+                                    <option>Караганда</option>
+                                    <option>Петропавлоск</option>
+                                    <option>Усть-Каменогорск</option>
+                                    <option>Атырау</option>
+                                    <option>Актау</option>
+                                </select>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
                     <hr>
 
                     @if ($message = Session::get('username'))
