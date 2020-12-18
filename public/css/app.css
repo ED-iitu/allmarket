@@ -12981,7 +12981,7 @@ and (max-width: 768px) {
     .benefits-description {
         font-size: 12px !important;
         line-height: 15px !important;
-        width: 367px !important;
+        width: 350px !important;
         margin-top: 15px !important;
         margin-bottom: 15px;
     }
@@ -14213,6 +14213,15 @@ and (min-width: 376px){
     .search {
         width: 224px;
     }
+
+    .benefits-description {
+        width: 290px !important;
+    }
+
+    .section-banner {
+        width: 100% !important;
+    }
+}
 }
 
 .sort-div{
