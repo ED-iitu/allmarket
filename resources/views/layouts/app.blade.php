@@ -121,15 +121,15 @@
                     <img class="mobile-nav-icons" src="/images/phone.png" alt="">
                 </a>
             </div>
-            <div class="mobile-cart" id="mobile_cart" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');
+            <div class="mobile-cart" id="mobile_cart" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');$('.mobile-nav').addClass('mobile-nav-after-cart');
 $('#mobile_close').show(); $('#mobile_cart').hide()">
                 <a class="" href="#">
                     <img class="nav-link " src="/images/corzina-mobile.png" alt="">
                 </a>
 
             </div>
-            <div class="mobile-cart" id='mobile_close' onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1');$('body').removeClass('nooverflow');
-$('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide();$('.menu-line').hide();"
+            <div class="mobile-cart" id='mobile_close' onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1');$('body').removeClass('nooverflow');$('.mobile-nav').removeClass('mobile-nav-after-cart')
+$('#mobile_cart').show(); $('#mobile_close').hide();"
                  style="display: none">
                 <a class="nav-link close" href="#" style="filter: invert(1)">
                     <img  src="/images/closecart.png" alt="">
@@ -574,10 +574,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 
                         <a href="#signup-finish" class="btn-submit" id="RegisterBtn">Зарегистрироваться</a>
 
-                        <div style="justify-content: center">
-                            <p class="aggrement">Нажимая «зарегистрироваться», вы соглашаетесь
-                                с <a href="">«Политика конфиденциальности»</a></p>
-                        </div>
+
+                    </div>
+                    <div style="justify-content: center">
+                        <p class="aggrement">Нажимая «зарегистрироваться», вы соглашаетесь
+                            с <a href="{{ config('app.url') }}/files/politika.pdf" target="_blank">«Политика конфиденциальности»</a></p>
                     </div>
                 </form>
                 <form action="{{route('sendSms')}}" method="POST" id="signin-next" class="signIn-form"
@@ -821,6 +822,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
             }
         });
     });
+
+
+    $('.cart-count').prop('disabled', true);
+    $(document).on('click', '#cart-plus', function () {
+        $('.cart-count').val(parseInt($('.cart-count').val()) + 1);
+    });
+    $(document).on('click', '#cart-minus', function () {
+        $('.cart-count').val(parseInt($('.cart-count').val()) - 1);
+        if ($('.cart-count').val() == 0) {
+            $('.cart-count').val(1);
+        }
+    });
+
 </script>
 
 <script>
@@ -1214,6 +1228,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
 <script>
     $(document).ready(function () {
 
+        if ($('body').hasClass('nooverflow1 nooverflow')) {
+            $('.mobile-nav').css({"position": "fixed", "z-index": 1000, "top": 0});
+        }
+
         if ($(window).width() > 700) {
             $('.signUp').click(function () {
                 $('.signIn').css('border-radius', '10px 0px 10px 0px');
@@ -1236,6 +1254,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide(); $('.menu-blackline').hide()
             });
         }
 
+
+
+        // $(".mobile-cart").click(function () {
+        //     $('.mobile-nav').css('position', 'fixed');
+        //     $('.mobile-nav').css('z-index', '1000');
+        //     $('.mobile-nav').css('top', '0');
+        // });
 
 
         $('.search').focusin(function () {

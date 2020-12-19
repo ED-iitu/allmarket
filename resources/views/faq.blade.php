@@ -3,6 +3,7 @@
 @section('content')
 
     <style>
+
         .faq-title {
             text-transform: uppercase;
             font-family: Montserrat;
@@ -30,14 +31,7 @@
         }
 
 
-        .faq {
-            padding: 10px;
-            height: 66px;
-            background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
-            box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
-            border-radius: 15px;
 
-        }
 
         .faq-text {
             padding: 25px;
@@ -53,7 +47,9 @@
         }
 
         .faq-text-div {
-            border: 3px solid #C9DBEF;
+            box-shadow:
+                    0 0 0 3px hsl(0, 0%, 210%),
+                    0 0 0 7px rgba(205, 223, 239, 0.85);
             box-sizing: border-box;
             border-radius: 11px;
         }
@@ -81,7 +77,7 @@
 
             margin-bottom: 30px;
 
-            width: 640px;
+            width: 650px;
             height: 37px;
 
             font-family: Montserrat;
@@ -110,7 +106,7 @@
         <ul uk-accordion="multiple: true">
             <li>
                 <a class="uk-accordion-title faq" href="#">
-                    <span class="faq-title">Доставка</span>
+                    <span class="faq-title dostavka">Доставка</span>
                 </a>
                 <div class="uk-accordion-content faq-text-div">
                     <p class="faq-text">
@@ -128,7 +124,7 @@
 
             <li>
                 <a class="uk-accordion-title faq" href="#">
-                    <span class="faq-title">КАК СДЕЛАТЬ ЗАКАЗ?</span>
+                    <span class="faq-title kak-sdelat-zakaz">КАК СДЕЛАТЬ ЗАКАЗ?</span>
                 </a>
                 <div class="uk-accordion-content faq-text-div">
                     <p class="faq-text">

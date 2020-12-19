@@ -241,13 +241,7 @@
             /*text-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px #8FACC1;*/
         /*}*/
 
-        .banner-home {
-            width: 1110px ;
-            height: 625px;
 
-            background: #3F9B8A;
-            border-radius: 10px 10px 10px 10px !important;
-        }
 
         .uk-dotnav>.uk-active>* {
             width: 15px;
@@ -287,7 +281,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="slider-div" style="width: 100vw; overflow: hidden">
-            <div class="col-md-12">
 
                 <div class="uk-position-relative uk-light" uk-slideshow>
 
@@ -330,12 +323,11 @@
                     </div>
 
                 </div>
-        </div>
 
 
             <section>
                 <h2 class="popular-title">Популярные товары <span class="popular-red"></span>
-                    <hr class="popular-hr"><hr class="popular-hr-dark">
+                    <hr class="product-line">
                 </h2>
 
                 <div uk-slider>
@@ -417,7 +409,7 @@
 
             <section >
                 <h2 class="popular-title">Товары со скидкой <span class="sale-green"></span>
-                    <hr class="sale-hr"><hr class="popular-hr-dark">
+                    <hr class="product-line">
 
 
                 </h2>
@@ -497,7 +489,7 @@
             </section>
 
             <section>
-                <h2 class="popular-title">Рекомендованные товары <span class="rec-blue"></span><hr class="rec-hr"><hr class="rec-hr-dark"></h2>
+                <h2 class="popular-title">Рекомендованные товары <span class="rec-blue"></span><hr class="product-line-recommended"></h2>
 
                 <div uk-slider autoplay="true">
                     <div class="uk-position-relative">
@@ -589,8 +581,8 @@
                 <div class="banner-text-two">
                     Получай больше <br>выгодных предложений и акций!
                 </div>
-                <div style="margin-top: 30px; margin-bottom: 30px">
-                    <button class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
+                <div class="download-app-button" style="margin-top: 30px; margin-bottom: 30px">
+                    <button onclick="location.href='http://onelink.to/rs5shb';" class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
                 </div>
             </div>
         </div>

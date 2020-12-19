@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="d-flex flex-column">
-            <div class="benefits-block">
+            <div class="benefits-block" style="margin-top: 30px">
                 <div class="d-flex flex-row">
                     <div>
                         <img class="benefits-img" src="/images/Calculator.png" alt="">
@@ -87,8 +87,8 @@
                 <div class="banner-text-two">
                     Получай больше <br>выгодных предложений и акций!
                 </div>
-                <div style="margin-top: 30px; margin-bottom: 30px">
-                    <button class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
+                <div class="download-app-button" style="margin-top: 30px; margin-bottom: 30px">
+                    <button onclick="location.href='http://onelink.to/rs5shb';" class="banner-button"><span class="banner-button-text">скачай в один клик</span></button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 /*@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";*/
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap);
 
 @charset "UTF-8";
 
@@ -10918,7 +10919,7 @@ a.text-dark:focus {
 .nav-item .nav-link {
     font-family: Montserrat;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     line-height: 21px;
     /* identical to box height */
@@ -11140,7 +11141,7 @@ a.text-dark:focus {
 
 .social {
     margin-top: 30px;
-    margin-left: 5px;
+    margin-left: 10px;
     width: 49px;
     height: 50px;
     left: calc(50% - 49px / 2 - 465.5px);
@@ -11345,7 +11346,7 @@ body {
     border: none;
     background: #E3EDF7;
     border-radius: 50%;
-    box-shadow: -1px -1px 1px #FFFFFF, 0px 4px 4px rgba(38, 149, 151, 0.25), 1px 1px 1px #269597;
+    box-shadow: -1px -1px 1px #FFFFFF, 0px 4px 4px rgba(38, 149, 151, 0.25), 1px 1px 1px #269597,-2px -2px 2px rgba(255, 255, 255, 0.7), 2px 2px 2px rgba(93, 148, 204, 0.25), inset 1px 1px 3px rgba(93, 148, 204, 0.25), inset -1px -1px 3px rgba(255, 255, 255, 0.8);
 }
 
 .favorite {
@@ -11447,10 +11448,6 @@ body {
 }
 
 .banner-button-text {
-    width: 331px;
-    height: 17px;
-
-    margin-left: 30px;
 
     font-family: Montserrat;
     font-style: normal;
@@ -11460,6 +11457,7 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: center;
     text-transform: uppercase;
 
     color: #43637A;
@@ -11519,7 +11517,6 @@ body {
     width: 269px;
     height: 40px;
     margin-top: 18px;
-
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold !important;
@@ -11531,10 +11528,6 @@ body {
     font-variant: small-caps;
 
     color: #015543;
-}
-
-.benefits-block {
-    margin-top: 30px;
 }
 
 .benefits-description {
@@ -11863,10 +11856,19 @@ input {
 .verify-code-input[type="text"] {
     text-align: center;
     color: white;
-    font-size: 15px;
+    font-size: 30px;
 
 }
 
+.search[type="text"] {
+    color: white;
+    font-size: 20px;
+}
+
+.input-text[type="text"] {
+    color: white;
+    font-size: 20px;
+}
 
 .verify-code-input {
     outline: none;
@@ -11950,6 +11952,12 @@ input {
 
 #cart-cont.open #close-cart {
     display: block;
+}
+
+.mobile-nav-after-cart {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
 }
 
 #cart-cont input, #cart-cont button {
@@ -12328,7 +12336,7 @@ input[type=radio]:checked {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 12px;
     line-height: 21px;
     /* or 138% */
 
@@ -12468,7 +12476,8 @@ span {
 .cart-bottom {
     padding: 20px;
     width: 350px;
-
+    position: absolute;
+    bottom: 0;
     background: #E3EFFB;
     box-shadow: 0px -4px 4px #D0E1F1;
     border-radius: 10px;
@@ -12688,6 +12697,10 @@ span {
 @media only screen
 and (min-device-width: 320px)
 and (max-device-width: 568px) {
+    .footer-link {
+        font-size: 13px;
+    }
+
     .navbar {
         display: none !important;
     }
@@ -12804,9 +12817,56 @@ and (max-device-width: 568px) {
     }
 }
 
+.banner-home {
+    width: 1110px ;
+    height: 625px;
+
+    background: #3F9B8A;
+    border-radius: 10px 10px 10px 10px !important;
+}
+
 
 @media only screen
 and (max-width: 768px) {
+
+    .product-line {
+        width: 41% !important;
+    }
+
+    .product-line-recommended {
+        width: 27% !important;
+    }
+
+    .dostavka {
+        line-height: 34px !important;
+    }
+    .kak-sdelat-zakaz {
+        line-height: 34px !important;
+    }
+
+    .download-app-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .uk-slideshow-items {
+        min-height: 589px !important;
+    }
+
+    .banner-home {
+        border-radius: 0px 0px 0px 0px !important;
+        height: 589px !important;
+    }
+    .dots-left {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .dots-right {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+    }
     #close-cart {
         z-index: -1;
     }
@@ -12875,11 +12935,6 @@ and (max-width: 768px) {
     .banner-text-two {
         margin-left: 20px ;
     }
-
-    .banner-button {
-        margin-left: 20px ;
-    }
-
 
     .product-list-mobile {
         align-items: center;
@@ -12971,6 +13026,7 @@ and (max-width: 768px) {
     }
 
     .benefits {
+        margin-left: 10px;
         width: 217px !important;
         margin-top: 10px !important;
         font-size: 15px !important;
@@ -12979,11 +13035,12 @@ and (max-width: 768px) {
 
 
     .benefits-description {
+        margin-left: 9px;
         font-size: 12px !important;
         line-height: 15px !important;
         width: 350px !important;
-        margin-top: 15px !important;
-        margin-bottom: 15px;
+        margin-top: 0px !important;
+        margin-bottom: 0px;
     }
 
     .almarket-word {
@@ -13025,9 +13082,7 @@ and (max-width: 768px) {
     }
 
     .banner-button-text {
-        width: 260px ;
         font-size: 14px ;
-        line-height: 17px ;
     }
 
     .popular-hr {
@@ -13136,11 +13191,6 @@ and (max-width: 768px) {
         width: 370px !important;
     }
 
-    .faq-text-div {
-        width: 385px !important;
-        border: 3px solid #C9DBEF;
-    }
-
     .faq-text {
         width: 350px !important;
     }
@@ -13180,6 +13230,8 @@ and (max-width: 768px) {
 
     .faq {
         height: 54.84px !important;
+        padding: 10px 10px 10px 20px !important;
+        line-height: 18px !important;
     }
 
     .menu-links {
@@ -13641,7 +13693,7 @@ and (max-device-width: 375px) {
 
 
     .uk-child-width-1-2>* {
-        width: 47% !important;
+        width: 45% !important;
     }
     .navbar {
         display: none !important;
@@ -13957,7 +14009,7 @@ and (max-device-width: 375px) {
 }
 
 .cart-active-bg {
-    background: #0d0e1073
+    background: #7791A4
 }
 
 .bredLink {
@@ -14232,3 +14284,30 @@ and (min-width: 376px){
     width: 20px;
     height: 20px;
 }
+
+.faq {
+    padding: 10px 10px 10px 30px !important;
+    height: 66px;
+    background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
+    box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
+    border-radius: 15px;
+
+}
+
+.product-line {
+    box-shadow:
+            1px 1px 0 0px white,
+            0 0 0 1px rgba(205, 223, 239, 0.85);
+    width: 67%;
+    overflow: hidden
+}
+
+.product-line-recommended {
+    box-shadow:
+            1px 1px 0 0px white,
+            0 0 0 1px rgba(205, 223, 239, 0.85);
+    width: 59%;
+    overflow: hidden
+}
+
+button:focus {outline:0;}
