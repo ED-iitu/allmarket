@@ -128,7 +128,7 @@
                 </div>
 
             </div>
-            <div class="col-md-8 product-list-sections" style="margin-top: 30px">
+            <div class="col-md-8 product-list-sections product-overflow" style="margin-top: 30px;">
                 <div class="row">
                     @foreach($products as $product)
                         <div class="col-md-4 product-list-mobile">

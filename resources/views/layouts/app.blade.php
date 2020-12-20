@@ -39,7 +39,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/images/logo.png" alt="" style="max-width: 90% !important;">
+                <img src="/images/logo.png" alt="" >
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -224,7 +224,86 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             </div>
                         </div>
 
+
                     </div>
+                </div>
+                <div class="showCategory" style="display: none; position: absolute; z-index: 100">
+                    <nav id="menuVertical">
+                        <ul style="padding: 0; margin: 0">
+                            @foreach($sections as $section)
+                                <li style="display: flex; justify-content: space-between; margin-top: 10px" class="showSub">
+                                    <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink" style="margin-left: 20px;">
+                                        <img src="/images/category/icons/{{$section->system_key}}.png" alt=""
+                                             style="margin-right: 10px"
+                                             height="25px" width="25px">
+                                        {{$section->title}}
+                                    </a>
+                                    <img src="/images/Arrow.png" alt="" style="height: 15px; margin-top: 7px; margin-left: -63px">
+                                    @if($loop->index == 0)
+                                        <div class="showSubCategory" style="z-index: -1;">
+                                            <ul class="submenu" >
+                                                <li><a href="{{route('category_products', [$section->id, 5])}}">Крупы и хлопья</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 12])}}">Конфеты и кондитерские изделия</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 13])}}">Лапша и макаронные изделия</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 14])}}">Молочная продукция</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 15])}}">Масло</a></li>
+                                            </ul>
+                                        </div>
+                                    @elseif($loop->index == 1)
+                                        <div class="showSubCategory" style="z-index: -1">
+                                            <ul class="submenu">
+                                                <li><a href="#m2_1">Кофе, какао</a></li>
+                                                <li><a href="#m2_2">Чай</a></li>
+                                                <li><a href="#m2_2">Сокии морсы</a></li>
+                                                <li><a href="#m2_2">Вода</a></li>
+                                                <li><a href="#m2_2">Алкоголь</a></li>
+                                            </ul>
+                                        </div>
+                                    @elseif($loop->index == 2)
+                                        <div class="showSubCategory" style="z-index: -1">
+                                            <ul class="submenu">
+                                                <li><a href="{{route('category_products', [3, 26])}}">Уход за волосами</a></li>
+                                                <li><a href="#m2_2">Уход за телом</a></li>
+                                                <li><a href="#m2_2">Уход за полостью рта</a></li>
+                                                <li><a href="#m2_2">Средства для бритья</a></li>
+                                            </ul>
+                                        </div>
+                                    @elseif($loop->index == 3)
+                                        <div class="showSubCategory" style="z-index: -1">
+                                            <ul class="submenu">
+                                                <li><a href="#m2_1">Средства для стирки</a></li>
+                                                <li><a href="#m2_2">Средства для ухода за домом</a></li>
+                                            </ul>
+                                        </div>
+                                    @elseif($loop->index == 4)
+                                        <div class="showSubCategory" style="z-index: -1">
+                                            <ul class="submenu">
+                                                <li><a href="#m2_1">Подгузники</a></li>
+                                                <li><a href="#m2_2">Детское питание</a></li>
+                                            </ul>
+                                        </div>
+                                    @elseif($loop->index == 5)
+                                        <div class="showSubCategory" style="z-index: -1">
+                                            <ul class="submenu">
+                                                <li><a href="#m2_1">Корма для собак</a></li>
+                                                <li><a href="#m2_2">Корма для кошек</a></li>
+                                            </ul>
+                                        </div>
+                                    @elseif($loop->index == 6)
+                                        <div class="showSubCategory" style="z-index: -1">
+                                            <ul class="submenu">
+                                                <li><a href="{{route('category_products', [7, 39])}}">Бумага</a></li>
+                                                <li><a href="{{route('category_products', [7, 41])}}">Пакеты</a></li>
+                                                <li><a href="{{route('category_products', [7, 42])}}">Перчатки</a></li>
+                                                <li><a href="#m2_2">Инсектициды</a></li>
+                                                <li><a href="#m2_2">Инсектициды</a></li>
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    </nav>
                 </div>
                 <div class="p-2 search-div">
                     <form action="{{route('search')}}" method="GET">
@@ -301,85 +380,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         </div>
     </div>
 
-    <div class="showCategory" style="display: none; position: absolute; z-index: 100">
-        <nav id="menuVertical">
-            <ul style="padding: 0; margin: 0">
-                @foreach($sections as $section)
-                    <li style="display: flex; justify-content: space-between; margin-top: 10px" class="showSub">
-                        <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink" style="margin-left: 20px;">
-                            <img src="/images/category/icons/{{$section->system_key}}.png" alt=""
-                                 style="margin-right: 10px"
-                                 height="25px" width="25px">
-                            {{$section->title}}
-                        </a>
-                        <img src="/images/Arrow.png" alt="" style="height: 15px; margin-top: 7px; margin-left: -63px">
-                        @if($loop->index == 0)
-                            <div class="showSubCategory" style="z-index: -1;">
-                                <ul class="submenu" >
-                                    <li><a href="{{route('category_products', [$section->id, 5])}}">Крупы и хлопья</a></li>
-                                    <li><a href="{{route('category_products', [$section->id, 12])}}">Конфеты и кондитерские изделия</a></li>
-                                    <li><a href="{{route('category_products', [$section->id, 13])}}">Лапша и макаронные изделия</a></li>
-                                    <li><a href="{{route('category_products', [$section->id, 14])}}">Молочная продукция</a></li>
-                                    <li><a href="{{route('category_products', [$section->id, 15])}}">Масло</a></li>
-                                </ul>
-                            </div>
-                        @elseif($loop->index == 1)
-                            <div class="showSubCategory" style="z-index: -1">
-                                <ul class="submenu">
-                                    <li><a href="#m2_1">Кофе, какао</a></li>
-                                    <li><a href="#m2_2">Чай</a></li>
-                                    <li><a href="#m2_2">Сокии морсы</a></li>
-                                    <li><a href="#m2_2">Вода</a></li>
-                                    <li><a href="#m2_2">Алкоголь</a></li>
-                                </ul>
-                            </div>
-                        @elseif($loop->index == 2)
-                            <div class="showSubCategory" style="z-index: -1">
-                                <ul class="submenu">
-                                    <li><a href="{{route('category_products', [3, 26])}}">Уход за волосами</a></li>
-                                    <li><a href="#m2_2">Уход за телом</a></li>
-                                    <li><a href="#m2_2">Уход за полостью рта</a></li>
-                                    <li><a href="#m2_2">Средства для бритья</a></li>
-                                </ul>
-                            </div>
-                        @elseif($loop->index == 3)
-                            <div class="showSubCategory" style="z-index: -1">
-                                <ul class="submenu">
-                                    <li><a href="#m2_1">Средства для стирки</a></li>
-                                    <li><a href="#m2_2">Средства для ухода за домом</a></li>
-                                </ul>
-                            </div>
-                        @elseif($loop->index == 4)
-                            <div class="showSubCategory" style="z-index: -1">
-                                <ul class="submenu">
-                                    <li><a href="#m2_1">Подгузники</a></li>
-                                    <li><a href="#m2_2">Детское питание</a></li>
-                                </ul>
-                            </div>
-                        @elseif($loop->index == 5)
-                            <div class="showSubCategory" style="z-index: -1">
-                                <ul class="submenu">
-                                    <li><a href="#m2_1">Корма для собак</a></li>
-                                    <li><a href="#m2_2">Корма для кошек</a></li>
-                                </ul>
-                            </div>
-                        @elseif($loop->index == 6)
-                            <div class="showSubCategory" style="z-index: -1">
-                                <ul class="submenu">
-                                    <li><a href="{{route('category_products', [7, 39])}}">Бумага</a></li>
-                                    <li><a href="{{route('category_products', [7, 41])}}">Пакеты</a></li>
-                                    <li><a href="{{route('category_products', [7, 42])}}">Перчатки</a></li>
-                                    <li><a href="#m2_2">Инсектициды</a></li>
-                                    <li><a href="#m2_2">Инсектициды</a></li>
-                                </ul>
-                            </div>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
-        </nav>
-
-    </div>
 
     <div class="container" id="munu_line_devider">
         <hr class="menu-blackline">
@@ -443,7 +443,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             </div>
                             <div class="social">
                                 <a href="">
-                                    <img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px">
+                                    <img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px" style="margin-left: 4px">
                                 </a>
                             </div>
                             <div class="social">
@@ -1029,7 +1029,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     </div>
                     <hr class="cart-hr">
                     <div class="checkout-address" style="display: flex; justify-content: center; margin-top: 10px">
-                        <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
+                        <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
                             <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                                 <option class="input-select-option-inside" value="">Выберите город</option>
                                 <option class="input-select-option-inside" value="Алматы">Алматы</option>
@@ -1054,7 +1054,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     </div>
                     <hr class="cart-hr">
                     <div class="checkout-address" style="display: flex; justify-content: center">
-                        <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 297px;height: 35px; align-items: center">
+                        <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
                             <select id="" class="input-select-option" name="delivery_time_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                                 <option class="input-select-option-inside" value="">Время доставки</option>
                                 <option class="input-select-option-inside" value="1">Утром</option>

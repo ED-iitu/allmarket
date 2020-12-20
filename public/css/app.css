@@ -11109,7 +11109,7 @@ a.text-dark:focus {
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
-    line-height: 25px;
+    line-height: 37px;
     display: flex;
     align-items: center;
     text-decoration-line: underline;
@@ -11875,7 +11875,7 @@ input {
     width: 73px;
     height: 73px;
 
-    background: #CDDFEF;
+    background: #B3C9DF;
     box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
     border-radius: 47.5px;
 }
@@ -11883,6 +11883,8 @@ input {
 .cart-header {
     /*width: 350px;*/
     height: 51px;
+    padding-left: 20px;
+    padding-right: 20px;
 
     background: #E3EFFB;
     box-shadow: 0px 4px 4px #D0E1F1;
@@ -12654,7 +12656,7 @@ span {
     background: rgba(205, 223, 239, 0.85);
     box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
     border-radius: 17.5102px;
-    width: 296.92px;
+    width: 90%;
     height: 35.02px;
 }
 
@@ -12671,7 +12673,7 @@ span {
 
 .input-house {
     border: none;
-    width: 141px;
+    width: 44%;
     height: 35.02px;
 
     background: rgba(205, 223, 239, 0.85);
@@ -12829,6 +12831,10 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
+    .product-overflow {
+        overflow: hidden;
+    }
+
     .product-line {
         width: 41% !important;
     }
@@ -12901,6 +12907,11 @@ and (max-width: 768px) {
 
     .sections-banner {
         display: none;
+    }
+
+    #cart-cart {
+        height: 692px;
+        overflow: scroll;
     }
 
     .cart-content {
@@ -14057,6 +14068,7 @@ and (max-device-width: 375px) {
 
 .verify-code-input {
     border: none;
+    margin: 3px;
 }
 
 .submenu {
@@ -14068,7 +14080,6 @@ and (max-device-width: 375px) {
 .showCategory {
     height: 320px;
     width: 333px;
-    left: 158px;
     top: 140px;
 
     background: #F7FBFF;
@@ -14311,3 +14322,15 @@ and (min-width: 376px){
 }
 
 button:focus {outline:0;}
+
+.select-sort select {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    background-image: url("/images/sort-arrow.png");
+
+    background-repeat: no-repeat;
+    background-position-x: 96%;
+    background-position-y: 20px;
+
+}

@@ -218,6 +218,8 @@ class HomeController extends Controller
     {
         $sections = $this->getAllSections();
 
+       // dd($sections);
+
         return view('sections', [
             'sections' => $sections->sections
         ]);

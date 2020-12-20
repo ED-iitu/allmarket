@@ -8,10 +8,8 @@
         }
 
         .category-sort {
-            width: 242px;
+
             height: 45px;
-            left: calc(50% - 242px / 2 + 676px);
-            top: 321px;
             border: none;
             display: flex;
             justify-content: center;
@@ -85,8 +83,6 @@
 
 
         .sort-div-title {
-            margin: 30px;
-            width: 207px;
             height: 24px;
 
             font-family: Montserrat;
@@ -114,6 +110,12 @@
         .category-list:hover {
             background: #F8FBFF;
         }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+           width: 35px !important;
+           height: 35px !important;
+            padding: 18px !important;
+       }
     </style>
 
     <div class="container">
@@ -123,10 +125,10 @@
     </div>
 
     <div class="container">
-        <div class="d-flex flex-row-reverse">
+        <div class="d-flex flex-row-reverse select-sort">
             <form>
                 <select class="category-sort" id="sort"
-                        style="text-align-last:center;font-size: 18px;font-family: Montserrat; font-weight: 600; color: #43637A;">
+                        style="font-size: 18px;font-family: Montserrat; font-weight: 600; color: #43637A;width: 260px; padding: 9px">
                     <option>По популярности</option>
                     <option>По уменьшению цены</option>
                     <option>По возрастанию цены</option>
@@ -189,7 +191,7 @@
                 </div>
 
             </div>
-            <div class="col-md-8" style="margin-top: 30px">
+            <div class="col-md-8 product-overflow" style="margin-top: 30px;">
                 <div class="row">
                     @foreach($products as $product)
                         <div class="col-md-4 product-list-mobile">
