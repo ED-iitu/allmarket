@@ -85,7 +85,7 @@
                         @endif
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Акции & Скидки</a>
+                        <a class="nav-link" href="{{route('sale')}}">Акции & Скидки</a>
                     </li>
                     <li class="nav-item">
                         <div style="margin-top: -4px">
@@ -670,7 +670,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2" style="width: 50px">
-                                                    <div><span class="remove-from-cart">x</span></div>
+                                                    <div><span class="remove-from-cart">
+                                                            <img src="/images/exit.png" alt="">
+                                                        </span></div>
                                                 </div>
                                             </div>
                                         </div>

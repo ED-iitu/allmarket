@@ -12831,6 +12831,27 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
+    .cleaning-mobile {
+        margin-left: 50px;
+    }
+
+    .cleaning-mobile1 {
+        margin-left: 35px;
+        margin-top: -10px;
+    }
+    .cleaning-mobile2 {
+        margin-left: 33px;
+    }
+
+    .cleaning-mobile3 {
+        margin-left: 30px;
+    }
+
+    .social {
+        width: 49px;
+        height: 48px;
+    }
+
     .product-overflow {
         overflow: hidden;
     }
@@ -13199,7 +13220,7 @@ and (max-width: 768px) {
 
     .section-item {
         margin-top: 17px !important;
-        width: 370px !important;
+        width: 380px !important;
     }
 
     .faq-text {
@@ -13683,6 +13704,15 @@ and (max-width: 768px) {
 @media only screen
 and (max-device-width: 375px) {
 
+    .section-item {
+        width: 345px !important;
+    }
+
+    .social {
+        width: 49px;
+        height: 43px;
+    }
+
     .uk-modal-body {
         padding: 30px 10px !important;
     }
@@ -13868,7 +13898,7 @@ and (max-device-width: 375px) {
     }
 
     .section-banner {
-        width: 345px !important;
+        width: 100% !important;
     }
 
     .bread {
@@ -14020,7 +14050,7 @@ and (max-device-width: 375px) {
 }
 
 .cart-active-bg {
-    background: #7791A4
+    background: #292929;
 }
 
 .bredLink {
@@ -14268,11 +14298,34 @@ and (min-width: 376px){
 }
 
 @media only screen and (max-width: 365px) {
+    .product-list-mobile {
+        width: 175px;
+        margin-bottom: 5px;
+    }
+
+    .section-item {
+        width: 325px !important;
+    }
+    .login-form {
+        width: 326px;
+    }
+    .social {
+        width: 49px;
+        height: 37px;
+    }
+    .benefits-description {
+        width: 315px !important;
+    }
+
     .search {
         width: 250px;
     }
 
 @media only screen and (max-width: 345px) {
+    .social {
+        width: 49px;
+        height: 35px;
+    }
     .search {
         width: 224px;
     }

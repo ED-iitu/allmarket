@@ -5,11 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/dropdown-menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dropdown-menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/category-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/category-products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/about.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/about.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/section.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/section.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/sections.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sections.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +40,8 @@
       <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="1056" column="253" selection-start-line="1056" selection-start-column="253" selection-end-line="1056" selection-end-column="253" />
+            <state relative-caret-position="226">
+              <caret line="678" selection-start-line="678" selection-end-line="678" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -122,6 +123,7 @@
                 <element signature="n#style#0;n#div#5;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#1;n#div#5;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#7;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#9;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
@@ -141,11 +143,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dropdown-menu.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/dropdown-menu.css">
+      <file leaf-file-name="about.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/about.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="78" column="14" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
+            <state relative-caret-position="136">
+              <caret line="79" column="30" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="711" column="9" lean-forward="true" selection-start-line="711" selection-start-column="9" selection-end-line="711" selection-end-column="9" />
+              <folding>
+                <element signature="e#40#68#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product-list.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/product-list.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -153,23 +176,30 @@
       <file leaf-file-name="section.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/section.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="194" column="33" lean-forward="true" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
+            <state relative-caret-position="203">
+              <caret line="197" column="28" selection-start-line="197" selection-start-column="28" selection-end-line="248" selection-end-column="34" />
               <folding>
-                <element signature="e#3372#3480#0#HTML" expanded="true" />
-                <element signature="e#6925#6967#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="220" column="24" lean-forward="true" selection-start-line="220" selection-start-column="24" selection-end-line="220" selection-end-column="24" />
-              <folding>
-                <element signature="e#40#68#0#PHP" expanded="true" />
+                <element signature="e#3692#3800#0#HTML" expanded="true" />
+                <element signature="e#4368#4508#0#HTML" expanded="true" />
+                <element signature="e#4659#4684#0#HTML" expanded="true" />
+                <element signature="e#4739#4760#0#HTML" expanded="true" />
+                <element signature="e#4790#4845#0#HTML" expanded="true" />
+                <element signature="e#5124#5153#0#HTML" expanded="true" />
+                <element signature="e#5221#5245#0#HTML" expanded="true" />
+                <element signature="e#5561#5587#0#HTML" expanded="true" />
+                <element signature="e#5740#5880#0#HTML" expanded="true" />
+                <element signature="e#6062#6087#0#HTML" expanded="true" />
+                <element signature="e#6218#6246#0#HTML" expanded="true" />
+                <element signature="e#6349#6372#0#HTML" expanded="true" />
+                <element signature="e#6446#6474#0#HTML" expanded="true" />
+                <element signature="e#6581#6604#0#HTML" expanded="true" />
+                <element signature="e#6945#6970#0#HTML" expanded="true" />
+                <element signature="e#7481#7549#0#HTML" expanded="true" />
+                <element signature="e#8126#8147#0#HTML" expanded="true" />
+                <element signature="e#8230#8259#0#HTML" expanded="true" />
+                <element signature="e#8582#8626#0#HTML" expanded="true" />
+                <element signature="e#9192#9265#0#HTML" expanded="true" />
+                <element signature="e#9524#9597#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -178,8 +208,8 @@
       <file leaf-file-name="sections.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/sections.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1574">
-              <caret line="80" column="73" lean-forward="true" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+            <state relative-caret-position="323">
+              <caret line="120" column="95" selection-start-line="120" selection-start-column="95" selection-end-line="120" selection-end-column="95" />
               <folding>
                 <element signature="e#1731#1760#0#HTML" expanded="true" />
                 <element signature="e#1964#2073#0#HTML" expanded="true" />
@@ -195,20 +225,24 @@
                 <element signature="e#6116#6142#0#HTML" expanded="true" />
                 <element signature="e#8004#8113#0#HTML" expanded="true" />
                 <element signature="e#8541#8566#0#HTML" expanded="true" />
+                <element signature="e#8699#8742#0#HTML" expanded="true" />
                 <element signature="e#8024#8133#0#HTML" expanded="true" />
                 <element signature="e#8720#8743#0#HTML" expanded="true" />
+                <element signature="e#8719#8762#0#HTML" expanded="true" />
                 <element signature="e#9396#9505#0#HTML" expanded="true" />
+                <element signature="e#9764#9873#0#HTML" expanded="true" />
                 <element signature="e#9937#9959#0#HTML" expanded="true" />
+                <element signature="e#10093#10136#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12913" column="25" lean-forward="true" selection-start-line="12913" selection-start-column="25" selection-end-line="12913" selection-end-column="25" />
+            <state relative-caret-position="151">
+              <caret line="14054" selection-start-line="14054" selection-end-line="14054" />
               <folding>
                 <element signature="e#35396#35651#2" expanded="true" />
                 <element signature="e#36336#36510#1" expanded="true" />
@@ -229,32 +263,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="faq.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/faq.blade.php">
+      <file leaf-file-name="sale.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/sale.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="51" column="56" lean-forward="true" selection-start-line="49" selection-start-column="11" selection-end-line="51" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="category-products.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/category-products.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="133" column="62" lean-forward="true" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="62" />
+            <state relative-caret-position="292">
+              <caret line="206" column="50" selection-start-line="206" selection-start-column="50" selection-end-line="206" selection-end-column="50" />
               <folding>
-                <element signature="e#4025#4067#0#HTML" expanded="true" />
+                <element signature="e#3692#3800#0#HTML" expanded="true" />
+                <element signature="e#5561#5587#0#HTML" expanded="true" />
+                <element signature="e#5740#5880#0#HTML" expanded="true" />
+                <element signature="e#6062#6087#0#HTML" expanded="true" />
+                <element signature="e#6218#6246#0#HTML" expanded="true" />
+                <element signature="e#6349#6372#0#HTML" expanded="true" />
+                <element signature="e#6446#6474#0#HTML" expanded="true" />
+                <element signature="e#6581#6604#0#HTML" expanded="true" />
+                <element signature="e#5974#6042#0#HTML" expanded="true" />
+                <element signature="e#6619#6640#0#HTML" expanded="true" />
+                <element signature="e#6723#6752#0#HTML" expanded="true" />
+                <element signature="e#7075#7119#0#HTML" expanded="true" />
+                <element signature="e#7863#7880#0#HTML" expanded="true" />
+                <element signature="e#8248#8262#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/product.blade.php">
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="67" column="57" selection-start-line="67" selection-start-column="53" selection-end-line="67" selection-end-column="57" />
+            <state relative-caret-position="239">
+              <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -262,8 +300,8 @@
       <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="491" column="130" selection-start-line="491" selection-start-column="130" selection-end-line="491" selection-end-column="130" />
+            <state relative-caret-position="301">
+              <caret line="640" column="14" selection-start-line="591" selection-start-column="4" selection-end-line="640" selection-end-column="14" />
               <folding>
                 <element signature="e#7315#7353#0#HTML" expanded="true" />
                 <element signature="e#8224#8248#0#HTML" expanded="true" />
@@ -279,10 +317,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>showSub</find>
-      <find>414</find>
-      <find>login</find>
-      <find>signIn</find>
       <find>375px</find>
       <find>footer-title</find>
       <find>.verify-code-input[type=&quot;text&quot;]</find>
@@ -291,7 +325,6 @@
       <find>.faq-text-div</find>
       <find>console.log</find>
       <find>Оши</find>
-      <find>375</find>
       <find>Зарегист</find>
       <find>search</find>
       <find>cart-cont</find>
@@ -305,10 +338,15 @@
       <find>for_the_scroll</find>
       <find>plus</find>
       <find>showCategory</find>
-      <find>sections</find>
       <find>category-sort</find>
+      <find>375</find>
       <find>768</find>
       <find>Сре</find>
+      <find>sections</find>
+      <find>opacity: 0.7</find>
+      <find>X</find>
+      <find>X&lt;</find>
+      <find>addToCart</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -321,22 +359,23 @@
         <option value="$PROJECT_DIR$/app/Http/Middleware/SetLocale.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/categories.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/personal-account.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/search-page.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/product.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/product-list.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/resources/views/about.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/faq.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/public/css/dropdown-menu.css" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-        <option value="$PROJECT_DIR$/resources/views/sections.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/section.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/category-products.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/sections.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/section.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/sale.blade.php" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
+        <option value="$PROJECT_DIR$/resources/views/about.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
       </list>
     </option>
   </component>
@@ -593,7 +632,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="302175000" />
+    <option name="totallyTimeSpent" value="308302000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="816" extended-state="6" />
@@ -605,9 +644,9 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32962447" />
       <window_info id="npm" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4985694" visible="true" weight="0.32823366" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4985694" visible="true" weight="0.32823366" />
       <window_info anchor="right" id="Remote Host" order="5" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.3297568" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -648,13 +687,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added bg for cart" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/personal-account.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="317" column="38" selection-start-line="317" selection-start-column="38" selection-end-line="317" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Utils.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -754,6 +786,7 @@
             <element signature="n#style#0;n#div#5;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#1;n#div#5;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#7;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#9;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
@@ -953,6 +986,7 @@
             <element signature="n#style#0;n#div#5;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#1;n#div#5;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#7;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#9;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
@@ -1056,13 +1090,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="34" column="74" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/personal-account.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1080,13 +1107,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/product-list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1094,34 +1114,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/about.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
-          <folding>
-            <element signature="e#422#446#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="491" column="130" selection-start-line="491" selection-start-column="130" selection-end-line="491" selection-end-column="130" />
-          <folding>
-            <element signature="e#7315#7353#0#HTML" expanded="true" />
-            <element signature="e#8224#8248#0#HTML" expanded="true" />
-            <element signature="e#10752#10779#0#HTML" expanded="true" />
-            <element signature="e#9800#9846#0#HTML" expanded="true" />
-            <element signature="e#28325#28370#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/faq.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="51" column="56" lean-forward="true" selection-start-line="49" selection-start-column="11" selection-end-line="51" selection-end-column="56" />
+          <caret line="51" column="56" selection-start-line="49" selection-start-column="11" selection-end-line="51" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -1139,20 +1135,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/category-products.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="220" column="24" lean-forward="true" selection-start-line="220" selection-start-column="24" selection-end-line="220" selection-end-column="24" />
+        <state relative-caret-position="161">
+          <caret line="133" column="62" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="62" />
           <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
+            <element signature="e#4025#4067#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="640" column="14" selection-start-line="591" selection-start-column="4" selection-end-line="640" selection-end-column="14" />
+          <folding>
+            <element signature="e#7315#7353#0#HTML" expanded="true" />
+            <element signature="e#8224#8248#0#HTML" expanded="true" />
+            <element signature="e#10752#10779#0#HTML" expanded="true" />
+            <element signature="e#9800#9846#0#HTML" expanded="true" />
+            <element signature="e#28325#28370#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/product-list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/sections.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1574">
-          <caret line="80" column="73" lean-forward="true" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+        <state relative-caret-position="323">
+          <caret line="120" column="95" selection-start-line="120" selection-start-column="95" selection-end-line="120" selection-end-column="95" />
           <folding>
             <element signature="e#1731#1760#0#HTML" expanded="true" />
             <element signature="e#1964#2073#0#HTML" expanded="true" />
@@ -1168,39 +1192,105 @@
             <element signature="e#6116#6142#0#HTML" expanded="true" />
             <element signature="e#8004#8113#0#HTML" expanded="true" />
             <element signature="e#8541#8566#0#HTML" expanded="true" />
+            <element signature="e#8699#8742#0#HTML" expanded="true" />
             <element signature="e#8024#8133#0#HTML" expanded="true" />
             <element signature="e#8720#8743#0#HTML" expanded="true" />
+            <element signature="e#8719#8762#0#HTML" expanded="true" />
             <element signature="e#9396#9505#0#HTML" expanded="true" />
+            <element signature="e#9764#9873#0#HTML" expanded="true" />
             <element signature="e#9937#9959#0#HTML" expanded="true" />
+            <element signature="e#10093#10136#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/section.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="194" column="33" lean-forward="true" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
+        <state relative-caret-position="203">
+          <caret line="197" column="28" selection-start-line="197" selection-start-column="28" selection-end-line="248" selection-end-column="34" />
           <folding>
-            <element signature="e#3372#3480#0#HTML" expanded="true" />
-            <element signature="e#6925#6967#0#HTML" expanded="true" />
+            <element signature="e#3692#3800#0#HTML" expanded="true" />
+            <element signature="e#4368#4508#0#HTML" expanded="true" />
+            <element signature="e#4659#4684#0#HTML" expanded="true" />
+            <element signature="e#4739#4760#0#HTML" expanded="true" />
+            <element signature="e#4790#4845#0#HTML" expanded="true" />
+            <element signature="e#5124#5153#0#HTML" expanded="true" />
+            <element signature="e#5221#5245#0#HTML" expanded="true" />
+            <element signature="e#5561#5587#0#HTML" expanded="true" />
+            <element signature="e#5740#5880#0#HTML" expanded="true" />
+            <element signature="e#6062#6087#0#HTML" expanded="true" />
+            <element signature="e#6218#6246#0#HTML" expanded="true" />
+            <element signature="e#6349#6372#0#HTML" expanded="true" />
+            <element signature="e#6446#6474#0#HTML" expanded="true" />
+            <element signature="e#6581#6604#0#HTML" expanded="true" />
+            <element signature="e#6945#6970#0#HTML" expanded="true" />
+            <element signature="e#7481#7549#0#HTML" expanded="true" />
+            <element signature="e#8126#8147#0#HTML" expanded="true" />
+            <element signature="e#8230#8259#0#HTML" expanded="true" />
+            <element signature="e#8582#8626#0#HTML" expanded="true" />
+            <element signature="e#9192#9265#0#HTML" expanded="true" />
+            <element signature="e#9524#9597#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/category-products.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/sale.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="133" column="62" lean-forward="true" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="62" />
+        <state relative-caret-position="292">
+          <caret line="206" column="50" selection-start-line="206" selection-start-column="50" selection-end-line="206" selection-end-column="50" />
           <folding>
-            <element signature="e#4025#4067#0#HTML" expanded="true" />
+            <element signature="e#3692#3800#0#HTML" expanded="true" />
+            <element signature="e#5561#5587#0#HTML" expanded="true" />
+            <element signature="e#5740#5880#0#HTML" expanded="true" />
+            <element signature="e#6062#6087#0#HTML" expanded="true" />
+            <element signature="e#6218#6246#0#HTML" expanded="true" />
+            <element signature="e#6349#6372#0#HTML" expanded="true" />
+            <element signature="e#6446#6474#0#HTML" expanded="true" />
+            <element signature="e#6581#6604#0#HTML" expanded="true" />
+            <element signature="e#5974#6042#0#HTML" expanded="true" />
+            <element signature="e#6619#6640#0#HTML" expanded="true" />
+            <element signature="e#6723#6752#0#HTML" expanded="true" />
+            <element signature="e#7075#7119#0#HTML" expanded="true" />
+            <element signature="e#7863#7880#0#HTML" expanded="true" />
+            <element signature="e#8248#8262#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="14054" selection-start-line="14054" selection-end-line="14054" />
+          <folding>
+            <element signature="e#35396#35651#2" expanded="true" />
+            <element signature="e#36336#36510#1" expanded="true" />
+            <element signature="e#36552#36807#1" expanded="true" />
+            <element signature="e#39508#39822#2" expanded="true" />
+            <element signature="e#40518#40692#1" expanded="true" />
+            <element signature="e#40734#41048#1" expanded="true" />
+            <element signature="e#75493#75701#2" expanded="true" />
+            <element signature="e#75962#76119#2" expanded="true" />
+            <element signature="e#76582#76738#2" expanded="true" />
+            <element signature="e#78136#78310#1" expanded="true" />
+            <element signature="e#94576#94833#2" expanded="true" />
+            <element signature="e#95869#96132#2" expanded="true" />
+            <element signature="e#132588#132784#2" expanded="true" />
+            <element signature="e#132841#133038#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/about.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="79" column="30" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="1056" column="253" selection-start-line="1056" selection-start-column="253" selection-end-line="1056" selection-end-column="253" />
+        <state relative-caret-position="226">
+          <caret line="678" selection-start-line="678" selection-end-line="678" />
           <folding>
             <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1282,6 +1372,7 @@
             <element signature="n#style#0;n#div#5;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#1;n#div#5;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#7;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#7;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#9;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
@@ -1300,25 +1391,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12913" column="25" lean-forward="true" selection-start-line="12913" selection-start-column="25" selection-end-line="12913" selection-end-column="25" />
+        <state relative-caret-position="224">
+          <caret line="711" column="9" lean-forward="true" selection-start-line="711" selection-start-column="9" selection-end-line="711" selection-end-column="9" />
           <folding>
-            <element signature="e#35396#35651#2" expanded="true" />
-            <element signature="e#36336#36510#1" expanded="true" />
-            <element signature="e#36552#36807#1" expanded="true" />
-            <element signature="e#39508#39822#2" expanded="true" />
-            <element signature="e#40518#40692#1" expanded="true" />
-            <element signature="e#40734#41048#1" expanded="true" />
-            <element signature="e#75493#75701#2" expanded="true" />
-            <element signature="e#75962#76119#2" expanded="true" />
-            <element signature="e#76582#76738#2" expanded="true" />
-            <element signature="e#78136#78310#1" expanded="true" />
-            <element signature="e#94576#94833#2" expanded="true" />
-            <element signature="e#95869#96132#2" expanded="true" />
-            <element signature="e#132588#132784#2" expanded="true" />
-            <element signature="e#132841#133038#2" expanded="true" />
+            <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

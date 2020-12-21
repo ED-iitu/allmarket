@@ -616,7 +616,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function addToServerCart($token, $product_id, $quantity = 1)
+    public function addToServerCart($token, $product_id, $offerId, $quantity = 1)
     {
         //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=2
 
@@ -626,7 +626,8 @@ class HomeController extends Controller
             ],
             'form_params' => [
                 'count' => $quantity,
-                'product_id' => $product_id
+                'product_id' => $product_id,
+                'offer_id' => $offerId
             ],
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
@@ -644,12 +645,14 @@ class HomeController extends Controller
            return redirect()->back()->with('error', 'Не удалось найти пользователя');
        }
 
+       $offerId = 0;
+
 
         if(!$product) {
-            abort(404);
+            $offerId = $id;
         }
 
-        $this->addToServerCart($token, $id, 1);
+        $this->addToServerCart($token, $id, $offerId,  1);
 
 
         $cart = session()->get('cart');
@@ -687,22 +690,28 @@ class HomeController extends Controller
 
     public function getProductById($id)
     {
-        $client = new Client();
-        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/'.$id, [
-            'query' => [
-                'city_id' => 6,
-            ],
-            'auth' => [
-                'dev@allmarket.kz',
-                'dev'
-            ]
-        ]);
+        try {
+            $client = new Client();
+            $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/' . $id, [
+                'query' => [
+                    'city_id' => 6,
+                ],
+                'auth' => [
+                    'dev@allmarket.kz',
+                    'dev'
+                ]
+            ]);
 
-        $response = $response->getBody()->getContents();
+            $response = $response->getBody()->getContents();
 
-        $res = json_decode($response);
+            $res = json_decode($response);
 
-        return $res->product;
+            return $res->product;
+        }catch (RequestException $e) {
+            return redirect()->back();
+        }
+
+        return 0;
     }
 
     public function getUserOrders()
@@ -845,6 +854,31 @@ class HomeController extends Controller
                 'Authorization' => 'Bearer ' . $token,
                 'Accept' => 'application/json'
             ]
+        ]);
+    }
+
+    public function sale()
+    {
+        //https://allmarket.armenianbros.com/api/v2/sales?city_id=6
+        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/sales', [
+            'query' => [
+                'city_id' => 6,
+                'paginate' => 10
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+        $response = json_decode($response);
+
+        $sections    = $this->getAllSections();
+        return view('sale', [
+            'sections' => $sections->sections,
+            'sales' => $response
         ]);
     }
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('sale', 'HomeController@sale')->name('sale');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('faq', 'HomeController@faq')->name('faq');
 Route::get('sections', 'HomeController@sections')->name('sections');
@@ -33,6 +34,7 @@ Route::get('cart/deleteAll', 'HomeController@basketDelete')->name('deleteCart');
 Route::get('cart/checkout', 'HomeController@checkout')->name('checkoutCart');
 Route::post('cart/createOrder', 'HomeController@createUserOrder')->name('createOrder');
 Route::post('order/repeat', 'HomeController@cloneOrder')->name('cloneOrder');
+
 
 
 

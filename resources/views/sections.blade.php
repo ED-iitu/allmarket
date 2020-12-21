@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <div style="margin-top: 10px;margin-right: 20px">
-                           <img  src="images/category/kids.png" alt="" >
+                           <img  src="images/category/kids.png" alt=""  class="cleaning-mobile3">
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                         <div style="margin-top: 10px;margin-right: 20px">
-                           <img  src="images/category/beauty.png" alt="" >
+                           <img  src="images/category/beauty.png" alt="" class="cleaning-mobile1">
                         </div>
                     </div>
                 </div>
@@ -157,8 +157,8 @@
                                 <div class="section-name" >Товары для <span style="color: darkorange">животных</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
-                            <img  src="images/category/pets.png" alt="" >
+                        <div style="margin-top: 10px;margin-right: 30px">
+                            <img  src="images/category/pets.png" alt="" class="cleaning-mobile2" >
                         </div>
                     </div>
                 </div>
@@ -181,8 +181,8 @@
                                 <div class="section-name" >Хозяйственные <span style="color: darkblue">товары</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
-                            <img  src="images/category/home-goods.png" alt="">
+                        <div style="margin-top: 10px;margin-right: 30px">
+                            <img  src="images/category/home-goods.png" alt="" class="cleaning-mobile1">
                         </div>
                     </div>
                 </div>
@@ -201,8 +201,8 @@
                                 <div class="section-name" >Стирка и <span style="color: darkred">уборка</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
-                            <img  src="images/category/cleaning.png" alt="">
+                        <div style="margin-top: 10px;margin-right: 30px">
+                            <img  src="images/category/cleaning.png" alt="" class="cleaning-mobile">
                         </div>
                     </div>
                 </div>

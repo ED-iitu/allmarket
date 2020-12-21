@@ -101,42 +101,42 @@
                 <h2 class="partner-heading">НАШИ ПАРТНЕРЫ</h2>
             </div>
 
-            <div style="margin-left: 15px; margin-top: 30px">
-                <div uk-slider >
-                    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+            <div style="margin-left: 30px; margin-right: 10px; margin-top: 30px">
+                <div uk-slider autoplay="true" autoplay-interval="2000" draggable="false" >
+                    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" draggable="false">
 
                         <ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-3@s uk-child-width-1-6@m">
                             <li class="partner-img">
-                                <img src="images/mars_logo.png" alt="">
+                                <img src="images/1.png" alt="">
                             </li>
                             <li class="partner-img">
-                                <img src="images/splat.png" alt="">
+                                <img src="images/2.png" alt="">
                             </li>
                             <li class="partner-img">
-                                <img src="images/red_bull.png" alt="">
+                                <img src="images/3.png" alt="">
                             </li>
                             <li class="partner-img">
-                                <img src="images/ferrero.png" alt="">
+                                <img src="images/4.png" alt="">
                             </li>
                             <li class="partner-img">
-                                <img src="images/Danone.png" alt="">
+                                <img src="images/5.png" alt="">
                             </li>
                             <li class="partner-img">
-                                <img src="images/Ehrmann.png" alt="">
+                                <img src="images/6.png" alt="">
                             </li>
                             <li class="partner-img">
-                                <img src="images/uvelka.png" alt="">
+                                <img src="images/7.png" alt="">
                             </li>
                             <li class="partner-img">
-                                <img src="images/sady.png" alt="">
-                            </li>
-
-                            <li class="partner-img">
-                                <img src="images/abbot.png" alt="">
+                                <img src="images/8.png" alt="">
                             </li>
 
                             <li class="partner-img">
-                                <img src="images/johnson.png" alt="">
+                                <img src="images/9.png" alt="">
+                            </li>
+
+                            <li class="partner-img">
+                                <img src="images/10.png" alt="">
                             </li>
 
                         </ul>

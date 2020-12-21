@@ -119,9 +119,7 @@
     </style>
 
     <div class="container">
-        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / <a class="bredLink"
-                                                                                         href="{{route('sections')}}">Категории</a>
-            / {{$section->title}}</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / Акции и Предложения</div>
     </div>
 
     <div class="container">
@@ -140,34 +138,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <div>
-                    <h2 class="section-category-title">Категория</h2>
-                </div>
-
-                <div class="category-left-menu ">
-                    <div class="menu-body">
-                        <h2 style="padding-top: 20px; margin-left: 20px; color: #7791A4;font-size: 18px;font-style: normal;font-weight: 600;text-transform: uppercase; ">{{$section->title}}</h2>
-                    </div>
-                    <div class="container">
-                        <hr class="left-menu-devider" style="margin-top: -10px">
-                    </div>
-
-                    <div style="width: 320px;">
-                        <ul style="list-style: none; padding-left: 15px !important">
-                            @foreach($section->categories as $category)
-                                <div>
-                                    <a href="{{route('category_products', [$section->id, $category->id])}}"
-                                       class="showproduct" style="text-decoration: none">
-                                        <li class="category-list" style="font-size: 18px;">{{$category->title}}</li>
-                                    </a>
-                                </div>
-                            @endforeach
-                        </ul>
-                    </div>
-
-
-                </div>
-
                 <div class="sort-div">
                     <h2 class="sort-div-title" style="font-weight: bold;">Сортировать по</h2>
                     <div class="container sort-by">
@@ -193,7 +163,7 @@
             </div>
             <div class="col-md-8 product-overflow" style="margin-top: 30px;">
                 <div class="row">
-                    @foreach($products as $product)
+                    @foreach($sales->sales as $product)
                         <div class="col-md-4 product-list-mobile">
                             <div class="product">
                                 @if(in_array($product->id, (array)Session::get('favorited')))
@@ -220,38 +190,30 @@
 
                                         </div>
                                         <div class="product-category">
-                                            {{ Str::of($product->category->title)->limit(22) }}
+                                            {{ Str::of($product->type->title)->limit(22) }}
                                         </div>
 
                                         <div>
-                                            <div
-                                                    style="display: flex;align-items: center;justify-content: space-between;">
-                                                <div class="old-price">{{$product->price_sale}} тг</div>
-                                            </div>
-                                            <div
-                                                    style="display: flex;align-items: center;justify-content: space-between;">
-                                                <div class="new-price">{{$product->price}} тг</div>
-                                                @if (Session::get('username'))
-                                                    <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                                        <button type="submit" class="add-to-cart">
-                                                            <img src="/images/add_to_cart.png" alt="">
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <button href="#auth" uk-toggle class="add-to-cart">
+                                            @if (Session::get('username'))
+                                                <form action="{{route('addToCart', $product->id)}}" method="GET">
+                                                    <button type="submit" class="add-to-cart" style="top: 82px">
                                                         <img src="/images/add_to_cart.png" alt="">
                                                     </button>
-                                                @endif
-                                            </div>
+                                                </form>
+                                            @else
+                                                <button href="#auth" uk-toggle class="add-to-cart" style="top: 82px;">
+                                                    <img src="/images/add_to_cart.png" alt="">
+                                                </button>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                @endforeach
                 </div>
             </div>
-        </div>
+         </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
