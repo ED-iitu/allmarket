@@ -290,7 +290,7 @@
                             <form action="{{route('cloneOrder')}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$order->id}}">
-                                <button type="submit" style="background: none; border: none; outline: none"><img src="images/repeat_cart.png" alt=""></button>
+                                <button type="submit" style="background: none; border: none; outline: none"><img class="addToCartSvg" src="/images/addToCart.svg" alt=""></button>
                             </form>
 
                         </div>

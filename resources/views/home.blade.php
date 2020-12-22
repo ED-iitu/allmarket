@@ -373,12 +373,12 @@
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $popular->id)}}" method="GET">
                                                                     <button type="submit" class="add-to-cart">
-                                                                        <img src="/images/add_to_cart.png" alt="">
+                                                                        <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                                     </button>
                                                                 </form>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img src="/images/add_to_cart.png" alt="">
+                                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                                 </button>
                                                             @endif
                                                         </div>
@@ -456,12 +456,12 @@
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $sale->id)}}" method="GET">
                                                                     <button type="submit" class="add-to-cart">
-                                                                        <img src="/images/add_to_cart.png" alt="">
+                                                                        <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                                     </button>
                                                                 </form>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img src="/images/add_to_cart.png" alt="">
+                                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                                 </button>
                                                             @endif
                                                         </div>
@@ -533,12 +533,12 @@
                                                             @if (Session::get('username'))
                                                             <form action="{{route('addToCart', $rec->id)}}" method="GET">
                                                                 <button type="submit" class="add-to-cart">
-                                                                    <img src="/images/add_to_cart.png" alt="">
+                                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                                 </button>
                                                             </form>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img src="/images/add_to_cart.png" alt="">
+                                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                                 </button>
                                                             @endif
 

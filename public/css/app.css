@@ -14475,3 +14475,7 @@ button:focus {outline:0;}
 .sale-cart {
     top: 82px;
 }
+
+.addToCartSvg {
+    width: 26px;
+}

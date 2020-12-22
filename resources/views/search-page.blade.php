@@ -83,7 +83,7 @@
                                         </form>
                                     @else
                                         <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                            <img src="images/add_to_cart.png" alt="">
+                                            <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                         </button>
                                     @endif
                                 </div>

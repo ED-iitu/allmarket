@@ -197,12 +197,12 @@
                                             @if (Session::get('username'))
                                                 <form action="{{route('addToCart', $product->id)}}" method="GET">
                                                     <button type="submit" class="add-to-cart sale-cart">
-                                                        <img src="/images/add_to_cart.png" alt="">
+                                                        <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                     </button>
                                                 </form>
                                             @else
                                                 <button href="#auth" uk-toggle class="add-to-cart sale-cart">
-                                                    <img src="/images/add_to_cart.png" alt="">
+                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
                                                 </button>
                                             @endif
                                         </div>
