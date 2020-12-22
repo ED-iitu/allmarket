@@ -663,18 +663,18 @@ class HomeController extends Controller
                     "title" => $product->title,
                     "category" => $product->category->title,
                     "quantity" => 1,
-                    "price" => $product->price,
+                    "price" => $product->price_sale,
                     "image" => $product->image
                 ]
             ];
             session()->put('cart', $cart);
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
             session()->put('cart', $cart);
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
@@ -685,7 +685,7 @@ class HomeController extends Controller
             "image" => $product->image
         ];
         session()->put('cart', $cart);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
     }
 
     public function getProductById($id)
