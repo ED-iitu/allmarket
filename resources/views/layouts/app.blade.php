@@ -39,7 +39,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/images/logo.png" alt="" >
+                <img src="/images/logo.png" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -72,7 +72,8 @@
                                 {{$message}}
                             </a>
                             <div class="dropdown-menu profile-menu">
-                                <a class="dropdown-item profile-list" href="/account#account-favorite">Избранные товары</a>
+                                <a class="dropdown-item profile-list" href="/account#account-favorite">Избранные
+                                    товары</a>
                                 <a class="dropdown-item profile-list" href="/account#account-order">История заказов</a>
                                 <a class="dropdown-item profile-list" href="/account#account-зкщашду">Мои данные</a>
                                 <a class="dropdown-item profile-list" href="{{route('logout')}}">Выход</a>
@@ -132,7 +133,7 @@ $('#mobile_close').show(); $('#mobile_cart').hide()">
 $('#mobile_cart').show(); $('#mobile_close').hide();"
                  style="display: none">
                 <a class="nav-link close" href="#" style="filter: invert(1)">
-                    <img  src="/images/closecart.png" alt="">
+                    <img src="/images/closecart.png" alt="">
                 </a>
             </div>
             <div class="mobile-expand">
@@ -146,7 +147,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <div>
                         <div class="uk-margin">
                             <div uk-form-custom="target: true">
-                                <select class="uk-select" id="form-stacked-select" style="border: none; color: #7791A4 ">
+                                <select class="uk-select" id="form-stacked-select"
+                                        style="border: none; color: #7791A4 ">
                                     <option>Выберите город</option>
                                     <option>Алматы</option>
                                     <option>Нур-Султан</option>
@@ -231,22 +233,31 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <nav id="menuVertical">
                         <ul style="padding: 0; margin: 0">
                             @foreach($sections as $section)
-                                <li style="display: flex; justify-content: space-between; margin-top: 10px" class="showSub">
-                                    <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink" style="margin-left: 20px;">
+                                <li style="display: flex; justify-content: space-between; margin-top: 10px"
+                                    class="showSub">
+                                    <a href="{{route('sectionById', $section->id)}}" class="showCategoryLink"
+                                       style="margin-left: 20px;">
                                         <img src="/images/category/icons/{{$section->system_key}}.png" alt=""
                                              style="margin-right: 10px"
                                              height="25px" width="25px">
                                         {{$section->title}}
                                     </a>
-                                    <img src="/images/Arrow.png" alt="" style="height: 15px; margin-top: 7px; margin-left: -63px">
+                                    <img src="/images/Arrow.png" alt=""
+                                         style="height: 15px; margin-top: 7px; margin-left: -63px">
                                     @if($loop->index == 0)
                                         <div class="showSubCategory" style="z-index: -1;">
-                                            <ul class="submenu" >
-                                                <li><a href="{{route('category_products', [$section->id, 5])}}">Крупы и хлопья</a></li>
-                                                <li><a href="{{route('category_products', [$section->id, 12])}}">Конфеты и кондитерские изделия</a></li>
-                                                <li><a href="{{route('category_products', [$section->id, 13])}}">Лапша и макаронные изделия</a></li>
-                                                <li><a href="{{route('category_products', [$section->id, 14])}}">Молочная продукция</a></li>
-                                                <li><a href="{{route('category_products', [$section->id, 15])}}">Масло</a></li>
+                                            <ul class="submenu">
+                                                <li><a href="{{route('category_products', [$section->id, 5])}}">Крупы и
+                                                        хлопья</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 12])}}">Конфеты
+                                                        и кондитерские изделия</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 13])}}">Лапша и
+                                                        макаронные изделия</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 14])}}">Молочная
+                                                        продукция</a></li>
+                                                <li>
+                                                    <a href="{{route('category_products', [$section->id, 15])}}">Масло</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 1)
@@ -262,7 +273,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                     @elseif($loop->index == 2)
                                         <div class="showSubCategory" style="z-index: -1">
                                             <ul class="submenu">
-                                                <li><a href="{{route('category_products', [3, 26])}}">Уход за волосами</a></li>
+                                                <li><a href="{{route('category_products', [3, 26])}}">Уход за
+                                                        волосами</a></li>
                                                 <li><a href="#m2_2">Уход за телом</a></li>
                                                 <li><a href="#m2_2">Уход за полостью рта</a></li>
                                                 <li><a href="#m2_2">Средства для бритья</a></li>
@@ -324,7 +336,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 </li>
                                 <li class="searchItems">
                                     <img src="/images/search.png" alt="">
-                                    <a class="searchLink" href="https://allmarket.sigdev.kz/search?title='лук'">Лук репчатый</a>
+                                    <a class="searchLink" href="https://allmarket.sigdev.kz/search?title='лук'">Лук
+                                        репчатый</a>
                                 </li>
                             </ul>
                         </div>
@@ -354,9 +367,12 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             <div style="display: flex;align-items: center;justify-content: space-between">
                                 <div class="cart-p">Товары:</div>
                                 @if(session('cart'))
-                                    <div class="cart-p" style="margin-left: 15px"><span>{{count(session('cart'))}} </span>шт</div>
+                                    <div class="cart-p" style="margin-left: 15px">
+                                        <span>{{count(session('cart'))}} </span>шт
+                                    </div>
                                 @else
-                                    <div class="cart-p" style="margin-left: 50px"><span id="cart-count">0 </span>шт</div>
+                                    <div class="cart-p" style="margin-left: 50px"><span id="cart-count">0 </span>шт
+                                    </div>
                                 @endif
 
                             </div>
@@ -368,7 +384,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                     @foreach(session('cart') as $id => $details)
                                         <?php $total += $details['price'] ?>
                                     @endforeach
-                                    <div class="cart-p" style="margin-left: 15px" id="cart-sum"><span>{{$total}} </span>тг</div>
+                                    <div class="cart-p" style="margin-left: 15px" id="cart-sum"><span>{{$total}} </span>тг
+                                    </div>
                                 @else
                                     <div class="cart-p" style="margin-left: 15px"><span id="cart-sum">0 </span>тг</div>
                                 @endif
@@ -443,7 +460,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             </div>
                             <div class="social">
                                 <a href="">
-                                    <img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px" style="margin-left: 4px">
+                                    <img class="social-img" src="/images/playmarket.png" alt="" width="48px"
+                                         height="49px" style="margin-left: 4px">
                                 </a>
                             </div>
                             <div class="social">
@@ -578,7 +596,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     </div>
                     <div style="justify-content: center">
                         <p class="aggrement">Нажимая «зарегистрироваться», вы соглашаетесь
-                            с <a href="{{ config('app.url') }}/files/politika.pdf" target="_blank">«Политика конфиденциальности»</a></p>
+                            с <a href="{{ config('app.url') }}/files/politika.pdf" target="_blank">«Политика
+                                конфиденциальности»</a></p>
                     </div>
                 </form>
                 <form action="{{route('sendSms')}}" method="POST" id="signin-next" class="signIn-form"
@@ -656,15 +675,18 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                         {{ Str::of($details['title'])->limit(15) }}
                                                     </div>
                                                     <div class="cart-category">{{$details['category']}}</div>
-                                                    <div class="cart-price"
+                                                    <div class="cart-price" id="cart-price-{{$id}}"
                                                          style="margin-top: 10px">{{$details['price']}} тг
                                                     </div>
+                                                    <input type="hidden" value="{{$details['price']}}"
+                                                           id="current-price-{{$id}}">
                                                     <div
                                                         style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">
                                                         <div class="cart-qty">
                                                             <span id="cart-minus" class="cart-minus-{{$id}}">-</span>
                                                             <input type="number" class="cart-count" name="qty"
-                                                                   value="{{$details['quantity']}}">
+                                                                   value="{{$details['quantity']}}"
+                                                                   id="cart-count-{{$id}}">
                                                             <span id="cart-plus" class="cart-plus-{{$id}}">+</span>
                                                         </div>
                                                     </div>
@@ -828,15 +850,31 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
     $('.cart-count').prop('disabled', true);
     $(document).on('click', '#cart-plus', function () {
-        $('.cart-count').val(parseInt($('.cart-count').val()) + 1);
+        var id = $(this).attr('class').replace('cart-plus-', ''),
+            product_count = $('#cart-count-' + id),
+            current_price = $('#current-price-' + id).val();
+        product_count.val(parseInt(product_count.val()) + 1)
+        $('#cart-price-' + id).html(parseInt(current_price) * parseInt(product_count.val()) + ' тг');
+        total_price()
     });
     $(document).on('click', '#cart-minus', function () {
-        $('.cart-count').val(parseInt($('.cart-count').val()) - 1);
-        if ($('.cart-count').val() == 0) {
-            $('.cart-count').val(1);
+        var id = $(this).attr('class').replace('cart-minus-', ''),
+            current_price = $('#current-price-' + id).val(),
+            product_count = $('#cart-count-' + id);
+        if (product_count.val() > 1) {
+            product_count.val(parseInt(product_count.val()) - 1)
+            $('#cart-price-' + id).html(parseInt(current_price) * parseInt(product_count.val()) + ' тг');
         }
+        total_price()
     });
 
+    function total_price() {
+        var total_product_val = 0
+        $('.cart-price').each(function () {
+            total_product_val = total_product_val + parseInt($(this).html().replace('тг', ''))
+        });
+        $('.cart-total-price-money').html(total_product_val + ' тг')
+    }
 </script>
 
 <script>
@@ -1257,7 +1295,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         }
 
 
-
         // $(".mobile-cart").click(function () {
         //     $('.mobile-nav').css('position', 'fixed');
         //     $('.mobile-nav').css('z-index', '1000');
@@ -1295,6 +1332,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         // }, function () {
         //     $('.showSubCategory').css("display", "none");
         // });
+
+
     });
 </script>
 
