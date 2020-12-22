@@ -585,6 +585,7 @@ pre code {
 .container-md,
 .container-sm {
     width: 100%;
+    overflow: hidden;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -11856,7 +11857,7 @@ input {
 .verify-code-input[type="text"] {
     text-align: center;
     color: white;
-    font-size: 30px;
+    font-size: 18px;
 
 }
 
@@ -12831,22 +12832,18 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
-    .cleaning-mobile {
-        margin-left: 50px;
+    .cart-img {
+        width: 140px;
     }
 
-    .cleaning-mobile1 {
-        margin-left: 35px;
-        margin-top: -10px;
-    }
-    .cleaning-mobile2 {
-        margin-left: 33px;
+    .sale-cart {
+        top: 48px !important;
     }
 
-    .cleaning-mobile3 {
-        margin-left: 30px;
+    .faq-text {
+        font-size: 12px;
+        line-height: 15px;
     }
-
     .social {
         width: 49px;
         height: 48px;
@@ -12936,11 +12933,11 @@ and (max-width: 768px) {
     }
 
     .cart-content {
-        height: 600px;
+        height: 500px;
         overflow: scroll;
     }
     .cart-checkout {
-        height: 600px;
+        height: 500px;
         overflow: scroll;
     }
 
@@ -13225,6 +13222,8 @@ and (max-width: 768px) {
 
     .faq-text {
         width: 350px !important;
+        font-size: 12px !important;
+        line-height: 15px !important;
     }
 
     button.btn.collapsed:before {
@@ -14298,6 +14297,27 @@ and (min-width: 376px){
 }
 
 @media only screen and (max-width: 365px) {
+
+    .cart-img {
+        width: 120px;
+    }
+
+    .cart-content {
+        height: 480px;
+        overflow: scroll;
+    }
+
+    .sale-cart {
+        top: 48px
+    }
+
+    .supp_num {
+        font-size: 14px !important;
+    }
+    .content-mobile-menu {
+        margin-top: 2px;
+        margin-left: -311px;
+    }
     .product-list-mobile {
         width: 175px;
         margin-bottom: 5px;
@@ -14386,4 +14406,73 @@ button:focus {outline:0;}
     background-position-x: 96%;
     background-position-y: 20px;
 
+}
+
+
+.faq-text {
+    padding: 25px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+
+    color: #43637A;
+}
+
+.faq-text-div {
+    box-shadow:
+            0 0 0 3px hsl(0, 0%, 210%),
+            0 0 0 7px rgba(205, 223, 239, 0.85);
+    box-sizing: border-box;
+    border-radius: 11px;
+}
+
+
+.line1 {
+    margin-top: 40px;
+    width: 320px;
+    height: 3px;
+
+
+    background: #FFFFFF;
+    border-radius: 0px 0px 1px 1px;
+}
+
+.line2 {
+    width: 320px;
+    height: 3px;
+    margin-top: -5px;
+
+    background: #C9DBEF;
+    border-radius: 1px 1px 0px 0px;
+}
+.supp_num {
+
+    margin-bottom: 30px;
+
+    width: 650px;
+    height: 37px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #015442;
+
+    text-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px #8FACC1
+}
+
+.sale-cart {
+    top: 82px;
 }

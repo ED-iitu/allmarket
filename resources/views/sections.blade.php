@@ -44,6 +44,13 @@
             margin-top: 30px;
         }
 
+        .section-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+
     </style>
 
 
@@ -77,7 +84,7 @@
                                 <div class="section-name" >Продукты <span style="color: green">питания</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
+                        <div class="section-image">
                             <img  src="images/category/food.png" alt="" >
                         </div>
                     </div>
@@ -97,7 +104,7 @@
                                 <div class="section-name" >Напитки, <span style="color: brown">чай кофе</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
+                        <div class="section-image">
                             <img  src="images/category/drinks.png" alt="" >
                         </div>
                     </div>
@@ -117,8 +124,8 @@
                                 <div class="section-name" >Товары <span style="color: darkred">для детей</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
-                           <img  src="images/category/kids.png" alt=""  class="cleaning-mobile3">
+                        <div class="section-image">
+                           <img  src="images/category/kids.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -137,8 +144,8 @@
                                 <div class="section-name" >Гигиена и <span style="color: deepskyblue">косметика</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 20px">
-                           <img  src="images/category/beauty.png" alt="" class="cleaning-mobile1">
+                        <div class="section-image">
+                           <img  src="images/category/beauty.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -157,8 +164,8 @@
                                 <div class="section-name" >Товары для <span style="color: darkorange">животных</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 30px">
-                            <img  src="images/category/pets.png" alt="" class="cleaning-mobile2" >
+                        <div class="section-image">
+                            <img  src="images/category/pets.png" alt="" >
                         </div>
                     </div>
                 </div>
@@ -181,8 +188,8 @@
                                 <div class="section-name" >Хозяйственные <span style="color: darkblue">товары</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 30px">
-                            <img  src="images/category/home-goods.png" alt="" class="cleaning-mobile1">
+                        <div class="section-image">
+                            <img  src="images/category/home-goods.png" alt="" >
                         </div>
                     </div>
                 </div>
@@ -201,8 +208,8 @@
                                 <div class="section-name" >Стирка и <span style="color: darkred">уборка</span></div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px;margin-right: 30px">
-                            <img  src="images/category/cleaning.png" alt="" class="cleaning-mobile">
+                        <div class="section-image">
+                            <img  src="images/category/cleaning.png" alt="" >
                         </div>
                     </div>
                 </div>

@@ -180,7 +180,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div href="#auth" uk-toggle>Вход</div>
                         <div href="#auth" uk-toggle>Регистрация</div>
                     @endif
-                    <div>Акции & Скидки</div>
+                    <div><a class="menu-links" href="{{route('sale')}}">Акции & Скидки</a></div>
                     <div><a class="menu-links" href="{{route('faq')}}">F.A.Q</a></div>
                     <div><a class="menu-links" href="{{route('about')}}">О нас</a></div>
                     <hr>
@@ -493,19 +493,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!" class="footer-link">вход/ регистрация</a>
+                            <a href="#auth" uk-toggle class="footer-link">вход/ регистрация</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">акции & скидки</a>
+                            <a href="{{route('sale')}}" class="footer-link">акции & скидки</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">о нас</a>
+                            <a href="{{route('about')}}" class="footer-link">о нас</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">доставка и оплата</a>
+                            <a href="{{route('faq')}}" class="footer-link">доставка и оплата</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">помощь покупателю </a>
+                            <a href="{{route('faq')}}" class="footer-link">помощь покупателю </a>
                         </li>
                     </ul>
 
@@ -517,19 +517,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!" class="footer-link">популярные товары</a>
+                            <a href="{{route('home')}}#popular" class="footer-link">популярные товары</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">товары со скидкой</a>
+                            <a href="{{route('home')}}#sale" class="footer-link">товары со скидкой</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">Рекомендованные товары</a>
+                            <a href="{{route('home')}}#recomended" class="footer-link">Рекомендованные товары</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">наше приложение</a>
+                            <a href="http://onelink.to/rs5shb" class="footer-link">наше приложение</a>
                         </li>
                         <li>
-                            <a href="#!" class="footer-link">наши партнеры</a>
+                            <a href="{{route('home')}}#partners" class="footer-link">наши партнеры</a>
                         </li>
                     </ul>
 
@@ -661,16 +661,18 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 <div class="non-empty-cart" id="cart-after">
                                     <h2 class="cart-top-title">Товары:</h2>
                                     <hr>
+                                    <h2 class="empty-title" id="empty-cart-after-delete" style="display: none;">Ваша корзина пуста</h2>
+                                    <div class="empty-cart-after-delete"></div>
                                     <?php $CartTotal = 0 ?>
                                     @foreach(session('cart') as $id => $details)
 
                                         <?php $CartTotal += $details['price'] * $details['quantity'] ?>
                                         <div class="cart-product" id="cart-product-{{$id}}" style="padding: 20px;">
                                             <div class="row">
-                                                <div class="col-md-4" style="width: 170px">
+                                                <div class="col-md-4 cart-img">
                                                     <img class="cart-image" src="{{$details['image']}}" alt="">
                                                 </div>
-                                                <div class="col-md-6" style="width: 170px">
+                                                <div class="col-md-6 cart-title-style" style="width: 170px">
                                                     <div class="cart-title">
                                                         {{ Str::of($details['title'])->limit(15) }}
                                                     </div>
@@ -700,7 +702,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             </div>
                                         </div>
 
-                                        <div class="container" id="product-container-{{$id}}">
+                                        <div class="container product-container" id="product-container-{{$id}}">
                                             <hr class="cart-product-devider">
                                         </div>
 
@@ -871,9 +873,18 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
     $('.remove-from-cart').on('click', function () {
         var id = $(this).attr('id').replace('remove-product-', '')
-        console.log(id)
+
+        var count_elements = $('.product-container').length;
+
         $('#cart-product-' + id).remove()
         $('#product-container-' + id).remove()
+
+        if (count_elements <=1)  {
+            $('#empty-cart-after-delete').css('display', 'flex')
+            $('#empty-cart-after-delete').css('justify-content', 'center')
+            $('.cart-bottom').css('display', 'none')
+        }
+
         total_price()
     })
     function total_price() {

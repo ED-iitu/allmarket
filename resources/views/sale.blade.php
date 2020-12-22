@@ -122,7 +122,7 @@
         <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / Акции и Предложения</div>
     </div>
 
-    <div class="container">
+    <div class="container" style="overflow: visible">
         <div class="d-flex flex-row-reverse select-sort">
             <form>
                 <select class="category-sort" id="sort"
@@ -135,17 +135,17 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="overflow: visible">
         <div class="row">
             <div class="col-md-4">
                 <div class="sort-div">
                     <h2 class="sort-div-title" style="font-weight: bold;">Сортировать по</h2>
-                    <div class="container sort-by">
+                    <div class="container sort-by" style="overflow: visible">
                         <div class="menu-body">
                             <h2 style="padding-top: 20px; margin-left: 20px; color: #7791A4;font-size: 18px;font-style: normal;font-weight: 600;text-transform: uppercase; ">
                                 Цена:</h2>
                         </div>
-                        <div class="container">
+                        <div class="container" style="overflow: visible">
                             <hr class="left-menu-devider" style="margin-top: -10px">
                         </div>
                         <p>
@@ -178,7 +178,7 @@
                                              onClick="addToFavourites({{$product->id}})">
                                     </div>
                                 @endif
-                                <div class="container" style="padding: 15px">
+                                <div class="container" style="padding: 15px; overflow: visible;">
                                     <a href="{{route('product', $product->id)}}" style="text-decoration: none">
                                         <div class="product-image">
                                             <img class="product-img" src="{{$product->image}}" alt="">
@@ -196,12 +196,12 @@
                                         <div>
                                             @if (Session::get('username'))
                                                 <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                                    <button type="submit" class="add-to-cart" style="top: 82px">
+                                                    <button type="submit" class="add-to-cart sale-cart">
                                                         <img src="/images/add_to_cart.png" alt="">
                                                     </button>
                                                 </form>
                                             @else
-                                                <button href="#auth" uk-toggle class="add-to-cart" style="top: 82px;">
+                                                <button href="#auth" uk-toggle class="add-to-cart sale-cart">
                                                     <img src="/images/add_to_cart.png" alt="">
                                                 </button>
                                             @endif

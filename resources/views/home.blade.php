@@ -325,7 +325,7 @@
                 </div>
 
 
-            <section>
+            <section id="popular">
                 <h2 class="popular-title">Популярные товары <span class="popular-red"></span>
                     <hr class="product-line">
                 </h2>
@@ -407,7 +407,7 @@
                 </div>
             </section>
 
-            <section >
+            <section id="sale">
                 <h2 class="popular-title">Товары со скидкой <span class="sale-green"></span>
                     <hr class="product-line">
 
@@ -488,7 +488,7 @@
 
             </section>
 
-            <section>
+            <section id="recomended">
                 <h2 class="popular-title">Рекомендованные товары <span class="rec-blue"></span><hr class="product-line-recommended"></h2>
 
                 <div uk-slider autoplay="true">
@@ -589,7 +589,7 @@
     </section>
 
 
-    <section style="margin-top: 50px; margin-bottom: 50px">
+    <section style="margin-top: 50px; margin-bottom: 50px" id="partners">
         <div class="container">
             <div class="partners" style="display: flex; justify-content: center">
                 <h2 class="partner-heading">НАШИ ПАРТНЕРЫ</h2>
