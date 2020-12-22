@@ -14478,4 +14478,5 @@ button:focus {outline:0;}
 
 .addToCartSvg {
     width: 26px;
+    z-index: 10000;
 }
