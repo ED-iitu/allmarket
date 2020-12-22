@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="Added bg for cart">
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_22_12_2020__21_53.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
+    <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="updated cart minus, plus and total count">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
     </list>
@@ -622,7 +620,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607520099814</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated cart minus, plus and total count">
+      <created>1608656241841</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608656241841</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -675,7 +680,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added bg for cart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added bg for cart" />
+    <MESSAGE value="updated cart minus, plus and total count" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated cart minus, plus and total count" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Utils.php">

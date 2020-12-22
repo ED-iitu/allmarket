@@ -665,7 +665,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                     @foreach(session('cart') as $id => $details)
 
                                         <?php $CartTotal += $details['price'] * $details['quantity'] ?>
-                                        <div class="cart-product" style="padding: 20px;">
+                                        <div class="cart-product" id="cart-product-{{$id}}" style="padding: 20px;">
                                             <div class="row">
                                                 <div class="col-md-4" style="width: 170px">
                                                     <img class="cart-image" src="{{$details['image']}}" alt="">
@@ -692,14 +692,15 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2" style="width: 50px">
-                                                    <div><span class="remove-from-cart">
+                                                    <div><span class="remove-from-cart" id="remove-product-{{$id}}">
                                                             <img src="/images/exit.png" alt="">
-                                                        </span></div>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="container">
+                                        <div class="container" id="product-container-{{$id}}">
                                             <hr class="cart-product-devider">
                                         </div>
 
@@ -868,6 +869,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         total_price()
     });
 
+    $('.remove-from-cart').on('click', function () {
+        var id = $(this).attr('id').replace('remove-product-', '')
+        console.log(id)
+        $('#cart-product-' + id).remove()
+        $('#product-container-' + id).remove()
+        total_price()
+    })
     function total_price() {
         var total_product_val = 0
         $('.cart-price').each(function () {
@@ -875,6 +883,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
         $('.cart-total-price-money').html(total_product_val + ' тг')
     }
+
 </script>
 
 <script>
