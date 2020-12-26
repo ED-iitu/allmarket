@@ -14474,6 +14474,7 @@ button:focus {outline:0;}
 }
 
 .addToCartSvg {
+    background-attachment: fixed;
     width: 26px;
     z-index: 10000;
 }
