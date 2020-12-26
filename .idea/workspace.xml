@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="Added bg for cart">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,8 +33,8 @@
       <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="617" column="52" lean-forward="true" selection-start-line="617" selection-start-column="52" selection-end-line="617" selection-end-column="52" />
+            <state relative-caret-position="240">
+              <caret line="349" column="66" lean-forward="true" selection-start-line="349" selection-start-column="66" selection-end-line="349" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -41,8 +42,8 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="14485" column="32" lean-forward="true" selection-start-line="14485" selection-start-column="32" selection-end-line="14485" selection-end-column="32" />
+            <state relative-caret-position="177">
+              <caret line="11374" column="20" lean-forward="true" selection-start-line="11374" selection-start-column="20" selection-end-line="11374" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -141,7 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>almarket-word</find>
       <find>.faq-text-div</find>
       <find>console.log</find>
       <find>Оши</find>
@@ -171,6 +171,7 @@
       <find>empty-cart-after-delete</find>
       <find>768</find>
       <find>addToCart</find>
+      <find>30re</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,13 +193,13 @@
         <option value="$PROJECT_DIR$/resources/views/faq.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/personal-account.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/product-list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/sale.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/search-page.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/section.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/category-products.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
       </list>
     </option>
@@ -473,7 +474,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315308000" />
+    <option name="totallyTimeSpent" value="316470000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="816" extended-state="6" />
@@ -1080,13 +1081,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="617" column="52" lean-forward="true" selection-start-line="617" selection-start-column="52" selection-end-line="617" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/product.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
@@ -1161,10 +1155,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="349" column="66" lean-forward="true" selection-start-line="349" selection-start-column="66" selection-end-line="349" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="14485" column="32" lean-forward="true" selection-start-line="14485" selection-start-column="32" selection-end-line="14485" selection-end-column="32" />
+        <state relative-caret-position="177">
+          <caret line="11374" column="20" lean-forward="true" selection-start-line="11374" selection-start-column="20" selection-end-line="11374" selection-end-column="20" />
         </state>
       </provider>
     </entry>

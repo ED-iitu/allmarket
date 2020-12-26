@@ -11259,6 +11259,8 @@ body {
 }
 
 .product-image {
+    display: flex;
+    justify-content: center;
     padding: 15px;
     width: 211px;
     height: 217px;
@@ -11368,11 +11370,11 @@ body {
 }
 
 .product-img {
-    margin-top: 30px;
-    width: 178.73px;
-    height: 138.45px;
-    left: calc(50% - 178.73px / 2 - 388.64px);
-    top: 1590px;
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    align-items: center;
+    height: 100%;
 }
 
 .carousel-indicators li {
