@@ -77,14 +77,10 @@
                                     <div class="new-price">{{$product->price_sale}} тг</div>
                                     @if (Session::get('username'))
                                         <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                            <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                                <img src="images/add_to_cart.png" alt="">
-                                            </button>
+                                            <button type="submit" class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px"></button>
                                         </form>
                                     @else
-                                        <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                            <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
-                                        </button>
+                                        <button href="#auth" uk-toggle class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px"></button>
                                     @endif
                                 </div>
                             </div>

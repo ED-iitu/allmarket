@@ -372,14 +372,10 @@
                                                             <div class="new-price">{{$popular->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $popular->id)}}" method="GET">
-                                                                    <button type="submit" class="add-to-cart" style="background: url(/images/addToCart.svg) no-repeat center;">
-
-                                                                    </button>
+                                                                    <button type="submit" class="add-to-cart"></button>
                                                                 </form>
                                                             @else
-                                                                <button href="#auth" uk-toggle class="add-to-cart" style="background: url(/images/addToCart.svg) no-repeat center;">
-
-                                                                </button>
+                                                                <button href="#auth" uk-toggle class="add-to-cart"></button>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -455,14 +451,10 @@
                                                             <div class="new-price">{{$sale->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $sale->id)}}" method="GET">
-                                                                    <button type="submit" class="add-to-cart">
-                                                                        <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
-                                                                    </button>
+                                                                    <button type="submit" class="add-to-cart"></button>
                                                                 </form>
                                                             @else
-                                                                <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
-                                                                </button>
+                                                                <button href="#auth" uk-toggle class="add-to-cart"></button>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -532,14 +524,10 @@
                                                             <div class="new-price">{{$rec->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                             <form action="{{route('addToCart', $rec->id)}}" method="GET">
-                                                                <button type="submit" class="add-to-cart">
-                                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
-                                                                </button>
+                                                                <button type="submit" class="add-to-cart"></button>
                                                             </form>
                                                             @else
-                                                                <button href="#auth" uk-toggle class="add-to-cart">
-                                                                    <img class="addToCartSvg" src="/images/addToCart.svg" alt="">
-                                                                </button>
+                                                                <button href="#auth" uk-toggle class="add-to-cart"></button>
                                                             @endif
 
                                                         </div>

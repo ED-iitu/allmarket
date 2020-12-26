@@ -117,7 +117,6 @@
         }
 
         input[type=checkbox] {
-            display: flex;
             align-items: center;
             justify-content: center;
             -webkit-appearance: initial;
@@ -247,9 +246,9 @@
                                                 </div>
                                                 <div style="display: flex;align-items: center;justify-content: space-between;">
                                                     <div class="new-price">{{$favorite->product->price}} тг</div>
-                                                    <button class="add-to-cart" style="position: absolute; bottom: 15px; right: 5px">
-                                                        <img src="images/add_to_cart.png" alt="">
-                                                    </button>
+                                                    <form action="{{route('addToCart', $favorite->product->id)}}" method="GET">
+                                                        <button type="submit" class="add-to-cart"></button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

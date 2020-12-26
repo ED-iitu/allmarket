@@ -670,7 +670,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                         <div class="cart-product" id="cart-product-{{$id}}" style="padding: 20px;">
                                             <div class="row">
                                                 <div class="col-md-4 cart-img">
-                                                    <img class="cart-image" src="{{$details['image']}}" alt="">
+                                                    <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">
+                                                        <img class="cart-image" src="{{$details['image']}}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6 cart-title-style" style="width: 170px">
                                                     <div class="cart-title">
