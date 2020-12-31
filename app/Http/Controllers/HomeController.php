@@ -859,26 +859,13 @@ class HomeController extends Controller
 
     public function sale()
     {
-        //https://allmarket.armenianbros.com/api/v2/sales?city_id=6
-        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/sales', [
-            'query' => [
-                'city_id' => 6,
-                'paginate' => 10
-            ],
-            'auth' => [
-                'dev@allmarket.kz',
-                'dev'
-            ]
-        ]);
 
-        $response = $response->getBody()->getContents();
-
-        $response = json_decode($response);
+        $sale = $this->getSaleProducts();
 
         $sections    = $this->getAllSections();
         return view('sale', [
             'sections' => $sections->sections,
-            'sales' => $response
+            'sales' => $sale->products
         ]);
     }
 

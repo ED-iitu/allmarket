@@ -163,44 +163,50 @@
             </div>
             <div class="col-md-8 product-overflow" style="margin-top: 30px;">
                 <div class="row">
-                    @foreach($sales->sales as $product)
+                    @foreach($sales as $product)
                         <div class="col-md-4 product-list-mobile">
                             <div class="product">
                                 @if(in_array($product->id, (array)Session::get('favorited')))
                                     <div class="favorite">
-                                        <img id="addToFavorite" class="fav-image" src="/images/dislike.png"
-                                             style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt=""
-                                             onClick="addToFavourites({{$product->id}})">
+                                        <img id="addToFavorite" class="fav-image" src="images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$product->id}})">
                                     </div>
                                 @else
                                     <div class="favorite">
-                                        <img id="addToFavorite" class="fav-image" src="/images/like.png" alt=""
-                                             onClick="addToFavourites({{$product->id}})">
+                                        <img id="addToFavorite" class="fav-image" src="images/like.png" alt="" onClick="addToFavourites({{$product->id}})">
                                     </div>
                                 @endif
-                                <div class="container" style="padding: 15px; overflow: visible;">
-                                    <a href="{{route('product', $product->id)}}" style="text-decoration: none">
+                                <div class="container" style="padding: 15px">
+                                    <a href="{{route('product', $product->id)}}">
                                         <div class="product-image">
                                             <img class="product-img" src="{{$product->image}}" alt="">
                                         </div>
                                     </a>
                                     <div class="product-info" style="margin-top: 15px; position: relative">
-                                        <div class="product-title">
-                                            {{ Str::of($product->title)->limit(30) }}
+                                        <a href="{{route('product', $product->id)}}">
+                                            <div class="product-title">
+                                                {{ Str::of($product->title)->limit(25) }}
 
-                                        </div>
+                                            </div>
+                                        </a>
                                         <div class="product-category">
-                                            {{ Str::of($product->type->title)->limit(22) }}
+                                            {{ Str::of($product->category->title)->limit(15) }}
                                         </div>
 
                                         <div>
-                                            @if (Session::get('username'))
-                                                <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                                    <button type="submit" class="add-to-cart sale-cart"></button>
-                                                </form>
-                                            @else
-                                                <button href="#auth" uk-toggle class="add-to-cart sale-cart"></button>
-                                            @endif
+                                            <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="old-price">{{$product->price}} тг</div>
+                                            </div>
+                                            <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="new-price">{{$product->price_sale}} тг</div>
+                                                @if (Session::get('username'))
+                                                    <form action="{{route('addToCart', $product->id)}}" method="GET">
+                                                        <button type="submit" class="add-to-cart"></button>
+                                                    </form>
+                                                @else
+                                                    <button href="#auth" uk-toggle class="add-to-cart"></button>
+                                                @endif
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
