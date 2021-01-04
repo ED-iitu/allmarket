@@ -233,7 +233,7 @@
                                         </a>
                                         <div class="product-info" style="margin-top: 15px; position: relative">
                                             <div class="product-title">
-                                                {{$favorite->product->title}}
+                                                {{ Str::of($favorite->product->title)->limit(25) }}
 
                                             </div>
                                             <div class="product-category">

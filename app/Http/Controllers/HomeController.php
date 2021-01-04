@@ -59,7 +59,7 @@ class HomeController extends Controller
     public function getFavorite($token)
     {
         try {
-            $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/favorites', [
+            $response = $this->client->request('GET', env('API_URL').'/favorites', [
                 'query' => [
                     'city_id' => 6,
                 ],
@@ -92,7 +92,7 @@ class HomeController extends Controller
 
         if (null !== $token) {
 
-                $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/favorites', [
+                $this->client->request('POST', env('API_URL').'/favorites', [
                     'query' => [
                         'city_id' => 6,
                     ],
@@ -127,10 +127,11 @@ class HomeController extends Controller
     public function getPopularProduct()
     {
 
-        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/popular', [
+        $response = $this->client->request('GET', env('API_URL').'/products/popular', [
             'query' => [
                 'city_id' => 6,
-                'paginate' =>15
+                'paginate' =>30,
+                'order' => "price.desc"
                 ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -146,9 +147,11 @@ class HomeController extends Controller
     public function getRecommendedProducts()
     {
 
-        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/recommended', [
+        $response = $this->client->request('GET', env('API_URL').'/products/recommended', [
             'query' => [
                 'city_id' => 6,
+                'paginate' =>30,
+                'order' => "price.desc"
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -164,10 +167,11 @@ class HomeController extends Controller
     public function getSaleProducts()
     {
 
-        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/sale', [
+        $response = $this->client->request('GET', env('API_URL').'/products/sale', [
             'query' => [
                 'city_id' => 6,
-                'paginate' => 10
+                'paginate' => 30,
+                'order' => "price.asc"
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -183,7 +187,7 @@ class HomeController extends Controller
     public function getAllSections()
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/product_sections', [
+        $response = $client->request('GET', env('API_URL').'/product_sections', [
             'auth' => [
                 'dev@allmarket.kz',
                 'dev'
@@ -228,7 +232,7 @@ class HomeController extends Controller
     public function getSectionById($sectionId)
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/product_sections/'.$sectionId, [
+        $response = $client->request('GET', env('API_URL').'/product_sections/'.$sectionId, [
             'query' => [
                 'city_id' => 6,
             ],
@@ -259,7 +263,7 @@ class HomeController extends Controller
     public function getSections($id)
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/product_sections/'.$id.'/categories', [
+        $response = $client->request('GET', env('API_URL').'/product_sections/'.$id.'/categories', [
             'auth' => [
                 'dev@allmarket.kz',
                 'dev'
@@ -277,9 +281,11 @@ class HomeController extends Controller
     public function getProductsBySectionId($sectionId)
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/product_sections/'.$sectionId.'/products', [
+        $response = $client->request('GET', env('API_URL').'/product_sections/'.$sectionId.'/products', [
             'query' => [
                 'city_id' => 6,
+                'paginate' => 30,
+                'order' => 'price.asc'
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -295,7 +301,7 @@ class HomeController extends Controller
     public function product($id)
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/'.$id, [
+        $response = $client->request('GET', env('API_URL').'/products/'.$id, [
             'query' => [
                 'city_id' => 6,
             ],
@@ -325,7 +331,7 @@ class HomeController extends Controller
     public function getProductsByCategoryId($section_id, $category_id )
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/product_categories/'.$category_id.'/products', [
+        $response = $client->request('GET', env('API_URL').'/product_categories/'.$category_id.'/products', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -369,7 +375,7 @@ class HomeController extends Controller
 
         try {
 
-            $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/register', [
+            $client->request('POST', env('API_URL').'/auth/register', [
                 'auth' => [
                     'dev@allmarket.kz',
                     'dev'
@@ -410,7 +416,7 @@ class HomeController extends Controller
 
         try {
 
-            $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/login', [
+            $client->request('POST', env('API_URL').'/auth/login', [
                 'auth' => [
                     'dev@allmarket.kz',
                     'dev'
@@ -455,7 +461,7 @@ class HomeController extends Controller
 
         try {
 
-            $responce = $client->request('POST', 'https://allmarket.armenianbros.com/api/v2/auth/verify', [
+            $responce = $client->request('POST', env('API_URL').'/auth/verify', [
                 'auth' => [
                     'dev@allmarket.kz',
                     'dev'
@@ -501,7 +507,7 @@ class HomeController extends Controller
 
         try {
 
-            $responce = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/users',
+            $responce = $client->request('GET', env('API_URL').'/users',
                 [
                     'headers' =>
                         [
@@ -549,7 +555,7 @@ class HomeController extends Controller
         $token = session()->get('token');
         //https://allmarket.armenianbros.com/api/v2/orders/633/clone?city_id=2
 
-        $responce =  $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/orders/'.$request->id . '/clone', [
+        $responce =  $this->client->request('POST', env('API_URL').'/orders/'.$request->id . '/clone', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -620,7 +626,7 @@ class HomeController extends Controller
     {
         //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=2
 
-        return  $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/baskets/increase', [
+        return  $this->client->request('POST', env('API_URL').'/baskets/increase', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -663,7 +669,7 @@ class HomeController extends Controller
                     "title" => $product->title,
                     "category" => $product->category->title,
                     "quantity" => 1,
-                    "price" => $product->price_sale,
+                    "price" => $product->price,
                     "image" => $product->image
                 ]
             ];
@@ -692,7 +698,7 @@ class HomeController extends Controller
     {
         try {
             $client = new Client();
-            $response = $client->request('GET', 'https://allmarket.armenianbros.com/api/v2/products/' . $id, [
+            $response = $client->request('GET', env('API_URL').'/products/' . $id, [
                 'query' => [
                     'city_id' => 6,
                 ],
@@ -719,7 +725,7 @@ class HomeController extends Controller
         //https://allmarket.armenianbros.com/api/v2/orders
 
         $token = session()->get('token');
-        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/orders', [
+        $response = $this->client->request('GET', env('API_URL').'/orders', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -744,7 +750,7 @@ class HomeController extends Controller
         }
 
         try {
-            $responce = $this->client->request('PUT', 'https://allmarket.armenianbros.com/api/v2/users',
+            $responce = $this->client->request('PUT', env('API_URL').'/users',
                 [
                     'headers' =>
                         [
@@ -780,7 +786,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        $responce = $this->client->request('DELETE', 'https://allmarket.armenianbros.com/api/v2/baskets', [
+        $responce = $this->client->request('DELETE', env('API_URL').'/baskets', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -799,7 +805,7 @@ class HomeController extends Controller
     {
         $token = session()->get('token');
 
-        $responce = $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/checkout', [
+        $responce = $this->client->request('POST', env('API_URL').'/checkout', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -816,7 +822,7 @@ class HomeController extends Controller
     {
         $token = session()->get('token');
 
-        $responce = $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/orders', [
+        $responce = $this->client->request('POST', env('API_URL').'/orders', [
             'query' => [
                 'city_id' => 6,
                 'address' => $request->address,
@@ -843,7 +849,7 @@ class HomeController extends Controller
 
         $token = session()->get('token');
 
-        $responce = $this->client->request('POST', 'https://allmarket.armenianbros.com/api/v2/order_payments', [
+        $responce = $this->client->request('POST', env('API_URL').'/order_payments', [
             'query' => [
                 'order_id' => $orderId,
                 'type_id' => $type,
