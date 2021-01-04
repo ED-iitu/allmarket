@@ -415,6 +415,7 @@
                         <div class="uk-slider-container uk-light">
                             <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m" style="margin-bottom: 20px">
                                 @foreach ($recommended_products as $sale)
+                                    @if ($sale->price_sale != 0)
                                     <li style="display: flex; justify-content: center">
                                         <div class="product">
                                             @if(in_array($sale->id, (array)Session::get('favorited')))
@@ -462,6 +463,7 @@
                                             </div>
                                         </div>
                                     </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
