@@ -75,7 +75,7 @@
                                 <a class="dropdown-item profile-list" href="/account#account-favorite">Избранные
                                     товары</a>
                                 <a class="dropdown-item profile-list" href="/account#account-order">История заказов</a>
-                                <a class="dropdown-item profile-list" href="/account#account-зкщашду">Мои данные</a>
+                                <a class="dropdown-item profile-list" href="/account#account-profile">Мои данные</a>
                                 <a class="dropdown-item profile-list" href="{{route('logout')}}">Выход</a>
                             </div>
                         @else
@@ -172,7 +172,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/account#account-favorite">Избранные товары</a>
                             <a class="dropdown-item" href="/account#account-order">История заказов</a>
-                            <a class="dropdown-item" href="/account#account-зкщашду">Мои данные</a>
+                            <a class="dropdown-item" href="/account#account-profile">Мои данные</a>
                             <a class="dropdown-item" href="{{route('logout')}}">Выход</a>
                         </div>
                     @else

@@ -365,11 +365,17 @@
                                                     </div>
 
                                                     <div>
+                                                        @if ($popular->price !== 0)
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="old-price">{{$popular->price_sale}} тг</div>
+                                                            <div class="old-price">{{$popular->price}} тг</div>
                                                         </div>
+                                                        @endif
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="new-price">{{$popular->price}} тг</div>
+                                                            @if($popular->price_sale != 0)
+                                                            <div class="new-price">{{$popular->price_sale}} тг</div>
+                                                            @else
+                                                                <div class="new-price">{{$popular->price}} тг</div>
+                                                            @endif
                                                             @if (Session::get('username'))
                                                                 <form action="{{route('addToCart', $popular->id)}}" method="GET">
                                                                     <button type="submit" class="add-to-cart"></button>
@@ -445,9 +451,11 @@
                                                     </div>
 
                                                     <div>
+                                                        @if ($sale->price != 0)
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="old-price">{{$sale->price}} тг</div>
                                                         </div>
+                                                        @endif
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$sale->price_sale}} тг</div>
                                                             @if (Session::get('username'))

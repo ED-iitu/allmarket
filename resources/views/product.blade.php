@@ -69,7 +69,12 @@
                                     </div>
                                     <div class="flex-column">
                                         <div class="old-price">{{$product->price}} тг</div>
+                                        @if($product->price_sale != 0)
                                         <div class="new-price">{{$product->price_sale}} тг</div>
+                                        @else
+                                            <div class="new-price">{{$product->price}} тг</div>
+                                        @endif
+
                                     </div>
                                 </div>
                                 <hr class="product-devider">

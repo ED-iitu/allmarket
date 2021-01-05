@@ -133,7 +133,7 @@
         }
 
         input[type="checkbox"]:checked:after{
-
+            display: flex;
             font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
@@ -338,13 +338,13 @@
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label account-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control-plaintext account-input" name="email" id="email" placeholder="E-main" value="{{$user->email}}">
+                                    <input type="text" class="form-control-plaintext account-input" name="email" id="email" placeholder="E-mail" value="{{$user->email}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label account-label"></label>
                                 <div class="col-sm-8" style="display: flex">
-                                    <input type="checkbox" id="happy" name="happy" value="yes" required>
+                                    <input type="checkbox" id="happy" name="happy" value="yes" required style="display: flex;">
                                     <label for="happy"  style="margin-left: 10px" class="account-agree">Я принимаю условия Политики и даю согласие на обработку моих персональных данных данных</label>
                                 </div>
                             </div>

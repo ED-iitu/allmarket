@@ -646,6 +646,7 @@ class HomeController extends Controller
     {
        $product = $this->getProductById($id);
        $token = session()->get('token');
+       $productPrice = 0;
 
        if (null === $token) {
            return redirect()->back()->with('error', 'Не удалось найти пользователя');
@@ -659,7 +660,15 @@ class HomeController extends Controller
         }
 
         $this->addToServerCart($token, $id, $offerId,  1);
+        
 
+        if ($product->price_sale > $product->price) {
+            $productPrice = $product->price_sale;
+        } elseif ($product->price_sale == 0) {
+            $productPrice = $product->price;
+        } else {
+            $productPrice = $product->price_sale;
+        }
 
         $cart = session()->get('cart');
         // if cart is empty then this the first product
@@ -669,7 +678,7 @@ class HomeController extends Controller
                     "title" => $product->title,
                     "category" => $product->category->title,
                     "quantity" => 1,
-                    "price" => $product->price,
+                    "price" => $productPrice,
                     "image" => $product->image
                 ]
             ];
@@ -687,7 +696,7 @@ class HomeController extends Controller
             "title" => $product->title,
             "category" => $product->category->title,
             "quantity" => 1,
-            "price" => $product->price_sale,
+            "price" => $productPrice,
             "image" => $product->image
         ];
         session()->put('cart', $cart);
@@ -743,6 +752,10 @@ class HomeController extends Controller
 
     public function updateUserData(Request $request)
     {
+        if ($request->happy != 'yes') {
+            return redirect()->back()->with('error', 'Для обновления Вам необходимо принять условия Полиитики');
+        }
+
         $token = session()->get('token');
 
         if (null == $token) {
@@ -767,6 +780,10 @@ class HomeController extends Controller
             );
 
             if ($responce) {
+                session()->remove('username');
+                session()->remove('phone');
+                session()->put('username', $request->name);
+                session()->put('phone', $request->phone);
                 return redirect()->back()->with('success', 'Данные успешно обновлены');
             }
 
