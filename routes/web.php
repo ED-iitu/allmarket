@@ -34,6 +34,9 @@ Route::get('cart/deleteAll', 'HomeController@basketDelete')->name('deleteCart');
 Route::get('cart/checkout', 'HomeController@checkout')->name('checkoutCart');
 Route::post('cart/createOrder', 'HomeController@createUserOrder')->name('createOrder');
 Route::post('order/repeat', 'HomeController@cloneOrder')->name('cloneOrder');
+Route::get('shares', 'HomeController@shares')->name('shares');
+Route::get('shares/{id}', 'HomeController@getSharesById')->name('share');
+Route::post('city', 'HomeController@addCityToSession')->name('sessionCity');
 
 
 

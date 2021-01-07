@@ -11960,6 +11960,7 @@ input {
 }
 
 .mobile-nav-after-cart {
+    width: 100%;
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -12834,6 +12835,14 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
+    .product-category {
+        width: 115px;
+    }
+
+    .share_price {
+        top: 70px !important;
+    }
+
     .cart-img {
         width: 140px;
     }
@@ -13156,7 +13165,7 @@ and (max-width: 768px) {
         font-weight: 600 !important;
         font-size: 9.827px !important;
         line-height: 11px !important;
-        width: 128.62px !important;
+        width: 115px !important;
     }
 
     .add-to-cart {
@@ -14325,7 +14334,7 @@ and (min-width: 376px){
         width: 325px !important;
     }
     .login-form {
-        width: 326px;
+        width: 313px;
     }
     .social {
         width: 49px;

@@ -81,12 +81,15 @@
                         @else
 
                             <a class="nav-link" href="#auth" uk-toggle>
-                                Вход / Регистрация
+                                Войти
                             </a>
                         @endif
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('sale')}}">Акции & Скидки</a>
+                        <a class="nav-link" href="{{route('sale')}}">Скидки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('shares')}}">Акции</a>
                     </li>
                     <li class="nav-item">
                         <div style="margin-top: -4px">
@@ -180,7 +183,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div href="#auth" uk-toggle>Вход</div>
                         <div href="#auth" uk-toggle>Регистрация</div>
                     @endif
-                    <div><a class="menu-links" href="{{route('sale')}}">Акции & Скидки</a></div>
+                    <div><a class="menu-links" href="{{route('sale')}}">Скидки</a></div>
+                    <div><a class="menu-links" href="{{route('shares')}}">Акции</a></div>
                     <div><a class="menu-links" href="{{route('faq')}}">F.A.Q</a></div>
                     <div><a class="menu-links" href="{{route('about')}}">О нас</a></div>
                     <hr>

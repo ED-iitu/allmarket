@@ -42,7 +42,7 @@
                             <div class="container" style="padding: 15px">
                                 <a href="{{route('product', $product->id)}}" style="text-decoration: none">
                                     <div class="product-image" style="width: 316px !important;height: 413px !important;">
-                                        <img class="product-img" style="width: 285px !important;height: 221px !important; margin-top: 60px !important;" src="{{$product->image}}" alt="">
+                                        <img class="product-img" src="{{$product->image}}" alt="">
                                     </div>
                                 </a>
                                 <div class="product-info" style="margin-top: 15px; position: relative">

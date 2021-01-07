@@ -89,7 +89,6 @@ class HomeController extends Controller
         $successData['success'] = 'Товар успешно добавлен в избранное';
         $deletedSuccess['success'] = 'Товар успешно удален из избранных';
 
-
         if (null !== $token) {
 
                 $this->client->request('POST', env('API_URL').'/favorites', [
@@ -229,12 +228,13 @@ class HomeController extends Controller
         ]);
     }
 
-    public function getSectionById($sectionId)
+    public function getSectionById($sectionId, Request $request)
     {
         $client = new Client();
         $response = $client->request('GET', env('API_URL').'/product_sections/'.$sectionId, [
             'query' => [
                 'city_id' => 6,
+
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -242,15 +242,17 @@ class HomeController extends Controller
             ]
         ]);
 
-        $products = $this->getProductsBySectionId($sectionId);
-
+        $products = $this->getProductsBySectionId($sectionId, $request);
         $response = $response->getBody()->getContents();
-        $sections    = $this->getAllSections();
+        $sections = $this->getAllSections();
+        $res      = json_decode($response);
 
-
-
-        $res = json_decode($response);
-
+        if (\request()->ajax()) {
+            return view('section-product-list', [
+                'products' => $products->products,
+                'links'    => $products->links,
+            ]);
+        }
 
         return view('section', [
             'section' => $res->section,
@@ -278,14 +280,14 @@ class HomeController extends Controller
         return $res->categories;
     }
 
-    public function getProductsBySectionId($sectionId)
+    public function getProductsBySectionId($sectionId, $request)
     {
         $client = new Client();
         $response = $client->request('GET', env('API_URL').'/product_sections/'.$sectionId.'/products', [
             'query' => [
                 'city_id' => 6,
                 'paginate' => 30,
-                'order' => 'price.asc'
+                'order' => $request->order ?? 'price.desc'
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -660,7 +662,7 @@ class HomeController extends Controller
         }
 
         $this->addToServerCart($token, $id, $offerId,  1);
-        
+
 
         if ($product->price_sale > $product->price) {
             $productPrice = $product->price_sale;
@@ -891,5 +893,79 @@ class HomeController extends Controller
             'sales' => $sale->products
         ]);
     }
+
+    public function getSharesList()
+    {
+        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/sales', [
+            'query' => [
+                'city_id' => 2,
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+        return json_decode($response);
+    }
+
+    public function shares()
+    {
+        $sections = $this->getAllSections();
+        $shares = $this->getSharesList();
+
+        return view('shares' ,[
+            'sections' => $sections->sections,
+            'shares' => $shares
+        ]);
+    }
+
+
+    public function getSharesById($id)
+    {
+        $sections = $this->getAllSections();
+        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/sales/'.$id, [
+            'query' => [
+                'city_id' => 2,
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+        $shareProducts = $this->getShareProducts($response);
+
+        $response = json_decode($response);
+
+        return view('shares-product-list', [
+            'sections' => $sections->sections,
+            'share' => $response->sale,
+            'shareProducts' => $shareProducts
+        ]);
+
+
+    }
+
+    protected function getShareProducts($data)
+    {
+        $data = json_decode($data);
+        $products = [];
+
+        foreach ($data->sale->offers as $offers) {
+            foreach ($offers->rules as $key => $rules) {
+                foreach ($rules as $rule) {
+                    $products[] = $rule;
+                }
+            }
+        }
+
+        return $products;
+    }
+
 
 }
