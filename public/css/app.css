@@ -14329,6 +14329,10 @@ and (min-width: 376px){
     .login-form {
         width: 313px;
     }
+
+    .signIn-form {
+        width: 313px;
+    }
     .social {
         width: 49px;
         height: 37px;

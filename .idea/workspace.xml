@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/mobile-cart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/mobile-close-cart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/mobile-menu-list.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/mobile-phone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/ok.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/category-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/category-products.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personal-account.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal-account.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/sale.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sale.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/section-product-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/section-product-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/section.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/section.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shares.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shares.blade.php" afterDir="false" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,6 +51,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="14333" column="20" selection-start-line="14333" selection-start-column="20" selection-end-line="14333" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="personal-account.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/personal-account.blade.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -93,16 +89,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="section.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/section.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="133" column="21" selection-start-line="128" selection-start-column="12" selection-end-line="133" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="192">
@@ -222,7 +209,6 @@
         <option value="$PROJECT_DIR$/resources/views/shares-product-list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/shares.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/resources/views/section.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/category-products.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/sale.blade.php" />
@@ -231,6 +217,7 @@
         <option value="$PROJECT_DIR$/resources/views/personal-account.blade.php" />
         <option value="$PROJECT_DIR$/config/cors.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/public/css/app.css" />
       </list>
     </option>
   </component>
@@ -400,6 +387,17 @@
             <path>
               <item name="allMarket" type="b2602c69:ProjectViewProjectNode" />
               <item name="allMarket" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="allMarket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="allMarket" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="allMarket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="allMarket" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -487,10 +485,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="358923000" />
+    <option name="totallyTimeSpent" value="359716000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="816" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50143063" side_tool="true" weight="0.32823366" />
@@ -498,9 +497,9 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32962447" />
       <window_info id="npm" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4985694" visible="true" weight="0.32823366" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4985694" visible="true" weight="0.32823366" />
       <window_info anchor="right" id="Remote Host" order="5" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.3297568" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49928468" weight="0.32823366" />
@@ -819,13 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3619">
-          <caret line="6082" selection-start-line="6082" selection-end-line="6082" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/section.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -922,6 +914,13 @@
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="14333" column="20" selection-start-line="14333" selection-start-column="20" selection-end-line="14333" selection-end-column="20" />
         </state>
       </provider>
     </entry>
