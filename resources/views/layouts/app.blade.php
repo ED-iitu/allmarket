@@ -36,6 +36,12 @@
 </head>
 <body>
 <div id="app">
+    @if ($message = Session::get('username'))
+        <input type="hidden" id="login" value="{{Session::get('username')}}">
+    @else
+        <input type="hidden" id="login" value="not">
+    @endif
+
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -1266,25 +1272,33 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             success: function (data) {
                 $('#modal-body').html('')
 
-                if ($("#addToFavorite"+id).attr('src') == '/images/dislike.png')  {
-                    $("#addToFavorite"+id).css('width', '31px')
-                    $("#addToFavorite"+id).css('height', '26px')
-                    $("#addToFavorite"+id).css('margin-left', '9px')
-                    $("#addToFavorite"+id).css('margin-top', '30px')
-                    $("#addToFavorite"+id).attr('src','/images/like.png')
-                    $('#modal-body').append("Товар удален из избранных")
+                if ($("#login").val() == 'not')  {
+                    $('#modal-body').append("Вы должны быть авторизованным")
                     $('#your-modal').modal('toggle');
+                    // $("#addToFavorite"+id).attr('src','/images/dislike.png');
 
                 } else {
-                    $("#addToFavorite"+id).attr('src','/images/dislike.png')
-                    $("#addToFavorite"+id).css('width', '75px')
-                    $("#addToFavorite"+id).css('height', '45px')
-                    $("#addToFavorite"+id).css('margin-left', '0px')
-                    $("#addToFavorite"+id).css('margin-top', '15px')
-                    $('#modal-body').append("Товар добавлен в избранное")
-                    $('#your-modal').modal('toggle');
+                    if ($("#addToFavorite"+id).attr('src') == '/images/dislike.png')  {
+                        $("#addToFavorite"+id).css('width', '31px')
+                        $("#addToFavorite"+id).css('height', '26px')
+                        $("#addToFavorite"+id).css('margin-left', '9px')
+                        $("#addToFavorite"+id).css('margin-top', '30px')
+                        $("#addToFavorite"+id).attr('src','/images/like.png')
+                        $('#modal-body').append("Товар удален из избранных")
+                        $('#your-modal').modal('toggle');
+
+                    } else {
+                        $("#addToFavorite"+id).attr('src','/images/dislike.png')
+                        $("#addToFavorite"+id).css('width', '75px')
+                        $("#addToFavorite"+id).css('height', '45px')
+                        $("#addToFavorite"+id).css('margin-left', '0px')
+                        $("#addToFavorite"+id).css('margin-top', '15px')
+                        $('#modal-body').append("Товар добавлен в избранное")
+                        $('#your-modal').modal('toggle');
+                    }
+
                 }
-               // $("#addToFavorite"+id).attr('src','/images/dislike.png');
+
                 setTimeout(function() {$('#your-modal').modal('hide');}, 2000);
 
             },
