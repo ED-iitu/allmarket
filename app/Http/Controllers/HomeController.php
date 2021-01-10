@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ClientException;
 use Session;
+use Redirect;
 
 class HomeController extends Controller
 {
@@ -163,14 +164,14 @@ class HomeController extends Controller
         return json_decode($response);
     }
 
-    public function getSaleProducts()
+    public function getSaleProducts(Request $request = null)
     {
 
         $response = $this->client->request('GET', env('API_URL').'/products/sale', [
             'query' => [
                 'city_id' => 6,
                 'paginate' => 30,
-                'order' => "price.asc"
+                'order' => $request->order ?? "price.asc"
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -246,6 +247,20 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
         $sections = $this->getAllSections();
         $res      = json_decode($response);
+
+        $token = session()->get('token');
+
+        if ($token != null) {
+            $ids = $this->getFavorite($token);
+
+            foreach ($ids as $id) {
+                $favIds[$id->product->id] = $id->product->id;
+            }
+
+            if (!empty($favIds)) {
+                session()->put('favorited', $favIds);
+            }
+        }
 
         if (\request()->ajax()) {
             return view('section-product-list', [
@@ -330,12 +345,14 @@ class HomeController extends Controller
 
     }
 
-    public function getProductsByCategoryId($section_id, $category_id )
+    public function getProductsByCategoryId($section_id, $category_id, Request $request)
     {
         $client = new Client();
         $response = $client->request('GET', env('API_URL').'/product_categories/'.$category_id.'/products', [
             'query' => [
                 'city_id' => 6,
+                'paginate' => 30,
+                'order' => $request->order ?? 'price.desc'
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -348,15 +365,33 @@ class HomeController extends Controller
         $res = json_decode($response);
         $category = "";
 
+        $token = session()->get('token');
 
-       foreach ($res->products as $cat) {
-           $category = $cat->category->title;
-       }
+        if ($token != null) {
+            $ids = $this->getFavorite($token);
 
+            foreach ($ids as $id) {
+                $favIds[$id->product->id] = $id->product->id;
+            }
+
+            if (!empty($favIds)) {
+                session()->put('favorited', $favIds);
+            }
+        }
+
+        foreach ($res->products as $cat) {
+            $category = $cat->category->title;
+        }
 
         $categories = $this->getSections($section_id);
         $sections    = $this->getAllSections();
 
+        if (\request()->ajax()) {
+            return view('section-product-list', [
+                'products' => $res->products,
+                'links'    => $res->links,
+            ]);
+        }
 
         return view('category-products', [
             'category' => $category,
@@ -628,7 +663,7 @@ class HomeController extends Controller
     {
         //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=2
 
-        return  $this->client->request('POST', env('API_URL').'/baskets/increase', [
+        $responce =  $this->client->request('POST', env('API_URL').'/baskets/increase', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -642,6 +677,10 @@ class HomeController extends Controller
                 'Accept' => 'application/json'
             ]
         ]);
+
+        $res = $responce->getBody()->getContents();
+
+        return json_decode($res);
     }
 
     public function addToCart($id)
@@ -844,11 +883,14 @@ class HomeController extends Controller
         $responce = $this->client->request('POST', env('API_URL').'/orders', [
             'query' => [
                 'city_id' => 6,
+            ],
+            'form_params' => [
                 'address' => $request->address,
                 'phone' => $request->phone,
                 'delivery_time_id' => $request->delivery_time_id,
                 'comment' => $request->comment ?? null
             ],
+            'debug' => true,
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
                 'Accept' => 'application/json'
@@ -856,6 +898,22 @@ class HomeController extends Controller
         ]);
 
         $res = $responce->getBody()->getContents();
+
+        $res = json_decode($res);
+
+        if ($request->payment_type == 2) {
+            $res = $this->createPayment($res->id, 2, '', 1);
+            $data = [
+                'Signed_Order_B64' => $res->epay->params->Signed_Order_B64,
+                'appendix' => $res->epay->params->appendix,
+                'BackLink' => $res->epay->params->BackLink,
+                'FailureBackLink' => $res->epay->params->FailureBackLink,
+                'PostLink' => $res->epay->params->PostLink,
+                'email' => $res->epay->params->email,
+                'person_id' => $res->epay->params->person_id
+            ];
+
+        }
 
         session()->remove('cart');
 
@@ -869,7 +927,7 @@ class HomeController extends Controller
         $token = session()->get('token');
 
         $responce = $this->client->request('POST', env('API_URL').'/order_payments', [
-            'query' => [
+            'form_params' => [
                 'order_id' => $orderId,
                 'type_id' => $type,
                 'promo_code' => $promo_code ?? '',
@@ -880,23 +938,49 @@ class HomeController extends Controller
                 'Accept' => 'application/json'
             ]
         ]);
+
+        $res = $responce->getBody()->getContents();
+        $res = json_decode($res);
+
+        return $res;
     }
 
-    public function sale()
+    public function sale(Request $request)
     {
 
-        $sale = $this->getSaleProducts();
+        $sale = $this->getSaleProducts($request);
+
+        $token = session()->get('token');
+
+        if ($token != null) {
+            $ids = $this->getFavorite($token);
+
+            foreach ($ids as $id) {
+                $favIds[$id->product->id] = $id->product->id;
+            }
+
+            if (!empty($favIds)) {
+                session()->put('favorited', $favIds);
+            }
+        }
+
+        if (\request()->ajax()) {
+            return view('section-product-list', [
+                'products' => $sale->products,
+                'links'    => $sale->links,
+            ]);
+        }
 
         $sections    = $this->getAllSections();
         return view('sale', [
             'sections' => $sections->sections,
-            'sales' => $sale->products
+            'products' => $sale->products
         ]);
     }
 
     public function getSharesList()
     {
-        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/sales', [
+        $response = $this->client->request('GET', env('API_URL').'/sales', [
             'query' => [
                 'city_id' => 2,
             ],
@@ -926,7 +1010,7 @@ class HomeController extends Controller
     public function getSharesById($id)
     {
         $sections = $this->getAllSections();
-        $response = $this->client->request('GET', 'https://allmarket.armenianbros.com/api/v2/sales/'.$id, [
+        $response = $this->client->request('GET', env('API_URL').'/sales/'.$id, [
             'query' => [
                 'city_id' => 2,
             ],

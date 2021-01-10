@@ -230,25 +230,4 @@
 
     </script>
 
-    <script>
-        function getProductByAjax(filter, page = 1) {
-            $('.spiner').css('display', 'flex')
-            var ajax_url = '?' + filter + '&page=' + page
-            $.ajax({
-                url: ajax_url,
-                type: 'GET',
-                datatype: "html",
-
-            }).done(function (data) {
-                $('.spiner').css('display', 'none')
-                $("#product_list_block").empty().html(data);
-            });
-        }
-
-        $("#sort").change(function () {
-            var filter = $(this).val()
-            filter = 'order=' + filter
-            getProductByAjax(filter)
-        });
-    </script>
 @endsection

@@ -119,19 +119,17 @@
     </style>
 
     <div class="container">
-        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / Акции и Предложения</div>
+        <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / Скидки</div>
     </div>
 
     <div class="container" style="overflow: visible">
         <div class="d-flex flex-row-reverse select-sort">
-            <form>
-                <select class="category-sort" id="sort"
-                        style="font-size: 18px;font-family: Montserrat; font-weight: 600; color: #43637A;width: 260px; padding: 9px">
-                    <option>По популярности</option>
-                    <option>По уменьшению цены</option>
-                    <option>По возрастанию цены</option>
-                </select>
-            </form>
+            <select class="category-sort" id="sort"
+                    style="font-size: 18px;font-family: Montserrat; font-weight: 600; color: #43637A;width: 260px; padding: 9px">
+                <option value="views.asc">По популярности</option>
+                <option value="price.desc">По уменьшению цены</option>
+                <option value="price.asc">По возрастанию цены</option>
+            </select>
         </div>
     </div>
 
@@ -162,57 +160,11 @@
 
             </div>
             <div class="col-md-8 product-overflow" style="margin-top: 30px;">
-                <div class="row">
-                    @foreach($sales as $product)
-                        <div class="col-md-4 product-list-mobile">
-                            <div class="product">
-                                @if(in_array($product->id, (array)Session::get('favorited')))
-                                    <div class="favorite">
-                                        <img id="addToFavorite" class="fav-image" src="images/dislike.png" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" alt="" onClick="addToFavourites({{$product->id}})">
-                                    </div>
-                                @else
-                                    <div class="favorite">
-                                        <img id="addToFavorite" class="fav-image" src="images/like.png" alt="" onClick="addToFavourites({{$product->id}})">
-                                    </div>
-                                @endif
-                                <div class="container" style="padding: 15px">
-                                    <a href="{{route('product', $product->id)}}">
-                                        <div class="product-image">
-                                            <img class="product-img" src="{{$product->image}}" alt="">
-                                        </div>
-                                    </a>
-                                    <div class="product-info" style="margin-top: 15px; position: relative">
-                                        <a href="{{route('product', $product->id)}}">
-                                            <div class="product-title">
-                                                {{ Str::of($product->title)->limit(25) }}
-
-                                            </div>
-                                        </a>
-                                        <div class="product-category">
-                                            {{ Str::of($product->category->title)->limit(15) }}
-                                        </div>
-
-                                        <div>
-                                            <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                <div class="old-price">{{$product->price}} тг</div>
-                                            </div>
-                                            <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                <div class="new-price">{{$product->price_sale}} тг</div>
-                                                @if (Session::get('username'))
-                                                    <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                                        <button type="submit" class="add-to-cart"></button>
-                                                    </form>
-                                                @else
-                                                    <button href="#auth" uk-toggle class="add-to-cart"></button>
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                @endforeach
+                <img class="spiner" src="/images/833.gif" alt="" style="position: absolute; display:none;justify-content: center; z-index: 1000;
+                left: 45%;top: 100px;
+                ">
+                <div id="product_list_block">
+                    @include('section-product-list')
                 </div>
             </div>
          </div>

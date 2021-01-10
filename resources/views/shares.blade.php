@@ -14,6 +14,13 @@
     </div>
 
     <div class="container">
+        @if ($shares->sales == null)
+            <div style="display: flex;justify-content: center; align-items: center;">
+                <div style="height: 200px;">
+                    <h2 style="color: #7791A4; margin-top: 40px">Акции не найдены</h2>
+                </div>
+            </div>
+        @else
         <div class="row">
             @foreach($shares->sales as $share)
             <div class="col-md-4 mt-5">
@@ -32,6 +39,7 @@
                 </div>
             </div>
             @endforeach
+                @endif
         </div>
     </div>
 @endsection

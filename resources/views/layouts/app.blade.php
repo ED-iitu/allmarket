@@ -121,26 +121,35 @@
                 </a>
             </div>
             <div class="mobile-phone">
-                <a class="nav-link" href="tel:+ 77476574712">
-                    <img class="mobile-nav-icons" src="/images/phone.png" alt="">
-                </a>
+                <div style="display: flex;justify-content: space-around;">
+                    <a  href="tel:+ 77476574712">
+                        <img class="nav-link" src="/images/mobile-phone.png" alt="">
+                    </a>
+                </div>
+
             </div>
             <div class="mobile-cart" id="mobile_cart" onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1');$('body').addClass('nooverflow');$('.mobile-nav').addClass('mobile-nav-after-cart');
 $('#mobile_close').show(); $('#mobile_cart').hide()">
-                <a class="" href="#">
-                    <img class="nav-link " src="/images/corzina-mobile.png" alt="">
-                </a>
+                <div style="display: flex;justify-content: space-around;">
+                    <a class="" href="#">
+                        <img class="nav-link " src="/images/mobile-cart.png" alt="">
+                    </a>
+                </div>
+
 
             </div>
             <div class="mobile-cart" id='mobile_close' onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1');$('body').removeClass('nooverflow');$('.mobile-nav').removeClass('mobile-nav-after-cart')
 $('#mobile_cart').show(); $('#mobile_close').hide();"
                  style="display: none">
-                <a class="nav-link close" href="#" style="filter: invert(1)">
-                    <img src="/images/closecart.png" alt="">
+                <a href="#">
+                    <img class="nav-link" src="/images/mobile-close-cart.png" alt="">
                 </a>
             </div>
             <div class="mobile-expand">
-                <img src="/images/collapse-mobile.png" class="nav-link collapsible" alt="">
+                <div style="display: flex;justify-content: space-around;" class="collapsible ">
+                    <img class="nav-link" src="/images/mobile-menu-list.png"  alt="">
+                </div>
+
                 {{--<button type="button" class="collapsible">--}}
                 {{--<span class="navbar-toggler-icon"></span>--}}
                 {{--</button>--}}
@@ -1078,15 +1087,15 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <hr class="cart-hr">
                     <div class="payment-method d-flex flex-column">
                         <div class="item" style="display: block;">
-                          <input type="radio" id="cash" name="cash" value="1">
+                          <input type="radio" id="cash" name="payment_method" value="1">
                           <label for="cash" style="display: inline;">Наличными при получении заказа</label>
                         </div>
                         <div class="item" style="display: block;">
-                          <input type="radio" id="card-online" name="card-online" value="2">
+                          <input type="radio" id="card-online" name="payment_method" value="2">
                           <label for="card-online" style="display: inline;">Банковской картой онлайн</label>
                         </div>
                         <div class="item" style="display: block;">
-                          <input type="radio" id="card-offline" name="card-offline" value="3">
+                          <input type="radio" id="card-offline" name="payment_method" value="3">
                           <label for="card-offline" style="display: inline;">Банковской картой при получении заказа</label>
                         </div>
                     </div>
@@ -1158,7 +1167,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         var phone = $("input[name='hidden_session_phone']").val();
         var delivery_time_id = $("select[name='delivery_time_id']").val();
         var comment = $("input[name='comment']").val();
-        var payment_type = $("input[type='radio']").val();
+        var payment_type = document.querySelector('input[name="payment_method"]:checked').value;
 
         console.log(payment_type)
 
@@ -1256,9 +1265,28 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             },
             success: function (data) {
                 $('#modal-body').html('')
-                $('#modal-body').append(data.success)
-                $('#your-modal').modal('toggle');
-                location.reload();
+
+                if ($("#addToFavorite"+id).attr('src') == '/images/dislike.png')  {
+                    $("#addToFavorite"+id).css('width', '31px')
+                    $("#addToFavorite"+id).css('height', '26px')
+                    $("#addToFavorite"+id).css('margin-left', '9px')
+                    $("#addToFavorite"+id).css('margin-top', '30px')
+                    $("#addToFavorite"+id).attr('src','/images/like.png')
+                    $('#modal-body').append("Товар удален из избранных")
+                    $('#your-modal').modal('toggle');
+
+                } else {
+                    $("#addToFavorite"+id).attr('src','/images/dislike.png')
+                    $("#addToFavorite"+id).css('width', '75px')
+                    $("#addToFavorite"+id).css('height', '45px')
+                    $("#addToFavorite"+id).css('margin-left', '0px')
+                    $("#addToFavorite"+id).css('margin-top', '15px')
+                    $('#modal-body').append("Товар добавлен в избранное")
+                    $('#your-modal').modal('toggle');
+                }
+               // $("#addToFavorite"+id).attr('src','/images/dislike.png');
+                setTimeout(function() {$('#your-modal').modal('hide');}, 2000);
+
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1360,6 +1388,28 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         // });
 
 
+    });
+</script>
+
+<script>
+    function getProductByAjax(filter, page = 1) {
+        $('.spiner').css('display', 'flex')
+        var ajax_url = '?' + filter + '&page=' + page
+        $.ajax({
+            url: ajax_url,
+            type: 'GET',
+            datatype: "html",
+
+        }).done(function (data) {
+            $('.spiner').css('display', 'none')
+            $("#product_list_block").empty().html(data);
+        });
+    }
+
+    $("#sort").change(function () {
+        var filter = $(this).val()
+        filter = 'order=' + filter
+        getProductByAjax(filter)
     });
 </script>
 

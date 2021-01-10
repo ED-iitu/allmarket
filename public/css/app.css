@@ -6080,15 +6080,7 @@ a.badge-dark.focus {
     border-color: #1b1e21;
 }
 
-.close {
-    float: right;
-    font-size: 1.35rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: 0.5;
-}
+
 
 .close:hover {
     color: #000;
@@ -12835,6 +12827,10 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
+    .sort-by {
+        margin-top: 30px;
+    }
+
     .product-category {
         width: 115px;
     }
@@ -12907,7 +12903,7 @@ and (max-width: 768px) {
     }
 
     .nav-link {
-        padding: 0.8rem 1rem;
+        padding: 1rem 1rem;
     }
 
     .product-category-title {
@@ -13724,7 +13720,7 @@ and (max-device-width: 375px) {
     }
 
     .signUp-form {
-        width: 325px;
+        width: 313px;
     }
 
     .login-form {
@@ -13735,9 +13731,6 @@ and (max-device-width: 375px) {
         top: 8px !important;
         right: -8px !important;
     }
-
-
-
 
     .uk-child-width-1-2>* {
         width: 45% !important;
@@ -13864,7 +13857,7 @@ and (max-device-width: 375px) {
     }
 
     .nav-link {
-        padding: 0.8rem 1rem;
+        padding: 1rem 1rem;
         margin-top: 2px;
     }
 
@@ -14283,7 +14276,7 @@ and (min-width: 376px){
     }
 
     .nav-link {
-        padding: 0.8rem 0.7rem;
+        padding: 1rem 0.7rem;
         margin-top: 2px;
     }
     .popular-title {

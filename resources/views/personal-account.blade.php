@@ -40,7 +40,7 @@
         }
 
         .orders {
-            width: 722px;
+            width: 100%;
             height: 51px;
             left: calc(50% - 722px/2 + 916px);
             top: 396px;
@@ -223,7 +223,7 @@
                             <div class="col-md-4 product-list-mobile">
                                 <div class="product">
                                     <div class="favorite">
-                                        <img class="fav-image" src="images/dislike.png" alt="" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" onClick="addToFavourites({{$favorite->product->id}})">
+                                        <img id="addToFavorite{{$favorite->product->id}}" class="fav-image" src="/images/dislike.png" alt="" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" onClick="addToFavourites({{$favorite->product->id}})">
                                     </div>
                                     <div class="container" style="padding: 15px">
                                         <a href="{{route('product', $favorite->product->id)}}">
@@ -263,7 +263,7 @@
                         @endif
 
                 </div>
-                <div id="account-order" style="margin-top: 75px">
+                <div id="account-order" style="margin-top: 75px;">
                     @if(!$orders)
                         <div style="display: flex; justify-content: center; align-items: center">
                             Вы не совершали покупок
@@ -272,13 +272,24 @@
 
                     @foreach($orders as $order)
                     <div class="d-flex flex-row justify-content-between orders mt-3">
+
                         <div class="d-flex flex-row" style="padding: 8px;">
-                            <div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #EE3030;border-radius: 5px">
-                                <span style="color: white; font-size: 25px">X</span>
+                            @if($order->status->title !== 'В обработке' && $order->status->title !== 'Отменен')
+                            <div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #30EE4E;border-radius: 5px">
+                                <span style="color: white; font-size: 25px">
+                                    <img src="/images/ok.png" alt="">
+                                </span>
                             </div>
+                            @else
+                                <div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #EE3030;border-radius: 5px">
+                                <span style="color: white; font-size: 25px">
+                                    <img src="/images/mobile-close-cart.png" alt="">
+                                </span>
+                                </div>
+                            @endif
                             <div style="margin-top: -4px">
                                 <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <a href="{{route('sections')}}"><div class="order-num">Заказ №{{$order->id}}</div></a>
+                                    <a><div class="order-num">Заказ №{{$order->id}}</div></a>
                                 </div>
                                 <div style="display: flex;align-items: center;justify-content: space-between">
                                     <div class="order-status">Статус: {{$order->status->title}}</div>
@@ -289,7 +300,7 @@
                             <form action="{{route('cloneOrder')}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$order->id}}">
-                                <button type="submit" style="background: none; border: none; outline: none"><img class="addToCartSvg" src="/images/addToCart.svg" alt=""></button>
+                                <button type="submit" style="background: none; border: none; outline: none"><img class="addToCartSvg" src="/images/repeat_cart.png" alt=""></button>
                             </form>
 
                         </div>
