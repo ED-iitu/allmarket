@@ -130,8 +130,8 @@ class HomeController extends Controller
         $response = $this->client->request('GET', env('API_URL').'/products/popular', [
             'query' => [
                 'city_id' => 6,
+                'order' => "price.desc",
                 'paginate' =>30,
-                'order' => "price.desc"
                 ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -205,8 +205,10 @@ class HomeController extends Controller
     {
         $sections    = $this->getAllSections();
 
+
+
         return view('about', [
-            'sections' => $sections->sections
+            'sections' => $sections->data
         ]);
     }
 
@@ -620,7 +622,7 @@ class HomeController extends Controller
 
         $client = new Client();
 
-        $url = 'https://allmarket.armenianbros.com/api/v2/products/search';
+        $url = env('API_URL').'/products/search';
 
         try {
             $response = $client->request('GET', $url, [
@@ -890,7 +892,6 @@ class HomeController extends Controller
                 'delivery_time_id' => $request->delivery_time_id,
                 'comment' => $request->comment ?? null
             ],
-            'debug' => true,
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
                 'Accept' => 'application/json'
@@ -901,29 +902,18 @@ class HomeController extends Controller
 
         $res = json_decode($res);
 
+
         if ($request->payment_type == 2) {
             $res = $this->createPayment($res->id, 2, '', 1);
-            $data = [
-                'Signed_Order_B64' => $res->epay->params->Signed_Order_B64,
-                'appendix' => $res->epay->params->appendix,
-                'BackLink' => $res->epay->params->BackLink,
-                'FailureBackLink' => $res->epay->params->FailureBackLink,
-                'PostLink' => $res->epay->params->PostLink,
-                'email' => $res->epay->params->email,
-                'person_id' => $res->epay->params->person_id
-            ];
 
+            return json_encode($res);
         }
 
         session()->remove('cart');
-
-        return $responce->getBody()->getContents();
     }
 
     public function createPayment($orderId, $type, $promo_code, $decrease)
     {
-        //https://allmarket.armenianbros.com/api/v2/order_payments
-
         $token = session()->get('token');
 
         $responce = $this->client->request('POST', env('API_URL').'/order_payments', [

@@ -37,9 +37,9 @@
 <body>
 <div id="app">
     @if ($message = Session::get('username'))
-        <input type="hidden" id="login" value="{{Session::get('username')}}">
+        <input type="hidden" id="loginUsername" value="{{Session::get('username')}}">
     @else
-        <input type="hidden" id="login" value="not">
+        <input type="hidden" id="loginUsername" value="not">
     @endif
 
     <nav class="navbar navbar-expand-md navbar-light bg-white">
@@ -351,11 +351,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             <ul style="list-style: none; margin-top: -15px">
                                 <li class="searchItems">
                                     <img src="/images/search.png" alt="">
-                                    <a class="searchLink" href="https://allmarket.sigdev.kz/search?title='лук'">Лук</a>
+                                    <a class="searchLink" href="https://dev.allmarket.kz/search?title='лук'">Лук</a>
                                 </li>
                                 <li class="searchItems">
                                     <img src="/images/search.png" alt="">
-                                    <a class="searchLink" href="https://allmarket.sigdev.kz/search?title='лук'">Лук
+                                    <a class="searchLink" href="https://dev.allmarket.kz/search?title='лук'">Лук
                                         репчатый</a>
                                 </li>
                             </ul>
@@ -1175,9 +1175,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         var comment = $("input[name='comment']").val();
         var payment_type = document.querySelector('input[name="payment_method"]:checked').value;
 
-        console.log(payment_type)
-
-
         $.ajax({
             url: '{{ route('createOrder') }}',
             type: 'POST',
@@ -1187,10 +1184,40 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 delivery_time_id: delivery_time_id,
                 comment: comment,
                 payment_type: payment_type
-
             },
             success: function (data) {
-                console.log("order created")
+                var obj = JSON.parse(data)
+                url     = obj.epay.url
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        'Signed_Order_B64' : obj.epay.params.Signed_Order_B64,
+                        'appendix' : obj.epay.params.appendix,
+                        'BackLink' : obj.epay.params.BackLink,
+                        'FailureBackLink' : obj.epay.params.FailureBackLink,
+                        'PostLink' : obj.epay.params.PostLink,
+                        'email' : obj.epay.params.email,
+                        'person_id' : obj.epay.params.person_id
+                    },
+                    success: function (data) {
+                        // window.location = url
+                        // console.log(data)
+                    },
+                    error: function (XMLHttpRequest) {
+
+                    }
+                });
+
+                window.location = url+'?Signed_Order_B64='
+                    + obj.epay.params.Signed_Order_B64 +'?appendix='
+                    + obj.epay.params.appendix +'?BackLink='
+                    + obj.epay.params.BackLink +'?FailureBackLink='
+                    + obj.epay.params.FailureBackLink + '?PostLink='
+                    + obj.epay.params.PostLink + '?email='
+                    + obj.epay.params.email + '?person_id='
+                    + obj.epay.params.person_id
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1272,7 +1299,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             success: function (data) {
                 $('#modal-body').html('')
 
-                if ($("#login").val() == 'not')  {
+                if ($("#loginUsername").val() == 'not')  {
                     $('#modal-body').append("Вы должны быть авторизованным")
                     $('#your-modal').modal('toggle');
                     // $("#addToFavorite"+id).attr('src','/images/dislike.png');

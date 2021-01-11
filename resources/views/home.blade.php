@@ -528,10 +528,10 @@
 
                                                     <div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="old-price">{{$rec->price_sale}} тг</div>
+                                                            <div class="old-price">{{$rec->price}} тг</div>
                                                         </div>
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="new-price">{{$rec->price}} тг</div>
+                                                            <div class="new-price">{{$rec->price_sale}} тг</div>
                                                             @if (Session::get('username'))
                                                             <form action="{{route('addToCart', $rec->id)}}" method="GET">
                                                                 <button type="submit" class="add-to-cart"></button>
