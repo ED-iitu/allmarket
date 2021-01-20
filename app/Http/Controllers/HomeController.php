@@ -30,10 +30,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        $popular     = $this->getPopularProduct();
+        $popular = $this->getPopularProduct();
         $recommended = $this->getRecommendedProducts();
-        $sale        = $this->getSaleProducts();
-        $sections    = $this->getAllSections();
+        $sale = $this->getSaleProducts();
+        $sections = $this->getAllSections();
 
         $token = session()->get('token');
         $favIds = [];
@@ -61,7 +61,7 @@ class HomeController extends Controller
     public function getFavorite($token)
     {
         try {
-            $response = $this->client->request('GET', env('API_URL').'/favorites', [
+            $response = $this->client->request('GET', env('API_URL') . '/favorites', [
                 'query' => [
                     'city_id' => 6,
                 ],
@@ -93,34 +93,34 @@ class HomeController extends Controller
 
         if (null !== $token) {
 
-                $this->client->request('POST', env('API_URL').'/favorites', [
-                    'query' => [
-                        'city_id' => 6,
-                    ],
-                    'form_params' => [
-                        'product_id' => $product_id
-                    ],
-                    'headers' => [
-                        'Authorization' => 'Bearer ' . $token,
-                        'Accept' => 'application/json'
-                    ]
-                ]);
+            $this->client->request('POST', env('API_URL') . '/favorites', [
+                'query' => [
+                    'city_id' => 6,
+                ],
+                'form_params' => [
+                    'product_id' => $product_id
+                ],
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                    'Accept' => 'application/json'
+                ]
+            ]);
 
-                $alreadyInFav = (array)session()->get('favorited');
+            $alreadyInFav = (array)session()->get('favorited');
 
-                if (in_array($product_id, $alreadyInFav)) {
-                    unset($alreadyInFav[$product_id]);
+            if (in_array($product_id, $alreadyInFav)) {
+                unset($alreadyInFav[$product_id]);
 
-                    return $deletedSuccess;
-                } else {
-                    session()->put('favorited', array_push($alreadyInFav, $product_id));
+                return $deletedSuccess;
+            } else {
+                session()->put('favorited', array_push($alreadyInFav, $product_id));
 
-                    return $successData;
-                }
+                return $successData;
+            }
 
         } else {
             return [
-              'success' => "Вы должны быть авторизованным"
+                'success' => "Вы должны быть авторизованным"
             ];
         }
     }
@@ -128,12 +128,12 @@ class HomeController extends Controller
     public function getPopularProduct()
     {
 
-        $response = $this->client->request('GET', env('API_URL').'/products/popular', [
+        $response = $this->client->request('GET', env('API_URL') . '/products/popular', [
             'query' => [
                 'city_id' => 6,
                 'order' => "price.desc",
-                'paginate' =>30,
-                ],
+                'paginate' => 30,
+            ],
             'auth' => [
                 'dev@allmarket.kz',
                 'dev'
@@ -148,10 +148,10 @@ class HomeController extends Controller
     public function getRecommendedProducts()
     {
 
-        $response = $this->client->request('GET', env('API_URL').'/products/recommended', [
+        $response = $this->client->request('GET', env('API_URL') . '/products/recommended', [
             'query' => [
                 'city_id' => 6,
-                'paginate' =>30,
+                'paginate' => 30,
                 'order' => "price.desc"
             ],
             'auth' => [
@@ -168,7 +168,7 @@ class HomeController extends Controller
     public function getSaleProducts(Request $request = null)
     {
 
-        $response = $this->client->request('GET', env('API_URL').'/products/sale', [
+        $response = $this->client->request('GET', env('API_URL') . '/products/sale', [
             'query' => [
                 'city_id' => 6,
                 'paginate' => 30,
@@ -188,7 +188,7 @@ class HomeController extends Controller
     public function getAllSections()
     {
         $client = new Client();
-        $response = $client->request('GET', env('API_URL').'/product_sections', [
+        $response = $client->request('GET', env('API_URL') . '/product_sections', [
             'auth' => [
                 'dev@allmarket.kz',
                 'dev'
@@ -204,8 +204,7 @@ class HomeController extends Controller
 
     public function about()
     {
-        $sections    = $this->getAllSections();
-
+        $sections = $this->getAllSections();
 
 
         return view('about', [
@@ -216,7 +215,7 @@ class HomeController extends Controller
 
     public function faq()
     {
-        $sections    = $this->getAllSections();
+        $sections = $this->getAllSections();
         return view('faq', [
             'sections' => $sections->sections,
             'cities' => $this->getAvailableCitites()
@@ -227,7 +226,7 @@ class HomeController extends Controller
     {
         $sections = $this->getAllSections();
 
-       // dd($sections);
+        // dd($sections);
 
         return view('sections', [
             'sections' => $sections->sections,
@@ -238,7 +237,7 @@ class HomeController extends Controller
     public function getSectionById($sectionId, Request $request)
     {
         $client = new Client();
-        $response = $client->request('GET', env('API_URL').'/product_sections/'.$sectionId, [
+        $response = $client->request('GET', env('API_URL') . '/product_sections/' . $sectionId, [
             'query' => [
                 'city_id' => 6,
 
@@ -252,7 +251,7 @@ class HomeController extends Controller
         $products = $this->getProductsBySectionId($sectionId, $request);
         $response = $response->getBody()->getContents();
         $sections = $this->getAllSections();
-        $res      = json_decode($response);
+        $res = json_decode($response);
 
         $token = session()->get('token');
 
@@ -271,7 +270,7 @@ class HomeController extends Controller
         if (\request()->ajax()) {
             return view('section-product-list', [
                 'products' => $products->products,
-                'links'    => $products->links,
+                'links' => $products->links,
                 'cities' => $this->getAvailableCitites()
             ]);
         }
@@ -280,7 +279,7 @@ class HomeController extends Controller
             'section' => $res->section,
             'sections' => $sections->sections,
             'products' => $products->products,
-            'links'    => $products->links,
+            'links' => $products->links,
             'cities' => $this->getAvailableCitites()
         ]);
     }
@@ -288,7 +287,7 @@ class HomeController extends Controller
     public function getSections($id)
     {
         $client = new Client();
-        $response = $client->request('GET', env('API_URL').'/product_sections/'.$id.'/categories', [
+        $response = $client->request('GET', env('API_URL') . '/product_sections/' . $id . '/categories', [
             'auth' => [
                 'dev@allmarket.kz',
                 'dev'
@@ -306,7 +305,7 @@ class HomeController extends Controller
     public function getProductsBySectionId($sectionId, $request)
     {
         $client = new Client();
-        $response = $client->request('GET', env('API_URL').'/product_sections/'.$sectionId.'/products', [
+        $response = $client->request('GET', env('API_URL') . '/product_sections/' . $sectionId . '/products', [
             'query' => [
                 'city_id' => 6,
                 'paginate' => 30,
@@ -326,7 +325,7 @@ class HomeController extends Controller
     public function product($id)
     {
         $client = new Client();
-        $response = $client->request('GET', env('API_URL').'/products/'.$id, [
+        $response = $client->request('GET', env('API_URL') . '/products/' . $id, [
             'query' => [
                 'city_id' => 6,
             ],
@@ -342,7 +341,7 @@ class HomeController extends Controller
 
         $categories = $this->getSections($res->product->section->id);
 
-        $sections    = $this->getAllSections();
+        $sections = $this->getAllSections();
 
 
         return view('product', [
@@ -357,7 +356,7 @@ class HomeController extends Controller
     public function getProductsByCategoryId($section_id, $category_id, Request $request)
     {
         $client = new Client();
-        $response = $client->request('GET', env('API_URL').'/product_categories/'.$category_id.'/products', [
+        $response = $client->request('GET', env('API_URL') . '/product_categories/' . $category_id . '/products', [
             'query' => [
                 'city_id' => 6,
                 'paginate' => 30,
@@ -393,12 +392,12 @@ class HomeController extends Controller
         }
 
         $categories = $this->getSections($section_id);
-        $sections    = $this->getAllSections();
+        $sections = $this->getAllSections();
 
         if (\request()->ajax()) {
             return view('section-product-list', [
                 'products' => $res->products,
-                'links'    => $res->links,
+                'links' => $res->links,
             ]);
         }
 
@@ -408,7 +407,7 @@ class HomeController extends Controller
             'sections' => $sections->sections,
             'section_id' => $section_id,
             'products' => $res->products,
-            'links'    => $res->links,
+            'links' => $res->links,
             'cities' => $this->getAvailableCitites()
         ]);
     }
@@ -422,14 +421,14 @@ class HomeController extends Controller
 
         try {
 
-            $client->request('POST', env('API_URL').'/auth/register', [
+            $client->request('POST', env('API_URL') . '/auth/register', [
                 'auth' => [
                     'dev@allmarket.kz',
                     'dev'
                 ],
                 'form_params' => [
-                    'name'    => $request->name,
-                    'phone'   => $request->phone,
+                    'name' => $request->name,
+                    'phone' => $request->phone,
                     'city_id' => 6,
                 ],
                 'headers' => [
@@ -446,11 +445,11 @@ class HomeController extends Controller
             return redirect()->back()->with('success', 'На ваш номер отправлен смс');
 
         } catch (ClientException $e) {
-             $this->errors = json_decode($e->getResponse()->getBody()->getContents())->errors->phone[0];
+            $this->errors = json_decode($e->getResponse()->getBody()->getContents())->errors->phone[0];
 
-             if ($this->errors) {
-                 return redirect()->back()->with('error', $this->errors);
-             }
+            if ($this->errors) {
+                return redirect()->back()->with('error', $this->errors);
+            }
         }
 
     }
@@ -463,13 +462,13 @@ class HomeController extends Controller
 
         try {
 
-            $client->request('POST', env('API_URL').'/auth/login', [
+            $client->request('POST', env('API_URL') . '/auth/login', [
                 'auth' => [
                     'dev@allmarket.kz',
                     'dev'
                 ],
                 'form_params' => [
-                    'phone'   => $phone,
+                    'phone' => $phone,
                 ],
                 'headers' => [
                     'Accept' => 'application/json'
@@ -498,7 +497,7 @@ class HomeController extends Controller
     {
         $client = new Client();
 
-        $sms = (int)$request->one . '' . $request->two .''. $request->three .''. $request->four;
+        $sms = (int)$request->one . '' . $request->two . '' . $request->three . '' . $request->four;
 
         $phone = session()->get('phone');
 
@@ -508,14 +507,14 @@ class HomeController extends Controller
 
         try {
 
-            $responce = $client->request('POST', env('API_URL').'/auth/verify', [
+            $responce = $client->request('POST', env('API_URL') . '/auth/verify', [
                 'auth' => [
                     'dev@allmarket.kz',
                     'dev'
                 ],
                 'form_params' => [
-                    'phone'   => $phone,
-                    'code'  => $sms
+                    'phone' => $phone,
+                    'code' => $sms
                 ],
                 'headers' => [
                     'Accept' => 'application/json'
@@ -523,7 +522,7 @@ class HomeController extends Controller
 
             ]);
 
-            $res =  json_decode($responce->getBody()->getContents());
+            $res = json_decode($responce->getBody()->getContents());
 
             $token = $res->token;
 
@@ -554,7 +553,7 @@ class HomeController extends Controller
 
         try {
 
-            $responce = $client->request('GET', env('API_URL').'/users',
+            $responce = $client->request('GET', env('API_URL') . '/users',
                 [
                     'headers' =>
                         [
@@ -579,14 +578,13 @@ class HomeController extends Controller
         $token = session()->get('token');
 
 
-
         if (null === $token) {
             return redirect()->route('home');
         } else {
             $favorites = $this->getFavorite($token);
             $orders = $this->getUserOrders();
             $userData = $this->getUserData($token);
-            $sections    = $this->getAllSections();
+            $sections = $this->getAllSections();
 
             return view('personal-account', [
                 'favorites' => $favorites,
@@ -603,7 +601,7 @@ class HomeController extends Controller
         $token = session()->get('token');
         //https://allmarket.armenianbros.com/api/v2/orders/633/clone?city_id=2
 
-        $responce =  $this->client->request('POST', env('API_URL').'/orders/'.$request->id . '/clone', [
+        $responce = $this->client->request('POST', env('API_URL') . '/orders/' . $request->id . '/clone', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -613,7 +611,7 @@ class HomeController extends Controller
             ]
         ]);
 
-       return redirect()->back()->with('success', 'Вы успешно повторили заказ');
+        return redirect()->back()->with('success', 'Вы успешно повторили заказ');
     }
 
     public function logout()
@@ -631,7 +629,7 @@ class HomeController extends Controller
 
         $client = new Client();
 
-        $url = env('API_URL').'/products/search';
+        $url = env('API_URL') . '/products/search';
 
         try {
             $response = $client->request('GET', $url, [
@@ -640,15 +638,15 @@ class HomeController extends Controller
                     'dev'
                 ],
                 'query' => [
-                   'city_id' => 2,
-                   'term' => $request->title
+                    'city_id' => 2,
+                    'term' => $request->title
                 ],
                 'headers' => [
                     'Accept' => 'application/json'
                 ],
             ]);
 
-        }catch (ClientException $e) {
+        } catch (ClientException $e) {
             $this->errors = json_decode($e->getResponse()->getBody()->getContents())->errors->phone[0];
 
             if ($this->errors) {
@@ -660,7 +658,7 @@ class HomeController extends Controller
 
         $res = json_decode($response);
 
-        $sections    = $this->getAllSections();
+        $sections = $this->getAllSections();
 
         return view('search-page', [
             'sections' => $sections->sections,
@@ -674,7 +672,7 @@ class HomeController extends Controller
     {
         //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=2
 
-        $responce =  $this->client->request('POST', env('API_URL').'/baskets/increase', [
+        $responce = $this->client->request('POST', env('API_URL') . '/baskets/increase', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -698,22 +696,22 @@ class HomeController extends Controller
     {
         $id = $request->product_id;
         $quantity = $request->quantity;
-       $product = $this->getProductById($id);
-       $token = session()->get('token');
-       $productPrice = 0;
+        $product = $this->getProductById($id);
+        $token = session()->get('token');
+        $productPrice = 0;
 
-       if (null === $token) {
-           return redirect()->back()->with('error', 'Не удалось найти пользователя');
-       }
+        if (null === $token) {
+            return redirect()->back()->with('error', 'Не удалось найти пользователя');
+        }
 
-       $offerId = 0;
+        $offerId = 0;
 
 
-        if(!$product) {
+        if (!$product) {
             $offerId = $id;
         }
 
-        $this->addToServerCart($token, $id, $offerId,  $quantity);
+        $this->addToServerCart($token, $id, $offerId, $quantity);
 
 
         if ($product->price_sale > $product->price) {
@@ -726,7 +724,7 @@ class HomeController extends Controller
 
         $cart = session()->get('cart');
         // if cart is empty then this the first product
-        if(!$cart) {
+        if (!$cart) {
             $cart = [
                 $id => [
                     "title" => $product->title,
@@ -740,7 +738,7 @@ class HomeController extends Controller
             return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
         // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
+        if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
@@ -757,11 +755,59 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
     }
 
+    public function update_cart()
+    {
+        $count = 0;
+        $prices = 0;
+        $countCartItems = session()->get('cart');
+        if ($countCartItems != false) {
+            foreach ($countCartItems as $item) {
+                $count += $item['quantity'];
+                $prices += (int)$item['price'] * $item['quantity'];
+            }
+        }
+
+        return response()->json(['count' => $count, 'prices' => $prices], 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+    }
+
+    protected function update_cart_data()
+    {
+        $total_sum = 0;
+        $countProduct = 0;
+        $cart_products = [];
+        $countCartItems = session()->get('cart');
+        if ($countCartItems != false) {
+            foreach ($countCartItems as $key => $item) {
+                $product = $this->getProductById($key);
+                if ($product) {
+                    $product_array = [
+                        'count' => $item['quantity'],
+                        'product_id' => $key,
+                        'title' => $product->title,
+                        'price' => $product->price,
+                        'image' => $product->image,
+                        'total' => (int)$product->price * $item['quantity'],
+                        'category_title' => $product->category->title
+                    ];
+                    array_push($cart_products, $product_array);
+                    $total_sum += (int)$product->price * $item['quantity'];
+                    $countProduct += 1;
+                }
+            }
+        }
+        $wines = ['products' => $cart_products];
+        $count_wine_array = ['count_products' => $countProduct];
+        $total_sums = ['total_sum' => $total_sum];
+        $result = array_merge($wines, $count_wine_array, $total_sums);
+        return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+    }
+
+
     public function getProductById($id)
     {
         try {
             $client = new Client();
-            $response = $client->request('GET', env('API_URL').'/products/' . $id, [
+            $response = $client->request('GET', env('API_URL') . '/products/' . $id, [
                 'query' => [
                     'city_id' => 6,
                 ],
@@ -776,7 +822,7 @@ class HomeController extends Controller
             $res = json_decode($response);
 
             return $res->product;
-        }catch (RequestException $e) {
+        } catch (RequestException $e) {
             return redirect()->back();
         }
 
@@ -788,7 +834,7 @@ class HomeController extends Controller
         //https://allmarket.armenianbros.com/api/v2/orders
 
         $token = session()->get('token');
-        $response = $this->client->request('GET', env('API_URL').'/orders', [
+        $response = $this->client->request('GET', env('API_URL') . '/orders', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -817,14 +863,14 @@ class HomeController extends Controller
         }
 
         try {
-            $responce = $this->client->request('PUT', env('API_URL').'/users',
+            $responce = $this->client->request('PUT', env('API_URL') . '/users',
                 [
                     'headers' =>
                         [
                             'Authorization' => 'Bearer ' . $token,
                             'Accept' => 'application/json'
                         ],
-                    'query'            => [
+                    'query' => [
                         'name' => $request->name,
                         'phone' => $request->phone,
                         'city_id' => $request->city_id,
@@ -854,10 +900,11 @@ class HomeController extends Controller
         $token = session()->get('token');
 
         if (null === $token) {
+            // TODO
             return redirect()->back();
         }
 
-        $responce = $this->client->request('DELETE', env('API_URL').'/baskets', [
+        $responce = $this->client->request('DELETE', env('API_URL') . '/baskets', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -876,7 +923,7 @@ class HomeController extends Controller
     {
         $token = session()->get('token');
 
-        $responce = $this->client->request('POST', env('API_URL').'/checkout', [
+        $responce = $this->client->request('POST', env('API_URL') . '/checkout', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -893,7 +940,7 @@ class HomeController extends Controller
     {
         $token = session()->get('token');
 
-        $responce = $this->client->request('POST', env('API_URL').'/orders', [
+        $responce = $this->client->request('POST', env('API_URL') . '/orders', [
             'query' => [
                 'city_id' => 6,
             ],
@@ -927,7 +974,7 @@ class HomeController extends Controller
     {
         $token = session()->get('token');
 
-        $responce = $this->client->request('POST', env('API_URL').'/order_payments', [
+        $responce = $this->client->request('POST', env('API_URL') . '/order_payments', [
             'form_params' => [
                 'order_id' => $orderId,
                 'type_id' => $type,
@@ -968,12 +1015,12 @@ class HomeController extends Controller
         if (\request()->ajax()) {
             return view('section-product-list', [
                 'products' => $sale->products,
-                'links'    => $sale->links,
+                'links' => $sale->links,
                 'cities' => $this->getAvailableCitites()
             ]);
         }
 
-        $sections    = $this->getAllSections();
+        $sections = $this->getAllSections();
         return view('sale', [
             'sections' => $sections->sections,
             'products' => $sale->products,
@@ -983,7 +1030,7 @@ class HomeController extends Controller
 
     public function getSharesList()
     {
-        $response = $this->client->request('GET', env('API_URL').'/sales', [
+        $response = $this->client->request('GET', env('API_URL') . '/sales', [
             'query' => [
                 'city_id' => 2,
             ],
@@ -1003,7 +1050,7 @@ class HomeController extends Controller
         $sections = $this->getAllSections();
         $shares = $this->getSharesList();
 
-        return view('shares' ,[
+        return view('shares', [
             'sections' => $sections->sections,
             'shares' => $shares,
             'cities' => $this->getAvailableCitites()
@@ -1014,7 +1061,7 @@ class HomeController extends Controller
     public function getSharesById($id)
     {
         $sections = $this->getAllSections();
-        $response = $this->client->request('GET', env('API_URL').'/sales/'.$id, [
+        $response = $this->client->request('GET', env('API_URL') . '/sales/' . $id, [
             'query' => [
                 'city_id' => 2,
             ],
@@ -1059,7 +1106,7 @@ class HomeController extends Controller
 
     public function getAvailableCitites()
     {
-        $response = $this->client->request('GET', env('API_URL').'/cities', [
+        $response = $this->client->request('GET', env('API_URL') . '/cities', [
             'query' => [
                 'city_id' => 2,
             ],
@@ -1071,7 +1118,7 @@ class HomeController extends Controller
 
         $response = $response->getBody()->getContents();
 
-       $response = json_decode($response);
+        $response = json_decode($response);
 
 
         return $response->cities;

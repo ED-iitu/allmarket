@@ -63,7 +63,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-city">
                             @foreach($cities as $city)
-                            <a class="dropdown-item select_city">{{$city->title}}</a>
+                                <a class="dropdown-item select_city">{{$city->title}}</a>
                             @endforeach
                             {{--<a class="dropdown-item select_city">Нур-Султан</a>--}}
                             {{--<a class="dropdown-item select_city">Караганда</a>--}}
@@ -130,7 +130,7 @@
             </div>
             <div class="mobile-phone">
                 <div style="display: flex;justify-content: space-around;">
-                    <a  href="tel:+ 77476574712">
+                    <a href="tel:+ 77476574712">
                         <img class="nav-link" src="/images/mobile-phone.png" alt="">
                     </a>
                 </div>
@@ -155,7 +155,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             </div>
             <div class="mobile-expand">
                 <div style="display: flex;justify-content: space-around;" class="collapsible ">
-                    <img class="nav-link" src="/images/mobile-menu-list.png"  alt="">
+                    <img class="nav-link" src="/images/mobile-menu-list.png" alt="">
                 </div>
 
                 {{--<button type="button" class="collapsible">--}}
@@ -171,7 +171,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                         style="border: none; color: #7791A4 ">
                                     <option>Выберите город</option>
                                     @foreach($cities as $city)
-                                    <option>{{$city->title}}</option>
+                                        <option>{{$city->title}}</option>
                                     @endforeach
                                 </select>
                                 <span></span>
@@ -383,29 +383,16 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div>
                             <div style="display: flex;align-items: center;justify-content: space-between">
                                 <div class="cart-p">Товары:</div>
-                                @if(session('cart'))
-                                    <div class="cart-p" style="margin-left: 15px">
-                                        <span>{{count(session('cart'))}} </span>шт
-                                    </div>
-                                @else
-                                    <div class="cart-p" style="margin-left: 50px"><span id="cart-count">0 </span>шт
-                                    </div>
-                                @endif
-
+                                <div class="cart-p" style="margin-left: 50px">
+                                    <span class="cart-product-count"> {{$count}} </span> шт
+                                </div>
                             </div>
                             <div
                                 style="display: flex;align-items: center;justify-content: space-between; margin-top: -15px">
                                 <div class="cart-p">Сумма:</div>
-                                @if(session('cart'))
-                                    <?php $total = 0 ?>
-                                    @foreach(session('cart') as $id => $details)
-                                        <?php $total += $details['price'] ?>
-                                    @endforeach
-                                    <div class="cart-p" style="margin-left: 15px" id="cart-sum"><span>{{$total}} </span>тг
-                                    </div>
-                                @else
-                                    <div class="cart-p" style="margin-left: 15px"><span id="cart-sum">0 </span>тг</div>
-                                @endif
+                                <div class="cart-p" style="margin-left: 15px" id="cart-sum"><span
+                                        class="cart-product-price">{{$prices}} </span> тг
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -518,9 +505,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             </li>
                         @else
 
-                        <li>
-                            <a href="#auth" uk-toggle class="footer-link">вход/ регистрация</a>
-                        </li>
+                            <li>
+                                <a href="#auth" uk-toggle class="footer-link">вход/ регистрация</a>
+                            </li>
                         @endif
                         <li>
                             <a href="{{route('sale')}}" class="footer-link">акции & скидки</a>
@@ -607,7 +594,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div class="input-select">
                             <select id="" class="input-select-option" name="city_id">
                                 @foreach($cities as $city)
-                                <option class="input-select-option-inside" value="{{$city->id}}">{{$city->title}}</option>
+                                    <option class="input-select-option-inside"
+                                            value="{{$city->id}}">{{$city->title}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -683,54 +671,59 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 <div class="non-empty-cart" id="cart-after">
                                     <h2 class="cart-top-title">Товары:</h2>
                                     <hr>
-                                    <h2 class="empty-title" id="empty-cart-after-delete" style="display: none;">Ваша корзина пуста</h2>
+                                    <h2 class="empty-title" id="empty-cart-after-delete" style="display: none;">Ваша
+                                        корзина пуста</h2>
                                     <div class="empty-cart-after-delete"></div>
-                                    <?php $CartTotal = 0 ?>
-                                    @foreach(session('cart') as $id => $details)
+                                    <div id="cart-data-table">
+                                        <?php $CartTotal = 0 ?>
+                                        @foreach(session('cart') as $id => $details)
 
-                                        <?php $CartTotal += $details['price'] * $details['quantity'] ?>
-                                        <div class="cart-product" id="cart-product-{{$id}}" style="padding: 20px;">
-                                            <div class="row">
-                                                <div class="col-md-4 cart-img">
-                                                    <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">
-                                                        <img class="cart-image" src="{{$details['image']}}" alt="">
+                                            <?php $CartTotal += $details['price'] * $details['quantity'] ?>
+                                            <div class="cart-product" id="cart-product-{{$id}}" style="padding: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-4 cart-img">
+                                                        <div class="div-cart-image"
+                                                             style="height: 80px; display: flex; justify-content: center">
+                                                            <img class="cart-image" src="{{$details['image']}}" alt="">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 cart-title-style" style="width: 170px">
-                                                    <div class="cart-title">
-                                                        {{ Str::of($details['title'])->limit(15) }}
+                                                    <div class="col-md-6 cart-title-style" style="width: 170px">
+                                                        <div class="cart-title">
+                                                            {{ Str::of($details['title'])->limit(15) }}
+                                                        </div>
+                                                        <div class="cart-category">{{$details['category']}}</div>
+                                                        <div class="cart-price" id="cart-price-{{$id}}"
+                                                             style="margin-top: 10px">{{$details['price']}} тг
+                                                        </div>
+                                                        <input type="hidden" value="{{$details['price']}}"
+                                                               id="current-price-{{$id}}">
+                                                        <div
+                                                            style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">
+                                                            <div class="cart-qty">
+                                                                <span id="cart-minus"
+                                                                      class="cart-minus-{{$id}}">-</span>
+                                                                <input type="number" class="cart-count" name="qty"
+                                                                       value="{{$details['quantity']}}"
+                                                                       id="cart-count-{{$id}}">
+                                                                <span id="cart-plus" class="cart-plus-{{$id}}">+</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="cart-category">{{$details['category']}}</div>
-                                                    <div class="cart-price" id="cart-price-{{$id}}"
-                                                         style="margin-top: 10px">{{$details['price']}} тг
-                                                    </div>
-                                                    <input type="hidden" value="{{$details['price']}}"
-                                                           id="current-price-{{$id}}">
-                                                    <div
-                                                        style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">
-                                                        <div class="cart-qty">
-                                                            <span id="cart-minus" class="cart-minus-{{$id}}">-</span>
-                                                            <input type="number" class="cart-count" name="qty"
-                                                                   value="{{$details['quantity']}}"
-                                                                   id="cart-count-{{$id}}">
-                                                            <span id="cart-plus" class="cart-plus-{{$id}}">+</span>
+                                                    <div class="col-md-2" style="width: 50px">
+                                                        <div><span class="remove-from-cart" id="remove-product-{{$id}}">
+                                                            <img src="/images/exit.png" alt="">
+                                                        </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2" style="width: 50px">
-                                                    <div><span class="remove-from-cart" id="remove-product-{{$id}}">
-                                                            <img src="/images/exit.png" alt="">
-                                                        </span>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="container product-container" id="product-container-{{$id}}">
-                                            <hr class="cart-product-devider">
-                                        </div>
+                                            <div class="container product-container" id="product-container-{{$id}}">
+                                                <hr class="cart-product-devider">
+                                            </div>
 
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
                                 <div class="cart-bottom">
                                     <div class="row" style="flex-wrap: nowrap">
@@ -766,6 +759,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 <div class="cart-empty"
                                      style="display:flex;align-items:center !important;justify-content:center;padding: 66px">
                                     <h2 class="empty-title">Ваша корзина пуста</h2>
+                                    <div id="cart-data-table"></div>
                                 </div>
                             @endif
                         </div>
@@ -903,7 +897,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         $('#cart-product-' + id).remove()
         $('#product-container-' + id).remove()
 
-        if (count_elements <=1)  {
+        if (count_elements <= 1) {
             $('#empty-cart-after-delete').css('display', 'flex')
             $('#empty-cart-after-delete').css('justify-content', 'center')
             $('.cart-bottom').css('display', 'none')
@@ -911,6 +905,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
         total_price()
     })
+
     function total_price() {
         var total_product_val = 0
         $('.cart-price').each(function () {
@@ -1190,19 +1185,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             },
             success: function (data) {
                 var obj = JSON.parse(data)
-                url     = obj.epay.url
+                url = obj.epay.url
 
                 $.ajax({
                     url: url,
                     type: 'POST',
                     data: {
-                        'Signed_Order_B64' : obj.epay.params.Signed_Order_B64,
-                        'appendix' : obj.epay.params.appendix,
-                        'BackLink' : obj.epay.params.BackLink,
-                        'FailureBackLink' : obj.epay.params.FailureBackLink,
-                        'PostLink' : obj.epay.params.PostLink,
-                        'email' : obj.epay.params.email,
-                        'person_id' : obj.epay.params.person_id
+                        'Signed_Order_B64': obj.epay.params.Signed_Order_B64,
+                        'appendix': obj.epay.params.appendix,
+                        'BackLink': obj.epay.params.BackLink,
+                        'FailureBackLink': obj.epay.params.FailureBackLink,
+                        'PostLink': obj.epay.params.PostLink,
+                        'email': obj.epay.params.email,
+                        'person_id': obj.epay.params.person_id
                     },
                     success: function (data) {
                         // window.location = url
@@ -1263,10 +1258,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div class="cart-empty" style="display:flex;align-items:center !important;justify-content:center;padding: 66px">
                             <h2 class="empty-title">Ваша корзина пуста</h2>
                         </div>
+                        <div id="cart-data-table"></div>
                     `);
 
-                $('#cart-sum').html('0 тг');
-                $('#cart-count').html('0 шт');
+                updateCart()
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1293,34 +1288,36 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             success: function (data) {
                 $('#modal-body').html('')
 
-                if ($("#loginUsername").val() == 'not')  {
+                if ($("#loginUsername").val() == 'not') {
                     $('#modal-body').append("Вы должны быть авторизованным")
                     $('#your-modal').modal('toggle');
                     // $("#addToFavorite"+id).attr('src','/images/dislike.png');
 
                 } else {
-                    if ($("#addToFavorite"+id).attr('src') == '/images/dislike.png')  {
-                        $("#addToFavorite"+id).css('width', '31px')
-                        $("#addToFavorite"+id).css('height', '26px')
-                        $("#addToFavorite"+id).css('margin-left', '9px')
-                        $("#addToFavorite"+id).css('margin-top', '30px')
-                        $("#addToFavorite"+id).attr('src','/images/like.png')
+                    if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png') {
+                        $("#addToFavorite" + id).css('width', '31px')
+                        $("#addToFavorite" + id).css('height', '26px')
+                        $("#addToFavorite" + id).css('margin-left', '9px')
+                        $("#addToFavorite" + id).css('margin-top', '30px')
+                        $("#addToFavorite" + id).attr('src', '/images/like.png')
                         $('#modal-body').append("Товар удален из избранных")
                         $('#your-modal').modal('toggle');
 
                     } else {
-                        $("#addToFavorite"+id).attr('src','/images/dislike.png')
-                        $("#addToFavorite"+id).css('width', '75px')
-                        $("#addToFavorite"+id).css('height', '45px')
-                        $("#addToFavorite"+id).css('margin-left', '0px')
-                        $("#addToFavorite"+id).css('margin-top', '15px')
+                        $("#addToFavorite" + id).attr('src', '/images/dislike.png')
+                        $("#addToFavorite" + id).css('width', '75px')
+                        $("#addToFavorite" + id).css('height', '45px')
+                        $("#addToFavorite" + id).css('margin-left', '0px')
+                        $("#addToFavorite" + id).css('margin-top', '15px')
                         $('#modal-body').append("Товар добавлен в избранное")
                         $('#your-modal').modal('toggle');
                     }
 
                 }
 
-                setTimeout(function() {$('#your-modal').modal('hide');}, 2000);
+                setTimeout(function () {
+                    $('#your-modal').modal('hide');
+                }, 2000);
 
             },
             error: function (XMLHttpRequest) {
@@ -1473,7 +1470,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('#modal-body').html('')
                 $('#modal-body').append("Товар добавлен в корзину")
                 $('#your-modal').modal('toggle');
-                setTimeout(function() {$('#your-modal').modal('hide');}, 2000);
+                setTimeout(function () {
+                    $('#your-modal').modal('hide');
+                }, 2000);
+                updateCart()
+                updateCartData()
 
             },
             error: function (XMLHttpRequest) {
@@ -1481,6 +1482,44 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('#modal-body').append('Произошла ошибка попробуйте позже')
                 $('#your-modal').modal('toggle');
             }
+        });
+    }
+
+    function updateCart() {
+        $.ajax({
+            url: '{{ route('update_cart') }}',
+            type: 'GET',
+            success: function (data) {
+                $('.cart-product-count').html(data.count)
+                $('.cart-product-price').html(data.prices)
+            },
+        });
+    }
+
+    function updateCartData() {
+        $.ajax({
+            url: '{{ route('update_cart_data') }}',
+            type: 'GET',
+            success: function (data) {
+                document.getElementById("cart-data-table").innerHTML = "";
+                $.each(data.products, function (key, value) {
+                    $("#cart-data-table").append('<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                        '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
+                        '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
+                        '<div class="col-md-6 cart-title-style" style="width: 170px">' +
+                        '<div class="cart-title">' + value['title'] + '</div>' +
+                        '<div class="cart-category">' + value['category_title'] + '</div>' +
+                        '<div class="cart-price" id="cart-price-' + value['product_id'] + '" style="margin-top: 10px">' + value['price'] + ' тг</div>' +
+                        '<input type="hidden" value="' + value['price'] + '" id="current-price-' + value['product_id'] + '">' +
+                        '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
+                        '<div class="cart-qty"><span id="cart-minus" class="cart-minus-' + value['product_id'] + '">-</span>' +
+                        '<input type="number" class="cart-count" name="qty" value="1" id="cart-count-' + value['product_id'] + '" disabled="">' +
+                        '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
+                        '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" id="remove-product-119">' +
+                        '<img src="/images/exit.png" alt=""></span></div></div></div></div>'
+                    )
+                })
+            },
         });
     }
 </script>
