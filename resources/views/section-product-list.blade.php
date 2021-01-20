@@ -30,15 +30,13 @@
                             <div>
                                 <div
                                         style="display: flex;align-items: center;justify-content: space-between;">
-                                    <div class="old-price">{{$product->price_sale}} тг</div>
+                                    <div class="old-price">{{$product->price}} тг</div>
                                 </div>
                                 <div
                                         style="display: flex;align-items: center;justify-content: space-between;">
                                     <div class="new-price">{{$product->price}} тг</div>
                                     @if (Session::get('username'))
-                                        <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                            <button type="submit" class="add-to-cart"></button>
-                                        </form>
+                                        <button class="add-to-cart" onclick="addToCart({{$product->id}})"></button>
                                     @else
                                         <button href="#auth" uk-toggle class="add-to-cart"></button>
                                     @endif

@@ -28,6 +28,7 @@ Route::get('logout', 'HomeController@logout')->name('logout');
 Route::post('sendSms', 'HomeController@sendSms')->name('sendSms');
 Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
+Route::post('/addToCart', 'HomeController@addToCart')->name('addToCartPost');
 Route::post('addToFavorite', 'HomeController@addToFavorite')->name('addToFavorite');
 Route::get('account/update', 'HomeController@updateUserData')->name('account-update');
 Route::get('cart/deleteAll', 'HomeController@basketDelete')->name('deleteCart');
@@ -37,6 +38,7 @@ Route::post('order/repeat', 'HomeController@cloneOrder')->name('cloneOrder');
 Route::get('shares', 'HomeController@shares')->name('shares');
 Route::get('shares/{id}', 'HomeController@getSharesById')->name('share');
 Route::post('city', 'HomeController@addCityToSession')->name('sessionCity');
+Route::get('available-cities', 'HomeController@getAvailableCities')->name('availableCities');
 
 
 

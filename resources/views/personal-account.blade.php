@@ -246,9 +246,7 @@
                                                 </div>
                                                 <div style="display: flex;align-items: center;justify-content: space-between;">
                                                     <div class="new-price">{{$favorite->product->price}} тг</div>
-                                                    <form action="{{route('addToCart', $favorite->product->id)}}" method="GET">
-                                                        <button type="submit" class="add-to-cart"></button>
-                                                    </form>
+                                                    <button class="add-to-cart" onclick="addToCart({{$favorite->product->id}})"></button>
                                                 </div>
                                             </div>
                                         </div>

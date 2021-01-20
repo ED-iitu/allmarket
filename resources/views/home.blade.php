@@ -377,9 +377,7 @@
                                                                 <div class="new-price">{{$popular->price}} тг</div>
                                                             @endif
                                                             @if (Session::get('username'))
-                                                                <form action="{{route('addToCart', $popular->id)}}" method="GET">
-                                                                    <button type="submit" class="add-to-cart"></button>
-                                                                </form>
+                                                                    <button type="submit" class="add-to-cart" onclick="addToCart({{$popular->id}})"></button>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart"></button>
                                                             @endif
@@ -459,9 +457,7 @@
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$sale->price_sale}} тг</div>
                                                             @if (Session::get('username'))
-                                                                <form action="{{route('addToCart', $sale->id)}}" method="GET">
-                                                                    <button type="submit" class="add-to-cart"></button>
-                                                                </form>
+                                                                <button type="submit" class="add-to-cart" onclick="addToCart({{$sale->id}})"></button>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart"></button>
                                                             @endif
@@ -533,9 +529,7 @@
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <div class="new-price">{{$rec->price_sale}} тг</div>
                                                             @if (Session::get('username'))
-                                                            <form action="{{route('addToCart', $rec->id)}}" method="GET">
-                                                                <button type="submit" class="add-to-cart"></button>
-                                                            </form>
+                                                                <button type="submit" class="add-to-cart" onclick="addToCart({{$rec->id}})"></button>
                                                             @else
                                                                 <button href="#auth" uk-toggle class="add-to-cart"></button>
                                                             @endif

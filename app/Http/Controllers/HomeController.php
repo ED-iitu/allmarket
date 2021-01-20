@@ -54,6 +54,7 @@ class HomeController extends Controller
             'recommended_products' => $recommended->products,
             'sale_products' => $sale->products,
             'sections' => $sections->sections,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -208,7 +209,8 @@ class HomeController extends Controller
 
 
         return view('about', [
-            'sections' => $sections->data
+            'sections' => $sections->data,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -216,7 +218,8 @@ class HomeController extends Controller
     {
         $sections    = $this->getAllSections();
         return view('faq', [
-            'sections' => $sections->sections
+            'sections' => $sections->sections,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -227,7 +230,8 @@ class HomeController extends Controller
        // dd($sections);
 
         return view('sections', [
-            'sections' => $sections->sections
+            'sections' => $sections->sections,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -268,6 +272,7 @@ class HomeController extends Controller
             return view('section-product-list', [
                 'products' => $products->products,
                 'links'    => $products->links,
+                'cities' => $this->getAvailableCitites()
             ]);
         }
 
@@ -275,7 +280,8 @@ class HomeController extends Controller
             'section' => $res->section,
             'sections' => $sections->sections,
             'products' => $products->products,
-            'links'    => $products->links
+            'links'    => $products->links,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -343,6 +349,7 @@ class HomeController extends Controller
             'sections' => $sections->sections,
             'product' => $res->product,
             'categories' => $categories,
+            'cities' => $this->getAvailableCitites()
         ]);
 
     }
@@ -401,7 +408,8 @@ class HomeController extends Controller
             'sections' => $sections->sections,
             'section_id' => $section_id,
             'products' => $res->products,
-            'links'    => $res->links
+            'links'    => $res->links,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -584,7 +592,8 @@ class HomeController extends Controller
                 'favorites' => $favorites,
                 'orders' => $orders->orders,
                 'user' => $userData->user,
-                'sections' => $sections->sections
+                'sections' => $sections->sections,
+                'cities' => $this->getAvailableCitites()
             ]);
         }
     }
@@ -657,7 +666,7 @@ class HomeController extends Controller
             'sections' => $sections->sections,
             'products' => $res->products,
             'title' => $request->title,
-            'sections' => $sections->sections
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -685,8 +694,10 @@ class HomeController extends Controller
         return json_decode($res);
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
+        $id = $request->product_id;
+        $quantity = $request->quantity;
        $product = $this->getProductById($id);
        $token = session()->get('token');
        $productPrice = 0;
@@ -702,7 +713,7 @@ class HomeController extends Controller
             $offerId = $id;
         }
 
-        $this->addToServerCart($token, $id, $offerId,  1);
+        $this->addToServerCart($token, $id, $offerId,  $quantity);
 
 
         if ($product->price_sale > $product->price) {
@@ -720,8 +731,8 @@ class HomeController extends Controller
                 $id => [
                     "title" => $product->title,
                     "category" => $product->category->title,
-                    "quantity" => 1,
-                    "price" => $productPrice,
+                    "quantity" => $quantity,
+                    "price" => $productPrice * $quantity,
                     "image" => $product->image
                 ]
             ];
@@ -738,8 +749,8 @@ class HomeController extends Controller
         $cart[$id] = [
             "title" => $product->title,
             "category" => $product->category->title,
-            "quantity" => 1,
-            "price" => $productPrice,
+            "quantity" => $quantity,
+            "price" => $productPrice * $quantity,
             "image" => $product->image
         ];
         session()->put('cart', $cart);
@@ -958,13 +969,15 @@ class HomeController extends Controller
             return view('section-product-list', [
                 'products' => $sale->products,
                 'links'    => $sale->links,
+                'cities' => $this->getAvailableCitites()
             ]);
         }
 
         $sections    = $this->getAllSections();
         return view('sale', [
             'sections' => $sections->sections,
-            'products' => $sale->products
+            'products' => $sale->products,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -992,7 +1005,8 @@ class HomeController extends Controller
 
         return view('shares' ,[
             'sections' => $sections->sections,
-            'shares' => $shares
+            'shares' => $shares,
+            'cities' => $this->getAvailableCitites()
         ]);
     }
 
@@ -1019,7 +1033,8 @@ class HomeController extends Controller
         return view('shares-product-list', [
             'sections' => $sections->sections,
             'share' => $response->sale,
-            'shareProducts' => $shareProducts
+            'shareProducts' => $shareProducts,
+            'cities' => $this->getAvailableCitites()
         ]);
 
 
@@ -1039,6 +1054,27 @@ class HomeController extends Controller
         }
 
         return $products;
+    }
+
+
+    public function getAvailableCitites()
+    {
+        $response = $this->client->request('GET', env('API_URL').'/cities', [
+            'query' => [
+                'city_id' => 2,
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+       $response = json_decode($response);
+
+
+        return $response->cities;
     }
 
 

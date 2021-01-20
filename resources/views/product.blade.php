@@ -64,7 +64,7 @@
                                 <div class="d-flex flex-row justify-content-center">
                                     <div class="qty" style="margin-top: 15px;">
                                         <span class="minus">-</span>
-                                        <input type="number" class="count" name="qty" value="1">
+                                        <input type="number" class="count" id="productQuantity" name="qty" value="1">
                                         <span class="plus">+</span>
                                     </div>
                                     <div class="flex-column">
@@ -80,9 +80,7 @@
                                 <hr class="product-devider">
 
                                 @if (Session::get('username'))
-                                    <form action="{{route('addToCart', $product->id)}}" method="GET">
-                                        <button type="submit" class="add_to_cart"><span class="add_to_cart_text">Добавить в корзину</span></button>
-                                    </form>
+                                        <button class="add_to_cart" onclick="addToCart({{$product->id}})"><span class="add_to_cart_text">Добавить в корзину</span></button>
                                 @else
                                     <button href="#auth" uk-toggle type="submit" class="add_to_cart"><span class="add_to_cart_text">Добавить в корзину</span></button>
 

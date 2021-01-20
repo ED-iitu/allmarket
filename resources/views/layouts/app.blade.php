@@ -62,13 +62,15 @@
                             Выбрать город
                         </a>
                         <div class="dropdown-menu dropdown-city">
-                            <a class="dropdown-item select_city">Алматы</a>
-                            <a class="dropdown-item select_city">Нур-Султан</a>
-                            <a class="dropdown-item select_city">Караганда</a>
-                            <a class="dropdown-item select_city">Петропавлоск</a>
-                            <a class="dropdown-item select_city">Усть-Каменогорск</a>
-                            <a class="dropdown-item select_city">Атырау</a>
-                            <a class="dropdown-item select_city">Актау</a>
+                            @foreach($cities as $city)
+                            <a class="dropdown-item select_city">{{$city->title}}</a>
+                            @endforeach
+                            {{--<a class="dropdown-item select_city">Нур-Султан</a>--}}
+                            {{--<a class="dropdown-item select_city">Караганда</a>--}}
+                            {{--<a class="dropdown-item select_city">Петропавлоск</a>--}}
+                            {{--<a class="dropdown-item select_city">Усть-Каменогорск</a>--}}
+                            {{--<a class="dropdown-item select_city">Атырау</a>--}}
+                            {{--<a class="dropdown-item select_city">Актау</a>--}}
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -168,13 +170,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 <select class="uk-select" id="form-stacked-select"
                                         style="border: none; color: #7791A4 ">
                                     <option>Выберите город</option>
-                                    <option>Алматы</option>
-                                    <option>Нур-Султан</option>
-                                    <option>Караганда</option>
-                                    <option>Петропавлоск</option>
-                                    <option>Усть-Каменогорск</option>
-                                    <option>Атырау</option>
-                                    <option>Актау</option>
+                                    @foreach($cities as $city)
+                                    <option>{{$city->title}}</option>
+                                    @endforeach
                                 </select>
                                 <span></span>
                             </div>
@@ -511,9 +509,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 <div class="col-md-3 mb-md-0 mb-3">
 
                     <ul class="list-unstyled">
+                        @if ($message = Session::get('username'))
+                            <li>
+                                <a class="footer-link" href="{{route('account')}}" id="navbardrop"
+                                   style=" font-family: Montserrat;color: #0EFEC3 !important;">
+                                    {{$message}}
+                                </a>
+                            </li>
+                        @else
+
                         <li>
                             <a href="#auth" uk-toggle class="footer-link">вход/ регистрация</a>
                         </li>
+                        @endif
                         <li>
                             <a href="{{route('sale')}}" class="footer-link">акции & скидки</a>
                         </li>
@@ -598,14 +606,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                placeholder="Номер телефона" value="" required>
                         <div class="input-select">
                             <select id="" class="input-select-option" name="city_id">
-                                <option class="input-select-option-inside" value="">Выберите город</option>
-                                <option class="input-select-option-inside" value="6">Алматы</option>
-                                <option class="input-select-option-inside" value="6">Нур-Султан</option>
-                                <option class="input-select-option-inside" value="6">Караганда</option>
-                                <option class="input-select-option-inside" value="6">Петропавлоск</option>
-                                <option class="input-select-option-inside" value="6">Усть-Каменогорск</option>
-                                <option class="input-select-option-inside" value="6">Атырау</option>
-                                <option class="input-select-option-inside" value="6">Актау</option>
+                                @foreach($cities as $city)
+                                <option class="input-select-option-inside" value="{{$city->id}}">{{$city->title}}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -1206,18 +1209,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         // console.log(data)
                     },
                     error: function (XMLHttpRequest) {
-
+                        console.log(XMLHttpRequest)
                     }
                 });
-
-                window.location = url+'?Signed_Order_B64='
-                    + obj.epay.params.Signed_Order_B64 +'?appendix='
-                    + obj.epay.params.appendix +'?BackLink='
-                    + obj.epay.params.BackLink +'?FailureBackLink='
-                    + obj.epay.params.FailureBackLink + '?PostLink='
-                    + obj.epay.params.PostLink + '?email='
-                    + obj.epay.params.email + '?person_id='
-                    + obj.epay.params.person_id
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1452,6 +1446,43 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         filter = 'order=' + filter
         getProductByAjax(filter)
     });
+</script>
+
+<script>
+    function addToCart(id) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var quantity = 1
+
+        if (quantity == null) {
+            quantity = 1
+        }
+
+        $.ajax({
+            url: '{{ route('addToCartPost') }}',
+            type: 'POST',
+            data: {
+                product_id: id,
+                quantity: quantity
+            },
+            success: function (data) {
+                $('#modal-body').html('')
+                $('#modal-body').append("Товар добавлен в корзину")
+                $('#your-modal').modal('toggle');
+                setTimeout(function() {$('#your-modal').modal('hide');}, 2000);
+
+            },
+            error: function (XMLHttpRequest) {
+                $('#modal-body').html('')
+                $('#modal-body').append('Произошла ошибка попробуйте позже')
+                $('#your-modal').modal('toggle');
+            }
+        });
+    }
 </script>
 
 </body>

@@ -26,7 +26,7 @@
                             </div>
                             <div style="display: flex;align-items: center;justify-content: space-between;">
                                 <div class="new-price">{{$product->price_sale}} тг</div>
-                                <button class="add-to-cart"></button>
+                                <button class="add-to-cart" onclick="addToCart({{$product->id}})"></button>
                             </div>
                         </div>
                     </div>
