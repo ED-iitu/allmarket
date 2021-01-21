@@ -208,7 +208,7 @@ class HomeController extends Controller
 
 
         return view('about', [
-            'sections' => $sections->data,
+            'sections' => $sections->sections,
             'cities' => $this->getAvailableCitites()
         ]);
     }
@@ -657,6 +657,8 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
 
         $res = json_decode($response);
+
+
 
         $sections = $this->getAllSections();
 

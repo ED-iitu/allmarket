@@ -367,7 +367,11 @@
                                                     <div>
                                                         @if ($popular->price !== 0)
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <div class="old-price">{{$popular->price}} тг</div>
+                                                            @if($popular->price == 0 || $popular->price_sale == 0)
+                                                                <div class="old-price"></div>
+                                                            @else
+                                                                <div class="old-price">{{$popular->price}} тг</div>
+                                                            @endif
                                                         </div>
                                                         @endif
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">

@@ -1114,13 +1114,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
                             <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                                 <option class="input-select-option-inside" value="">Выберите город</option>
-                                <option class="input-select-option-inside" value="Алматы">Алматы</option>
-                                <option class="input-select-option-inside"  value="Нур-Султан">Нур-Султан</option>
-                                <option class="input-select-option-inside"  value="Караганда">Караганда</option>
-                                <option class="input-select-option-inside"  value="Петропавлоск">Петропавлоск</option>
-                                <option class="input-select-option-inside"   value="Усть-Каменогорск">Усть-Каменогорск</option>
-                                <option class="input-select-option-inside"  value="Атырау">Атырау</option>
-                                <option class="input-select-option-inside"  value="Актау">Актау</option>
+                                @foreach($cities as $city)
+                                <option class="input-select-option-inside" value="{{$city->id}}">{{$city->title}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -1232,7 +1228,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <img src="/images/thanks.png" alt="">
                 </div>
                  <div class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
-                    <h2 class="thanks-cart-subtitle" style="display: flex; justify-content: center; align-items: center">Наш оператор свяжется с Вами в течение 15 минут!</h2>
+                    <h2 class="thanks-cart-subtitle" style="display: flex; justify-content: center; align-items: center">Наш оператор свяжется с Вами сразу после обработки заказа</h2>
                 </div>
 
 

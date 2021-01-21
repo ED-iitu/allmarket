@@ -30,11 +30,20 @@
                             <div>
                                 <div
                                         style="display: flex;align-items: center;justify-content: space-between;">
-                                    <div class="old-price">{{$product->price}} тг</div>
+                                    @if($product->price == 0 || $product->price_sale == 0)
+                                        <div class="old-price"></div>
+                                    @else
+                                        <div class="old-price">{{$product->price}} тг</div>
+                                    @endif
+
                                 </div>
                                 <div
                                         style="display: flex;align-items: center;justify-content: space-between;">
-                                    <div class="new-price">{{$product->price}} тг</div>
+                                    @if($product->price_sale == 0)
+                                        <div class="new-price">{{$product->price}} тг</div>
+                                    @else
+                                    <div class="new-price">{{$product->price_sale}} тг</div>
+                                    @endif
                                     @if (Session::get('username'))
                                         <button class="add-to-cart" onclick="addToCart({{$product->id}})"></button>
                                     @else

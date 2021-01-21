@@ -59,7 +59,6 @@
                         </div>
 
                         <div class="d-flex flex-column justify-content-between">
-                            <div>Desctiption</div>
                             <div style="margin-top: 198px">
                                 <div class="d-flex flex-row justify-content-center">
                                     <div class="qty" style="margin-top: 15px;">
@@ -68,7 +67,11 @@
                                         <span class="plus">+</span>
                                     </div>
                                     <div class="flex-column">
-                                        <div class="old-price">{{$product->price}} тг</div>
+                                        @if($product->price == 0 || $product->price_sale == 0)
+                                            <div class="old-price mt-4"></div>
+                                        @else
+                                            <div class="old-price">{{$product->price}} тг</div>
+                                        @endif
                                         @if($product->price_sale != 0)
                                         <div class="new-price">{{$product->price_sale}} тг</div>
                                         @else
