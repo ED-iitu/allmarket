@@ -802,6 +802,36 @@ class HomeController extends Controller
         return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
     }
 
+    protected function remove_to_cart(int $product_id, int $qty = 0)
+    {
+        $checkProduct = $this->getProductById($product_id);
+        $countItem = $checkProduct->count;
+        if ($qty > $countItem) {
+            return response()->json(['error' => trans('shop.error.many-item')], 400, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+        }
+        $sessionItems = session()->get('cart');
+        if ($sessionItems) {
+            if ($qty == 0) {
+                foreach ($sessionItems as $key => $item) {
+                    if ($product_id == $key) {
+                        unset($sessionItems[$key]);
+
+                    }
+                }
+            }
+            $count = false;
+            session()->forget('cart');
+            if ($sessionItems) {
+                $count = True;
+                session()->put('cart', $sessionItems);
+            }
+
+            return response()->json(['success' => trans('shop.success.remove-cart'), 'count' => $count], 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+        } else {
+            return response()->json(['success' => trans('shop.success.no-cart')], 404, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+        }
+    }
+
 
     public function getProductById($id)
     {

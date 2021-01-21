@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $count = 0;
             $prices = 0;
+
             $countCartItems = Session::get('cart');
             if ($countCartItems != false) {
                 foreach ($countCartItems as $item) {

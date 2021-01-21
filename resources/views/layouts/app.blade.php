@@ -671,9 +671,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 <div class="non-empty-cart" id="cart-after">
                                     <h2 class="cart-top-title">Товары:</h2>
                                     <hr>
-                                    <h2 class="empty-title" id="empty-cart-after-delete" style="display: none;">Ваша
-                                        корзина пуста</h2>
-                                    <div class="empty-cart-after-delete"></div>
+                                    <div class="cart-empty"
+                                         style="display:none;align-items:center !important;justify-content:center;padding: 66px">
+                                        <h2 class="empty-title">Ваша корзина пуста</h2>
+                                    </div>
+                                    {{--                                    <div class="empty-cart-after-delete"></div>--}}
                                     <div id="cart-data-table">
                                         <?php $CartTotal = 0 ?>
                                         @foreach(session('cart') as $id => $details)
@@ -710,7 +712,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2" style="width: 50px">
-                                                        <div><span class="remove-from-cart" id="remove-product-{{$id}}">
+                                                        <div><span class="remove-from-cart" onclick="remove_cart({{$id}})">
                                                             <img src="/images/exit.png" alt="">
                                                         </span>
                                                         </div>
@@ -756,10 +758,12 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                     </div>
                                 </div>
                             @else
+                                <h2 class="cart-top-title" style="display:none;">Товары:</h2>
                                 <div class="cart-empty"
                                      style="display:flex;align-items:center !important;justify-content:center;padding: 66px">
                                     <h2 class="empty-title">Ваша корзина пуста</h2>
-                                    <div id="cart-data-table"></div>
+                                </div>
+                                <div id="cart-data-table">
                                 </div>
                             @endif
                         </div>
@@ -889,22 +893,21 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         total_price()
     });
 
-    $('.remove-from-cart').on('click', function () {
-        var id = $(this).attr('id').replace('remove-product-', '')
+    function remove_cart(product_id) {
 
-        var count_elements = $('.product-container').length;
-
-        $('#cart-product-' + id).remove()
-        $('#product-container-' + id).remove()
-
-        if (count_elements <= 1) {
-            $('#empty-cart-after-delete').css('display', 'flex')
-            $('#empty-cart-after-delete').css('justify-content', 'center')
-            $('.cart-bottom').css('display', 'none')
-        }
-
+            $.ajax({
+                url: '/cart/remove/' + product_id + '/' + 0,
+                success: function (data) {
+                    $('#cart-product-' + product_id).remove()
+                    $('#product-container-' + product_id).remove()
+                    if (data.count == false) {
+                        $('.cart-empty').show()
+                        $('.cart-top-title').hide()
+                    }
+                },
+            });
         total_price()
-    })
+    }
 
     function total_price() {
         var total_product_val = 0
@@ -1251,16 +1254,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             url: '{{ route('deleteCart') }}',
             type: 'GET',
             success: function (data) {
-                $('#cart-cart').html(`
-                        <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
-                            <div class="top-cart-cart">Корзина</div>
-                        </div>
-                        <div class="cart-empty" style="display:flex;align-items:center !important;justify-content:center;padding: 66px">
-                            <h2 class="empty-title">Ваша корзина пуста</h2>
-                        </div>
-                        <div id="cart-data-table"></div>
-                    `);
-
+                $('.cart-top-title').hide()
+                $('.cart-empty').show()
+                document.getElementById("cart-data-table").innerHTML = "";
                 updateCart()
             },
             error: function (XMLHttpRequest) {
@@ -1501,7 +1497,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             url: '{{ route('update_cart_data') }}',
             type: 'GET',
             success: function (data) {
+                $('.cart-empty').hide()
+                $('.cart-top-title').show()
                 document.getElementById("cart-data-table").innerHTML = "";
+                $('.cart-total-price-money').html(data.total_sum + ' тг')
                 $.each(data.products, function (key, value) {
                     $("#cart-data-table").append('<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
                         '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
@@ -1515,7 +1514,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         '<div class="cart-qty"><span id="cart-minus" class="cart-minus-' + value['product_id'] + '">-</span>' +
                         '<input type="number" class="cart-count" name="qty" value="1" id="cart-count-' + value['product_id'] + '" disabled="">' +
                         '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
-                        '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" id="remove-product-119">' +
+                        '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
                         '<img src="/images/exit.png" alt=""></span></div></div></div></div>'
                     )
                 })
