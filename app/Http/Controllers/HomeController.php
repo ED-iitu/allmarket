@@ -236,6 +236,7 @@ class HomeController extends Controller
 
     public function getSectionById($sectionId, Request $request)
     {
+        //dd($request);
         $client = new Client();
         $response = $client->request('GET', env('API_URL') . '/product_sections/' . $sectionId, [
             'query' => [
@@ -309,7 +310,8 @@ class HomeController extends Controller
             'query' => [
                 'city_id' => 6,
                 'paginate' => 30,
-                'order' => $request->order ?? 'price.desc'
+                'order' => $request->order ?? 'price.desc',
+                'page' => $request->page ?? 1
             ],
             'auth' => [
                 'dev@allmarket.kz',

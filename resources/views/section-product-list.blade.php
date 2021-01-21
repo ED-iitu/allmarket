@@ -1,4 +1,15 @@
+<style>
+    .paginator {
+        width: 49px;
+        height: 45px;
 
+        margin: 10px 5px 5px 5px;
+
+        background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
+        box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
+        border-radius: 10px;
+    }
+</style>
     <div class="row">
         @foreach($products as $product)
             <div class="col-md-4 product-list-mobile">
@@ -57,3 +68,12 @@
             </div>
         @endforeach
     </div>
+
+    <div style="display: flex; justify-content: center;" >
+        <input onclick="page(1)" value="1" id="page" class="paginator" type="button">
+        <input onclick="page(2)" value="2" id="page" class="paginator" type="button">
+        <input onclick="page(3)" value="3" id="page" class="paginator" type="button">
+        <input onclick="page(4)" value="4" id="page" class="paginator" type="button">
+    </div>
+
+

@@ -1435,6 +1435,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         filter = 'order=' + filter
         getProductByAjax(filter)
     });
+
+    function page(page) {
+        getProductByAjax('order=price.desc', page);
+    }
+
 </script>
 
 <script>
