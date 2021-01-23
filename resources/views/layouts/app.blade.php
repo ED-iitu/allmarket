@@ -765,6 +765,36 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 </div>
                                 <div id="cart-data-table">
                                 </div>
+                                <div class="cart-bottom" style="display: none">
+                                    <div class="row" style="flex-wrap: nowrap">
+                                        <div class="col-md-4 col-4">
+                                            <div class="cart-total-price-title">Итого:</div>
+                                            <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span
+                                                    class="bonus-price">200</span></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="cart-total-price-money"> тг</div>
+                                            <div style="margin-top: 10px">
+                                                <label class="form-switch">
+                                                    <input type="checkbox">
+                                                    <i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" style="margin-left: -45px">
+                                            <form action="">
+                                                <input class="cart-promocode-input" type="text"
+                                                       placeholder="Ввести промокод">
+                                                <input class="cart-promocode-btn" type="submit" value="Активировать">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="flex-row"
+                                         style="display:flex;justify-content: center; align-items: center; margin-top: 10px">
+                                        <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ
+                                        </button>
+                                    </div>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -906,6 +936,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     if (data.count == false) {
                         $('.cart-empty').show()
                         $('.cart-top-title').hide()
+                        $('.cart-bottom').hide();
                     }
                     updateCart();
                 },
@@ -1255,6 +1286,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             type: 'GET',
             success: function (data) {
                 $('.cart-top-title').hide()
+                $('.cart-bottom').hide()
                 $('.cart-empty').show()
                 document.getElementById("cart-data-table").innerHTML = "";
                 updateCart()
@@ -1528,6 +1560,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             success: function (data) {
                 $('.cart-empty').hide()
                 $('.cart-top-title').show()
+                $('.cart-bottom').show()
                 document.getElementById("cart-data-table").innerHTML = "";
                 $('.cart-total-price-money').html(data.total_sum + ' тг')
                 $.each(data.products, function (key, value) {
@@ -1537,7 +1570,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         '<div class="col-md-6 cart-title-style" style="width: 170px">' +
                         '<div class="cart-title">' + value['title'] + '</div>' +
                         '<div class="cart-category">' + value['category_title'] + '</div>' +
-                        '<div class="cart-price" id="cart-price-' + value['product_id'] + '" style="margin-top: 10px">' + value['price'] + ' тг</div>' +
+                        '<div class="cart-price" id="cart-price-' + value['product_id'] + '" style="margin-top: 10px">' + value['price'] * value['count']  + ' тг</div>' +
                         '<input type="hidden" value="' + value['price'] + '" id="current-price-' + value['product_id'] + '">' +
                         '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
                         '<div class="cart-qty"><span id="cart-minus" class="cart-minus-' + value['product_id'] + '">-</span>' +

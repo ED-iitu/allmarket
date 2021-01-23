@@ -83,7 +83,7 @@
                                 <hr class="product-devider">
 
                                 @if (Session::get('username'))
-                                        <button class="add_to_cart" onclick="addToCart({{$product->id}})"><span class="add_to_cart_text">Добавить в корзину</span></button>
+                                        <button class="add_to_cart" ><span class="add_to_cart_text">Добавить в корзину</span></button>
                                 @else
                                     <button href="#auth" uk-toggle type="submit" class="add_to_cart"><span class="add_to_cart_text">Добавить в корзину</span></button>
 
@@ -122,6 +122,11 @@
             </div>
         </div>
     </div>
-
+    <script>
+        $('.add_to_cart').on('click', function (){
+            var quantity = $('#productQuantity').val()
+            addToCart({{$product->id}}, quantity)
+        })
+    </script>
 
 @endsection

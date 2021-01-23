@@ -742,7 +742,7 @@ class HomeController extends Controller
         }
         // if cart not empty then check if this product exist then increment quantity
         if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+            $cart[$id]['quantity'] += (int) $quantity;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
@@ -750,7 +750,7 @@ class HomeController extends Controller
         $cart[$id] = [
             "title" => $product->title,
             "category" => $product->category->title,
-            "quantity" => $quantity,
+            "quantity" => $cart[$id]['quantity'] + $quantity,
             "price" => $productPrice * $quantity,
             "image" => $product->image
         ];
@@ -770,13 +770,6 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Не удалось найти пользователя');
         }
 
-        $offerId = 0;
-
-
-        if (!$product) {
-            $offerId = $id;
-        }
-
 //        $this->addToServerCart($token, $id, $offerId, $quantity);
 
 
@@ -789,25 +782,12 @@ class HomeController extends Controller
         }
 
         $cart = session()->get('cart');
-        // if cart is empty then this the first product
-//        if (!$cart) {
-//            $cart = [
-//                $id => [
-//                    "title" => $product->title,
-//                    "category" => $product->category->title,
-//                    "quantity" => $quantity,
-//                    "price" => $productPrice * $quantity,
-//                    "image" => $product->image
-//                ]
-//            ];
-//            session()->put('cart', $cart);
-//            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
-//        }
+
         // if cart not empty then check if this product exist then increment quantity
         if (isset($cart[$id])) {
             $cart[$id]['quantity']--;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+            return redirect()->back()->with('success', 'Товар успешно удален из корзины!');
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
@@ -818,7 +798,7 @@ class HomeController extends Controller
             "image" => $product->image
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        return redirect()->back()->with('success', 'Товар успешно удален из корзины!');
     }
 
     public function update_cart()
