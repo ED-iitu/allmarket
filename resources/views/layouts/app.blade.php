@@ -880,6 +880,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             current_price = $('#current-price-' + id).val();
         product_count.val(parseInt(product_count.val()) + 1)
         $('#cart-price-' + id).html(parseInt(current_price) * parseInt(product_count.val()) + ' тг');
+        addToCart(id)
         total_price()
     });
     $(document).on('click', '#cart-minus', function () {
@@ -889,7 +890,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         if (product_count.val() > 1) {
             product_count.val(parseInt(product_count.val()) - 1)
             $('#cart-price-' + id).html(parseInt(current_price) * parseInt(product_count.val()) + ' тг');
+            removeToCart(id)
         }
+
         total_price()
     });
 
@@ -904,6 +907,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         $('.cart-empty').show()
                         $('.cart-top-title').hide()
                     }
+                    updateCart();
                 },
             });
         total_price()
@@ -1443,29 +1447,53 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 </script>
 
 <script>
-    function addToCart(id) {
+    function addToCart(id, quantity=1) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
-        var quantity = 1
-
-        if (quantity == null) {
-            quantity = 1
-        }
-
         $.ajax({
             url: '{{ route('addToCartPost') }}',
             type: 'POST',
             data: {
                 product_id: id,
-                quantity: quantity
+                quantity: quantity,
             },
             success: function (data) {
                 $('#modal-body').html('')
                 $('#modal-body').append("Товар добавлен в корзину")
+                $('#your-modal').modal('toggle');
+                setTimeout(function () {
+                    $('#your-modal').modal('hide');
+                }, 2000);
+                updateCart()
+                updateCartData()
+
+            },
+            error: function (XMLHttpRequest) {
+                $('#modal-body').html('')
+                $('#modal-body').append('Произошла ошибка попробуйте позже')
+                $('#your-modal').modal('toggle');
+            }
+        });
+    }
+    function removeToCart(id, quantity=1) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '{{ route('removeToCartPost') }}',
+            type: 'POST',
+            data: {
+                product_id: id,
+                quantity: quantity,
+            },
+            success: function (data) {
+                $('#modal-body').html('')
+                $('#modal-body').append("Товар удален из корзины")
                 $('#your-modal').modal('toggle');
                 setTimeout(function () {
                     $('#your-modal').modal('hide');
@@ -1513,12 +1541,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         '<input type="hidden" value="' + value['price'] + '" id="current-price-' + value['product_id'] + '">' +
                         '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
                         '<div class="cart-qty"><span id="cart-minus" class="cart-minus-' + value['product_id'] + '">-</span>' +
-                        '<input type="number" class="cart-count" name="qty" value="1" id="cart-count-' + value['product_id'] + '" disabled="">' +
+                        '<input type="number" class="cart-count" name="qty" value="'+ value['count'] +'" id="cart-count-' + value['product_id'] + '" disabled="">' +
                         '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
                         '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
                         '<img src="/images/exit.png" alt=""></span></div></div></div></div>'
                     )
                 })
+                updateCart()
             },
         });
     }

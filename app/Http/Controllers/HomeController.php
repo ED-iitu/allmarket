@@ -661,7 +661,6 @@ class HomeController extends Controller
         $res = json_decode($response);
 
 
-
         $sections = $this->getAllSections();
 
         return view('search-page', [
@@ -744,6 +743,69 @@ class HomeController extends Controller
         // if cart not empty then check if this product exist then increment quantity
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        }
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "title" => $product->title,
+            "category" => $product->category->title,
+            "quantity" => $quantity,
+            "price" => $productPrice * $quantity,
+            "image" => $product->image
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+    }
+
+    public function removeToCart(Request $request)
+    {
+        $id = $request->product_id;
+        $quantity = $request->quantity;
+        $product = $this->getProductById($id);
+        $token = session()->get('token');
+        $productPrice = 0;
+
+        if (null === $token) {
+            return redirect()->back()->with('error', 'Не удалось найти пользователя');
+        }
+
+        $offerId = 0;
+
+
+        if (!$product) {
+            $offerId = $id;
+        }
+
+//        $this->addToServerCart($token, $id, $offerId, $quantity);
+
+
+        if ($product->price_sale > $product->price) {
+            $productPrice = $product->price_sale;
+        } elseif ($product->price_sale == 0) {
+            $productPrice = $product->price;
+        } else {
+            $productPrice = $product->price_sale;
+        }
+
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+//        if (!$cart) {
+//            $cart = [
+//                $id => [
+//                    "title" => $product->title,
+//                    "category" => $product->category->title,
+//                    "quantity" => $quantity,
+//                    "price" => $productPrice * $quantity,
+//                    "image" => $product->image
+//                ]
+//            ];
+//            session()->put('cart', $cart);
+//            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+//        }
+        // if cart not empty then check if this product exist then increment quantity
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']--;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }

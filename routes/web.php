@@ -29,6 +29,7 @@ Route::post('sendSms', 'HomeController@sendSms')->name('sendSms');
 Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
 Route::post('/addToCart', 'HomeController@addToCart')->name('addToCartPost');
+Route::post('/removeToCart', 'HomeController@removeToCart')->name('removeToCartPost');
 Route::get('/update-cart', 'HomeController@update_cart')->name('update_cart');
 Route::get('/update-cart-data', 'HomeController@update_cart_data')->name('update_cart_data');
 Route::get('/cart/remove/{id}/{qty}', 'HomeController@remove_to_cart')->name('remove_to_cart');
