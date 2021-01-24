@@ -43,6 +43,8 @@ Route::get('shares', 'HomeController@shares')->name('shares');
 Route::get('shares/{id}', 'HomeController@getSharesById')->name('share');
 Route::post('city', 'HomeController@addCityToSession')->name('sessionCity');
 Route::get('available-cities', 'HomeController@getAvailableCities')->name('availableCities');
+Route::post('addRaiting', 'HomeController@addRaiting')->name('addRaiting');
+Route::get('select-city/{id}/{title}', 'HomeController@selectCity')->name('selectCity');
 
 
 

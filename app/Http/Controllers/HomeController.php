@@ -63,7 +63,7 @@ class HomeController extends Controller
         try {
             $response = $this->client->request('GET', env('API_URL') . '/favorites', [
                 'query' => [
-                    'city_id' => 6,
+                    'city_id' => session()->get('city')['id'] ?? 6,
                 ],
                 'headers' =>
                     [
@@ -95,7 +95,7 @@ class HomeController extends Controller
 
             $this->client->request('POST', env('API_URL') . '/favorites', [
                 'query' => [
-                    'city_id' => 6,
+                    'city_id' => session()->get('city')['id'] ?? 6,
                 ],
                 'form_params' => [
                     'product_id' => $product_id
@@ -130,7 +130,7 @@ class HomeController extends Controller
 
         $response = $this->client->request('GET', env('API_URL') . '/products/popular', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
                 'order' => "price.desc",
                 'paginate' => 30,
             ],
@@ -150,7 +150,7 @@ class HomeController extends Controller
 
         $response = $this->client->request('GET', env('API_URL') . '/products/recommended', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
                 'paginate' => 30,
                 'order' => "price.desc"
             ],
@@ -170,7 +170,7 @@ class HomeController extends Controller
 
         $response = $this->client->request('GET', env('API_URL') . '/products/sale', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
                 'paginate' => 30,
                 'order' => $request->order ?? "price.asc"
             ],
@@ -236,11 +236,10 @@ class HomeController extends Controller
 
     public function getSectionById($sectionId, Request $request)
     {
-        //dd($request);
         $client = new Client();
         $response = $client->request('GET', env('API_URL') . '/product_sections/' . $sectionId, [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
 
             ],
             'auth' => [
@@ -308,7 +307,7 @@ class HomeController extends Controller
         $client = new Client();
         $response = $client->request('GET', env('API_URL') . '/product_sections/' . $sectionId . '/products', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
                 'paginate' => 30,
                 'order' => $request->order ?? 'price.desc',
                 'page' => $request->page ?? 1
@@ -329,7 +328,7 @@ class HomeController extends Controller
         $client = new Client();
         $response = $client->request('GET', env('API_URL') . '/products/' . $id, [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -360,7 +359,7 @@ class HomeController extends Controller
         $client = new Client();
         $response = $client->request('GET', env('API_URL') . '/product_categories/' . $category_id . '/products', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
                 'paginate' => 30,
                 'order' => $request->order ?? 'price.desc'
             ],
@@ -431,7 +430,7 @@ class HomeController extends Controller
                 'form_params' => [
                     'name' => $request->name,
                     'phone' => $request->phone,
-                    'city_id' => 6,
+                    'city_id' => session()->get('city')['id'] ?? 6,
                 ],
                 'headers' => [
                     'Accept' => 'application/json'
@@ -598,14 +597,15 @@ class HomeController extends Controller
         }
     }
 
+    //Rus tut nuzhno v korzinu
     public function cloneOrder(Request $request)
     {
         $token = session()->get('token');
-        //https://allmarket.armenianbros.com/api/v2/orders/633/clone?city_id=2
+        //https://dev-api.allmarket.kz/api/v2/orders/1164?city_id=6
 
-        $responce = $this->client->request('POST', env('API_URL') . '/orders/' . $request->id . '/clone', [
+        $responce = $this->client->request('GET', env('API_URL') . '/orders/' . $request->id, [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
@@ -613,7 +613,9 @@ class HomeController extends Controller
             ]
         ]);
 
-        return redirect()->back()->with('success', 'Вы успешно повторили заказ');
+        $res = $responce->getBody()->getContents();
+
+        return json_decode($res);
     }
 
     public function logout()
@@ -640,7 +642,7 @@ class HomeController extends Controller
                     'dev'
                 ],
                 'query' => [
-                    'city_id' => 2,
+                    'city_id' => session()->get('city')['id'] ?? 6,
                     'term' => $request->title
                 ],
                 'headers' => [
@@ -673,11 +675,11 @@ class HomeController extends Controller
 
     public function addToServerCart($token, $product_id, $offerId, $quantity = 1)
     {
-        //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=2
+        //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=session()->get('city')['id'] ?? 6
 
         $responce = $this->client->request('POST', env('API_URL') . '/baskets/increase', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'form_params' => [
                 'count' => $quantity,
@@ -701,7 +703,6 @@ class HomeController extends Controller
         $quantity = $request->quantity;
         $product = $this->getProductById($id);
         $token = session()->get('token');
-        $productPrice = 0;
 
         if (null === $token) {
             return redirect()->back()->with('error', 'Не удалось найти пользователя');
@@ -717,11 +718,8 @@ class HomeController extends Controller
         $this->addToServerCart($token, $id, $offerId, $quantity);
 
 
-        if ($product->price_sale > $product->price) {
-            $productPrice = $product->price_sale;
-        } elseif ($product->price_sale == 0) {
-            $productPrice = $product->price;
-        } else {
+        $productPrice = $product->price;
+        if ($product->price_sale > $product->price or $product->price_sale != 0) {
             $productPrice = $product->price_sale;
         }
 
@@ -733,7 +731,7 @@ class HomeController extends Controller
                     "title" => $product->title,
                     "category" => $product->category->title,
                     "quantity" => $quantity,
-                    "price" => $productPrice * $quantity,
+                    "price" => $productPrice,
                     "image" => $product->image
                 ]
             ];
@@ -750,8 +748,8 @@ class HomeController extends Controller
         $cart[$id] = [
             "title" => $product->title,
             "category" => $product->category->title,
-            "quantity" => $cart[$id]['quantity'] + $quantity,
-            "price" => $productPrice * $quantity,
+            "quantity" => $quantity,
+            "price" => $productPrice,
             "image" => $product->image
         ];
         session()->put('cart', $cart);
@@ -764,7 +762,6 @@ class HomeController extends Controller
         $quantity = $request->quantity;
         $product = $this->getProductById($id);
         $token = session()->get('token');
-        $productPrice = 0;
 
         if (null === $token) {
             return redirect()->back()->with('error', 'Не удалось найти пользователя');
@@ -772,12 +769,8 @@ class HomeController extends Controller
 
 //        $this->addToServerCart($token, $id, $offerId, $quantity);
 
-
-        if ($product->price_sale > $product->price) {
-            $productPrice = $product->price_sale;
-        } elseif ($product->price_sale == 0) {
-            $productPrice = $product->price;
-        } else {
+        $productPrice = $product->price;
+        if ($product->price_sale > $product->price or $product->price_sale != 0) {
             $productPrice = $product->price_sale;
         }
 
@@ -808,6 +801,7 @@ class HomeController extends Controller
         $countCartItems = session()->get('cart');
         if ($countCartItems != false) {
             foreach ($countCartItems as $item) {
+
                 $count += $item['quantity'];
                 $prices += (int)$item['price'] * $item['quantity'];
             }
@@ -825,18 +819,22 @@ class HomeController extends Controller
         if ($countCartItems != false) {
             foreach ($countCartItems as $key => $item) {
                 $product = $this->getProductById($key);
+                $productPrice = $product->price;
+                if ($product->price_sale > $product->price or $product->price_sale != 0) {
+                    $productPrice = $product->price_sale;
+                }
                 if ($product) {
                     $product_array = [
                         'count' => $item['quantity'],
                         'product_id' => $key,
                         'title' => $product->title,
-                        'price' => $product->price,
+                        'price' => $productPrice,
                         'image' => $product->image,
                         'total' => (int)$product->price * $item['quantity'],
                         'category_title' => $product->category->title
                     ];
                     array_push($cart_products, $product_array);
-                    $total_sum += (int)$product->price * $item['quantity'];
+                    $total_sum += (int)$productPrice * $item['quantity'];
                     $countProduct += 1;
                 }
             }
@@ -885,7 +883,7 @@ class HomeController extends Controller
             $client = new Client();
             $response = $client->request('GET', env('API_URL') . '/products/' . $id, [
                 'query' => [
-                    'city_id' => 6,
+                    'city_id' => session()->get('city')['id'] ?? 6,
                 ],
                 'auth' => [
                     'dev@allmarket.kz',
@@ -912,7 +910,7 @@ class HomeController extends Controller
         $token = session()->get('token');
         $response = $this->client->request('GET', env('API_URL') . '/orders', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
@@ -982,7 +980,7 @@ class HomeController extends Controller
 
         $responce = $this->client->request('DELETE', env('API_URL') . '/baskets', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
@@ -1001,7 +999,7 @@ class HomeController extends Controller
 
         $responce = $this->client->request('POST', env('API_URL') . '/checkout', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
@@ -1018,7 +1016,7 @@ class HomeController extends Controller
 
         $responce = $this->client->request('POST', env('API_URL') . '/orders', [
             'query' => [
-                'city_id' => 6,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'form_params' => [
                 'address' => $request->address,
@@ -1108,7 +1106,7 @@ class HomeController extends Controller
     {
         $response = $this->client->request('GET', env('API_URL') . '/sales', [
             'query' => [
-                'city_id' => 2,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -1139,7 +1137,7 @@ class HomeController extends Controller
         $sections = $this->getAllSections();
         $response = $this->client->request('GET', env('API_URL') . '/sales/' . $id, [
             'query' => [
-                'city_id' => 2,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -1184,7 +1182,7 @@ class HomeController extends Controller
     {
         $response = $this->client->request('GET', env('API_URL') . '/cities', [
             'query' => [
-                'city_id' => 2,
+                'city_id' => session()->get('city')['id'] ?? 6,
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -1198,6 +1196,74 @@ class HomeController extends Controller
 
 
         return $response->cities;
+    }
+
+    public function addRaiting(Request $request)
+    {
+
+        $token = session()->get('token');
+
+        if (null === $token) {
+            return redirect()->back()->with('error', 'Необходима авторизация');
+        }
+
+        try{
+            $response = $this->client->request('GET', env('API_URL') . '/'. $request->productId . '/ratings', [
+                'form_params' => [
+                    'rating' => $request->raiting,
+                ],
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                    'Accept' => 'application/json'
+                ],
+                'auth' => [
+                    'dev@allmarket.kz',
+                    'dev'
+                ]
+            ]);
+
+        } catch (ClientException $e) {
+
+        }
+
+
+
+        //dd($response);
+
+        $response = $response->getBody()->getContents();
+
+        $response = json_decode($response);
+
+
+        return $response->cities;
+    }
+
+
+    public function selectCity($id, $title)
+    {
+        $city = session()->get('city');
+
+        if ($city == null) {
+            $city = [
+                'id' => $id,
+                'title' => $title
+            ];
+
+            session()->put('city', $city);
+        }
+
+        if ($city["id"] !== $id) {
+            session()->remove('city');
+
+            $city = [
+                'id' => $id,
+                'title' => $title
+            ];
+
+            session()->put('city', $city);
+        }
+
+        return redirect()->back();
     }
 
 

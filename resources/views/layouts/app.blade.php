@@ -59,11 +59,15 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            @if ($selectedCity = Session::get('city'))
+                                {{$selectedCity['title']}}
+                            @else
                             Выбрать город
+                            @endif
                         </a>
                         <div class="dropdown-menu dropdown-city">
                             @foreach($cities as $city)
-                                <a class="dropdown-item select_city">{{$city->title}}</a>
+                                <a class="dropdown-item select_city" href="{{route('selectCity', ['id'=>$city->id, 'title'=>$city->title])}}">{{$city->title}}</a>
                             @endforeach
                             {{--<a class="dropdown-item select_city">Нур-Султан</a>--}}
                             {{--<a class="dropdown-item select_city">Караганда</a>--}}
@@ -695,7 +699,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                         </div>
                                                         <div class="cart-category">{{$details['category']}}</div>
                                                         <div class="cart-price" id="cart-price-{{$id}}"
-                                                             style="margin-top: 10px">{{$details['price']}} тг
+                                                             style="margin-top: 10px">{{$details['price'] * $details['quantity']}} тг
                                                         </div>
                                                         <input type="hidden" value="{{$details['price']}}"
                                                                id="current-price-{{$id}}">
@@ -804,6 +808,32 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     </div>
 </div>
 
+@if (!Session::get('city'))
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#select_city').modal('toggle');
+    })
+
+</script>
+
+@endif
+
+<div class="modal fade" id="select_city" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-body">
+                <h2>Выберите ваш город</h2>
+                <ul style="list-style: none">
+                    <li><a href="{{route('selectCity', ['id'=>6, 'title'=>'Алматы'])}}">Алматы</a></li>
+                    <li><a href="{{route('selectCity', ['id'=>2, 'title'=>'Нур-Султан'])}}">Нур-Султан(Астана)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <div class="modal fade" id="your-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -840,7 +870,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 </script>
 
 <script>
-    $(function () {
+    $(function() {
         'use strict';
 
         var body = $('body');
@@ -858,12 +888,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             if (key === 9) {
                 return true;
             }
-            if (key === 8) {
-                return false;
-            }
 
             if (!sib || !sib.length) {
-                sib = body.find('verify-code-input').eq(0);
+                sib = body.find('.verify-code-input').eq(0);
             }
             sib.select().focus();
         }
@@ -879,10 +906,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             return false;
         }
 
+        function onFocus(e) {
+            $(e.target).select();
+        }
 
         body.on('keyup', '.verify-code-input', goToNextInput);
         body.on('keydown', '.verify-code-input', onKeyDown);
-
+        body.on('click', '.verify-code-input', onFocus);
 
     })
 </script>
