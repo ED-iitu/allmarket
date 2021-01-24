@@ -808,32 +808,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     </div>
 </div>
 
-@if (!Session::get('city'))
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#select_city').modal('toggle');
-    })
-
-</script>
-
-@endif
-
-<div class="modal fade" id="select_city" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body" id="modal-body">
-                <h2>Выберите ваш город</h2>
-                <ul style="list-style: none">
-                    <li><a href="{{route('selectCity', ['id'=>6, 'title'=>'Алматы'])}}">Алматы</a></li>
-                    <li><a href="{{route('selectCity', ['id'=>2, 'title'=>'Нур-Султан'])}}">Нур-Султан(Астана)</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 
 <div class="modal fade" id="your-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -898,7 +872,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         function onKeyDown(e) {
             var key = e.which;
 
-            if (key === 9 || (key >= 48 && key <= 57)) {
+            if (key === 9 || (key >= 48 && key <= 107) ) {
                 return true;
             }
 
@@ -1425,14 +1399,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             });
         }
 
-
-        // $(".mobile-cart").click(function () {
-        //     $('.mobile-nav').css('position', 'fixed');
-        //     $('.mobile-nav').css('z-index', '1000');
-        //     $('.mobile-nav').css('top', '0');
-        // });
-
-
         $('.search').focusin(function () {
             $('.searchRes').show();
         });
@@ -1456,15 +1422,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         $(".showSub").hover(function () {
             $('.showSubCategory').css("display", "block");
         });
-
-        // $(".showSubCategory").hover(function () {
-        //     $('.showCategory').css("display", "block");
-        //     $('.showSubCategory').css("display", "block");
-        // }, function () {
-        //     $('.showSubCategory').css("display", "none");
-        // });
-
-
     });
 </script>
 
@@ -1602,6 +1559,32 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
     }
 </script>
+
+@if (!Session::get('city'))
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#select_city').modal('toggle');
+        })
+
+    </script>
+
+@endif
+
+<div class="modal fade" id="select_city" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-body">
+                <h2>Выберите ваш город</h2>
+                <ul style="list-style: none">
+                    <li><a href="{{route('selectCity', ['id'=>6, 'title'=>'Алматы'])}}">Алматы</a></li>
+                    <li><a href="{{route('selectCity', ['id'=>2, 'title'=>'Нур-Султан'])}}">Нур-Султан(Астана)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+s
 
 </body>
 </html>

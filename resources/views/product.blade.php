@@ -179,6 +179,16 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="raiting-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $('.cart-add').on('click', function (){
             var quantity = $('#productQuantity').val()
@@ -216,13 +226,10 @@
                 success: function (data) {
                     $('#modal-body').html('')
                     $('#modal-body').append("Спасибо, Ваш голос принят!")
-                    $('#your-modal').modal('toggle');
+                    $('#raiting-modal-modal').modal('toggle');
                     setTimeout(function () {
-                        $('#your-modal').modal('hide');
+                        $('#raiting-modal-modal').modal('hide');
                     }, 2000);
-                    // updateCart()
-                    // updateCartData()
-
                 },
                 error: function (XMLHttpRequest) {
                     $('#modal-body').html('')
