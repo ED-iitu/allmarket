@@ -117,6 +117,7 @@
                                     <div class="qty" style="margin-top: 15px;">
                                         <span class="minus">-</span>
                                         <input type="number" class="count" id="productQuantity" name="qty" value="1">
+
                                         <span class="plus">+</span>
                                     </div>
                                     <div class="flex-column">
@@ -127,9 +128,12 @@
                                         @endif
                                         @if($product->price_sale != 0)
                                         <div class="new-price">{{$product->price_sale}} тг</div>
+                                                <input type="hidden" name="full_price" value="{{$product->price_sale}}">
                                         @else
                                             <div class="new-price">{{$product->price}} тг</div>
+                                                <input type="hidden" name="full_price" value="{{$product->price}}">
                                         @endif
+
 
                                     </div>
                                 </div>
@@ -180,6 +184,19 @@
             var quantity = $('#productQuantity').val()
             addToCart({{$product->id}}, quantity)
         })
+        var count_class = $('.count')
+        count_class.prop('disabled', true);
+        var product_count
+        $(document).on('click', '.plus', function () {
+            count_class.val(parseInt(count_class.val()) + 1);
+            $('.new-price').html($('input[name="full_price"]').val() * count_class.val() + ' тг')
+        });
+        $(document).on('click', '.minus', function () {
+            if (count_class.val() > 1) {
+                count_class.val(parseInt($('.count').val()) - 1);
+                $('.new-price').html($('input[name="full_price"]').val() * count_class.val() + ' тг')
+            }
+        });
     </script>
 
     <script>

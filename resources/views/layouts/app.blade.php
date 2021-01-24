@@ -919,19 +919,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('.count').prop('disabled', true);
-        $(document).on('click', '.plus', function () {
-            $('.count').val(parseInt($('.count').val()) + 1);
-        });
-        $(document).on('click', '.minus', function () {
-            $('.count').val(parseInt($('.count').val()) - 1);
-            if ($('.count').val() == 0) {
-                $('.count').val(1);
-            }
-        });
-    });
-
 
     $('.cart-count').prop('disabled', true);
     $(document).on('click', '#cart-plus', function () {
