@@ -268,7 +268,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             <a href="https://instagram.com/allmarket.kz?igshid=1kn0k00hbuy31"><img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <a href="wa.me/77712101512"><img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px"></a>
+                            <a href="https://wa.me/77712101512"><img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px"></a>
                         </div>
                     </div>
                 </div>
@@ -554,7 +554,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 </a>
                             </div>
                             <div class="social">
-                                <a href="wa.me/77712101512">
+                                <a href="https://wa.me/77712101512">
                                     <img class="social-img" src="/images/whatsapp.png" alt="" width="48px"
                                          height="49px">
                                 </a>
