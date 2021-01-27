@@ -740,7 +740,7 @@ class HomeController extends Controller
         }
         // if cart not empty then check if this product exist then increment quantity
         if (isset($cart[$id])) {
-            $cart[$id]['quantity'] += (int) $quantity;
+            $cart[$id]['quantity'] += (int)$quantity;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
@@ -753,6 +753,45 @@ class HomeController extends Controller
             "image" => $product->image
         ];
         session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+    }
+
+    public function addToCartSale(Request $request)
+    {
+        $share_id = $request->share_id;
+
+        $response = $this->client->request('GET', env('API_URL') . '/sales/' . $share_id, [
+            'query' => [
+                'city_id' => session()->get('city')['id'] ?? 6,
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+        $response = $response->getBody()->getContents();
+        $shareProducts = $this->getShareProducts($response);
+
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if (!$cart) {
+            $cart_product = [];
+            foreach ($shareProducts as $product) {
+                $cart_product[$product->id] =
+                    [
+                        "title" => $product->title,
+                        "category" => $product->category->title,
+                        "quantity" => 1,
+                        "price" => $product->price,
+                        "image" => $product->image,
+                        "type" => 'sales',
+                    ];
+
+            }
+            session()->put('cart', $cart_product);
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        }
+        // if item not exist in cart then add to cart with quantity = 1
         return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
     }
 
@@ -1165,15 +1204,15 @@ class HomeController extends Controller
         $data = json_decode($data);
         $products = [];
         foreach ($data->sale->offers as $offers) {
-            if(isset($offers->rules->sale_items)) {
+            if (isset($offers->rules->sale_items)) {
                 foreach ($offers->rules->sale_items as $items) {
-                    if($items->price) {
+                    if ($items->price) {
                         $items->product->price = $items->price;
                     }
                     $products[] = $items->product;
                 }
             }
-            if(isset($offers->rules->base_items)) {
+            if (isset($offers->rules->base_items)) {
                 foreach ($offers->rules->base_items as $items) {
                     $products[] = $items->product;
                 }
@@ -1212,8 +1251,8 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Необходима авторизация');
         }
 
-        try{
-            $this->client->request('GET', env('API_URL') . '/'. $request->productId . '/ratings', [
+        try {
+            $this->client->request('GET', env('API_URL') . '/' . $request->productId . '/ratings', [
                 'form_params' => [
                     'rating' => $request->raiting,
                 ],

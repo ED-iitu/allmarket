@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="Updated cart">
-      <change beforePath="$PROJECT_DIR$/.idea/allMarket.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/allMarket.iml" afterDir="false" />
+    <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="Updated codes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/shares-product-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shares-product-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -357,6 +358,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -485,7 +487,7 @@
       <updated>1603906321250</updated>
       <workItem from="1603906325422" duration="126042000" />
       <workItem from="1607275035155" duration="12769000" />
-      <workItem from="1611768574808" duration="2418000" />
+      <workItem from="1611768574808" duration="8046000" />
     </task>
     <task id="LOCAL-00001" summary="Added bg for cart">
       <created>1607520099814</created>
@@ -508,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611513622058</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated codes">
+      <created>1611772010133</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611772010133</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -563,7 +572,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added bg for cart" />
     <MESSAGE value="Updated cart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated cart" />
+    <MESSAGE value="Updated codes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated codes" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/about.blade.php">
