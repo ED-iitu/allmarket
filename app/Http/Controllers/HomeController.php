@@ -615,7 +615,7 @@ class HomeController extends Controller
 
         $res = $responce->getBody()->getContents();
 
-        return json_decode($res);
+        return redirect()->back()->with('success', 'Заказ успешно склонирован');
     }
 
     public function logout()
@@ -1213,7 +1213,7 @@ class HomeController extends Controller
         }
 
         try{
-            $response = $this->client->request('GET', env('API_URL') . '/'. $request->productId . '/ratings', [
+            $this->client->request('GET', env('API_URL') . '/'. $request->productId . '/ratings', [
                 'form_params' => [
                     'rating' => $request->raiting,
                 ],
@@ -1221,26 +1221,13 @@ class HomeController extends Controller
                     'Authorization' => 'Bearer ' . $token,
                     'Accept' => 'application/json'
                 ],
-                'auth' => [
-                    'dev@allmarket.kz',
-                    'dev'
-                ]
             ]);
 
+            return redirect()->back()->with('success', 'Спасибо, Ваш голос принят!');
+
         } catch (ClientException $e) {
-
+            return redirect()->back()->with('error', 'Произошла ошибка');
         }
-
-
-
-        //dd($response);
-
-        $response = $response->getBody()->getContents();
-
-        $response = json_decode($response);
-
-
-        return $response->cities;
     }
 
 

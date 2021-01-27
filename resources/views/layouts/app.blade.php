@@ -31,11 +31,33 @@
             display: none;
         }
 
+        .display-after-cart {
+
+
+            display: none;
+
+        }
+
+        .do_not_display {
+            z-index: 1000;
+            width: 200px;
+            margin-left: 990px;
+            height: 10%;
+            position: absolute;
+            display: flex;
+            background-color: white;
+            opacity: 0;
+        }
+
     </style>
 
 </head>
 <body>
 <div id="app">
+
+    <div class="display-after-cart">
+
+    </div>
     @if ($message = Session::get('username'))
         <input type="hidden" id="loginUsername" value="{{Session::get('username')}}">
     @else
@@ -170,16 +192,43 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <hr>
                     <div>
                         <div class="uk-margin">
-                            <div uk-form-custom="target: true">
-                                <select class="uk-select" id="form-stacked-select"
-                                        style="border: none; color: #7791A4 ">
-                                    <option>Выберите город</option>
-                                    @foreach($cities as $city)
-                                        <option>{{$city->title}}</option>
-                                    @endforeach
-                                </select>
-                                <span></span>
-                            </div>
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item dropdown">
+                                    <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: #7791A4">
+                                        @if ($selectedCity = Session::get('city'))
+                                            {{$selectedCity['title']}}
+                                        @else
+                                            Выбрать город
+                                        @endif
+                                    </a>
+                                    <div class="dropdown-menu dropdown-city">
+                                        @foreach($cities as $city)
+                                            <a class="dropdown-item select_city" href="{{route('selectCity', ['id'=>$city->id, 'title'=>$city->title])}}" style="color:#7791A4">{{$city->title}}</a>
+                                        @endforeach
+                                        {{--<a class="dropdown-item select_city">Нур-Султан</a>--}}
+                                        {{--<a class="dropdown-item select_city">Караганда</a>--}}
+                                        {{--<a class="dropdown-item select_city">Петропавлоск</a>--}}
+                                        {{--<a class="dropdown-item select_city">Усть-Каменогорск</a>--}}
+                                        {{--<a class="dropdown-item select_city">Атырау</a>--}}
+                                        {{--<a class="dropdown-item select_city">Актау</a>--}}
+                                    </div>
+                                </li>
+                            </ul>
+                            {{--<div uk-form-custom="target: true">--}}
+                                {{--<select class="uk-select" id="form-stacked-select"--}}
+                                        {{--style="border: none; color: #7791A4 ">--}}
+                                    {{--@if ($selectedCity = Session::get('city'))--}}
+                                        {{--<option>{{$selectedCity['title']}}</option>--}}
+
+                                    {{--@else--}}
+                                        {{--<option>Выберите город</option>--}}
+                                    {{--@endif--}}
+                                    {{--@foreach($cities as $city)--}}
+                                            {{--<option><a href="{{route('selectCity', ['id'=>$city->id, 'title'=>$city->title])}}">{{$city->title}}</a></option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                                {{--<span></span>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                     <hr>
@@ -207,19 +256,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <hr>
                     <div class="d-flex flex-row" style="justify-content: center;">
                         <div class="social-mobile">
-                            <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                            <a href="https://apps.apple.com/kz/app/allmarket-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%81%D1%83%D0%BF%D0%B5%D1%80%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82/id1438100445"><img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px">
+                            <a href="https://play.google.com/store/apps/details?id=com.batman.almas.altyn_alma&hl=ru"><img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <img class="social-img" src="/images/facebook.png" alt="" width="48px" height="49px">
+                            <a href=""><img class="social-img" src="/images/facebook.png" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px">
+                            <a href="https://instagram.com/allmarket.kz?igshid=1kn0k00hbuy31"><img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px">
+                            <a href="https://wa.me/77712101512"><img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px"></a>
                         </div>
                     </div>
                 </div>
@@ -279,6 +328,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li>
                                                     <a href="{{route('category_products', [$section->id, 15])}}">Масло</a>
                                                 </li>
+                                                <li>
+                                                    <a href="{{route('sectionById', 1)}}" style="color: #1f6fb2">Все категории</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 1)
@@ -289,6 +341,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="#m2_2">Сокии морсы</a></li>
                                                 <li><a href="#m2_2">Вода</a></li>
                                                 <li><a href="#m2_2">Алкоголь</a></li>
+                                                <li>
+                                                    <a href="{{route('sectionById', 2)}}" style="color: #1f6fb2">Все категории</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 2)
@@ -299,6 +354,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="#m2_2">Уход за телом</a></li>
                                                 <li><a href="#m2_2">Уход за полостью рта</a></li>
                                                 <li><a href="#m2_2">Средства для бритья</a></li>
+                                                <li>
+                                                    <a href="{{route('sectionById', 3)}}" style="color: #1f6fb2">Все категории</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 3)
@@ -306,6 +364,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <ul class="submenu">
                                                 <li><a href="#m2_1">Средства для стирки</a></li>
                                                 <li><a href="#m2_2">Средства для ухода за домом</a></li>
+                                                <li>
+                                                    <a href="{{route('sectionById', 4)}}" style="color: #1f6fb2">Все категории</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 4)
@@ -313,6 +374,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <ul class="submenu">
                                                 <li><a href="#m2_1">Подгузники</a></li>
                                                 <li><a href="#m2_2">Детское питание</a></li>
+                                                <li>
+                                                    <a href="{{route('sectionById', 5)}}" style="color: #1f6fb2">Все категории</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 5)
@@ -320,6 +384,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <ul class="submenu">
                                                 <li><a href="#m2_1">Корма для собак</a></li>
                                                 <li><a href="#m2_2">Корма для кошек</a></li>
+                                                <li>
+                                                    <a href="{{route('sectionById', 6)}}" style="color: #1f6fb2">Все категории</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 6)
@@ -330,6 +397,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="{{route('category_products', [7, 42])}}">Перчатки</a></li>
                                                 <li><a href="#m2_2">Инсектициды</a></li>
                                                 <li><a href="#m2_2">Инсектициды</a></li>
+                                                <li>
+                                                    <a href="{{route('sectionById', 7)}}" style="color: #1f6fb2">Все категории</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     @endif
@@ -381,7 +451,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 <div class="p-2 cart-div">
                     <div class="d-flex" id="cart">
                         <button class="btn-cart" style="outline:none;"
-                                onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1 cart-active-bg minus-z-index');$('body').addClass('nooverflow'); $('.carzina-sign').html('X')">
+                                onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1 cart-active-bg minus-z-index');$('body').addClass('nooverflow'); $('.carzina-sign').html('X'); $('.display-after-cart').addClass('do_not_display')">
                             <img class="carzina-sign" src="/images/corzina.png" alt="">
                         </button>
                         <div>
@@ -462,12 +532,12 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <p class="footer-title">Сервис по доставке продуктов</p>
                         <div class="d-flex flex-row">
                             <div class="social">
-                                <a href="">
+                                <a href="https://apps.apple.com/kz/app/allmarket-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%81%D1%83%D0%BF%D0%B5%D1%80%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82/id1438100445">
                                     <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
                                 </a>
                             </div>
                             <div class="social">
-                                <a href="">
+                                <a href="https://play.google.com/store/apps/details?id=com.batman.almas.altyn_alma&hl=ru">
                                     <img class="social-img" src="/images/playmarket.png" alt="" width="48px"
                                          height="49px" style="margin-left: 4px">
                                 </a>
@@ -479,12 +549,12 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 </a>
                             </div>
                             <div class="social">
-                                <a href="">
+                                <a href="https://instagram.com/allmarket.kz?igshid=1kn0k00hbuy31">
                                     <img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px">
                                 </a>
                             </div>
                             <div class="social">
-                                <a href="">
+                                <a href="https://wa.me/77712101512">
                                     <img class="social-img" src="/images/whatsapp.png" alt="" width="48px"
                                          height="49px">
                                 </a>
@@ -808,32 +878,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     </div>
 </div>
 
-@if (!Session::get('city'))
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#select_city').modal('toggle');
-    })
-
-</script>
-
-@endif
-
-<div class="modal fade" id="select_city" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body" id="modal-body">
-                <h2>Выберите ваш город</h2>
-                <ul style="list-style: none">
-                    <li><a href="{{route('selectCity', ['id'=>6, 'title'=>'Алматы'])}}">Алматы</a></li>
-                    <li><a href="{{route('selectCity', ['id'=>2, 'title'=>'Нур-Султан'])}}">Нур-Султан(Астана)</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 
 <div class="modal fade" id="your-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -880,7 +924,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 t = $(e.target),
                 sib = t.next('.verify-code-input');
 
-            if (key != 9 && (key < 48 || key > 57)) {
+            if (key != 9 && (key < 48 || key > 107)) {
                 e.preventDefault();
                 return false;
             }
@@ -898,7 +942,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         function onKeyDown(e) {
             var key = e.which;
 
-            if (key === 9 || (key >= 48 && key <= 57)) {
+            if (key === 9 || (key >= 48 && key <= 107) ) {
                 return true;
             }
 
@@ -1425,14 +1469,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             });
         }
 
-
-        // $(".mobile-cart").click(function () {
-        //     $('.mobile-nav').css('position', 'fixed');
-        //     $('.mobile-nav').css('z-index', '1000');
-        //     $('.mobile-nav').css('top', '0');
-        // });
-
-
         $('.search').focusin(function () {
             $('.searchRes').show();
         });
@@ -1456,15 +1492,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         $(".showSub").hover(function () {
             $('.showSubCategory').css("display", "block");
         });
-
-        // $(".showSubCategory").hover(function () {
-        //     $('.showCategory').css("display", "block");
-        //     $('.showSubCategory').css("display", "block");
-        // }, function () {
-        //     $('.showSubCategory').css("display", "none");
-        // });
-
-
     });
 </script>
 
@@ -1602,6 +1629,31 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
     }
 </script>
+
+@if (!Session::get('city'))
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#select_city').modal('toggle');
+        })
+
+    </script>
+
+@endif
+
+<div class="modal fade" id="select_city" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-body">
+                <h2>Выберите ваш город</h2>
+                <ul style="list-style: none">
+                    <li><a href="{{route('selectCity', ['id'=>6, 'title'=>'Алматы'])}}">Алматы</a></li>
+                    <li><a href="{{route('selectCity', ['id'=>2, 'title'=>'Нур-Султан'])}}">Нур-Султан(Астана)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
