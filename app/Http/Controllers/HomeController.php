@@ -1150,7 +1150,6 @@ class HomeController extends Controller
         $shareProducts = $this->getShareProducts($response);
 
         $response = json_decode($response);
-
         return view('shares-product-list', [
             'sections' => $sections->sections,
             'share' => $response->sale,
@@ -1165,15 +1164,21 @@ class HomeController extends Controller
     {
         $data = json_decode($data);
         $products = [];
-
         foreach ($data->sale->offers as $offers) {
-            foreach ($offers->rules as $key => $rules) {
-                foreach ($rules as $rule) {
-                    $products[] = $rule;
+            if(isset($offers->rules->sale_items)) {
+                foreach ($offers->rules->sale_items as $items) {
+                    if($items->price) {
+                        $items->product->price = $items->price;
+                    }
+                    $products[] = $items->product;
+                }
+            }
+            if(isset($offers->rules->base_items)) {
+                foreach ($offers->rules->base_items as $items) {
+                    $products[] = $items->product;
                 }
             }
         }
-
         return $products;
     }
 

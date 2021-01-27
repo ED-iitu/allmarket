@@ -28,35 +28,30 @@
             <div class="row" style="display: flex; justify-content: center">
                 <?php $totalPrice = 0; ?>
                 @foreach($shareProducts as $shareProduct)
-
-                        <?php $totalPrice += $shareProduct->price ?? $shareProduct->product->price?>
+                        <?php $totalPrice += $shareProduct->price ?>
                 <div class="col-md-4 product-list-mobile">
                     <div class="product">
                         <div class="container" style="padding: 15px">
-                            <a href="{{route('product', $shareProduct->product->id)}}">
+                            <a href="{{route('product', $shareProduct->id)}}">
                                 <div class="product-image">
-                                    <img class="product-img" src="{{$shareProduct->product->image}}" alt="">
+                                    <img class="product-img" src="{{$shareProduct->image}}" alt="">
                                 </div>
                             </a>
 
                             <div class="product-info" style="margin-top: 15px; position: relative">
-                                <a href="{{route('product', $shareProduct->product->id)}}">
+                                <a href="{{route('product', $shareProduct->id)}}">
                                     <div class="product-title">
-                                        {{ Str::of($shareProduct->product->title)->limit(25) }}
+                                        {{ Str::of($shareProduct->title)->limit(25) }}
 
                                     </div>
                                 </a>
                                 <div class="product-category">
-                                    {{ Str::of($shareProduct->product->category->title)->limit(15) }}
+                                    {{ Str::of($shareProduct->category->title)->limit(15) }}
                                 </div>
 
                                 <div>
                                     <div class="share_price">
-                                        @if ($shareProduct->price == null)
-                                        <div class="new-price">{{$shareProduct->product->price}} тг</div>
-                                        @else
                                         <div class="new-price">{{$shareProduct->price}} тг</div>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
