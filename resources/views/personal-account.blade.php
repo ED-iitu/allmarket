@@ -297,8 +297,9 @@
                                                     </div>
 
                                                     <div>
-                                                        <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                                <div class="new-price">1000 тг</div>lass="new-price">3000 тг</div>
+                                                        <div class="mt-5" style="display: flex;align-items: center;justify-content: space-between;">
+                                                                <div class="new-price">1000 тг</div>
+                                                        </div>
 
                                                         </div>
                                                     </div>
@@ -306,8 +307,6 @@
                                             </div>
                                         </div>
 
-
-                                    </div>
                                 </li>
                             </ul>
                     {{--<div class="d-flex flex-row justify-content-between orders mt-3">--}}
