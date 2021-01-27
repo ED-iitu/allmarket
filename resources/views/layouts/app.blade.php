@@ -184,9 +184,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <img class="nav-link" src="/images/mobile-menu-list.png" alt="">
                 </div>
 
-                {{--<button type="button" class="collapsible">--}}
-                {{--<span class="navbar-toggler-icon"></span>--}}
-                {{--</button>--}}
                 <div class="content-mobile-menu flex-column">
                     <div><a class="menu-links" href="{{route('sections')}}">Категории</a></div>
                     <hr>
@@ -205,36 +202,18 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                         @foreach($cities as $city)
                                             <a class="dropdown-item select_city" href="{{route('selectCity', ['id'=>$city->id, 'title'=>$city->title])}}" style="color:#7791A4">{{$city->title}}</a>
                                         @endforeach
-                                        {{--<a class="dropdown-item select_city">Нур-Султан</a>--}}
-                                        {{--<a class="dropdown-item select_city">Караганда</a>--}}
-                                        {{--<a class="dropdown-item select_city">Петропавлоск</a>--}}
-                                        {{--<a class="dropdown-item select_city">Усть-Каменогорск</a>--}}
-                                        {{--<a class="dropdown-item select_city">Атырау</a>--}}
-                                        {{--<a class="dropdown-item select_city">Актау</a>--}}
                                     </div>
                                 </li>
                             </ul>
-                            {{--<div uk-form-custom="target: true">--}}
-                                {{--<select class="uk-select" id="form-stacked-select"--}}
-                                        {{--style="border: none; color: #7791A4 ">--}}
-                                    {{--@if ($selectedCity = Session::get('city'))--}}
-                                        {{--<option>{{$selectedCity['title']}}</option>--}}
-
-                                    {{--@else--}}
-                                        {{--<option>Выберите город</option>--}}
-                                    {{--@endif--}}
-                                    {{--@foreach($cities as $city)--}}
-                                            {{--<option><a href="{{route('selectCity', ['id'=>$city->id, 'title'=>$city->title])}}">{{$city->title}}</a></option>--}}
-                                    {{--@endforeach--}}
-                                {{--</select>--}}
-                                {{--<span></span>--}}
-                            {{--</div>--}}
                         </div>
                     </div>
                     <hr>
 
                     @if ($message = Session::get('username'))
-                        <a class="menu-links dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown">
+
+                        <a class="menu-links dropdown-toggle" href="#" id="navbardrop-1" data-toggle="dropdown"
                            style=" font-family: Montserrat;color: #0EFEC3 !important;">
                             {{$message}}
                         </a>
@@ -244,6 +223,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             <a class="dropdown-item" href="/account#account-profile">Мои данные</a>
                             <a class="dropdown-item" href="{{route('logout')}}">Выход</a>
                         </div>
+                            </li></ul>
                     @else
 
                         <div href="#auth" uk-toggle>Вход</div>
@@ -974,18 +954,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 t = $(e.target),
                 sib = t.next('.verify-code-input');
 
-            if (key != 9 && (key < 48 || key > 107)) {
-                e.preventDefault();
-                return false;
-            }
-
-            if (key === 9) {
-                return true;
-            }
-
             if (!sib || !sib.length) {
                 sib = body.find('.verify-code-input').eq(0);
             }
+
             sib.select().focus();
         }
 

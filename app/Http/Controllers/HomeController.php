@@ -584,6 +584,13 @@ class HomeController extends Controller
         } else {
             $favorites = $this->getFavorite($token);
             $orders = $this->getUserOrders();
+
+//            foreach ($orders->orders as $order) {
+//                $productOrder = $this->getOrderById($order->id);
+//
+//                $orders->products = $productOrder->order->items;
+//            }
+
             $userData = $this->getUserData($token);
             $sections = $this->getAllSections();
 
@@ -595,6 +602,30 @@ class HomeController extends Controller
                 'cities' => $this->getAvailableCitites()
             ]);
         }
+    }
+
+    public function getOrderById($id)
+    {
+        //https://dev-api.allmarket.kz/api/v2/orders/1164?city_id=6
+
+        $token = session()->get('token');
+
+        $responce = $this->client->request('GET', env('API_URL') . '/orders/' . $id, [
+            'query' => [
+                'city_id' => session()->get('city')['id'] ?? 6,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        $responce = $responce->getBody()->getContents();
+
+        $responce = json_decode($responce);
+
+
+        return $responce;
     }
 
     //Rus tut nuzhno v korzinu
@@ -617,6 +648,8 @@ class HomeController extends Controller
 
         return redirect()->back()->with('success', 'Заказ успешно склонирован');
     }
+
+
 
     public function logout()
     {

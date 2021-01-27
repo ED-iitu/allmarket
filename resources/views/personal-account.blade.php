@@ -262,6 +262,7 @@
 
                 </div>
                 <div id="account-order" style="margin-top: 75px;">
+
                     @if(!$orders)
                         <div style="display: flex; justify-content: center; align-items: center">
                             Вы не совершали покупок
@@ -269,40 +270,80 @@
                     @else
 
                     @foreach($orders as $order)
-                    <div class="d-flex flex-row justify-content-between orders mt-3">
 
-                        <div class="d-flex flex-row" style="padding: 8px;">
-                            @if($order->status->title !== 'В обработке' && $order->status->title !== 'Отменен')
-                            <div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #30EE4E;border-radius: 5px">
-                                <span style="color: white; font-size: 25px">
-                                    <img src="/images/ok.png" alt="">
-                                </span>
-                            </div>
-                            @else
-                                <div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #EE3030;border-radius: 5px">
-                                <span style="color: white; font-size: 25px">
-                                    <img src="/images/mobile-close-cart.png" alt="">
-                                </span>
-                                </div>
-                            @endif
-                            <div style="margin-top: -4px">
-                                <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <a><div class="order-num">Заказ №{{$order->id}}</div></a>
-                                </div>
-                                <div style="display: flex;align-items: center;justify-content: space-between">
-                                    <div class="order-status">Статус: {{$order->status->title}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row" style="padding: 8px;">
-                            <form action="{{route('cloneOrder')}}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$order->id}}">
-                                <button type="submit" style="background: none; border: none; outline: none"><img class="addToCartSvg" src="/images/repeat_cart.png" alt=""></button>
-                            </form>
+                            <ul uk-accordion>
+                                <li class="uk-close">
+                                    <a class="uk-accordion-title" href="#">
+                                        Заказ №{{$order->id}}
+                                    </a>
+                                    <div class="uk-accordion-content">
+                                        <div class="product">
+                                            <div class="container" style="padding: 15px">
+                                                <a href="">
+                                                    <div class="product-image">
+                                                        <img class="product-img" src="" alt="">
+                                                    </div>
+                                                </a>
 
-                        </div>
-                    </div>
+                                                <div class="product-info" style="margin-top: 15px; position: relative">
+                                                    <a href="">
+                                                        <div class="product-title">
+                                                          Тест
+
+                                                        </div>
+                                                    </a>
+                                                    <div class="product-category">
+                                                        Тест
+                                                    </div>
+
+                                                    <div>
+                                                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                                <div class="new-price">1000 тг</div>lass="new-price">3000 тг</div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </li>
+                            </ul>
+                    {{--<div class="d-flex flex-row justify-content-between orders mt-3">--}}
+
+                        {{--<div class="d-flex flex-row" style="padding: 8px;">--}}
+                            {{--@if($order->status->title !== 'В обработке' && $order->status->title !== 'Отменен')--}}
+                            {{--<div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #30EE4E;border-radius: 5px">--}}
+                                {{--<span style="color: white; font-size: 25px">--}}
+                                    {{--<img src="/images/ok.png" alt="">--}}
+                                {{--</span>--}}
+                            {{--</div>--}}
+                            {{--@else--}}
+                                {{--<div style="display:flex;justify-content:center;align-items: center; width: 38px;height: 38px;background: #EE3030;border-radius: 5px">--}}
+                                {{--<span style="color: white; font-size: 25px">--}}
+                                    {{--<img src="/images/mobile-close-cart.png" alt="">--}}
+                                {{--</span>--}}
+                                {{--</div>--}}
+                            {{--@endif--}}
+                            {{--<div style="margin-top: -4px">--}}
+                                {{--<div style="display: flex;align-items: center;justify-content: space-between">--}}
+                                    {{--<a><div class="order-num">Заказ №{{$order->id}}</div></a>--}}
+                                {{--</div>--}}
+                                {{--<div style="display: flex;align-items: center;justify-content: space-between">--}}
+                                    {{--<div class="order-status">Статус: {{$order->status->title}}</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="d-flex flex-row" style="padding: 8px;">--}}
+                            {{--<form action="{{route('cloneOrder')}}" method="POST">--}}
+                                {{--@csrf--}}
+                                {{--<input type="hidden" name="id" value="{{$order->id}}">--}}
+                                {{--<button type="submit" style="background: none; border: none; outline: none"><img class="addToCartSvg" src="/images/repeat_cart.png" alt=""></button>--}}
+                            {{--</form>--}}
+
+                        {{--</div>--}}
+                    {{--</div>--}}
 
                     @endforeach
 
