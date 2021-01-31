@@ -309,6 +309,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                     <a href="{{route('category_products', [$section->id, 15])}}">Масло</a>
                                                 </li>
                                                 <li>
+                                                    <a href="{{route('category_products', [$section->id, 16])}}">Колбаса, сыр</a>
+                                                </li>
+                                                <li>
                                                     <a href="{{route('sectionById', 1)}}" style="color: #1f6fb2">Все категории</a>
                                                 </li>
                                             </ul>
@@ -316,14 +319,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                     @elseif($loop->index == 1)
                                         <div class="showSubCategory" style="z-index: -1">
                                             <ul class="submenu">
-                                                <li><a href="#m2_1">Кофе, какао</a></li>
-                                                <li><a href="#m2_2">Чай</a></li>
-                                                <li><a href="#m2_2">Сокии морсы</a></li>
-                                                <li><a href="#m2_2">Вода</a></li>
-                                                <li><a href="#m2_2">Алкоголь</a></li>
-                                                <li>
-                                                    <a href="{{route('sectionById', 2)}}" style="color: #1f6fb2">Все категории</a>
-                                                </li>
+                                                <li><a href="{{route('category_products', [$section->id, 1])}}">Кофе, какао</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 2])}}">Чай</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 23])}}">Сокии морсы</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 24])}}">Вода</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 57])}}">Алкоголь</a></li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 2)
@@ -334,6 +334,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="#m2_2">Уход за телом</a></li>
                                                 <li><a href="#m2_2">Уход за полостью рта</a></li>
                                                 <li><a href="#m2_2">Средства для бритья</a></li>
+                                                <li><a href="#m2_2">Косметика</a></li>
+                                                <li><a href="#m2_2">Личная гигиена</a></li>
                                                 <li>
                                                     <a href="{{route('sectionById', 3)}}" style="color: #1f6fb2">Все категории</a>
                                                 </li>
@@ -344,9 +346,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <ul class="submenu">
                                                 <li><a href="#m2_1">Средства для стирки</a></li>
                                                 <li><a href="#m2_2">Средства для ухода за домом</a></li>
-                                                <li>
-                                                    <a href="{{route('sectionById', 4)}}" style="color: #1f6fb2">Все категории</a>
-                                                </li>
+                                                <li><a href="#m2_2"> Посудомоечные средства</a></li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 4)
@@ -354,9 +354,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <ul class="submenu">
                                                 <li><a href="#m2_1">Подгузники</a></li>
                                                 <li><a href="#m2_2">Детское питание</a></li>
-                                                <li>
-                                                    <a href="{{route('sectionById', 5)}}" style="color: #1f6fb2">Все категории</a>
-                                                </li>
+                                                <li><a href="#m2_2">Детская косметика</a></li>
+                                                <li><a href="#m2_2">Игрушки и аксессуары</a></li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 5)
@@ -364,9 +363,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <ul class="submenu">
                                                 <li><a href="#m2_1">Корма для собак</a></li>
                                                 <li><a href="#m2_2">Корма для кошек</a></li>
-                                                <li>
-                                                    <a href="{{route('sectionById', 6)}}" style="color: #1f6fb2">Все категории</a>
-                                                </li>
+                                                <li><a href="#m2_2">Аксессуары для животных</a></li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 6)
@@ -376,7 +373,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="{{route('category_products', [7, 41])}}">Пакеты</a></li>
                                                 <li><a href="{{route('category_products', [7, 42])}}">Перчатки</a></li>
                                                 <li><a href="#m2_2">Инсектициды</a></li>
-                                                <li><a href="#m2_2">Инсектициды</a></li>
+                                                <li><a href="#m2_2">Осведители воздуха и ароматизаторы</a></li>
+                                                <li><a href="#m2_2">Хозяйственные принадлежности</a></li>
                                                 <li>
                                                     <a href="{{route('sectionById', 7)}}" style="color: #1f6fb2">Все категории</a>
                                                 </li>

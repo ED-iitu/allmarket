@@ -33,7 +33,11 @@
                         {{--</p>--}}
                     </div>
                     <div class="card-body" style="display: flex; justify-content: center">
-                        <a href="#" class="card-link">В корзину</a>
+                        <form method="post" action="{{route('addToCartPostSale')}}">
+                            @csrf
+                            <input type="hidden" value="{{$share->id}}" name="share_id">
+                            <input type="submit" class="card-link" value="Добавить в корзину">
+                        </form>
                         <a href="{{route('share', $share->id)}}" class="card-link">Подробнее</a>
                     </div>
                 </div>

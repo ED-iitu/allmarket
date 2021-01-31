@@ -584,12 +584,10 @@ class HomeController extends Controller
         } else {
             $favorites = $this->getFavorite($token);
             $orders = $this->getUserOrders();
-
-//            foreach ($orders->orders as $order) {
-//                $productOrder = $this->getOrderById($order->id);
-//
-//                $orders->products = $productOrder->order->items;
-//            }
+            foreach ($orders->orders as $order) {
+                $productOrder    = $this->getOrderById($order->id);
+                $order->products = $productOrder->order->items;
+            }
 
             $userData = $this->getUserData($token);
             $sections = $this->getAllSections();
