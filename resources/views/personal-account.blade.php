@@ -367,7 +367,11 @@
                                                 Итого: {{$totalPrice}} тг
                                             </div>
                                             <div>
-                                                <button class="btn btn-success cloneBtn">Дублировать заказ</button>
+                                                <form action="{{route('duplicate_order')}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$order->id}}" name="order_id">
+                                                    <button type="submit" class="btn btn-success cloneBtn">Дублировать заказ</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

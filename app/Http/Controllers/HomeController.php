@@ -585,7 +585,7 @@ class HomeController extends Controller
             $favorites = $this->getFavorite($token);
             $orders = $this->getUserOrders();
             foreach ($orders->orders as $order) {
-                $productOrder    = $this->getOrderById($order->id);
+                $productOrder = $this->getOrderById($order->id);
                 $order->products = $productOrder->order->items;
             }
 
@@ -626,27 +626,43 @@ class HomeController extends Controller
         return $responce;
     }
 
-    //Rus tut nuzhno v korzinu
-    public function cloneOrder(Request $request)
+    public function duplicate_order(Request $request)
     {
-        $token = session()->get('token');
-        //https://dev-api.allmarket.kz/api/v2/orders/1164?city_id=6
-
-        $responce = $this->client->request('GET', env('API_URL') . '/orders/' . $request->id, [
-            'query' => [
-                'city_id' => session()->get('city')['id'] ?? 6,
-            ],
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token,
-                'Accept' => 'application/json'
-            ]
-        ]);
-
-        $res = $responce->getBody()->getContents();
-
-        return redirect()->back()->with('success', 'Заказ успешно склонирован');
+        $getOrder = $this->getOrderById($request->order_id);
+        $products = $getOrder->order->items;
+        $cart = session()->get('cart');
+        if (!$cart) {
+            $cart_product = [];
+            foreach ($products as $product) {
+                $cart_product[$product->id] =
+                    [
+                        "title" => $product->product->title,
+                        "category" => $product->product->category->title,
+                        "quantity" => $product->count,
+                        "price" => $product->price,
+                        "image" => $product->product->image,
+                    ];
+            }
+            session()->put('cart', $cart_product);
+            return redirect()->back()->with('success', 'Заказ успешно склонирован');
+        } else {
+            foreach ($products as $product) {
+                if (isset($cart[$product->id])) {
+                    $cart[$product->id]['quantity'] += (int)$product->count;
+                } else {
+                    $cart[$product->id] = [
+                        "title" => $product->product->title,
+                        "category" => $product->product->category->title,
+                        "quantity" => $product->count,
+                        "price" => $product->price,
+                        "image" => $product->product->image
+                    ];
+                }
+            }
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        }
     }
-
 
 
     public function logout()
@@ -805,6 +821,7 @@ class HomeController extends Controller
 
         $cart = session()->get('cart');
         // if cart is empty then this the first product
+        $cart = session()->get('cart');
         if (!$cart) {
             $cart_product = [];
             foreach ($shareProducts as $product) {
@@ -817,13 +834,27 @@ class HomeController extends Controller
                         "image" => $product->image,
                         "type" => 'sales',
                     ];
-
             }
             session()->put('cart', $cart_product);
             return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
+        } else {
+            foreach ($shareProducts as $product) {
+                if (isset($cart[$product->id])) {
+                    $cart[$product->id]['quantity'] += (int)$product->count;
+                } else {
+                    $cart[$product->id] = [
+                        "title" => $product->title,
+                        "category" => $product->category->title,
+                        "quantity" => 1,
+                        "price" => $product->price,
+                        "image" => $product->image,
+                        "type" => 'sales',
+                    ];
+                }
+            }
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
-        // if item not exist in cart then add to cart with quantity = 1
-        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
     }
 
     public function removeToCart(Request $request)
