@@ -328,7 +328,7 @@
                                         <div class="row">
                                             @foreach($order->products as $product)
                                                 <?php $totalPrice += $product->product->price ?>
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 product-list-mobile">
                                                     <div class="product">
                                                         <div class="container" style="padding: 15px">
                                                             <a href="">
@@ -349,7 +349,7 @@
                                                                 </div>
 
                                                                 <div>
-                                                                    <div class="mt-5" style="display: flex;align-items: center;justify-content: space-between;">
+                                                                    <div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;">
                                                                         <div class="new-price">{{$product->product->price}} тг</div>
                                                                     </div>
 

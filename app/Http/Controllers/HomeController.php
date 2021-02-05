@@ -267,6 +267,7 @@ class HomeController extends Controller
             }
         }
 
+
         if (\request()->ajax()) {
             return view('section-product-list', [
                 'products' => $products->products,
@@ -585,6 +586,7 @@ class HomeController extends Controller
             $favorites = $this->getFavorite($token);
             $orders = $this->getUserOrders();
             foreach ($orders->orders as $order) {
+                sleep(0.1);
                 $productOrder = $this->getOrderById($order->id);
                 $order->products = $productOrder->order->items;
             }
@@ -722,8 +724,6 @@ class HomeController extends Controller
 
     public function addToServerCart($token, $product_id, $offerId, $quantity = 1)
     {
-        //https://allmarket.armenianbros.com/api/v2/baskets/increase?city_id=session()->get('city')['id'] ?? 6
-
         $responce = $this->client->request('POST', env('API_URL') . '/baskets/increase', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
@@ -980,6 +980,7 @@ class HomeController extends Controller
 
     public function getProductById($id)
     {
+        sleep(0.1);
         try {
             $client = new Client();
             $response = $client->request('GET', env('API_URL') . '/products/' . $id, [
@@ -1199,6 +1200,7 @@ class HomeController extends Controller
         return view('sale', [
             'sections' => $sections->sections,
             'products' => $sale->products,
+            'links' => $sale->links,
             'cities' => $this->getAvailableCitites()
         ]);
     }
@@ -1357,6 +1359,34 @@ class HomeController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function addReview(Request $request)
+    {
+        $token = session()->get('token');
+
+        if (null === $token) {
+            return redirect()->back()->with('error', 'Необходима авторизация');
+        }
+
+        //https://dev-api.allmarket.kz/api/v2/products/11/reviews
+        try {
+            $this->client->request('POST', env('API_URL') . '/products/' . $request->productId . '/reviews', [
+                'form_params' => [
+                    'message' => $request->message,
+                ],
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                    'Accept' => 'application/json'
+                ],
+
+            ]);
+
+            return redirect()->back()->with('success', 'Спасибо, Ваш отзыв принят!');
+
+        } catch (ClientException $e) {
+            return redirect()->back()->with('error', 'Произошла ошибка');
+        }
     }
 
 

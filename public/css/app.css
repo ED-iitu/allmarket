@@ -12825,6 +12825,10 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
+    .raiting {
+        width: 318px;
+    }
+
     .sort-by {
         margin-top: 30px;
     }

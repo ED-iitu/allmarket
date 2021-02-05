@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row">
             @foreach($products as $product)
-            <div class="col-md-3">
+            <div class="col-md-4 product-list-mobile">
                 <div class="product">
                     <div class="favorite">
                         <img class="fav-image" src="images/like.png" alt="">
@@ -67,14 +67,11 @@
                             </div>
                             </a>
                             <div class="product-category">
-                                {{ Str::of($product->category->title)->limit(22) }}
+                                {{ Str::of($product->category->title)->limit(20) }}
                             </div>
                             <div>
                                 <div style="display: flex;align-items: center;justify-content: space-between;">
-                                    <div class="old-price">{{$product->price}} тг</div>
-                                </div>
-                                <div style="display: flex;align-items: center;justify-content: space-between;">
-                                    <div class="new-price">{{$product->price_sale}} тг</div>
+                                    <div class="new-price" style="margin-top: 35px">{{$product->price}} тг</div>
                                     @if (Session::get('username'))
                                         <button class="add-to-cart" onclick="addToCart({{$product->id}})"></button>
                                     @else

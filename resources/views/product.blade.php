@@ -13,6 +13,17 @@
             float: left;
         }
 
+        .review-form {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 21px;
+            letter-spacing: -0.540636px;
+            color: #637C8E;
+            padding: 10px;
+        }
+
         .rating > input { display: none; }
         .rating > label:before {
             margin: 10px;
@@ -127,10 +138,10 @@
                                             <div class="old-price">{{$product->price}} тг</div>
                                         @endif
                                         @if($product->price_sale != 0)
-                                        <div class="new-price">{{$product->price_sale}} тг</div>
+                                        <div class="new-price" style="font-size: 34px !important;">{{$product->price_sale}} тг</div>
                                                 <input type="hidden" name="full_price" value="{{$product->price_sale}}">
                                         @else
-                                            <div class="new-price">{{$product->price}} тг</div>
+                                            <div class="new-price" style="font-size: 34px !important;">{{$product->price}} тг</div>
                                                 <input type="hidden" name="full_price" value="{{$product->price}}">
                                         @endif
 
@@ -165,12 +176,15 @@
                             <div class="d-flex flex-column">
                                 <div class="mt-2 ml-4 rewiew-title">Отзывы</div>
                                 <div class="mt-4 mb-3 ml-4 rewiew-title-addition">Отзывов нет будьте первыми</div>
-                                <div>
-                                    <textarea class="review-form" name="" id="" cols="30" rows="10" style="outline:none;"></textarea>
-                                </div>
-                                <div class="d-flex flex-row-reverse mt-3">
-                                    <button class="submit-review" style="outline:none;">Отправить</button>
-                                </div>
+                                <form action="{{route('addReview')}}" method="GET">
+                                    <input type="hidden" name="productId" value="{{$product->id}}">
+                                    <div>
+                                        <textarea class="review-form" name="message" id="" cols="30" rows="10" style="outline:none;"></textarea>
+                                    </div>
+                                    <div class="d-flex flex-row-reverse mt-3">
+                                        <button class="submit-review" style="outline:none;">Отправить</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

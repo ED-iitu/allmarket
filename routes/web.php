@@ -46,6 +46,7 @@ Route::post('city', 'HomeController@addCityToSession')->name('sessionCity');
 Route::get('available-cities', 'HomeController@getAvailableCities')->name('availableCities');
 Route::post('addRaiting', 'HomeController@addRaiting')->name('addRaiting');
 Route::get('select-city/{id}/{title}', 'HomeController@selectCity')->name('selectCity');
+Route::get('/addReview', 'HomeController@addReview')->name('addReview');
 
 
 

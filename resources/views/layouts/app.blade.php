@@ -49,6 +49,41 @@
             opacity: 0;
         }
 
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0; right: 0;
+            bottom: 0; left: 0;
+            z-index: 100000;
+        }
+        .loader {
+            display: none;
+            left: 50%;
+            margin-left: -4em;
+            font-size: 10px;
+            border: .8em solid rgba(218, 219, 223, 1);
+            border-left: .8em solid rgba(58, 166, 165, 1);
+            animation: spin 1.1s infinite linear;
+        }
+        .loader, .loader:after {
+            border-radius: 50%;
+            width: 8em;
+            height: 8em;
+            display: block;
+            position: absolute;
+            top: 50%;
+            margin-top: -4.05em;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
     </style>
 
 </head>
@@ -486,7 +521,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         </div>
     </div>
 
-
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
     <main class="py-4">
         @yield('content')
     </main>
@@ -562,8 +599,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             </li>
                         @endif
                         <li>
-                            <a href="{{route('sale')}}" class="footer-link">акции & скидки</a>
+                            <a href="{{route('sale')}}" class="footer-link">скидки</a>
                         </li>
+                            <li>
+                                <a href="{{route('shares')}}" class="footer-link">акции</a>
+                            </li>
                         <li>
                             <a href="{{route('about')}}" class="footer-link">о нас</a>
                         </li>
@@ -1009,6 +1049,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
     function remove_cart(product_id) {
 
+        updateCart();
             $.ajax({
                 url: '/cart/remove/' + product_id + '/' + 0,
                 success: function (data) {
@@ -1019,6 +1060,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         $('.cart-top-title').hide()
                         $('.cart-bottom').hide();
                     }
+
                     updateCart();
                 },
             });
@@ -1518,6 +1560,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 <script>
     function getProductByAjax(filter, page = 1) {
         $('.spiner').css('display', 'flex')
+        $('body').addClass('nooverflow1');
         var ajax_url = '?' + filter + '&page=' + page
         $.ajax({
             url: ajax_url,
@@ -1537,7 +1580,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     });
 
     function page(page) {
-        getProductByAjax('order=price.desc', page);
+        var url = new URL(page);
+        var c = url.searchParams.get("page");
+        getProductByAjax('order=price.desc', c);
     }
 
 </script>
@@ -1549,6 +1594,16 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        if(modal_show) {
+            $('#modal-body').html('')
+            $('#modal-body').append("Товар добавлен в корзину")
+            $('#your-modal').modal('toggle');
+            setTimeout(function () {
+                $('#your-modal').modal('hide');
+            }, 3000);
+        }
+
         $.ajax({
             url: '{{ route('addToCartPost') }}',
             type: 'POST',
@@ -1557,14 +1612,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 quantity: quantity,
             },
             success: function (data) {
-                if(modal_show) {
-                    $('#modal-body').html('')
-                    $('#modal-body').append("Товар добавлен в корзину")
-                    $('#your-modal').modal('toggle');
-                    setTimeout(function () {
-                        $('#your-modal').modal('hide');
-                    }, 2000);
-                }
+
                 updateCart()
                 updateCartData()
 

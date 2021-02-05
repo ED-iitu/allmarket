@@ -128,9 +128,6 @@
 
             </div>
             <div class="col-md-8 product-list-sections product-overflow" style="margin-top: 30px;">
-                <img class="spiner" src="/images/833.gif" alt="" style="position: absolute; display:none;justify-content: center; z-index: 1000;
-                left: 45%;top: 100px;
-                ">
                 <div id="product_list_block">
                     @include('section-product-list')
                 </div>

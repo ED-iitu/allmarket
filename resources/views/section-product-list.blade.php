@@ -1,6 +1,6 @@
 <style>
     .paginator {
-        width: 49px;
+
         height: 45px;
 
         margin: 10px 5px 5px 5px;
@@ -69,11 +69,21 @@
         @endforeach
     </div>
 
+
+
     <div style="display: flex; justify-content: center;" >
-        <input onclick="page(1)" value="1" id="page" class="paginator" type="button">
-        <input onclick="page(2)" value="2" id="page" class="paginator" type="button">
-        <input onclick="page(3)" value="3" id="page" class="paginator" type="button">
-        <input onclick="page(4)" value="4" id="page" class="paginator" type="button">
+
+        <input onclick="page('{{$links->first}}')" value="начало" id="page" class="paginator" type="button">
+        <input onclick="page('{{$links->last}}')" value="конец" id="page" class="paginator" type="button">
+        @if(null !== $links->prev)
+        <input onclick="page('{{$links->prev}}')" value="предыдущая" id="page" class="paginator" type="button">
+        @endif
+
+        @if(null !== $links->next)
+            <input onclick="page('{{$links->next}}')" value="следующая" id="page" class="paginator" type="button">
+        @endif
+
     </div>
+
 
 
