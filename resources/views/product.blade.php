@@ -166,7 +166,7 @@
                     <div class=" container raiting mt-5">
                         <div class="d-flex flex-row justify-content-between">
                             <div class="ml-4 raiting-title">Рейтинг товара</div>
-                            <div><span class="raiting-first">2</span>  <span class="raiting-second"> из 5</span></div>
+                            <div><span class="raiting-first">5</span>  <span class="raiting-second"> из 5</span></div>
                         </div>
                         <div class="mt-5">
                             <hr class="product-devider-last">

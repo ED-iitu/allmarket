@@ -132,7 +132,7 @@ class HomeController extends Controller
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
                 'order' => "price.desc",
-                'paginate' => 30,
+                'paginate' => 12,
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -151,7 +151,7 @@ class HomeController extends Controller
         $response = $this->client->request('GET', env('API_URL') . '/products/recommended', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
-                'paginate' => 30,
+                'paginate' => 12,
                 'order' => "price.desc"
             ],
             'auth' => [
@@ -171,7 +171,7 @@ class HomeController extends Controller
         $response = $this->client->request('GET', env('API_URL') . '/products/sale', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
-                'paginate' => 30,
+                'paginate' => 12,
                 'order' => $request->order ?? "price.asc"
             ],
             'auth' => [
@@ -226,8 +226,6 @@ class HomeController extends Controller
     {
         $sections = $this->getAllSections();
 
-        // dd($sections);
-
         return view('sections', [
             'sections' => $sections->sections,
             'cities' => $this->getAvailableCitites()
@@ -266,7 +264,6 @@ class HomeController extends Controller
                 session()->put('favorited', $favIds);
             }
         }
-
 
         if (\request()->ajax()) {
             return view('section-product-list', [
@@ -309,7 +306,7 @@ class HomeController extends Controller
         $response = $client->request('GET', env('API_URL') . '/product_sections/' . $sectionId . '/products', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
-                'paginate' => 30,
+                'paginate' => 12,
                 'order' => $request->order ?? 'price.desc',
                 'page' => $request->page ?? 1
             ],
@@ -361,8 +358,9 @@ class HomeController extends Controller
         $response = $client->request('GET', env('API_URL') . '/product_categories/' . $category_id . '/products', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
-                'paginate' => 30,
-                'order' => $request->order ?? 'price.desc'
+                'paginate' => 12,
+                'order' => $request->order ?? 'price.desc',
+                'page' => $request->page ?? 1,
             ],
             'auth' => [
                 'dev@allmarket.kz',
@@ -586,9 +584,9 @@ class HomeController extends Controller
             $favorites = $this->getFavorite($token);
             $orders = $this->getUserOrders();
             foreach ($orders->orders as $order) {
-                sleep(0.1);
                 $productOrder = $this->getOrderById($order->id);
                 $order->products = $productOrder->order->items;
+                sleep(0.3);
             }
 
             $userData = $this->getUserData($token);

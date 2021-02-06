@@ -1,5 +1,12 @@
 <style>
     .paginator {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: -0.540636px;
+        color:#59677D;
 
         height: 45px;
 
@@ -8,6 +15,13 @@
         background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
         box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
         border-radius: 10px;
+    }
+
+    @media only screen
+    and (max-width: 768px) {
+        .paginator {
+            font-size: 10px;
+        }
     }
 </style>
     <div class="row">
@@ -70,20 +84,20 @@
     </div>
 
 
-
+    @if($links != null)
     <div style="display: flex; justify-content: center;" >
-
         <input onclick="page('{{$links->first}}')" value="начало" id="page" class="paginator" type="button">
         <input onclick="page('{{$links->last}}')" value="конец" id="page" class="paginator" type="button">
         @if(null !== $links->prev)
-        <input onclick="page('{{$links->prev}}')" value="предыдущая" id="page" class="paginator" type="button">
+        <input onclick="page('{{$links->prev}}')" value="назад" id="page" class="paginator" type="button">
         @endif
 
         @if(null !== $links->next)
-            <input onclick="page('{{$links->next}}')" value="следующая" id="page" class="paginator" type="button">
+            <input onclick="page('{{$links->next}}')" value="далее" id="page" class="paginator" type="button">
         @endif
-
     </div>
+
+    @endif
 
 
 

@@ -1559,8 +1559,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 <script>
     function getProductByAjax(filter, page = 1) {
-        $('.spiner').css('display', 'flex')
-        $('body').addClass('nooverflow1');
+        $('.loading').css('display', 'block')
         var ajax_url = '?' + filter + '&page=' + page
         $.ajax({
             url: ajax_url,
@@ -1568,7 +1567,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             datatype: "html",
 
         }).done(function (data) {
-            $('.spiner').css('display', 'none')
+            $('.loading').css('display', 'none')
             $("#product_list_block").empty().html(data);
         });
     }
@@ -1596,6 +1595,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
 
         if(modal_show) {
+            console.log("test")
             $('#modal-body').html('')
             $('#modal-body').append("Товар добавлен в корзину")
             $('#your-modal').modal('toggle');

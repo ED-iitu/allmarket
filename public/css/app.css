@@ -11264,9 +11264,6 @@ body {
 }
 
 .product-title {
-    width: 190px;
-
-
     font-family: Montserrat;
     font-style: normal;
     font-weight: 600;
@@ -11316,7 +11313,7 @@ body {
 }
 
 .new-price {
-    width: 108.24px;
+    width: 155.24px;
     height: 26.43px;
 
     font-family: Montserrat;
@@ -12471,7 +12468,7 @@ span {
 
 .cart-bottom {
     padding: 20px;
-    width: 350px;
+    width: 360px;
     position: fixed;
     bottom: 0;
     background: #E3EFFB;
@@ -13722,7 +13719,7 @@ and (max-device-width: 375px) {
     }
 
     .signUp-form {
-        width: 313px;
+        width: 310px;
     }
 
     .login-form {
@@ -14304,7 +14301,7 @@ and (min-width: 376px){
     }
 
     .cart-content {
-        height: 480px;
+        height: 480px !important;
         overflow: scroll;
     }
 
@@ -14328,11 +14325,11 @@ and (min-width: 376px){
         width: 325px !important;
     }
     .login-form {
-        width: 313px;
+        width: 310px;
     }
 
     .signIn-form {
-        width: 313px;
+        width: 310px;
     }
     .social {
         width: 49px;
