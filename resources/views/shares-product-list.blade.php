@@ -65,7 +65,12 @@
             <form method="post" action="{{route('addToCartPostSale')}}">
                 @csrf
                 <input type="hidden" value="{{$share->id}}" name="share_id">
-                <button class="btn-lg btn-success mt-5" type="submit">Добавить в корзину за {{$totalPrice}} KZT</button>
+                @if (Session::get('username'))
+                    <button class="btn-lg btn-success mt-5" type="submit">Добавить в корзину за {{$totalPrice}} KZT</button>
+                @else
+                    <button class="btn-lg btn-success mt-5" href="#auth" uk-toggle type="button">Добавить в корзину за {{$totalPrice}} KZT</button>
+                @endif
+
             </form>
         </div>
     </div>
