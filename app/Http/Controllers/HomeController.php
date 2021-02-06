@@ -172,7 +172,8 @@ class HomeController extends Controller
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
                 'paginate' => 12,
-                'order' => $request->order ?? "price.asc"
+                'order' => $request->order ?? "price.asc",
+                'page' => $request->page ?? 1
             ],
             'auth' => [
                 'dev@allmarket.kz',
