@@ -946,7 +946,7 @@ class HomeController extends Controller
         return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
     }
 
-    protected function remove_to_cart(int $product_id, int $qty = 0)
+    protected function remove_to_cart(int $product_id, int $qty = 1)
     {
         $checkProduct = $this->getProductById($product_id);
         $countItem = $checkProduct->count;

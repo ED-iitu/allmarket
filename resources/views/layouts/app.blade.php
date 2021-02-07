@@ -1062,6 +1062,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     }
 
                     updateCart();
+                    updateCartData()
                 },
             });
         total_price()
