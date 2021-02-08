@@ -10928,6 +10928,11 @@ a.text-dark:focus {
     height: 27px;
 }
 
+#for_the_scroll {
+    height: 80%;
+    overflow: scroll;
+}
+
 .category {
     margin-left: 10px;
     font-family: Montserrat;
@@ -12823,6 +12828,11 @@ and (max-device-width: 568px) {
 @media only screen
 and (max-width: 768px) {
 
+    #for_the_scroll {
+        height: 65%;
+        overflow: scroll;
+    }
+
     .raiting {
         width: 318px;
     }
@@ -14345,6 +14355,11 @@ and (min-width: 376px){
     }
 
 @media only screen and (max-width: 345px) {
+
+    #for_the_scroll {
+        height: 60% !important;
+        overflow: scroll;
+    }
     .social {
         width: 49px;
         height: 35px;

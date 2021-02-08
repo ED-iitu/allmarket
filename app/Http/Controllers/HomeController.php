@@ -782,13 +782,11 @@ class HomeController extends Controller
                 ]
             ];
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
         // if cart not empty then check if this product exist then increment quantity
         if (isset($cart[$id])) {
             $cart[$id]['quantity'] += (int)$quantity;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
@@ -799,7 +797,6 @@ class HomeController extends Controller
             "image" => $product->image
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
     }
 
     public function addToCartSale(Request $request)
@@ -818,7 +815,6 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
         $shareProducts = $this->getShareProducts($response);
 
-        $cart = session()->get('cart');
         // if cart is empty then this the first product
         $cart = session()->get('cart');
         if (!$cart) {
@@ -835,7 +831,6 @@ class HomeController extends Controller
                     ];
             }
             session()->put('cart', $cart_product);
-            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         } else {
             foreach ($shareProducts as $product) {
                 if (isset($cart[$product->id])) {
@@ -852,8 +847,21 @@ class HomeController extends Controller
                 }
             }
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Товар успешно добавлен в корзину!');
         }
+    }
+
+    public function removeFromServerCart($id)
+    {
+        //https://dev-api.allmarket.kz/api/v2/baskets/2
+
+        $token = session()->get('token');
+
+        $this->client->request('GET', env('API_URL') . '/baskets/' . $id, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
     }
 
     public function removeToCart(Request $request)
@@ -866,6 +874,8 @@ class HomeController extends Controller
         if (null === $token) {
             return redirect()->back()->with('error', 'Не удалось найти пользователя');
         }
+
+        $this->removeFromServerCart($id);
 
 //        $this->addToServerCart($token, $id, $offerId, $quantity);
 
@@ -880,7 +890,6 @@ class HomeController extends Controller
         if (isset($cart[$id])) {
             $cart[$id]['quantity']--;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Товар успешно удален из корзины!');
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
@@ -891,23 +900,58 @@ class HomeController extends Controller
             "image" => $product->image
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Товар успешно удален из корзины!');
     }
 
     public function update_cart()
     {
         $count = 0;
         $prices = 0;
-        $countCartItems = session()->get('cart');
-        if ($countCartItems != false) {
-            foreach ($countCartItems as $item) {
+        $cart = session()->get('cart');
+        $share = [];
+        if ($cart != false) {
+            foreach ($cart as $item) {
 
                 $count += $item['quantity'];
                 $prices += (int)$item['price'] * $item['quantity'];
             }
         }
 
-        return response()->json(['count' => $count, 'prices' => $prices], 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+        if ($prices > 2000) {
+            $share = $this->getShareById(201);
+            foreach ($share as $product) {
+
+                // if cart is empty then this the first product
+                if (!$cart) {
+                    $cart = [
+                        $product->id => [
+                            "title" => $product->title,
+                            "category" => $product->category->title,
+                            "quantity" => 1,
+                            "price" => 1,
+                            "image" => $product->image,
+                            "type" => 'sales',
+                        ]
+                    ];
+                    session()->put('cart', $cart);
+                } else {
+                    // if item not exist in cart then add to cart with quantity = 1
+                    $cart[$product->id] = [
+                        "title" => $product->title,
+                        "category" => $product->category->title,
+                        "quantity" => 1,
+                        "price" => 1,
+                        "image" => $product->image,
+                        "type" => 'sales'
+                    ];
+                    session()->put('cart', $cart);
+                }
+
+
+            }
+
+        }
+
+        return response()->json(['count' => $count, 'prices' => $prices, 'shares' => $share], 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
     }
 
     protected function update_cart_data()
@@ -943,6 +987,7 @@ class HomeController extends Controller
         $count_wine_array = ['count_products' => $countProduct];
         $total_sums = ['total_sum' => $total_sum];
         $result = array_merge($wines, $count_wine_array, $total_sums);
+
         return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
     }
 
@@ -1231,6 +1276,24 @@ class HomeController extends Controller
             'shares' => $shares,
             'cities' => $this->getAvailableCitites()
         ]);
+    }
+
+    public function getShareById($id) {
+        $response = $this->client->request('GET', env('API_URL') . '/sales/' . $id, [
+            'query' => [
+                'city_id' => session()->get('city')['id'] ?? 6,
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+        $shareProducts = $this->getShareProducts($response);
+
+        return $shareProducts;
     }
 
 

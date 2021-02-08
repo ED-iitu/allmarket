@@ -840,17 +840,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                                 </div>
                                                                 <input type="hidden" value="{{$details['price']}}"
                                                                        id="current-price-{{$id}}">
-                                                                <div
-                                                                    style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">
-                                                                    <div class="cart-qty">
-                                                                <span id="cart-minus"
-                                                                      class="cart-minus-{{$id}}">-</span>
-                                                                        <input type="number" class="cart-count" name="qty"
-                                                                               value="{{$details['quantity']}}"
-                                                                               id="cart-count-{{$id}}">
-                                                                        <span id="cart-plus" class="cart-plus-{{$id}}">+</span>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="col-md-2" style="width: 50px">
                                                                 <div><span class="remove-from-cart" onclick="remove_cart({{$id}})">
@@ -1665,6 +1654,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             url: '{{ route('update_cart') }}',
             type: 'GET',
             success: function (data) {
+                console.log(data)
                 $('.cart-product-count').html(data.count)
                 $('.cart-product-price').html(data.prices)
             },
@@ -1676,6 +1666,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             url: '{{ route('update_cart_data') }}',
             type: 'GET',
             success: function (data) {
+                console.log(data)
                 $('.cart-empty').hide()
                 $('.cart-top-title').show()
                 $('.cart-bottom').show()
