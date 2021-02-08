@@ -946,6 +946,16 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     </div>
 </div>
 
+<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-body">
+                Товар добавлен в корзину
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     $('#close-mask').click(function () {
         $('#cart-cont').removeClass('open');
@@ -1584,15 +1594,15 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             }
         });
 
+
         if(modal_show) {
-            console.log("test")
-            $('#modal-body').html('')
-            $('#modal-body').append("Товар добавлен в корзину")
-            $('#your-modal').modal('toggle');
+            $('#product-modal').modal('toggle');
             setTimeout(function () {
-                $('#your-modal').modal('hide');
+                $('#product-modal').modal('hide');
             }, 3000);
         }
+
+
 
         $.ajax({
             url: '{{ route('addToCartPost') }}',
