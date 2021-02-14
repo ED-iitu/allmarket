@@ -17,6 +17,11 @@
         border-radius: 10px;
     }
 
+    .active-paginator {
+        border: 1px solid;
+        border-color: black;
+    }
+
     @media only screen
     and (max-width: 768px) {
         .paginator {
@@ -84,17 +89,24 @@
     </div>
 
 
-    @if($links != null)
+    @if($meta != null)
     <div style="display: flex; justify-content: center;" >
-        <input onclick="page('{{$links->first}}')" value="начало" id="page" class="paginator" type="button">
-        <input onclick="page('{{$links->last}}')" value="конец" id="page" class="paginator" type="button">
-        @if(null !== $links->prev)
-        <input onclick="page('{{$links->prev}}')" value="назад" id="page" class="paginator" type="button">
-        @endif
 
-        @if(null !== $links->next)
-            <input onclick="page('{{$links->next}}')" value="далее" id="page" class="paginator" type="button">
+        @if($meta->current_page != 1)
+        <input onclick="page('{{$links->first}}'); $(this).addClass('active-paginator')" value="1" id="page" class="paginator" type="button">
         @endif
+            @if(null !== $links->next)
+            <input onclick="page('{{$links->next}}'); $(this).addClass('active-paginator')" value="{{$meta->current_page}}" id="page" class="paginator active" type="button">
+            <input onclick="page('{{$links->next}}'); $(this).addClass('active-paginator')" value="{{$meta->current_page + 1}}" id="page" class="paginator active" type="button">
+            <input onclick="page('{{$links->next}}'); $(this).addClass('active-paginator')" value="{{$meta->current_page + 2}}" id="page" class="paginator" type="button">
+        @endif
+        <div class="flex-row" style="margin-top: 35px">
+            . . .
+        </div>
+        <input onclick="page('{{$links->last}}')" value="{{$meta->last_page}}" id="page" class="paginator" type="button">
+
+
+
     </div>
 
     @endif

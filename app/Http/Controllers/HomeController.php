@@ -270,6 +270,7 @@ class HomeController extends Controller
             return view('section-product-list', [
                 'products' => $products->products,
                 'links' => $products->links,
+                'meta' => $products->meta,
                 'cities' => $this->getAvailableCitites()
             ]);
         }
@@ -279,6 +280,7 @@ class HomeController extends Controller
             'sections' => $sections->sections,
             'products' => $products->products,
             'links' => $products->links,
+            'meta' => $products->meta,
             'cities' => $this->getAvailableCitites()
         ]);
     }
@@ -399,6 +401,7 @@ class HomeController extends Controller
             return view('section-product-list', [
                 'products' => $res->products,
                 'links' => $res->links,
+                'meta' => $res->meta
             ]);
         }
 
@@ -409,6 +412,7 @@ class HomeController extends Controller
             'section_id' => $section_id,
             'products' => $res->products,
             'links' => $res->links,
+            'meta' => $res->meta,
             'cities' => $this->getAvailableCitites()
         ]);
     }
@@ -1236,6 +1240,7 @@ class HomeController extends Controller
             return view('section-product-list', [
                 'products' => $sale->products,
                 'links' => $sale->links,
+                'meta' => $sale->meta,
                 'cities' => $this->getAvailableCitites()
             ]);
         }
@@ -1245,6 +1250,7 @@ class HomeController extends Controller
             'sections' => $sections->sections,
             'products' => $sale->products,
             'links' => $sale->links,
+            'meta' => $sale->meta,
             'cities' => $this->getAvailableCitites()
         ]);
     }
