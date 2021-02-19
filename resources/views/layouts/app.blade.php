@@ -1030,7 +1030,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             current_price = $('#current-price-' + id).val();
         product_count.val(parseInt(product_count.val()) + 1)
         $('#cart-price-' + id).html(parseInt(current_price) * parseInt(product_count.val()) + ' тг');
-        addToCart(id, 1, false)
+        addToCart(id, product_count.val(), false)
         total_price()
     });
     $(document).on('click', '#cart-minus', function () {
