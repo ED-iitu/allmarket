@@ -178,13 +178,14 @@
                         </div>
                         <p>
                             <label for="price-to" class="price-title" style="font-weight: lighter">От</label>
-                            <input class="priceFrom" type="number" value="0" id="price-to" style="color: #7791A4;">
-                            <label for="price-from" class="price-title" style="font-weight: lighter">До</label>
-                            <input class="priceTo" type="number" value="12000" id="price-from" style="color: #7791A4;">
+                            <input class="priceFrom price_filter" onchange="priceFilter()" type="number" value="0" id="price-to" style="color: #7791A4;">
+                            <label for="price-from" class="price-title"  style="font-weight: lighter">До</label>
+                            <input class="priceTo price_filter" onchange="priceFilter()" type="number" value="12000" id="price-from" style="color: #7791A4;">
                         </p>
-                        <div id="slider-range"
+                        <div id="slider-range" onchange="priceFilter()"
                              class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                         </div>
+
                     </div>
                 </div>
 
@@ -206,12 +207,13 @@
             price_min = $("#price-to");
         price_max = $("#price-from");
         SliderRange()
-        function SliderRange(start = 0, end = 12000) {
+        function SliderRange(start = 0, end = 30000) {
             slider_range.slider({
                 range: true,
                 min: 0,
-                max: 12000,
+                max: 30000,
                 values: [start, end],
+                stop: attachSlider,
                 slide: function (event, ui) {
                     price_min.val(ui.values[0])
                     price_max.val(ui.values[1])
@@ -219,6 +221,11 @@
                 }
             });
         }
+
+        function attachSlider() {
+            priceFilter()
+        }
+
         price_min.val(slider_range.slider("values", 0))
         price_max.val(slider_range.slider("values", 1))
         price_min.on('keyup', function () {
@@ -227,7 +234,6 @@
         price_max.on('keyup', function () {
             SliderRange(price_min.val(), price_max.val())
         })
-
     </script>
 
 @endsection

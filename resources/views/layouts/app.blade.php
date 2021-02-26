@@ -1558,9 +1558,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 </script>
 
 <script>
-    function getProductByAjax(filter, page = 1) {
+    function getProductByAjax(filter, page = 1, price_filter) {
         $('.loading').css('display', 'block')
-        var ajax_url = '?' + filter + '&page=' + page
+        var ajax_url = '?' + filter + '&page=' + page + price_filter
         $.ajax({
             url: ajax_url,
             type: 'GET',
@@ -1573,18 +1573,59 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     }
 
     $("#sort").change(function () {
+        var price_to = $("#price-from").val()
+        var price_from = $("#price-to").val()
+        var page = GetURLParameter('page');
+
+        var price_filter = "&price_from=" + price_from + "&price_to=" + price_to
         var filter = $(this).val()
         filter = 'order=' + filter
-        getProductByAjax(filter)
+        getProductByAjax(filter, page, price_filter)
     });
 
+    function priceFilter()
+    {
+        var price_to = $("#price-from").val()
+        var price_from = $("#price-to").val()
+
+        var page = GetURLParameter('page');
+        var filter = $( "#sort option:selected" ).val();
+        filter = 'order=' + filter
+
+        var price_filter = "&price_from=" + price_from + "&price_to=" + price_to
+        getProductByAjax(filter, page, price_filter)
+    }
+
     function page(page) {
+        var filter = $( "#sort option:selected" ).val();
+        filter = 'order=' + filter
+        var price_to = $("#price-from").val()
+        var price_from = $("#price-to").val()
+
+        var price_filter = "&price_from=" + price_from + "&price_to=" + price_to
         var url = new URL(page);
         var c = url.searchParams.get("page");
-        getProductByAjax('order=price.desc', c);
+
+        console.log(price_filter)
+        getProductByAjax(filter, c, price_filter);
+    }
+
+    function GetURLParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++)
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam)
+            {
+                return sParameterName[1];
+            }
+        }
     }
 
 </script>
+
 
 <script>
     function addToCart(id, quantity=1, modal_show=true) {
@@ -1722,8 +1763,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             <div class="modal-body" id="modal-body">
                 <h2>Выберите ваш город</h2>
                 <ul style="list-style: none">
-                    <li><a href="{{route('selectCity', ['id'=>6, 'title'=>'Алматы'])}}">Алматы</a></li>
-                    <li><a href="{{route('selectCity', ['id'=>2, 'title'=>'Нур-Султан'])}}">Нур-Султан(Астана)</a></li>
+
+                    @foreach($cities as $city)
+                        <li><a href="{{route('selectCity', ['id'=>$city->id, 'title'=>$city->title])}}">{{$city->title}}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>

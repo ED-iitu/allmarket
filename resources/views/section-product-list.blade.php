@@ -99,14 +99,13 @@
             <input onclick="page('{{$links->next}}'); $(this).addClass('active-paginator')" value="{{$meta->current_page}}" id="page" class="paginator active" type="button">
             <input onclick="page('{{$links->next}}'); $(this).addClass('active-paginator')" value="{{$meta->current_page + 1}}" id="page" class="paginator active" type="button">
             <input onclick="page('{{$links->next}}'); $(this).addClass('active-paginator')" value="{{$meta->current_page + 2}}" id="page" class="paginator" type="button">
-        @endif
-        <div class="flex-row" style="margin-top: 35px">
-            . . .
-        </div>
+                <div class="flex-row" style="margin-top: 35px">
+                    . . .
+                </div>
+
+            @endif
+
         <input onclick="page('{{$links->last}}')" value="{{$meta->last_page}}" id="page" class="paginator" type="button">
-
-
-
     </div>
 
     @endif
