@@ -61,6 +61,7 @@
                 @endforeach
             </div>
         </div>
+        @if($share->id != 201)
         <div style="display: flex; justify-content: center;">
             <form method="post" action="{{route('addToCartPostSale')}}">
                 @csrf
@@ -73,6 +74,7 @@
 
             </form>
         </div>
+        @endif
     </div>
 
 @endsection

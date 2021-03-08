@@ -95,7 +95,7 @@
                             <div class="container" style="padding: 15px">
                                 <a href="{{route('product', $product->id)}}" style="text-decoration: none">
                                     <div class="product-image" style="width: 316px !important;height: 413px !important;">
-                                        <img class="product-img" src="{{$product->image}}" alt="">
+                                        <img class="product-img" style="margin-top: 15px; height: 85%" src="{{$product->image}}" alt="">
                                     </div>
                                 </a>
                                 <div class="product-info" style="margin-top: 15px; position: relative">
@@ -166,7 +166,7 @@
                     <div class=" container raiting mt-5">
                         <div class="d-flex flex-row justify-content-between">
                             <div class="ml-4 raiting-title">Рейтинг товара</div>
-                            <div><span class="raiting-first">5</span>  <span class="raiting-second"> из 5</span></div>
+                            <div><span class="raiting-first">{{$product->rating}}</span>  <span class="raiting-second"> из 5</span></div>
                         </div>
                         <div class="mt-5">
                             <hr class="product-devider-last">

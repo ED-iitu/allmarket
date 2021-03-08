@@ -366,11 +366,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <ul class="submenu">
                                                 <li><a href="{{route('category_products', [3, 26])}}">Уход за
                                                         волосами</a></li>
-                                                <li><a href="#m2_2">Уход за телом</a></li>
-                                                <li><a href="#m2_2">Уход за полостью рта</a></li>
-                                                <li><a href="#m2_2">Средства для бритья</a></li>
-                                                <li><a href="#m2_2">Косметика</a></li>
-                                                <li><a href="#m2_2">Личная гигиена</a></li>
+                                                <li><a href="{{route('category_products', [3, 27])}}">Уход за телом</a></li>
+                                                <li><a href="{{route('category_products', [3, 28])}}">Уход за полостью рта</a></li>
+                                                <li><a href="{{route('category_products', [3, 29])}}">Средства для бритья</a></li>
+                                                <li><a href="{{route('category_products', [3, 30])}}">Косметика</a></li>
+                                                <li><a href="{{route('category_products', [3, 31])}}">Личная гигиена</a></li>
                                                 <li>
                                                     <a href="{{route('sectionById', 3)}}" style="color: #1f6fb2">Все категории</a>
                                                 </li>
@@ -379,26 +379,26 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                     @elseif($loop->index == 3)
                                         <div class="showSubCategory" style="z-index: -1">
                                             <ul class="submenu">
-                                                <li><a href="#m2_1">Средства для стирки</a></li>
-                                                <li><a href="#m2_2">Средства для ухода за домом</a></li>
-                                                <li><a href="#m2_2"> Посудомоечные средства</a></li>
+                                                <li><a href="{{route('category_products', [4, 32])}}">Средства для стирки</a></li>
+                                                <li><a href="{{route('category_products', [4, 33])}}">Средства для ухода за домом</a></li>
+                                                <li><a href="{{route('category_products', [4, 47])}}"> Посудомоечные средства</a></li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 4)
                                         <div class="showSubCategory" style="z-index: -1">
                                             <ul class="submenu">
-                                                <li><a href="#m2_1">Подгузники</a></li>
-                                                <li><a href="#m2_2">Детское питание</a></li>
-                                                <li><a href="#m2_2">Детская косметика</a></li>
-                                                <li><a href="#m2_2">Игрушки и аксессуары</a></li>
+                                                <li><a href="{{route('category_products', [5, 34])}}">Подгузники</a></li>
+                                                <li><a href="{{route('category_products', [5, 35])}}">Детское питание</a></li>
+                                                <li><a href="{{route('category_products', [5, 36])}}">Детская косметика</a></li>
+                                                <li><a href="{{route('category_products', [5, 37])}}">Игрушки и аксессуары</a></li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 5)
                                         <div class="showSubCategory" style="z-index: -1">
                                             <ul class="submenu">
-                                                <li><a href="#m2_1">Корма для собак</a></li>
-                                                <li><a href="#m2_2">Корма для кошек</a></li>
-                                                <li><a href="#m2_2">Аксессуары для животных</a></li>
+                                                <li><a href="{{route('category_products', [6, 10])}}">Корма для собак</a></li>
+                                                <li><a href="{{route('category_products', [6, 11])}}">Корма для кошек</a></li>
+                                                <li><a href="{{route('category_products', [6, 38])}}">Аксессуары для животных</a></li>
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 6)
@@ -407,9 +407,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="{{route('category_products', [7, 39])}}">Бумага</a></li>
                                                 <li><a href="{{route('category_products', [7, 41])}}">Пакеты</a></li>
                                                 <li><a href="{{route('category_products', [7, 42])}}">Перчатки</a></li>
-                                                <li><a href="#m2_2">Инсектициды</a></li>
-                                                <li><a href="#m2_2">Осведители воздуха и ароматизаторы</a></li>
-                                                <li><a href="#m2_2">Хозяйственные принадлежности</a></li>
+                                                <li><a href="{{route('category_products', [7, 39])}}">Инсектициды</a></li>
+                                                <li><a href="{{route('category_products', [7, 39])}}">Осведители воздуха и ароматизаторы</a></li>
+                                                <li><a href="{{route('category_products', [7, 39])}}">Хозяйственные принадлежности</a></li>
                                                 <li>
                                                     <a href="{{route('sectionById', 7)}}" style="color: #1f6fb2">Все категории</a>
                                                 </li>
@@ -1072,7 +1072,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         $('.cart-price').each(function () {
             total_product_val = total_product_val + parseInt($(this).html().replace('тг', ''))
         });
-        $('.cart-total-price-money').html(total_product_val + ' тг')
+        $('.cart-total-price-money').html(total_product_val)
     }
 
 </script>
@@ -1228,22 +1228,28 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 
     function checkout() {
+        total_price()
+        var price = parseInt($('.cart-total-price-money').text())
+        if (price < 5000) {
+            $('#modal-body').html('')
+            $('#modal-body').append('Минимальная сумма заказа 5000 тенге')
+            $('#your-modal').modal('toggle');
+        } else {
+            $.ajax({
+                url: '{{ route('checkoutCart') }}',
+                type: 'GET',
+                success: function (data) {
+                    console.log("checkout")
+                },
+                error: function (XMLHttpRequest) {
+                    $('#modal-body').html('')
+                    $('#modal-body').append('Произошла ошибка попробуйте позже')
+                    $('#your-modal').modal('toggle');
+                }
+            });
 
-        $.ajax({
-            url: '{{ route('checkoutCart') }}',
-            type: 'GET',
-            success: function (data) {
-                console.log("checkout")
-            },
-            error: function (XMLHttpRequest) {
-                $('#modal-body').html('')
-                $('#modal-body').append('Произошла ошибка попробуйте позже')
-                $('#your-modal').modal('toggle');
-            }
-        });
 
-
-        $('#cart-cart').html(`
+            $('#cart-cart').html(`
                 <div class="cart-checkout">
                     <div class="d-flex flex-row justify-content-between cart-header" style="align-items: center !important;">
                         <div class="top-cart-cart">Корзина: Оформить заказ</div>
@@ -1273,47 +1279,49 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                                 <option class="input-select-option-inside" value="">Выберите город</option>
                                 @foreach($cities as $city)
-                                <option class="input-select-option-inside" value="{{$city->id}}">{{$city->title}}</option>
+                <option class="input-select-option-inside" value="{{$city->id}}">{{$city->title}}</option>
                                 @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div style="display: flex; justify-content: center; margin-top: 10px">
-                        <input type="text" class="input-street" name="street" placeholder="Улица">
-                    </div>
-                    <div class="flex-row" style="display: flex;justify-content: center; margin-top:10px">
-                        <input type="" class="input-house" name="home" placeholder="Дом">
-                        <input type="" class="input-house" name="apt" placeholder="Квартира" style="margin-left: 6px">
-                    </div>
-                    <div class="address-cart">
-                        <h2 class="cart-top-title">Время доставки:</h2>
-                    </div>
-                    <hr class="cart-hr">
-                    <div class="checkout-address" style="display: flex; justify-content: center">
-                        <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
-                            <select id="" class="input-select-option" name="delivery_time_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
-                                <option class="input-select-option-inside" value="">Время доставки</option>
-                                <option class="input-select-option-inside" value="1">Утром</option>
-                                <option class="input-select-option-inside" value="2">В обед</option>
-                                <option class="input-select-option-inside" value="3">Вечером</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="address-cart">
-                        <h2 class="cart-top-title">Комментарий:</h2>
-                    </div>
-                    <hr class="cart-hr">
-                     <div style="display: flex; justify-content: center; margin-top: 10px">
-                        <input type="text" class="input-street" name="comment" placeholder="Необязательно">
-                    </div>
+                </select>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 10px">
+            <input type="text" class="input-street" name="street" placeholder="Улица">
+        </div>
+        <div class="flex-row" style="display: flex;justify-content: center; margin-top:10px">
+            <input type="" class="input-house" name="home" placeholder="Дом">
+            <input type="" class="input-house" name="apt" placeholder="Квартира" style="margin-left: 6px">
+        </div>
+        <div class="address-cart">
+            <h2 class="cart-top-title">Время доставки:</h2>
+        </div>
+        <hr class="cart-hr">
+        <div class="checkout-address" style="display: flex; justify-content: center">
+            <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
+                <select id="" class="input-select-option" name="delivery_time_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
+                    <option class="input-select-option-inside" value="">Время доставки</option>
+                    <option class="input-select-option-inside" value="1">Утром</option>
+                    <option class="input-select-option-inside" value="2">В обед</option>
+                    <option class="input-select-option-inside" value="3">Вечером</option>
+                </select>
+            </div>
+        </div>
+        <div class="address-cart">
+            <h2 class="cart-top-title">Комментарий:</h2>
+        </div>
+        <hr class="cart-hr">
+         <div style="display: flex; justify-content: center; margin-top: 10px">
+            <input type="text" class="input-street" name="comment" placeholder="Необязательно">
+        </div>
 
-                </div>
-                <div class="cart-bottom" style="margin-top: 20px">
-                    <div class="flex-row" style="display:flex;justify-content: center; align-items: center;">
-                        <button type="submit" class="checkout-btn" onclick="checkout_finish()">Подтвердить заказ</button>
-                    </div>
-                </div>
-            `)
+    </div>
+    <div class="cart-bottom" style="margin-top: 20px">
+        <div class="flex-row" style="display:flex;justify-content: center; align-items: center;">
+            <button type="submit" class="checkout-btn" onclick="checkout_finish()">Подтвердить заказ</button>
+        </div>
+    </div>
+`)
+        }
+
     }
 
     function checkout_finish() {

@@ -25,6 +25,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
+        sleep(1);
         $this->client = new Client();
     }
 
@@ -584,6 +585,7 @@ class HomeController extends Controller
 
     public function account()
     {
+        sleep(1);
         $token = session()->get('token');
 
 
@@ -591,6 +593,7 @@ class HomeController extends Controller
             return redirect()->route('home');
         } else {
             $favorites = $this->getFavorite($token);
+            sleep(0.5);
             $orders = $this->getUserOrders();
             foreach ($orders->orders as $order) {
                 $productOrder = $this->getOrderById($order->id);
@@ -599,7 +602,9 @@ class HomeController extends Controller
             }
 
             $userData = $this->getUserData($token);
+            sleep(0.5);
             $sections = $this->getAllSections();
+            sleep(0.5);
 
             return view('personal-account', [
                 'favorites' => $favorites,
@@ -613,6 +618,7 @@ class HomeController extends Controller
 
     public function getOrderById($id)
     {
+        sleep(0.5);
         //https://dev-api.allmarket.kz/api/v2/orders/1164?city_id=6
 
         $token = session()->get('token');
@@ -637,6 +643,7 @@ class HomeController extends Controller
 
     public function duplicate_order(Request $request)
     {
+        sleep(0.5);
         $getOrder = $this->getOrderById($request->order_id);
         $products = $getOrder->order->items;
         $cart = session()->get('cart');
@@ -856,6 +863,8 @@ class HomeController extends Controller
             }
             session()->put('cart', $cart);
         }
+
+        return redirect()->back()->with('success', 'Акцния успешно добавлена в корзину');
     }
 
     public function removeFromServerCart($id)
