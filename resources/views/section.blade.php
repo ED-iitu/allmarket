@@ -154,10 +154,12 @@
                         <ul style="list-style: none; padding-left: 15px !important">
                             @foreach($section->categories as $category)
                                 <div>
+                                    @if($category->title != 'Алкоголь')
                                     <a href="{{route('category_products', [$section->id, $category->id])}}"
                                        class="showproduct" style="text-decoration: none">
                                         <li class="category-list" style="font-size: 18px;">{{$category->title}}</li>
                                     </a>
+                                    @endif
                                 </div>
                             @endforeach
                         </ul>

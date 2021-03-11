@@ -43,6 +43,13 @@
             float: right;
         }
 
+        .review-list {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 500;
+            color: #43637A;
+        }
+
         /***** CSS Magic to Highlight Stars on Hover *****/
 
         .rating > input:checked ~ label, /* show gold star when clicked */
@@ -95,7 +102,7 @@
                             <div class="container" style="padding: 15px">
                                 <a href="{{route('product', $product->id)}}" style="text-decoration: none">
                                     <div class="product-image" style="width: 316px !important;height: 413px !important;">
-                                        <img class="product-img" style="margin-top: 15px; height: 85%" src="{{$product->image}}" alt="">
+                                        <img class="product-img" style="margin-top: 60px; height: 70%; width: 80%" src="{{$product->image}}" alt="">
                                     </div>
                                 </a>
                                 <div class="product-info" style="margin-top: 15px; position: relative">
@@ -175,7 +182,26 @@
                         <div class="mt-2 mb-5">
                             <div class="d-flex flex-column">
                                 <div class="mt-2 ml-4 rewiew-title">Отзывы</div>
-                                <div class="mt-4 mb-3 ml-4 rewiew-title-addition">Отзывов нет будьте первыми</div>
+                               @if($reviews)
+                                   <div class="mt-5">
+                                       @foreach($reviews as $review)
+                                           <div class="mt-2">
+                                               <div class="container">
+                                                   <div class="review" style="line-height: 5px">
+                                                       <p class="review-list" style="line-height: 15px"><strong>{{$review->user->name}}</strong></p>
+                                                       <p class="review-list" style="line-height: 15px">{{$review->message}}</p>
+                                                       <p class="review-list" style="line-height: 15px">{{$review->created_at}}</p>
+                                                       <hr>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       @endforeach
+                                   </div>
+
+
+                                @else
+                                    <div class="mt-4 mb-3 ml-4 rewiew-title-addition">Отзывов нет. Будьте первыми</div>
+                                @endif
                                 <form action="{{route('addReview')}}" method="GET">
                                     <input type="hidden" name="productId" value="{{$product->id}}">
                                     <div>

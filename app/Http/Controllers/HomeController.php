@@ -279,12 +279,13 @@ class HomeController extends Controller
         }
 
         return view('section', [
-            'section' => $res->section,
+            'section'  => $res->section,
+            'sectionList' => $sections->sections,
             'sections' => $sections->sections,
             'products' => $products->products,
-            'links' => $products->links,
-            'meta' => $products->meta,
-            'cities' => $this->getAvailableCitites()
+            'links'    => $products->links,
+            'meta'     => $products->meta,
+            'cities'   => $this->getAvailableCitites()
         ]);
     }
 
@@ -313,7 +314,7 @@ class HomeController extends Controller
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
                 'paginate' => 12,
-                'order' => $request->order ?? 'price.desc',
+                'order' => $request->order ?? '',
                 'page' => $request->page ?? 1,
                 'price_from' => $request->price_from ?? 0,
                 'price_to' => $request->price_to ?? 100000
@@ -342,6 +343,8 @@ class HomeController extends Controller
             ]
         ]);
 
+        $reviews = $this->getReviews($id);
+
         $response = $response->getBody()->getContents();
 
         $res = json_decode($response);
@@ -350,12 +353,14 @@ class HomeController extends Controller
 
         $sections = $this->getAllSections();
 
+        $reviews = json_decode($reviews);
 
         return view('product', [
             'sections' => $sections->sections,
             'product' => $res->product,
             'categories' => $categories,
-            'cities' => $this->getAvailableCitites()
+            'cities' => $this->getAvailableCitites(),
+            'reviews' => $reviews->reviews
         ]);
 
     }
@@ -367,7 +372,7 @@ class HomeController extends Controller
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
                 'paginate' => 12,
-                'order' => $request->order ?? 'price.desc',
+                'order' => $request->order ?? '',
                 'page' => $request->page ?? 1,
             ],
             'auth' => [
@@ -1467,6 +1472,32 @@ class HomeController extends Controller
 
         } catch (ClientException $e) {
             return redirect()->back()->with('error', 'Произошла ошибка');
+        }
+    }
+
+    public function getReviews($productId)
+    {
+//        https://dev-api.allmarket.kz/api/v2/products/11/reviews
+
+        $token = session()->get('token');
+
+        if (null === $token) {
+            return;
+        }
+
+        try {
+            $response = $this->client->request('GET', env('API_URL') . '/products/' . $productId . '/reviews', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                    'Accept' => 'application/json'
+                ],
+
+            ]);
+
+            return $response->getBody()->getContents();
+
+        } catch (ClientException $e) {
+            return $e->getMessage();
         }
     }
 

@@ -358,7 +358,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="{{route('category_products', [$section->id, 2])}}">Чай</a></li>
                                                 <li><a href="{{route('category_products', [$section->id, 23])}}">Сокии морсы</a></li>
                                                 <li><a href="{{route('category_products', [$section->id, 24])}}">Вода</a></li>
-                                                <li><a href="{{route('category_products', [$section->id, 57])}}">Алкоголь</a></li>
+                                                {{--<li><a href="{{route('category_products', [$section->id, 57])}}">Алкоголь</a></li>--}}
                                             </ul>
                                         </div>
                                     @elseif($loop->index == 2)
@@ -1277,10 +1277,15 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <div class="checkout-address" style="display: flex; justify-content: center; margin-top: 10px">
                         <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
                             <select id="" class="input-select-option" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
-                                <option class="input-select-option-inside" value="">Выберите город</option>
+                                @if ($selectedCity = Session::get('city'))
+                <option class="input-select-option-inside" value="$selectedCity['id']">{{$selectedCity['title']}}</option>
+
+                                @else
+
                                 @foreach($cities as $city)
                 <option class="input-select-option-inside" value="{{$city->id}}">{{$city->title}}</option>
                                 @endforeach
+                @endif
                 </select>
             </div>
         </div>
