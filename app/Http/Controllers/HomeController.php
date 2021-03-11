@@ -360,7 +360,7 @@ class HomeController extends Controller
             'product' => $res->product,
             'categories' => $categories,
             'cities' => $this->getAvailableCitites(),
-            'reviews' => $reviews->reviews
+            'reviews' => $reviews->reviews ?? []
         ]);
 
     }
