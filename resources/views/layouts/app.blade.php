@@ -49,6 +49,14 @@
             opacity: 0;
         }
 
+        .loading-cart {
+            display: none;
+            position: fixed;
+            top: 0; right: 0;
+            bottom: 0; left: 70%;
+            z-index: 100000;
+        }
+
         .loading {
             display: none;
             position: fixed;
@@ -745,6 +753,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 
 <div id="cart-cont">
+    <div class="loading-cart">
+        <div class="loader"></div>
+    </div>
     <div>
         <button id="close-cart" onclick="$('#cart-cont').removeClass('open');$('body').removeClass('nooverflow1 cart-active-bg minus-z-index');
                     $('body').removeClass('nooverflow');"></button>
@@ -816,45 +827,48 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <div class="container product-container" id="product-container-{{$id}}">
                                                 <hr class="cart-product-devider">
                                             </div>
+                                            </div>
                                             @endif
                                         @endforeach
                                             <h2 class="cart-top-title">Предложения:</h2>
-                                            @foreach(session('cart') as $id => $details)
-                                                @if(array_key_exists('type', $details))
-                                                    <?php $CartTotal += $details['price'] * $details['quantity'] ?>
-                                                    <div class="cart-product" id="cart-product-{{$id}}" style="padding: 20px;">
-                                                        <div class="row">
-                                                            <div class="col-md-4 cart-img">
-                                                                <div class="div-cart-image"
-                                                                     style="height: 80px; display: flex; justify-content: center">
-                                                                    <img class="cart-image" src="{{$details['image']}}" alt="">
+                                            <div id="cartSales">
+                                                @foreach(session('cart') as $id => $details)
+                                                    @if(array_key_exists('type', $details))
+                                                        <?php $CartTotal += $details['price'] * $details['quantity'] ?>
+                                                        <div class="cart-product" id="cart-product-{{$id}}" style="padding: 20px;">
+                                                            <div class="row">
+                                                                <div class="col-md-4 cart-img">
+                                                                    <div class="div-cart-image"
+                                                                         style="height: 80px; display: flex; justify-content: center">
+                                                                        <img class="cart-image" src="{{$details['image']}}" alt="">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6 cart-title-style" style="width: 170px">
-                                                                <div class="cart-title">
-                                                                    {{ Str::of($details['title'])->limit(15) }}
+                                                                <div class="col-md-6 cart-title-style" style="width: 170px">
+                                                                    <div class="cart-title">
+                                                                        {{ Str::of($details['title'])->limit(15) }}
+                                                                    </div>
+                                                                    <div class="cart-category">{{$details['category']}}</div>
+                                                                    <div class="cart-price" id="cart-price-{{$id}}"
+                                                                         style="margin-top: 10px">{{$details['price'] * $details['quantity']}} тг
+                                                                    </div>
+                                                                    <input type="hidden" value="{{$details['price']}}"
+                                                                           id="current-price-{{$id}}">
                                                                 </div>
-                                                                <div class="cart-category">{{$details['category']}}</div>
-                                                                <div class="cart-price" id="cart-price-{{$id}}"
-                                                                     style="margin-top: 10px">{{$details['price'] * $details['quantity']}} тг
-                                                                </div>
-                                                                <input type="hidden" value="{{$details['price']}}"
-                                                                       id="current-price-{{$id}}">
-                                                            </div>
-                                                            <div class="col-md-2" style="width: 50px">
-                                                                <div><span class="remove-from-cart" onclick="remove_cart({{$id}})">
+                                                                <div class="col-md-2" style="width: 50px">
+                                                                    <div><span class="remove-from-cart" onclick="remove_cart({{$id}})">
                                                             <img src="/images/exit.png" alt="">
                                                         </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="container product-container" id="product-container-{{$id}}">
-                                                        <hr class="cart-product-devider">
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                                        <div class="container product-container" id="product-container-{{$id}}">
+                                                            <hr class="cart-product-devider">
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+
                                     </div>
 
                                 </div>
@@ -895,6 +909,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                     <h2 class="empty-title">Ваша корзина пуста</h2>
                                 </div>
                                 <div id="cart-data-table">
+                                </div>
+                                <h2 class="cart-top-title" style="display: none">Предложения:</h2>
+                                <div id="cartSales">
+
                                 </div>
                                 <div class="cart-bottom" style="display: none">
                                     <div class="row" style="flex-wrap: nowrap">
@@ -1048,7 +1066,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
     function remove_cart(product_id) {
 
-        updateCart();
+        $('.loading-cart').css('display', 'block')
+
+
+      //  updateCart();
             $.ajax({
                 url: '/cart/remove/' + product_id + '/' + 0,
                 success: function (data) {
@@ -1425,6 +1446,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('.cart-bottom').hide()
                 $('.cart-empty').show()
                 document.getElementById("cart-data-table").innerHTML = "";
+                document.getElementById("cartSales").innerHTML = "";
                 updateCart()
             },
             error: function (XMLHttpRequest) {
@@ -1619,7 +1641,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         var url = new URL(page);
         var c = url.searchParams.get("page");
 
-        console.log(price_filter)
         getProductByAjax(filter, c, price_filter);
     }
 
@@ -1642,6 +1663,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 <script>
     function addToCart(id, quantity=1, modal_show=true) {
+        $('.loading-cart').css('display', 'block')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1656,8 +1678,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             }, 3000);
         }
 
-
-
         $.ajax({
             url: '{{ route('addToCartPost') }}',
             type: 'POST',
@@ -1665,11 +1685,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 product_id: id,
                 quantity: quantity,
             },
-            success: function (data) {
 
+            success: function (data) {
                 updateCart()
                 updateCartData()
-
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1679,6 +1698,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
     }
     function removeToCart(id, quantity=1, modal_show=true) {
+        $('.loading-cart').css('display', 'block')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1714,6 +1734,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     }
 
     function updateCart() {
+
         $.ajax({
             url: '{{ route('update_cart') }}',
             type: 'GET',
@@ -1730,30 +1751,40 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             url: '{{ route('update_cart_data') }}',
             type: 'GET',
             success: function (data) {
-                console.log(data)
                 $('.cart-empty').hide()
                 $('.cart-top-title').show()
                 $('.cart-bottom').show()
                 document.getElementById("cart-data-table").innerHTML = "";
+                document.getElementById("cartSales").innerHTML = "";
                 $('.cart-total-price-money').html(data.total_sum + ' тг')
                 $.each(data.products, function (key, value) {
-                    $("#cart-data-table").append('<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
-                        '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
-                        '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
-                        '<div class="col-md-6 cart-title-style" style="width: 170px">' +
-                        '<div class="cart-title">' + value['title'] + '</div>' +
-                        '<div class="cart-category">' + value['category_title'] + '</div>' +
-                        '<div class="cart-price" id="cart-price-' + value['product_id'] + '" style="margin-top: 10px">' + value['price'] * value['count']  + ' тг</div>' +
-                        '<input type="hidden" value="' + value['price'] + '" id="current-price-' + value['product_id'] + '">' +
-                        '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
-                        '<div class="cart-qty"><span id="cart-minus" class="cart-minus-' + value['product_id'] + '">-</span>' +
-                        '<input type="number" class="cart-count" name="qty" value="'+ value['count'] +'" id="cart-count-' + value['product_id'] + '" disabled="">' +
-                        '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
-                        '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
-                        '<img src="/images/exit.png" alt=""></span></div></div></div></div>'
-                    )
+
+                   var productPrice = value['price'];
+                   var productInfo = '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                       '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
+                       '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
+                       '<div class="col-md-6 cart-title-style" style="width: 170px">' +
+                       '<div class="cart-title">' + value['title'] + '</div>' +
+                       '<div class="cart-category">' + value['category_title'] + '</div>' +
+                       '<div class="cart-price" id="cart-price-' + value['product_id'] + '" style="margin-top: 10px">' + productPrice * value['count']  + ' тг</div>' +
+                       '<input type="hidden" value="' + productPrice + '" id="current-price-' + value['product_id'] + '">' +
+                       '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
+                       '<div class="cart-qty"><span id="cart-minus" class="cart-minus-' + value['product_id'] + '">-</span>' +
+                       '<input type="number" class="cart-count" name="qty" value="'+ value['count'] +'" id="cart-count-' + value['product_id'] + '" disabled="">' +
+                       '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
+                       '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
+                       '<img src="/images/exit.png" alt=""></span></div></div></div></div>';
+
+                   if (value['type'] == "sales") {
+                       $(".card-top-title").show()
+                       $("#cartSales").append(productInfo)
+                   } else if(value['type'] == "main") {
+                       $("#cart-data-table").append(productInfo)
+                   }
                 })
-                updateCart()
+
+                $('.loading-cart').css('display', 'none')
+               // updateCart()
             },
         });
     }
