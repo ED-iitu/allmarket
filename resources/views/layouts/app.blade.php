@@ -1066,10 +1066,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
     function remove_cart(product_id) {
 
-        $('.loading-cart').css('display', 'block')
+        // $('.loading-cart').css('display', 'block')
 
-
-      //  updateCart();
             $.ajax({
                 url: '/cart/remove/' + product_id + '/' + 0,
                 success: function (data) {
@@ -1187,7 +1185,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 },
                 success: function (data) {
                     if ($.isEmptyObject(data.error)) {
-                        console.log(data.success)
                     } else {
                         printErrorMsg(data.error);
                     }
@@ -1229,7 +1226,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 },
                 success: function (data) {
                     if ($.isEmptyObject(data.error)) {
-                        console.log(data.success)
                     } else {
                         printErrorMsg(data.error);
                     }
@@ -1260,7 +1256,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 url: '{{ route('checkoutCart') }}',
                 type: 'GET',
                 success: function (data) {
-                    console.log("checkout")
                 },
                 error: function (XMLHttpRequest) {
                     $('#modal-body').html('')
@@ -1391,11 +1386,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         'person_id': obj.epay.params.person_id
                     },
                     success: function (data) {
-                        // window.location = url
-                        // console.log(data)
+
                     },
                     error: function (XMLHttpRequest) {
-                        console.log(XMLHttpRequest)
                     }
                 });
             },
@@ -1663,7 +1656,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 <script>
     function addToCart(id, quantity=1, modal_show=true) {
-        $('.loading-cart').css('display', 'block')
+        // $('.loading-cart').css('display', 'block')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1687,7 +1680,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             },
 
             success: function (data) {
-                updateCart()
+               // updateCart()
                 updateCartData()
             },
             error: function (XMLHttpRequest) {
@@ -1698,7 +1691,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
     }
     function removeToCart(id, quantity=1, modal_show=true) {
-        $('.loading-cart').css('display', 'block')
+        // $('.loading-cart').css('display', 'block')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1721,7 +1714,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     }, 2000);
                 }
 
-                updateCart()
+               // updateCart()
                 updateCartData()
 
             },
@@ -1739,7 +1732,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             url: '{{ route('update_cart') }}',
             type: 'GET',
             success: function (data) {
-                console.log(data)
                 $('.cart-product-count').html(data.count)
                 $('.cart-product-price').html(data.prices)
             },
@@ -1757,6 +1749,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 document.getElementById("cart-data-table").innerHTML = "";
                 document.getElementById("cartSales").innerHTML = "";
                 $('.cart-total-price-money').html(data.total_sum + ' тг')
+                $('.cart-product-count').html(data.count_products)
+                $('.cart-product-price').html(data.total_sum)
                 $.each(data.products, function (key, value) {
 
                    var productPrice = value['price'];
@@ -1783,7 +1777,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                    }
                 })
 
-                $('.loading-cart').css('display', 'none')
+                // $('.loading-cart').css('display', 'none')
                // updateCart()
             },
         });

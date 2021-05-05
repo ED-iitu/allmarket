@@ -327,6 +327,7 @@
                                     <div class="uk-accordion-content">
                                         <div class="row">
                                             @foreach($order->products as $product)
+                                                @if(isset($product->product))
                                                 <?php $totalPrice += $product->product->price ?>
                                                 <div class="col-md-4 product-list-mobile">
                                                     <div class="product">
@@ -352,14 +353,14 @@
                                                                     <div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;">
                                                                         <div class="new-price">{{$product->product->price}} тг</div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @else
 
-
+                                                @endif
                                             @endforeach
                                         </div>
                                         <div class="order-buttom" style="display: flex; justify-content: space-between;margin: 20px">
