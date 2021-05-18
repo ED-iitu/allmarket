@@ -11367,9 +11367,9 @@ body {
 .product-img {
     display: flex;
     justify-content: center;
-    max-width: 100%;
+    max-width: 90%;
     align-items: center;
-    height: 100%;
+    height: 90%;
 }
 
 .carousel-indicators li {

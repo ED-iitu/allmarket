@@ -852,7 +852,7 @@ class HomeController extends Controller
                         "title" => $product->title,
                         "category" => $product->category->title,
                         "quantity" => 1,
-                        "price" => $product->price,
+                        "price" => $product->price_sale ?? $product->price,
                         "image" => $product->image,
                         "type" => 'sales',
                     ];
@@ -867,7 +867,7 @@ class HomeController extends Controller
                         "title" => $product->title,
                         "category" => $product->category->title,
                         "quantity" => 1,
-                        "price" => $product->price,
+                        "price" => $product->price_sale ?? $product->price,
                         "image" => $product->image,
                         "type" => 'sales',
                     ];
