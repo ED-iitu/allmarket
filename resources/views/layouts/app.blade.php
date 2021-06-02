@@ -1066,7 +1066,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
     function remove_cart(product_id) {
 
-        // $('.loading-cart').css('display', 'block')
+        $('.loading-cart').css('display', 'block')
 
             $.ajax({
                 url: '/cart/remove/' + product_id + '/' + 0,
@@ -1079,7 +1079,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         $('.cart-bottom').hide();
                     }
 
-                    updateCart();
+                  //  updateCart();
                     updateCartData()
                 },
             });
@@ -1656,7 +1656,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 <script>
     function addToCart(id, quantity=1, modal_show=true) {
-        // $('.loading-cart').css('display', 'block')
+        $('.loading-cart').css('display', 'block')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1682,6 +1682,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             success: function (data) {
                // updateCart()
                 updateCartData()
+               // $('.loading-cart').css('display', 'none')
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1691,7 +1692,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
     }
     function removeToCart(id, quantity=1, modal_show=true) {
-        // $('.loading-cart').css('display', 'block')
+        $('.loading-cart').css('display', 'block')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1716,6 +1717,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
                // updateCart()
                 updateCartData()
+
 
             },
             error: function (XMLHttpRequest) {
@@ -1777,7 +1779,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                    }
                 })
 
-                // $('.loading-cart').css('display', 'none')
+                $('.loading-cart').css('display', 'none')
                // updateCart()
             },
         });
