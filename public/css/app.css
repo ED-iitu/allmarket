@@ -11367,9 +11367,10 @@ body {
 .product-img {
     display: flex;
     justify-content: center;
-    max-width: 90%;
+    max-width: 80%;
     align-items: center;
-    height: 90%;
+    height: 80%;
+    margin-top: 10%;
 }
 
 .carousel-indicators li {

@@ -590,9 +590,7 @@ class HomeController extends Controller
 
     public function account()
     {
-
         $token = session()->get('token');
-
 
         if (null === $token) {
             return redirect()->route('home');
@@ -600,7 +598,9 @@ class HomeController extends Controller
             $favorites = $this->getFavorite($token);
 
             $orders = $this->getUserOrders();
+
             foreach ($orders->orders as $order) {
+                sleep(0.2);
                 $productOrder = $this->getOrderById($order->id);
                 $order->products = $productOrder->order->items;
 
