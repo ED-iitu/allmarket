@@ -1688,6 +1688,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('#modal-body').html('')
                 $('#modal-body').append('Произошла ошибка попробуйте позже')
                 $('#your-modal').modal('toggle');
+
+                 $('.loading-cart').css('display', 'none')
             }
         });
     }

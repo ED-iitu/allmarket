@@ -24,6 +24,7 @@ Route::get('section/{section_id}/category/{category_id}', 'HomeController@getPro
 Route::post('registration', 'HomeController@registration')->name('registration');
 Route::post('/login', 'HomeController@login')->name('login');
 Route::get('account', 'HomeController@account')->name('account');
+Route::get('/account/orders', 'HomeController@getAccountOrderById')->name('accountOrdersById');
 Route::get('logout', 'HomeController@logout')->name('logout');
 Route::post('sendSms', 'HomeController@sendSms')->name('sendSms');
 Route::get('/search', 'HomeController@search')->name('search');

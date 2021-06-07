@@ -599,12 +599,12 @@ class HomeController extends Controller
 
             $orders = $this->getUserOrders();
 
-            foreach ($orders->orders as $order) {
-                sleep(0.2);
-                $productOrder = $this->getOrderById($order->id);
-                $order->products = $productOrder->order->items;
-
-            }
+//            foreach ($orders->orders as $order) {
+//                sleep(0.2);
+//                $productOrder = $this->getOrderById($order->id);
+//                $order->products = $productOrder->order->items;
+//
+//            }
 
             $userData = $this->getUserData($token);
 
@@ -648,35 +648,41 @@ class HomeController extends Controller
 
     public function duplicate_order(Request $request)
     {
-        sleep(0.5);
         $getOrder = $this->getOrderById($request->order_id);
         $products = $getOrder->order->items;
+
+       // dd($products);
         $cart = session()->get('cart');
         if (!$cart) {
+            $type = 'main';
             $cart_product = [];
             foreach ($products as $product) {
+                $type = $product->product ?? "sales";
+                $type = $product->offer ?? "main";
                 $cart_product[$product->id] =
                     [
-                        "title" => $product->product->title,
-                        "category" => $product->product->category->title,
+                        "title" => $product->product->title ?? $product->offer->title,
+                        "category" => $product->product->category->title ?? '',
                         "quantity" => $product->count,
                         "price" => $product->price,
-                        "image" => $product->product->image,
+                        "image" => $product->product->image ?? $product->offer->image,
                     ];
             }
             session()->put('cart', $cart_product);
             return redirect()->back()->with('success', 'Заказ успешно склонирован');
         } else {
             foreach ($products as $product) {
+                $type = $product->product ?? "sales";
+                $type = $product->offer ?? "main";
                 if (isset($cart[$product->id])) {
                     $cart[$product->id]['quantity'] += (int)$product->count;
                 } else {
                     $cart[$product->id] = [
-                        "title" => $product->product->title,
-                        "category" => $product->product->category->title,
+                        "title" => $product->product->title ?? $product->offer->title,
+                        "category" => $product->product->category->title ?? '',
                         "quantity" => $product->count,
                         "price" => $product->price,
-                        "image" => $product->product->image
+                        "image" => $product->product->image ?? $product->offer->image,
                     ];
                 }
             }
@@ -770,15 +776,6 @@ class HomeController extends Controller
         $quantity = $request->quantity;
         $product = $this->getProductById($id);
         $token = session()->get('token');
-
-//        if (isset($product)) {
-//            dd($product);
-//        } else {
-//            dd("Piska");
-//        }
-
-      //  $this->addToServerCart($token, $id, $offerId, $quantity);
-
 
         $productPrice = $product->price;
 
@@ -1540,6 +1537,22 @@ class HomeController extends Controller
         } catch (ClientException $e) {
             return $e->getMessage();
         }
+    }
+
+    public function getAccountOrderById(Request $request)
+    {
+        $id = $request->id;
+
+        if ($id == null) {
+            return false;
+        }
+
+        $productOrder = $this->getOrderById($id);
+        $products = $productOrder->order->items;
+
+       // dd($products);
+
+        return json_encode($products);
     }
 
 

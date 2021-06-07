@@ -311,9 +311,9 @@
 
                             <?php $totalPrice = 0; ?>
 
-                            <ul uk-accordion>
+                            <ul uk-accordion >
                                 <li class="uk-close">
-                                    <a class="uk-accordion-title" href="#">
+                                    <a class="uk-accordion-title" href="#" onclick="getOrders({{$order->id}})">
                                         <div class="flex-row">
                                             <div>Заказ №{{$order->id}}</div>
                                             @if($order->status->title == "Доставлен")
@@ -324,57 +324,16 @@
                                         </div>
 
                                     </a>
-                                    <div class="uk-accordion-content">
-                                        <div class="row">
-                                            @foreach($order->products as $product)
-                                                @if(isset($product->product))
-                                                <?php $totalPrice += $product->product->price ?>
-                                                <div class="col-md-4 product-list-mobile">
-                                                    <div class="product">
-                                                        <div class="container" style="padding: 15px">
-                                                            <a href="">
-                                                                <div class="product-image">
-                                                                    <img class="product-img" src="{{$product->product->image}}" alt="">
-                                                                </div>
-                                                            </a>
+                                    <div class="uk-accordion-content" >
+                                        <div>
+                                            <div class="row" id="orders-content-{{$order->id}}">
 
-                                                            <div class="product-info" style="margin-top: 15px; position: relative">
-                                                                <a href="">
-                                                                    <div class="product-title">
-                                                                        {{ Str::of($product->product->title)->limit(25) }}
-
-                                                                    </div>
-                                                                </a>
-                                                                <div class="product-category">
-                                                                    {{ Str::of($product->product->category->title)->limit(15) }}
-                                                                </div>
-
-                                                                <div>
-                                                                    <div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;">
-                                                                        <div class="new-price">{{$product->product->price}} тг</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @else
-
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                        <div class="order-buttom" style="display: flex; justify-content: space-between;margin: 20px">
-                                            <div class="totalPrice">
-                                                Итого: {{$totalPrice}} тг
                                             </div>
-                                            <div>
-                                                <form action="{{route('duplicate_order')}}" method="post">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$order->id}}" name="order_id">
-                                                    <button type="submit" class="btn btn-success cloneBtn">Дублировать заказ</button>
-                                                </form>
+                                            <div class="order-buttom" id="orders-content-total-{{$order->id}}"  style="display: flex; justify-content: space-between;margin: 20px">
+
                                             </div>
                                         </div>
+
                                     </div>
 
                                 </li>
@@ -450,5 +409,167 @@
         function activaTab(tab){
             $('.tab a[href="' + tab + '"]').tab('show');
         };
+    </script>
+
+    <script>
+
+
+        function getOrders(id) {
+            $.ajax({
+                url: '{{ route('accountOrdersById') }}',
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+
+                    console.log(data)
+                    productPrice = 0
+                    offerPrice = 0
+                    document.getElementById('orders-content-' +id+ '').innerHTML = "";
+                    $.each(data, function (key, value) {
+                        if (value.product != null)  {
+                            productPrice = productPrice + value.price
+                            var product =
+                                '<div>' +
+                                '<div class="col-md-4 product-list-mobile">' +
+                                '<div class="product">' +
+                                '<div class="container" style="padding: 15px">' +
+                                '<a href="">' +
+                                '<div class="product-image">' +
+                                '<img class="product-img" src='+value.product.image+'>' +
+                                '</div>' +
+                                '</a>' +
+                                '<div class="product-info" style="margin-top: 15px; position: relative">' +
+                                '<a href="">' +
+                                '<div class="product-title">' +
+                                value.product.title +
+                                '</div>' +
+                                '</a>' +
+                                ' <div class="product-category">' +
+                                value.product.category.title +
+                                '</div>' +
+                                '<div>' +
+                                '<div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;"> '+
+                                '<div class="new-price">'+ value.price+' тг'+'</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                        } else {
+                            offerPrice = productPrice + value.price
+                            var offer =
+                                '<div>' +
+                                '<div class="col-md-4 product-list-mobile">' +
+                                '<div class="product">' +
+                                '<div class="container" style="padding: 15px">' +
+                                '<a href="">' +
+                                '<div class="product-image">' +
+                                '<img class="product-img" src='+value.offer.image+'>' +
+                                '</div>' +
+                                '</a>' +
+                                '<div class="product-info" style="margin-top: 15px; position: relative">' +
+                                '<a href="">' +
+                                '<div class="product-title">' +
+                                value.offer.title +
+                                '</div>' +
+                                '<div class="product-category">' +
+                                'Предложение' +
+                                '</div>' +
+                                '<div>' +
+                                '<div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;"> '+
+                                '<div class="new-price">'+ value.price+' тг'+'</div>' +
+                                '</a>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                        }
+
+                        $("#orders-content-" + id + "").append(offer)
+                        $("#orders-content-" + id + "").append(product)
+                    })
+
+                    var totalPrice = productPrice + offerPrice
+
+                    var total =
+                        '<div class="totalPrice">' +
+                        'Итого:' + totalPrice +' тг' +
+                        '</div>' +
+                        '<div>' +
+                        '<form action="{{route('duplicate_order')}}" method="post">' +
+                        '@csrf' +
+                        '<input type="hidden" value='+id+' name="order_id">' +
+                        '<button type="submit" class="btn btn-success cloneBtn">Дублировать заказ</button>' +
+                        '</form>' +
+                        '</div>'
+
+
+                    $("#orders-content-total-" + id + "").append(total)
+
+                },
+                error: function (XMLHttpRequest) {
+                    $('#modal-body').html('')
+                    $('#modal-body').append('Произошла ошибка попробуйте позже')
+                    $('#your-modal').modal('toggle');
+                }
+            });
+
+
+
+        {{--<div class="row">--}}
+                    {{--@foreach($order->products as $product)--}}
+                    {{--@if(isset($product->product))--}}
+                {{--<?php $totalPrice += $product->product->price ?>--}}
+                {{--<div class="col-md-4 product-list-mobile">--}}
+                {{--<div class="product">--}}
+                {{--<div class="container" style="padding: 15px">--}}
+                {{--<a href="">--}}
+                {{--<div class="product-image">--}}
+                {{--<img class="product-img" src="{{$product->product->image}}" alt="">--}}
+                {{--</div>--}}
+                {{--</a>--}}
+
+                {{--<div class="product-info" style="margin-top: 15px; position: relative">--}}
+                {{--<a href="">--}}
+                {{--<div class="product-title">--}}
+                    {{--{{ Str::of($product->product->title)->limit(25) }}--}}
+
+                {{--</div>--}}
+                {{--</a>--}}
+                {{--<div class="product-category">--}}
+                    {{--{{ Str::of($product->product->category->title)->limit(15) }}--}}
+                {{--</div>--}}
+
+                {{--<div>--}}
+                {{--<div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;">--}}
+                {{--<div class="new-price">{{$product->product->price}} тг</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                    {{--@else--}}
+
+                    {{--@endif--}}
+                    {{--@endforeach--}}
+                {{--</div>--}}
+                {{--<div class="order-buttom" style="display: flex; justify-content: space-between;margin: 20px">--}}
+                {{--<div class="totalPrice">--}}
+                {{--Итого: {{$totalPrice}} тг--}}
+            {{--</div>--}}
+            {{--<div>--}}
+            {{--<form action="{{route('duplicate_order')}}" method="post">--}}
+                    {{--@csrf--}}
+                {{--<input type="hidden" value="{{$order->id}}" name="order_id">--}}
+                {{--<button type="submit" class="btn btn-success cloneBtn">Дублировать заказ</button>--}}
+            {{--</form>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+
+        }
     </script>
 @endsection
