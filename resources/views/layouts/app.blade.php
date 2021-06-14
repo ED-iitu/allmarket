@@ -869,7 +869,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                     @endif
                                                 @endforeach
 
-                                    </div>
+
 
                                 </div>
                                 <div class="cart-bottom">
@@ -1438,9 +1438,16 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('.cart-top-title').hide()
                 $('.cart-bottom').hide()
                 $('.cart-empty').show()
-                document.getElementById("cart-data-table").innerHTML = "";
-                document.getElementById("cartSales").innerHTML = "";
-                updateCart()
+                document.getElementById('cart-data-table').innerHTML = "";
+                document.getElementById('cartSales').innerHTML = "";
+                document.getElementsByClassName('cart-product')[0].innerHTML = "";
+                document.getElementsByClassName('cart-product')[1].innerHTML = "";
+                document.getElementsByClassName('cart-product')[2].innerHTML = "";
+                document.getElementsByClassName('cart-product')[3].innerHTML = "";
+                document.getElementsByClassName('cart-product')[4].innerHTML = "";
+                document.getElementsByClassName('cart-product')[5].innerHTML = "";
+                $('.loading-cart').css('display', 'block')
+
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1448,6 +1455,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('#your-modal').modal('toggle');
             }
         });
+
+        updateCart()
     }
 
 
@@ -1758,7 +1767,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $.each(data.products, function (key, value) {
 
                    var productPrice = value['price'];
-                   var productInfo = '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                   var productInfo = '<div id="ajax-cart">'+ '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
                        '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
                        '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
                        '<div class="col-md-6 cart-title-style" style="width: 170px">' +
@@ -1771,7 +1780,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                        '<input type="number" class="cart-count" name="qty" value="'+ value['count'] +'" id="cart-count-' + value['product_id'] + '" disabled="">' +
                        '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
                        '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
-                       '<img src="/images/exit.png" alt=""></span></div></div></div></div>';
+                       '<img src="/images/exit.png" alt=""></span></div></div></div></div></div>';
 
                    if (value['type'] == "sales") {
                        $(".card-top-title").show()
@@ -1786,6 +1795,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             },
         });
     }
+
 </script>
 
 @if (!Session::get('city'))

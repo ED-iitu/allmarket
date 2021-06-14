@@ -297,7 +297,7 @@
                         @endif
 
                 </div>
-                <div id="account-order" style="margin-top: 75px;">
+                <div id="account-order" style="margin-top: 75px;" class="active">
 
                     @if(!$orders)
                         <div style="display: flex; justify-content: center; align-items: center">
@@ -403,11 +403,21 @@
 
     <script>
         $(document).ready(function(){
-            activaTab($(location).attr('hash'));
+            var tab = $(location).attr('hash')
+            activaTab(tab);
         });
 
+
         function activaTab(tab){
-            $('.tab a[href="' + tab + '"]').tab('show');
+
+            $(tab).addClass('active');
+            $("#account-favorite").removeClass('active');
+
+            var href = tab;
+            $('.form > div').hide();
+            $(href).fadeIn(500);
+
+            //$('.tab a[href="' + tab + '"]').tab('show');
         };
     </script>
 
@@ -428,6 +438,7 @@
                     productPrice = 0
                     offerPrice = 0
                     document.getElementById('orders-content-' +id+ '').innerHTML = "";
+                    document.getElementById('orders-content-total-' + id + '').innerHTML = "";
                     $.each(data, function (key, value) {
                         if (value.product != null)  {
                             productPrice = productPrice + value.price
@@ -515,61 +526,6 @@
                     $('#your-modal').modal('toggle');
                 }
             });
-
-
-
-        {{--<div class="row">--}}
-                    {{--@foreach($order->products as $product)--}}
-                    {{--@if(isset($product->product))--}}
-                {{--<?php $totalPrice += $product->product->price ?>--}}
-                {{--<div class="col-md-4 product-list-mobile">--}}
-                {{--<div class="product">--}}
-                {{--<div class="container" style="padding: 15px">--}}
-                {{--<a href="">--}}
-                {{--<div class="product-image">--}}
-                {{--<img class="product-img" src="{{$product->product->image}}" alt="">--}}
-                {{--</div>--}}
-                {{--</a>--}}
-
-                {{--<div class="product-info" style="margin-top: 15px; position: relative">--}}
-                {{--<a href="">--}}
-                {{--<div class="product-title">--}}
-                    {{--{{ Str::of($product->product->title)->limit(25) }}--}}
-
-                {{--</div>--}}
-                {{--</a>--}}
-                {{--<div class="product-category">--}}
-                    {{--{{ Str::of($product->product->category->title)->limit(15) }}--}}
-                {{--</div>--}}
-
-                {{--<div>--}}
-                {{--<div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;">--}}
-                {{--<div class="new-price">{{$product->product->price}} тг</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                    {{--@else--}}
-
-                    {{--@endif--}}
-                    {{--@endforeach--}}
-                {{--</div>--}}
-                {{--<div class="order-buttom" style="display: flex; justify-content: space-between;margin: 20px">--}}
-                {{--<div class="totalPrice">--}}
-                {{--Итого: {{$totalPrice}} тг--}}
-            {{--</div>--}}
-            {{--<div>--}}
-            {{--<form action="{{route('duplicate_order')}}" method="post">--}}
-                    {{--@csrf--}}
-                {{--<input type="hidden" value="{{$order->id}}" name="order_id">--}}
-                {{--<button type="submit" class="btn btn-success cloneBtn">Дублировать заказ</button>--}}
-            {{--</form>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
         }
     </script>
 @endsection

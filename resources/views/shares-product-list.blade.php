@@ -28,7 +28,7 @@
             <div class="row" style="display: flex; justify-content: center">
                 <?php $totalPrice = 0; ?>
                 @foreach($shareProducts as $shareProduct)
-                    <?php $totalPrice += $shareProduct->price_sale ?>
+                    <?php $totalPrice += $shareProduct->price ?>s
                     <div class="col-md-4 product-list-mobile">
                         <div class="product">
                             <div class="container" style="padding: 15px">
@@ -50,9 +50,9 @@
                                     </div>
 
                                     <div>
-                                        <div class="old-price">{{$shareProduct->price}} тг</div>
+                                        <div class="old-price">{{$shareProduct->price_sale}} тг</div>
                                         <div class="share_price">
-                                            <div class="new-price">{{$shareProduct->price_sale}} тг</div>
+                                            <div class="new-price">{{$shareProduct->price}} тг</div>
                                         </div>
                                     </div>
                                 </div>
