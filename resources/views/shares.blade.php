@@ -37,7 +37,7 @@
                             @csrf
                             <input type="hidden" value="{{$share->id}}" name="share_id">
 
-                            @if($share->id != 201)
+                            @if($share->id != 356)
 
                             @if (Session::get('username'))
                                 <input type="submit" class="card-link" value="Добавить в корзину">

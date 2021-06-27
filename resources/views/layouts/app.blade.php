@@ -830,8 +830,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             </div>
                                             @endif
                                         @endforeach
-                                            <h2 class="cart-top-title">Предложения:</h2>
-                                            <div id="cartSales">
+                                    <h2 class="cart-top-title">Предложения:</h2>
+                                    <div class="newcart" id="for_the_scroll">
+                                            <div id="cartSales" style="margin-bottom: 200px">
                                                 @foreach(session('cart') as $id => $details)
                                                     @if(array_key_exists('type', $details))
                                                         <?php $CartTotal += $details['price'] * $details['quantity'] ?>
@@ -855,10 +856,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                                            id="current-price-{{$id}}">
                                                                 </div>
                                                                 <div class="col-md-2" style="width: 50px">
-                                                                    <div><span class="remove-from-cart" onclick="remove_cart({{$id}})">
-                                                            <img src="/images/exit.png" alt="">
-                                                        </span>
-                                                                    </div>
+                                                                    {{--<div><span class="remove-from-cart" onclick="remove_cart({{$id}})">--}}
+                                                            {{--<img src="/images/exit.png" alt="">--}}
+                                                        {{--</span>--}}
+                                                                    {{--</div>--}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -872,36 +873,37 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 
                                 </div>
-                                <div class="cart-bottom">
-                                    <div class="row" style="flex-wrap: nowrap">
-                                        <div class="col-md-4 col-4">
-                                            <div class="cart-total-price-title">Итого:</div>
-                                            <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span
-                                                    class="bonus-price">200</span></div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="cart-total-price-money">{{$CartTotal}} тг</div>
-                                            <div style="margin-top: 10px">
-                                                <label class="form-switch">
-                                                    <input type="checkbox">
-                                                    <i></i>
-                                                </label>
+                                        <div class="cart-bottom">
+                                            <div class="row" style="flex-wrap: nowrap">
+                                                <div class="col-md-4 col-4">
+                                                    <div class="cart-total-price-title">Итого:</div>
+                                                    <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span
+                                                                class="bonus-price">{{Session::get('ballance') ?? 0}}</span></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="cart-total-price-money">{{$CartTotal}} тг</div>
+                                                    <div style="margin-top: 10px">
+                                                        <label class="form-switch">
+                                                            <input type="checkbox" id="bonusOn" onchange="showModalBonus()">
+                                                            <i></i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" style="margin-left: -45px">
+
+                                                    <input class="cart-promocode-input" type="text"
+                                                           placeholder="Ввести промокод" id="promocode" >
+                                                    <input class="cart-promocode-btn" value="Активировать" onclick="checkPromocode()">
+                                                </div>
+                                            </div>
+                                            <div class="flex-row"
+                                                 style="display:flex;justify-content: center; align-items: center; margin-top: 10px">
+                                                <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="col-md-4" style="margin-left: -45px">
-                                            <form action="">
-                                                <input class="cart-promocode-input" type="text"
-                                                       placeholder="Ввести промокод">
-                                                <input class="cart-promocode-btn" type="submit" value="Активировать">
-                                            </form>
-                                        </div>
                                     </div>
-                                    <div class="flex-row"
-                                         style="display:flex;justify-content: center; align-items: center; margin-top: 10px">
-                                        <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ
-                                        </button>
-                                    </div>
-                                </div>
+
                             @else
                                 <h2 class="cart-top-title" style="display:none;">Товары:</h2>
                                 <div class="cart-empty"
@@ -919,13 +921,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                         <div class="col-md-4 col-4">
                                             <div class="cart-total-price-title">Итого:</div>
                                             <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span
-                                                    class="bonus-price">200</span></div>
+                                                    class="bonus-price">{{Session::get('ballance') ?? 0}}</span></div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="cart-total-price-money"> тг</div>
                                             <div style="margin-top: 10px">
                                                 <label class="form-switch">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" id="bonusOn" onchange="showModalBonus()">
                                                     <i></i>
                                                 </label>
                                             </div>
@@ -1048,7 +1050,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             current_price = $('#current-price-' + id).val();
         product_count.val(parseInt(product_count.val()) + 1)
         $('#cart-price-' + id).html(parseInt(current_price) * parseInt(product_count.val()) + ' тг');
-        addToCart(id, product_count.val(), false)
+        addToCart(id, 1, false)
         total_price()
     });
     $(document).on('click', '#cart-minus', function () {
@@ -1082,6 +1084,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                   //  updateCart();
                     updateCartData()
                 },
+                error: function (XMLHttpRequest) {
+                    $('.loading-cart').css('display', 'none')
+                }
             });
         total_price()
     }
@@ -1453,6 +1458,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('#modal-body').html('')
                 $('#modal-body').append('Произошла ошибка попробуйте позже')
                 $('#your-modal').modal('toggle');
+
+                $('.loading-cart').css('display', 'none')
             }
         });
 
@@ -1739,6 +1746,45 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         });
     }
 
+
+    function checkPromocode() {
+
+        var code = $("#promocode").val();
+
+        $.ajax({
+            url: '{{ route('checkPromoCode') }}',
+            type: 'GET',
+            data: {
+                code: code,
+            },
+            dataType: 'json',
+
+            success: function (data) {
+                console.log(data.message)
+                $('#promocode-modal-body').html('')
+                $('#promocode-modal-body').append(data.message)
+                $('#promocodeModal').modal('toggle');
+            },
+            error: function (XMLHttpRequest) {
+                $('#promocode-modal-body').html('')
+                $('#promocode-modal-body').append('Произошла ошибка попробуйте позже')
+                $('#promocodeModal').modal('toggle');
+            }
+        });
+    }
+
+    function showModalBonus() {
+        if (document.getElementById("bonusOn").checked) {
+            $('#bonus-modal-body').html('');
+            $('#bonus-modal-body').append('Бонус будет списан с вашего баланса. Ваш баланс: ' + {{Session::get('ballance') ?? 0}} + '');
+            $('#bonusModal').modal('toggle');
+        } else {
+            $('#bonus-modal-body').html('');
+            $('#bonus-modal-body').append('Бонус не будет списан с вашего баланса');
+            $('#bonusModal').modal('toggle');
+        }
+    }
+
     function updateCart() {
 
         $.ajax({
@@ -1752,6 +1798,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     }
 
     function updateCartData() {
+
         $.ajax({
             url: '{{ route('update_cart_data') }}',
             type: 'GET',
@@ -1759,15 +1806,22 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('.cart-empty').hide()
                 $('.cart-top-title').show()
                 $('.cart-bottom').show()
-                document.getElementById("cart-data-table").innerHTML = "";
-                document.getElementById("cartSales").innerHTML = "";
+
+                if (document.getElementById("cartSales") != null)  {
+                    document.getElementById("cartSales").innerHTML = "";
+                    document.getElementById("cart-data-table").innerHTML = "";
+                } else {
+                    document.getElementById("cart-data-table").innerHTML = "";
+                }
+                //document.getElementById("cartSales").innerHTML = "";
+
                 $('.cart-total-price-money').html(data.total_sum + ' тг')
                 $('.cart-product-count').html(data.count_products)
                 $('.cart-product-price').html(data.total_sum)
                 $.each(data.products, function (key, value) {
 
                    var productPrice = value['price'];
-                   var productInfo = '<div id="ajax-cart">'+ '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                   var productInfo = '<div id="for_the_scroll"><div id="ajax-cart">'+ '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
                        '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
                        '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
                        '<div class="col-md-6 cart-title-style" style="width: 170px">' +
@@ -1780,7 +1834,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                        '<input type="number" class="cart-count" name="qty" value="'+ value['count'] +'" id="cart-count-' + value['product_id'] + '" disabled="">' +
                        '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
                        '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
-                       '<img src="/images/exit.png" alt=""></span></div></div></div></div></div>';
+                       '<img src="/images/exit.png" alt=""></span></div></div></div></div></div></div>';
 
                    if (value['type'] == "sales") {
                        $(".card-top-title").show()
@@ -1793,7 +1847,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('.loading-cart').css('display', 'none')
                // updateCart()
             },
+            error: function (XMLHttpRequest) {
+                $('.loading-cart').css('display', 'none')
+
+            }
         });
+
+        $('.loading-cart').css('display', 'none')
     }
 
 </script>
@@ -1820,6 +1880,28 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <li><a href="{{route('selectCity', ['id'=>$city->id, 'title'=>$city->title])}}">{{$city->title}}</a></li>
                     @endforeach
                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" id="bonusModal" tabindex="-1" role="dialog" aria-labelledby="bonusModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="bonus-modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="promocodeModal" tabindex="-1" role="dialog" aria-labelledby="promocodeModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="promocode-modal-body">
+
+                </div>
             </div>
         </div>
     </div>

@@ -28,7 +28,7 @@
             <div class="row" style="display: flex; justify-content: center">
                 <?php $totalPrice = 0; ?>
                 @foreach($shareProducts as $shareProduct)
-                    <?php $totalPrice += $shareProduct->price ?>s
+                    <?php $totalPrice += $shareProduct->price ?>
                     <div class="col-md-4 product-list-mobile">
                         <div class="product">
                             <div class="container" style="padding: 15px">
@@ -46,7 +46,7 @@
                                         </div>
                                     </a>
                                     <div class="product-category">
-                                        {{ Str::of($shareProduct->category->title)->limit(15) }}
+                                        {{ Str::of($shareProduct->category)->limit(15) }}
                                     </div>
 
                                     <div>
@@ -62,7 +62,7 @@
                 @endforeach
             </div>
         </div>
-        @if($share->id != 201)
+        @if($share->id != 356)
         <div style="display: flex; justify-content: center;">
             <form method="post" action="{{route('addToCartPostSale')}}">
                 @csrf

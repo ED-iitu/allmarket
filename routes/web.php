@@ -48,6 +48,7 @@ Route::get('available-cities', 'HomeController@getAvailableCities')->name('avail
 Route::post('addRaiting', 'HomeController@addRaiting')->name('addRaiting');
 Route::get('select-city/{id}/{title}', 'HomeController@selectCity')->name('selectCity');
 Route::get('/addReview', 'HomeController@addReview')->name('addReview');
+Route::get('/promo-code/check', 'HomeController@checkPromoCode')->name('checkPromoCode');
 
 
 

@@ -3,12 +3,13 @@
 @section('content')
 
     <style>
-        #account-order {
+        #account-favorite {
             display: none;
         }
         #account-profile {
             display: none;
         }
+
         .category-left-menu {
             width: 320px;
             left: 58px;
@@ -231,10 +232,10 @@
                 <div class="category-left-menu ">
                     <div style="width: 320px;">
                         <ul style="list-style: none; padding-top: 10px">
-                            <div class="tab active">
+                            <div class="tab">
                                 <a href="#account-favorite" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">Избранные товары</li></a>
                             </div>
-                            <div class="tab">
+                            <div class="tab active">
                                 <a href="#account-order" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">История заказов</li></a>
                             </div>
                             <div class="tab">
@@ -297,7 +298,7 @@
                         @endif
 
                 </div>
-                <div id="account-order" style="margin-top: 75px;" class="active">
+                <div id="account-order" style="margin-top: 75px; display: block !important;" class="active">
 
                     @if(!$orders)
                         <div style="display: flex; justify-content: center; align-items: center">
@@ -469,7 +470,7 @@
                                 '</div>' +
                                 '</div>'
                         } else {
-                            offerPrice = productPrice + value.price
+                            offerPrice = productPrice + value.product.price
                             var offer =
                                 '<div>' +
                                 '<div class="col-md-4 product-list-mobile">' +

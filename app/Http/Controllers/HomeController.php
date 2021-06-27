@@ -25,7 +25,6 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        sleep(1);
         $this->client = new Client();
     }
 
@@ -35,6 +34,8 @@ class HomeController extends Controller
         $recommended = $this->getRecommendedProducts();
         $sale = $this->getSaleProducts();
         $sections = $this->getAllSections();
+
+       // dd(session()->get('cartData'));
 
         $token = session()->get('token');
         $favIds = [];
@@ -544,6 +545,7 @@ class HomeController extends Controller
             $username = $this->getUserData($token);
 
             if (!$this->errors) {
+                session()->put('balance', $username->user->balance);
                 session()->put('token', $token);
                 session()->put('phone', $phone);
                 session()->put('username', $username->user->name);
@@ -623,7 +625,6 @@ class HomeController extends Controller
 
     public function getOrderById($id)
     {
-        sleep(0.5);
         //https://dev-api.allmarket.kz/api/v2/orders/1164?city_id=6
 
         $token = session()->get('token');
@@ -657,6 +658,10 @@ class HomeController extends Controller
             $type = 'main';
             $cart_product = [];
             foreach ($products as $product) {
+                if ($product->price <= 0) {
+                    continue;
+                }
+
                 $type = $product->product ?? "sales";
                 $type = $product->offer ?? "main";
                 $cart_product[$product->id] =
@@ -777,7 +782,12 @@ class HomeController extends Controller
         $product = $this->getProductById($id);
         $token = session()->get('token');
 
-        $productPrice = $product->price;
+
+        $productPrice = $product->price ?? 0;
+
+        if ($productPrice <= 0) {
+            return;
+        }
 
         if ($product->price_sale > $product->price or $product->price_sale != 0) {
             $productPrice = $product->price_sale;
@@ -792,6 +802,7 @@ class HomeController extends Controller
         }
 
         $cart = session()->get('cart');
+
         // if cart is empty then this the first product
         if (!$cart) {
             $cart = [
@@ -805,22 +816,20 @@ class HomeController extends Controller
             ];
 
             session()->put('cart', $cart);
-        }
-        // if cart not empty then check if this product exist then increment quantity
-        if (isset($cart[$id])) {
+        } elseif (isset($cart[$id])) {
             $cart[$id]['quantity'] += (int)$quantity;
             session()->put('cart', $cart);
+        } else {
+            // if item not exist in cart then add to cart with quantity = 1
+            $cart[$id] = [
+                "title" => $product->title,
+                "category" => $product->category->title,
+                "quantity" => $quantity,
+                "price" => $productPrice,
+                "image" => $product->image
+            ];
+            session()->put('cart', $cart);
         }
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "title" => $product->title,
-            "category" => $product->category->title,
-            "quantity" => $quantity,
-            "price" => $productPrice,
-            "image" => $product->image
-        ];
-        session()->put('cart', $cart);
-
     }
 
     public function addToCartSale(Request $request)
@@ -846,8 +855,9 @@ class HomeController extends Controller
             foreach ($shareProducts as $product) {
                 $cart_product[$product->id] =
                     [
+                        "id" => $product->id,
                         "title" => $product->title,
-                        "category" => $product->category->title,
+                        "category" => $product->category,
                         "quantity" => 1,
                         "price" => $product->price,
                         "price_sale" => $product->price_sale,
@@ -859,11 +869,12 @@ class HomeController extends Controller
         } else {
             foreach ($shareProducts as $product) {
                 if (isset($cart[$product->id])) {
-                    $cart[$product->id]['quantity'] += (int)$product->count;
+                    $cart[$product->id]['quantity'] += (int)$product->quantity;
                 } else {
                     $cart[$product->id] = [
+                        "id" => $product->id,
                         "title" => $product->title,
-                        "category" => $product->category->title,
+                        "category" => $product->category,
                         "quantity" => 1,
                         "price" =>  $product->price,
                         "price_sale" => $product->price_sale,
@@ -948,46 +959,48 @@ class HomeController extends Controller
         $totalPrice = session()->get('totalPrice');
 
 
-//        if ($totalPrice && (int)$totalPrice > 2000) {
-//            $share = $this->getShareById(201);
-//
-//            foreach ($share as $product) {
-//
-//                // if cart is empty then this the first product
-//                if (!$cart) {
-//                    $cart = [
-//                        $product->id => [
-//                            "title" => $product->title,
-//                            "category" => $product->category->title,
-//                            "quantity" => 1,
-//                            "price" => 1,
-//                            "image" => $product->image,
-//                            "type" => 'sales',
-//                        ]
-//                    ];
-//                    session()->put('cart', $cart);
-//                } else {
-//
-//                    foreach ($cart as $key => $cartProduct) {
-//                        if (in_array($product->id, $cart)) {
-//                            continue;
-//                        } else {
-//                            // if item not exist in cart then add to cart with quantity = 1
-//                            $cart[$product->id] = [
-//                                "title" => $product->title,
-//                                "category" => $product->category->title,
-//                                "quantity" => 1,
-//                                "price" => 1,
-//                                "image" => $product->image,
-//                                "type" => 'sales'
-//                            ];
-//                            session()->put('cart', $cart);
-//                        }
-//                    }
-//
-//                }
-//            }
-//        }
+        if ($totalPrice && (int)$totalPrice > 5000) {
+            $share = $this->getShareById(356);
+
+            dd($share);
+
+            foreach ($share as $product) {
+
+                // if cart is empty then this the first product
+                if (!$cart) {
+                    $cart = [
+                        $product->id => [
+                            "title" => $product->title,
+                            "category" => $product->category->title,
+                            "quantity" => $product->count,
+                            "price" => 1,
+                            "image" => $product->image,
+                            "type" => 'sales',
+                        ]
+                    ];
+                    session()->put('cart', $cart);
+                } else {
+
+                    foreach ($cart as $key => $cartProduct) {
+                        if (in_array($product->id, $cart)) {
+                            continue;
+                        } else {
+                            // if item not exist in cart then add to cart with quantity = 1
+                            $cart[$product->id] = [
+                                "title" => $product->title,
+                                "category" => $product->category->title,
+                                "quantity" => $product->count,
+                                "price" => 1,
+                                "image" => $product->image,
+                                "type" => 'sales'
+                            ];
+                            session()->put('cart', $cart);
+                        }
+                    }
+
+                }
+            }
+        }
 
 
         return response()->json(['count' => $count, 'prices' => $prices, 'shares' => $share], 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
@@ -1011,7 +1024,8 @@ class HomeController extends Controller
                         'image' => $item["image"],
                         'total' => (int)$item["price"] * $item['quantity'],
                         'category_title' => $item["category"],
-                        'type' => $item["type"] ?? 'main'
+                        'type' => $item["type"] ?? 'main',
+                        'balance' => session()->get('balance') ?? 1000
                     ];
                     array_push($cart_products, $product_array);
                     $total_sum += (int)$item["price"] * $item['quantity'];
@@ -1019,6 +1033,69 @@ class HomeController extends Controller
 
 
             }
+        }
+
+        $totalPrice = session()->get('totalPrice');
+
+
+        if ($totalPrice && (int)$totalPrice > 5000) {
+            $share = $this->getShareById(356);
+
+            if (!$share) {
+                $wines = ['products' => $cart_products];
+                $count_wine_array = ['count_products' => $countProduct];
+                $total_sums = ['total_sum' => $total_sum];
+                $result = array_merge($wines, $count_wine_array, $total_sums);
+
+                return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+            }
+
+            foreach ($share as $product) {
+
+                // if cart is empty then this the first product
+                if (!$countCartItems) {
+                    $countCartItems = [
+                        $product->id => [
+                            "title" => $product->title,
+                            "category" => $product->category,
+                            "quantity" => $product->quantity,
+                            "price" => 1,
+                            "image" => $product->image,
+                            "type" => 'sales',
+                        ]
+                    ];
+                    session()->put('cart', $countCartItems);
+                } else {
+
+                    foreach ($countCartItems as $key => $cartProduct) {
+                        if (in_array($product->id, $countCartItems)) {
+                            continue;
+                        } else {
+                            // if item not exist in cart then add to cart with quantity = 1
+                            $countCartItems[$product->id] = [
+                                "title"    => $product->title,
+                                "category" => $product->category,
+                                "quantity" => $product->quantity,
+                                "price"    => 1,
+                                "image"    => $product->image,
+                                "type"     => 'sales'
+                            ];
+                            session()->put('cart', $countCartItems);
+                        }
+                    }
+
+                }
+            }
+        } else {
+            foreach ($countCartItems as $key => $product) {
+                if ($key == 23035 || $key == 2822) {
+                    unset($countCartItems[23035]);
+                    unset($countCartItems[2822]);
+                    session()->forget('cart');
+                }
+            }
+
+            session()->put('cart', $countCartItems);
         }
 
         $wines = ['products' => $cart_products];
@@ -1204,7 +1281,6 @@ class HomeController extends Controller
             'json' => $body,
         ]);
 
-
         $responce = $this->client->request('POST', env('API_URL') . '/checkout', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
@@ -1379,14 +1455,13 @@ class HomeController extends Controller
         $shareProducts = $this->getShareProducts($response);
 
         $response = json_decode($response);
+       // dd($shareProducts);
         return view('shares-product-list', [
             'sections' => $sections->sections,
             'share' => $response->sale,
             'shareProducts' => $shareProducts,
             'cities' => $this->getAvailableCitites()
         ]);
-
-
     }
 
     protected function getShareProducts($data)
@@ -1399,16 +1474,38 @@ class HomeController extends Controller
                     if ($items->price) {
                         $items->product->price = $items->price;
                     }
-                    $products[] = $items->product;
+
+                    $products[] = [
+                        "id" => $items->product->id,
+                        "title" => $items->product->title,
+                        "category" => $items->product->category->title,
+                        "quantity" => $items->count,
+                        "price" => $items->product->price,
+                        "price_sale" => $items->product->price_sale,
+                        "image" => $items->product->image
+                    ];
+
+
+                    //$products[] = $items->product;
                 }
             }
             if (isset($offers->rules->base_items)) {
                 foreach ($offers->rules->base_items as $items) {
-                    $products[] = $items->product;
+                    $products[] = [
+                        "id" => $items->product->id,
+                        "title" => $items->product->title,
+                        "category" => $items->product->category->title,
+                        "quantity" => 1,
+                        "price" => $items->price,
+                        "price_sale" => $items->price,
+                        "image" => $items->product->image
+                    ];
+
+                    //$products[] = $items->product;
                 }
             }
         }
-        return $products;
+        return json_decode(json_encode($products));
     }
 
 
@@ -1550,12 +1647,59 @@ class HomeController extends Controller
         }
 
         $productOrder = $this->getOrderById($id);
-        $products = $productOrder->order->items;
 
-       // dd($products);
+        $products = $productOrder->order->items;
 
         return json_encode($products);
     }
 
 
+    public function checkPromoCode(Request $request)
+    {
+        $code = $request->code;
+
+        if (null == $code) {
+            $result = [
+                'message' => 'Необходимо ввести промо код',
+                'status' => 403
+            ];
+
+            return json_encode($result);
+        }
+
+        $token = session()->get('token');
+
+        $responce = $this->client->request('GET', env('API_URL') . '/promo_codes/check', [
+            'query' => [
+                'city_id' => session()->get('city')['id'] ?? 6,
+                'code' => $code
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        $responce = $responce->getBody()->getContents();
+
+        if (empty($responce) || $responce == "") {
+            $result = [
+                'message' => 'Промокод не найден',
+                'status' => 404
+            ];
+
+            return json_encode($result);
+        }
+
+        $responce = json_decode($responce);
+
+        $res = $responce->promo_code;
+
+        $result = [
+            'message' => "Промокод $code найден. После доставки вы получите кешбек в размере $res->cashback_percentage %",
+            'status' => 200
+        ];
+
+        return json_encode($result);
+    }
 }
