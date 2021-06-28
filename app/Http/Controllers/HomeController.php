@@ -1579,6 +1579,9 @@ class HomeController extends Controller
             ];
 
             session()->put('city', $city);
+
+            session()->remove('cart');
+            session()->remove('totalPrice');
         }
 
         return redirect()->back();

@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c35fd67a-9fa1-4565-9d6c-cbe1c2f8d3ad" name="Default" comment="Updated codes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personal-account.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal-account.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shares-product-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shares-product-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shares.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shares.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/asm89/stack-cors/" />
@@ -188,11 +181,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="962" column="37" selection-start-line="962" selection-start-column="28" selection-end-line="962" selection-end-column="37" />
+            <state relative-caret-position="311">
+              <caret line="1583" column="44" lean-forward="true" selection-start-line="1583" selection-start-column="44" selection-end-line="1583" selection-end-column="44" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
@@ -246,11 +239,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shares.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shares.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/shares.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="570">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
@@ -325,11 +318,11 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/personal-account.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/shares-product-list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/shares.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
       </list>
     </option>
   </component>
@@ -585,7 +578,7 @@
       <workItem from="1613327191692" duration="2025000" />
       <workItem from="1619100161561" duration="13634000" />
       <workItem from="1621175666856" duration="2722000" />
-      <workItem from="1624306572453" duration="16043000" />
+      <workItem from="1624306572453" duration="16398000" />
     </task>
     <task id="LOCAL-00001" summary="Added bg for cart">
       <created>1607520099814</created>
@@ -612,7 +605,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="502855000" />
+    <option name="totallyTimeSpent" value="503210000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="25" width="1394" height="875" extended-state="6" />
@@ -624,9 +617,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4985694" visible="true" weight="0.3277202" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4985694" visible="true" weight="0.3277202" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2677515" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2677515" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" weight="0.3297568" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -991,16 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="962" column="37" selection-start-line="962" selection-start-column="28" selection-end-line="962" selection-end-column="37" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/shares-product-list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -1010,8 +993,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/shares.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="570">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="1583" column="44" lean-forward="true" selection-start-line="1583" selection-start-column="44" selection-end-line="1583" selection-end-column="44" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
