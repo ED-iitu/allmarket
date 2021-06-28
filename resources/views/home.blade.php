@@ -47,7 +47,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="slider-div" style="width: 100vw; overflow: hidden">
-
+                @if(empty($banners))
                 <div class="uk-position-relative uk-light" uk-slideshow>
 
                     <ul class="uk-slideshow-items">
@@ -68,6 +68,32 @@
                     </div>
 
                 </div>
+
+                @else
+
+
+                    <div class="uk-position-relative uk-light" uk-slideshow>
+
+                        <ul class="uk-slideshow-items">
+                            @foreach($banners as $key => $banner)
+                            <li>
+                                {{--<div class="banner-home" uk-cover></div>--}}
+                                <img src="{{$banner->image}}" alt="" uk-cover>
+                            </li>
+                            @endforeach
+                        </ul>
+
+                        <div class="uk-position-bottom-center uk-position-small">
+                            <ul class="uk-dotnav dots-left">
+                                @foreach($banners as $key => $banner)
+                                <li uk-slideshow-item="{{$key}}"><a href="#">{{$key}}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                    </div>
+
+                @endif
 
                 <div class="uk-position-relative uk-light" uk-slideshow style="margin-top: 20px">
 

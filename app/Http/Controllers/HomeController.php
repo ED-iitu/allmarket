@@ -34,6 +34,7 @@ class HomeController extends Controller
         $recommended = $this->getRecommendedProducts();
         $sale = $this->getSaleProducts();
         $sections = $this->getAllSections();
+        $banners = $this->getBanners();
 
        // dd(session()->get('cartData'));
 
@@ -56,7 +57,8 @@ class HomeController extends Controller
             'recommended_products' => $recommended->products,
             'sale_products' => $sale->products,
             'sections' => $sections->sections,
-            'cities' => $this->getAvailableCitites()
+            'cities' => $this->getAvailableCitites(),
+            'banners' => $banners->banners
         ]);
     }
 
@@ -1704,5 +1706,22 @@ class HomeController extends Controller
         ];
 
         return json_encode($result);
+    }
+
+    public function getBanners()
+    {
+        $responce = $this->client->request('GET', env('API_URL') . '/site/banners', [
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $responce = $responce->getBody()->getContents();
+
+        return json_decode($responce);
     }
 }
