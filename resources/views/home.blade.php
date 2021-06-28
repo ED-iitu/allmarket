@@ -77,8 +77,12 @@
                         <ul class="uk-slideshow-items">
                             @foreach($banners as $key => $banner)
                             <li>
+                                @if($isMobile)
                                 {{--<div class="banner-home" uk-cover></div>--}}
-                                <img src="{{$banner->image}}" alt="" uk-cover>
+                                <img src="{{$banner->image_mobile}}" alt="" uk-cover>
+                                @else
+                                    <img src="{{$banner->image}}" alt="" uk-cover>
+                                @endif
                             </li>
                             @endforeach
                         </ul>

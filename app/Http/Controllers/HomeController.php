@@ -36,7 +36,7 @@ class HomeController extends Controller
         $sections = $this->getAllSections();
         $banners = $this->getBanners();
 
-       // dd(session()->get('cartData'));
+        $isMob = is_numeric(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), "mobile"));
 
         $token = session()->get('token');
         $favIds = [];
@@ -58,7 +58,8 @@ class HomeController extends Controller
             'sale_products' => $sale->products,
             'sections' => $sections->sections,
             'cities' => $this->getAvailableCitites(),
-            'banners' => $banners->banners
+            'banners' => $banners->banners,
+            'isMobile' => $isMob
         ]);
     }
 
