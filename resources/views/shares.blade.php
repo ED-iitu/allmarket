@@ -36,17 +36,6 @@
                         <form method="post" action="{{route('addToCartPostSale')}}">
                             @csrf
                             <input type="hidden" value="{{$share->id}}" name="share_id">
-
-                            @if($share->id != 356)
-
-                            @if (Session::get('username'))
-                                <input type="submit" class="card-link" value="Добавить в корзину">
-                            @else
-                                <input href="#auth" uk-toggle class="card-link" type="button" value="Добавить в корзину">
-                            @endif
-                            @endif
-
-
                         </form>
                         <a href="{{route('share', $share->id)}}" class="card-link">Подробнее</a>
                     </div>

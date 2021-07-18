@@ -26,9 +26,7 @@
 
         <div class="share_product_list">
             <div class="row" style="display: flex; justify-content: center">
-                <?php $totalPrice = 0; ?>
-                @foreach($shareProducts as $shareProduct)
-                    <?php $totalPrice += $shareProduct->price ?>
+                @foreach($shareProducts->products as $shareProduct)
                     <div class="col-md-4 product-list-mobile">
                         <div class="product">
                             <div class="container" style="padding: 15px">
@@ -60,17 +58,17 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
+            </div>s
         </div>
-        @if($share->id != 356)
+        @if($share->offers[0]->type->addable_to_basket)
         <div style="display: flex; justify-content: center;">
             <form method="post" action="{{route('addToCartPostSale')}}">
                 @csrf
                 <input type="hidden" value="{{$share->id}}" name="share_id">
                 @if (Session::get('username'))
-                    <button class="btn-lg btn-success mt-5" type="submit">Добавить в корзину за {{$totalPrice}} KZT</button>
+                    <button class="btn-lg btn-success mt-5" type="submit">Добавить в корзину за {{$shareProducts->offer_price}} KZT</button>
                 @else
-                    <button class="btn-lg btn-success mt-5" href="#auth" uk-toggle type="button">Добавить в корзину за {{$totalPrice}} KZT</button>
+                    <button class="btn-lg btn-success mt-5" href="#auth" uk-toggle type="button">Добавить в корзину за {{$shareProducts->offer_price}} KZT</button>
                 @endif
 
             </form>

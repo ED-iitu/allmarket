@@ -810,6 +810,7 @@ class HomeController extends Controller
         if (!$cart) {
             $cart = [
                 $id => [
+                    "id" => $id,
                     "title" => $product->title,
                     "category" => $product->category->title,
                     "quantity" => $quantity,
@@ -825,6 +826,7 @@ class HomeController extends Controller
         } else {
             // if item not exist in cart then add to cart with quantity = 1
             $cart[$id] = [
+                "id" => $id,
                 "title" => $product->title,
                 "category" => $product->category->title,
                 "quantity" => $quantity,
@@ -855,37 +857,37 @@ class HomeController extends Controller
         $cart = session()->get('cart');
         if (!$cart) {
             $cart_product = [];
-            foreach ($shareProducts as $product) {
-                $cart_product[$product->id] =
+            //foreach ($shareProducts->products as $product) {
+                $cart_product[$shareProducts->id] =
                     [
-                        "id" => $product->id,
-                        "title" => $product->title,
-                        "category" => $product->category,
-                        "quantity" => 1,
-                        "price" => $product->price,
-                        "price_sale" => $product->price_sale,
-                        "image" => $product->image,
+                        "id" => $shareProducts->id,
+                        "title" => $shareProducts->title,
+                        "category" => '',
+                        "quantity" => $shareProducts->count,
+                        "price" => $shareProducts->offer_price,
+                        "price_sale" => 0,
+                        "image" => $shareProducts->image,
                         "type" => 'sales',
                     ];
-            }
+           // }
             session()->put('cart', $cart_product);
         } else {
-            foreach ($shareProducts as $product) {
-                if (isset($cart[$product->id])) {
-                    $cart[$product->id]['quantity'] += (int)$product->quantity;
+            //foreach ($shareProducts->products as $product) {
+                if (isset($cart[$shareProducts->id])) {
+                    $cart[$shareProducts->id]['quantity'] += 1;
                 } else {
-                    $cart[$product->id] = [
-                        "id" => $product->id,
-                        "title" => $product->title,
-                        "category" => $product->category,
+                    $cart[$shareProducts->id] = [
+                        "id" => $shareProducts->id,
+                        "title" => $shareProducts->title,
+                        "category" => '',
                         "quantity" => 1,
-                        "price" =>  $product->price,
-                        "price_sale" => $product->price_sale,
-                        "image" => $product->image,
+                        "price" => $shareProducts->offer_price,
+                        "price_sale" => 0,
+                        "image" => $shareProducts->image,
                         "type" => 'sales',
                     ];
                 }
-            }
+          //  }
             session()->put('cart', $cart);
         }
 
@@ -1020,6 +1022,7 @@ class HomeController extends Controller
         if ($countCartItems != false) {
             foreach ($countCartItems as $key => $item) {
                     $product_array = [
+                        'id' => $key,
                         'count' => $item['quantity'],
                         'product_id' => $key,
                         'title' => $item["title"],
@@ -1053,17 +1056,20 @@ class HomeController extends Controller
                 return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
             }
 
-            foreach ($share as $product) {
+           // foreach ($share as $product) {
+
+                   // dd($share);
 
                 // if cart is empty then this the first product
                 if (!$countCartItems) {
                     $countCartItems = [
-                        $product->id => [
-                            "title" => $product->title,
-                            "category" => $product->category,
-                            "quantity" => $product->quantity,
-                            "price" => 1,
-                            "image" => $product->image,
+                        $share->id => [
+                            'id' => $share->id,
+                            "title" => $share->title,
+                            "category" => '',
+                            "quantity" => $share->count,
+                            "price" => $share->offer_price,
+                            "image" => $share->image,
                             "type" => 'sales',
                         ]
                     ];
@@ -1071,16 +1077,17 @@ class HomeController extends Controller
                 } else {
 
                     foreach ($countCartItems as $key => $cartProduct) {
-                        if (in_array($product->id, $countCartItems)) {
+                        if (in_array($share->id, $countCartItems)) {
                             continue;
                         } else {
                             // if item not exist in cart then add to cart with quantity = 1
-                            $countCartItems[$product->id] = [
-                                "title"    => $product->title,
-                                "category" => $product->category,
-                                "quantity" => $product->quantity,
-                                "price"    => 1,
-                                "image"    => $product->image,
+                            $countCartItems[$share->id] = [
+                                "id" => $share->id,
+                                "title"    => $share->title,
+                                "category" => '',
+                                "quantity" => $share->count,
+                                "price"    => $share->offer_price,
+                                "image"    => $share->image,
                                 "type"     => 'sales'
                             ];
                             session()->put('cart', $countCartItems);
@@ -1088,17 +1095,7 @@ class HomeController extends Controller
                     }
 
                 }
-            }
-        } else {
-            foreach ($countCartItems as $key => $product) {
-                if ($key == 23035 || $key == 2822) {
-                    unset($countCartItems[23035]);
-                    unset($countCartItems[2822]);
-                    session()->forget('cart');
-                }
-            }
-
-            session()->put('cart', $countCartItems);
+           // }
         }
 
         $wines = ['products' => $cart_products];
@@ -1264,16 +1261,24 @@ class HomeController extends Controller
         // https://dev-api.allmarket.kz/api/v2/baskets/multiple?city_id=2
 
         $products = session()->get('cart');
+
         $body = [];
 
         foreach ($products as $key => $product) {
-            $body['items'][] = [
-                'product_id' => $key,
-                'count' => $product["quantity"]
-            ];
+            if (isset($product['type']) && $product['type'] == 'sales') {
+                $body['items'][] = [
+                    'offer_id' => $key,
+                    'count' => $product["quantity"]
+                ];
+            } else {
+                $body['items'][] = [
+                    'product_id' => $key,
+                    'count' => $product["quantity"]
+                ];
+            }
         }
 
-       $this->client->request('POST', env('API_URL') . '/baskets/multiple', [
+       $result = $this->client->request('POST', env('API_URL') . '/baskets/multiple', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
             ],
@@ -1283,6 +1288,8 @@ class HomeController extends Controller
             ],
             'json' => $body,
         ]);
+
+        $result = $result->getBody()->getContents();
 
         $responce = $this->client->request('POST', env('API_URL') . '/checkout', [
             'query' => [
@@ -1456,9 +1463,7 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
 
         $shareProducts = $this->getShareProducts($response);
-
         $response = json_decode($response);
-       // dd($shareProducts);
         return view('shares-product-list', [
             'sections' => $sections->sections,
             'share' => $response->sale,
@@ -1471,43 +1476,88 @@ class HomeController extends Controller
     {
         $data = json_decode($data);
         $products = [];
-        foreach ($data->sale->offers as $offers) {
-            if (isset($offers->rules->sale_items)) {
-                foreach ($offers->rules->sale_items as $items) {
-                    if ($items->price) {
-                        $items->product->price = $items->price;
-                    }
 
-                    $products[] = [
-                        "id" => $items->product->id,
-                        "title" => $items->product->title,
-                        "category" => $items->product->category->title,
-                        "quantity" => $items->count,
-                        "price" => $items->product->price,
-                        "price_sale" => $items->product->price_sale,
-                        "image" => $items->product->image
+        //dd($data);
+
+        $products["id"] = $data->sale->id;
+        $products["title"] = $data->sale->title;
+        $products["image"] = $data->sale->image;
+
+        foreach ($data->sale->offers as $offer) {
+            if ($offer->price == 0) {
+                $products["type"] = "sale";
+                $products["order_total_sum"] = $offer->rules->order_total;
+                $products["offer_price"] = $offer->price;
+
+                foreach ($offer->rules->sale_items as $sale) {
+
+                    $products["count"] = $sale->count;
+                    $products["products"][] = [
+                        "id" => $sale->product->id,
+                        "title" => $sale->product->title,
+                        "category" => $sale->product->category->title,
+                        "price" => $sale->product->price,
+                        "price_sale" => $sale->product->price_sale,
+                        "image" => $sale->product->image
                     ];
-
-
-                    //$products[] = $items->product;
                 }
-            }
-            if (isset($offers->rules->base_items)) {
-                foreach ($offers->rules->base_items as $items) {
-                    $products[] = [
-                        "id" => $items->product->id,
-                        "title" => $items->product->title,
-                        "category" => $items->product->category->title,
-                        "quantity" => 1,
-                        "price" => $items->price,
-                        "price_sale" => $items->price,
-                        "image" => $items->product->image
+            } else {
+                $products["offer_price"] = $offer->price;
+                $products["type"] = "not_sale";
+                $products["order_total_sum"] = 0;
+
+                foreach ($offer->rules->base_items as $base) {
+                    $products["count"] = $base->count;
+                    $products["products"][] = [
+                        "id" => $base->product->id,
+                        "title" => $base->product->title,
+                        "category" => $base->product->category->title,
+                        "price" => $base->product->price,
+                        "price_sale" => $base->product->price_sale,
+                        "image" => $base->product->image
                     ];
 
-                    //$products[] = $items->product;
                 }
             }
         }
+
+//        foreach ($data->sale->offers as $offers) {
+//            if (isset($offers->rules->sale_items)) {
+//                foreach ($offers->rules->sale_items as $items) {
+//                    if ($items->price) {
+//                        $items->product->price = $items->price;
+//                    }
+//
+//                    $products[] = [
+//                        "id" => $items->product->id,
+//                        "title" => $items->product->title,
+//                        "category" => $items->product->category->title,
+//                        "quantity" => $items->count,
+//                        "price" => $items->product->price,
+//                        "price_sale" => $items->product->price_sale,
+//                        "image" => $items->product->image
+//                    ];
+//
+//
+//                    //$products[] = $items->product;
+//                }
+//            }
+//            if (isset($offers->rules->base_items)) {
+//                foreach ($offers->rules->base_items as $items) {
+//                    $products[] = [
+//                        "id" => $items->product->id,
+//                        "title" => $items->product->title,
+//                        "category" => $items->product->category->title,
+//                        "quantity" => 1,
+//                        "price" => $items->price,
+//                        "price_sale" => $items->price,
+//                        "image" => $items->product->image
+//                    ];
+//
+//                    //$products[] = $items->product;
+//                }
+//            }
+//        }
         return json_decode(json_encode($products));
     }
 
