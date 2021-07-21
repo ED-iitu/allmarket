@@ -278,9 +278,15 @@
                                             </div>
 
                                             <div>
+                                                @if ($favorite->product->price_sale != 0)
                                                 <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                    <div class="old-price">{{$favorite->product->price}} тг</div>
+                                                    <div class="old-price">{{$favorite->product->price_sale}} тг</div>
                                                 </div>
+                                                @else
+                                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <div class="old-price"></div>
+                                                    </div>
+                                                @endif
                                                 <div style="display: flex;align-items: center;justify-content: space-between;">
                                                     <div class="new-price">{{$favorite->product->price}} тг</div>
                                                     <button class="add-to-cart" onclick="addToCart({{$favorite->product->id}})"></button>
@@ -360,7 +366,20 @@
                                     <input type="text" class="form-control-plaintext account-input" id="phone" name="phone" placeholder="Номер телефона" value="{{$user->phone}}">
                                 </div>
                             </div>
-                            <input type="hidden" name="city_id" value="2">
+                            <div class="form-group row">
+                                <label for="phone" class="col-sm-4 col-form-label account-label">Город</label>
+                                <div class="col-sm-8">
+                                    <select id="" class="form-control-plaintext account-input" name="city_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
+                                        <option class="input-select-option-inside" value="{{$user->city->id}}">{{$user->city->title}}</option>
+                                        @foreach($cities as $city)
+                                            <option class="input-select-option-inside" value="{{$city->id}}">{{$city->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            {{--<input type="hidden" name="city_id" value="2">--}}
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label account-label">Email</label>
                                 <div class="col-sm-8">

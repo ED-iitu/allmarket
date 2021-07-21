@@ -36,12 +36,15 @@ class HomeController extends Controller
         $sections = $this->getAllSections();
         $banners = $this->getBanners();
 
+
+
         $isMob = is_numeric(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), "mobile"));
 
         $token = session()->get('token');
         $favIds = [];
 
         if ($token != null) {
+            $this->getOrdersDeliveryTime();
             $ids = $this->getFavorite($token);
 
             foreach ($ids as $id) {
@@ -613,9 +616,9 @@ class HomeController extends Controller
 
             $userData = $this->getUserData($token);
 
+          //  dd($orders->orders);
+
             $sections = $this->getAllSections();
-
-
             return view('personal-account', [
                 'favorites' => $favorites,
                 'orders' => $orders->orders,
@@ -624,6 +627,26 @@ class HomeController extends Controller
                 'cities' => $this->getAvailableCitites()
             ]);
         }
+    }
+
+    public function getOrdersDeliveryTime()
+    {
+        $token = session()->get('token');
+
+        $responce = $this->client->request('GET', env('API_URL') . '/order_delivery_times', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        $responce = $responce->getBody()->getContents();
+
+        $responce = json_decode($responce);
+
+        session()->put('orders_delivery_times', $responce->times);
+
+        return $responce->times;
     }
 
     public function getOrderById($id)
@@ -645,7 +668,6 @@ class HomeController extends Controller
         $responce = $responce->getBody()->getContents();
 
         $responce = json_decode($responce);
-
 
         return $responce;
     }

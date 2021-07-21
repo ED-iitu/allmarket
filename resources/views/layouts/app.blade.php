@@ -365,7 +365,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                 <li><a href="{{route('category_products', [$section->id, 1])}}">Кофе, какао</a></li>
                                                 <li><a href="{{route('category_products', [$section->id, 2])}}">Чай</a></li>
                                                 <li><a href="{{route('category_products', [$section->id, 23])}}">Сокии морсы</a></li>
-                                                <li><a href="{{route('category_products', [$section->id, 24])}}">Вода</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 24])}}">Напитки</a></li>
+                                                <li><a href="{{route('category_products', [$section->id, 25])}}">Вода</a></li>
                                                 {{--<li><a href="{{route('category_products', [$section->id, 57])}}">Алкоголь</a></li>--}}
                                             </ul>
                                         </div>
@@ -1327,9 +1328,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
                 <select id="" class="input-select-option" name="delivery_time_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
                     <option class="input-select-option-inside" value="">Время доставки</option>
-                    <option class="input-select-option-inside" value="1">Утром</option>
-                    <option class="input-select-option-inside" value="2">В обед</option>
-                    <option class="input-select-option-inside" value="3">Вечером</option>
+                    @foreach (Session::get('orders_delivery_times') as $time)
+                         <option class="input-select-option-inside" value="{{$time->id}}">{{$time->title}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
