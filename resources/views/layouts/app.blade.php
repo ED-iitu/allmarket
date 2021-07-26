@@ -873,35 +873,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 
                                 </div>
-                                        <div class="cart-bottom">
-                                            <div class="row" style="flex-wrap: nowrap">
-                                                <div class="col-md-4 col-4">
-                                                    <div class="cart-total-price-title">Итого:</div>
-                                                    <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span
-                                                                class="bonus-price">{{Session::get('ballance') ?? 0}}</span></div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="cart-total-price-money">{{$CartTotal}} тг</div>
-                                                    <div style="margin-top: 10px">
-                                                        <label class="form-switch">
-                                                            <input type="checkbox" id="bonusOn" onchange="showModalBonus()">
-                                                            <i></i>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4" style="margin-left: -45px">
 
-                                                    <input class="cart-promocode-input" type="text"
-                                                           placeholder="Ввести промокод" id="promocode" >
-                                                    <input class="cart-promocode-btn" value="Активировать" onclick="checkPromocode()">
-                                                </div>
-                                            </div>
-                                            <div class="flex-row"
-                                                 style="display:flex;justify-content: center; align-items: center; margin-top: 10px">
-                                                <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ
-                                                </button>
-                                            </div>
-                                        </div>
                                     </div>
 
                             @else
@@ -916,41 +888,41 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 <div id="cartSales">
 
                                 </div>
-                                <div class="cart-bottom" style="display: none">
-                                    <div class="row" style="flex-wrap: nowrap">
-                                        <div class="col-md-4 col-4">
-                                            <div class="cart-total-price-title">Итого:</div>
-                                            <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span
-                                                    class="bonus-price">{{Session::get('ballance') ?? 0}}</span></div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="cart-total-price-money"> тг</div>
-                                            <div style="margin-top: 10px">
-                                                <label class="form-switch">
-                                                    <input type="checkbox" id="bonusOn" onchange="showModalBonus()">
-                                                    <i></i>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" style="margin-left: -45px">
-                                            <form action="">
-                                                <input class="cart-promocode-input" type="text"
-                                                       placeholder="Ввести промокод">
-                                                <input class="cart-promocode-btn" type="submit" value="Активировать">
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="flex-row"
-                                         style="display:flex;justify-content: center; align-items: center; margin-top: 10px">
-                                        <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ
-                                        </button>
-                                    </div>
-                                </div>
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
+
+                    <div class="cart-bottom">
+                        <div class="row" style="flex-wrap: nowrap">
+                            <div class="col-md-4 col-4">
+                                <div class="cart-total-price-title">Итого:</div>
+                                <div class="cart-bonus" style="margin-top: 10px">Потратить бонусы: <span
+                                            class="bonus-price">{{Session::get('ballance') ?? 0}}</span></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="cart-total-price-money"><?=$CartTotal ?? ''?> тг</div>
+                                <div style="margin-top: 10px">
+                                    <label class="form-switch">
+                                        <input type="checkbox" id="bonusOn" onchange="showModalBonus()">
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="margin-left: -45px">
+
+                                <input class="cart-promocode-input" type="text"
+                                       placeholder="Ввести промокод" id="promocode" >
+                                <input class="cart-promocode-btn" value="Активировать" onclick="checkPromocode()">
+                            </div>
+                        </div>
+                        <div class="flex-row"
+                             style="display:flex;justify-content: center; align-items: center; margin-top: 10px">
+                            <button type="submit" class="checkout-btn" onclick="checkout()">Оформить заказ
+                            </button>
+                        </div>
+                    </div>
         </div>
     </div>
 </div>
@@ -1454,12 +1426,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('.cart-empty').show()
                 document.getElementById('cart-data-table').innerHTML = "";
                 document.getElementById('cartSales').innerHTML = "";
-                document.getElementsByClassName('cart-product')[0].innerHTML = "";
-                document.getElementsByClassName('cart-product')[1].innerHTML = "";
-                document.getElementsByClassName('cart-product')[2].innerHTML = "";
-                document.getElementsByClassName('cart-product')[3].innerHTML = "";
-                document.getElementsByClassName('cart-product')[4].innerHTML = "";
-                document.getElementsByClassName('cart-product')[5].innerHTML = "";
                 $('.loading-cart').css('display', 'block')
 
             },
@@ -1822,6 +1788,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 } else {
                     document.getElementById("cart-data-table").innerHTML = "";
                 }
+
                 //document.getElementById("cartSales").innerHTML = "";
 
                 $('.cart-total-price-money').html(data.total_sum + ' тг')
