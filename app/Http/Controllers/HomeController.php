@@ -1062,59 +1062,54 @@ class HomeController extends Controller
         $totalPrice = session()->get('totalPrice');
 
 
-        if ($totalPrice && (int)$totalPrice > 5000) {
-            $share = $this->getShareById(356);
-
-            if (!$share) {
-                $wines = ['products' => $cart_products];
-                $count_wine_array = ['count_products' => $countProduct];
-                $total_sums = ['total_sum' => $total_sum];
-                $result = array_merge($wines, $count_wine_array, $total_sums);
-
-                return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
-            }
-
-           // foreach ($share as $product) {
-
-                   // dd($share);
-
-                // if cart is empty then this the first product
-                if (!$countCartItems) {
-                    $countCartItems = [
-                        $share->id => [
-                            'id' => $share->id,
-                            "title" => $share->title,
-                            "category" => '',
-                            "quantity" => $share->count,
-                            "price" => $share->offer_price,
-                            "image" => $share->image,
-                            "type" => 'sales',
-                        ]
-                    ];
-                    session()->put('cart', $countCartItems);
-                } else {
-
-                    foreach ($countCartItems as $key => $cartProduct) {
-                        if (in_array($share->id, $countCartItems)) {
-                            continue;
-                        } else {
-                            // if item not exist in cart then add to cart with quantity = 1
-                            $countCartItems[$share->id] = [
-                                "id" => $share->id,
-                                "title"    => $share->title,
-                                "category" => '',
-                                "quantity" => $share->count,
-                                "price"    => $share->offer_price,
-                                "image"    => $share->image,
-                                "type"     => 'sales'
-                            ];
-                            session()->put('cart', $countCartItems);
-                        }
-                    }
-
-                }
-           // }
-        }
+//        if ($totalPrice && (int)$totalPrice > 5000) {
+//            $share = $this->getShareById(356);
+//
+//            if (!$share) {
+//                $wines = ['products' => $cart_products];
+//                $count_wine_array = ['count_products' => $countProduct];
+//                $total_sums = ['total_sum' => $total_sum];
+//                $result = array_merge($wines, $count_wine_array, $total_sums);
+//
+//                return response()->json($result, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
+//            }
+//
+//                if (!$countCartItems) {
+//                    $countCartItems = [
+//                        $share->id => [
+//                            'id' => $share->id,
+//                            "title" => $share->title,
+//                            "category" => '',
+//                            "quantity" => $share->count,
+//                            "price" => $share->offer_price,
+//                            "image" => $share->image,
+//                            "type" => 'sales',
+//                        ]
+//                    ];
+//                    session()->put('cart', $countCartItems);
+//                } else {
+//
+//                    foreach ($countCartItems as $key => $cartProduct) {
+//                        if (in_array($share->id, $countCartItems)) {
+//                            continue;
+//                        } else {
+//                            // if item not exist in cart then add to cart with quantity = 1
+//                            $countCartItems[$share->id] = [
+//                                "id" => $share->id,
+//                                "title"    => $share->title,
+//                                "category" => '',
+//                                "quantity" => $share->count,
+//                                "price"    => $share->offer_price,
+//                                "image"    => $share->image,
+//                                "type"     => 'sales'
+//                            ];
+//                            session()->put('cart', $countCartItems);
+//                        }
+//                    }
+//
+//                }
+//           // }
+//        }
 
         $wines = ['products' => $cart_products];
         $count_wine_array = ['count_products' => $countProduct];
