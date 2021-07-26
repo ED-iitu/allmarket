@@ -26,13 +26,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->client = new Client();
-
-        $token = session()->get('token');
-        $orderTime = session()->get('orders_delivery_times');
-
-        if ($token != null && $orderTime != null) {
-            $this->getOrdersDeliveryTime();
-        }
     }
 
     public function index()
@@ -47,6 +40,7 @@ class HomeController extends Controller
         $favIds      = [];
 
         if ($token != null) {
+            $this->getOrdersDeliveryTime();
             $ids = $this->getFavorite($token);
 
             foreach ($ids as $id) {
