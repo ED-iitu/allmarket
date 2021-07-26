@@ -95,7 +95,7 @@
     </style>
 
 </head>
-<body>
+<div>
 <div id="app">
 
     <div class="display-after-cart">
@@ -955,17 +955,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         </div>
     </div>
 </div>
+</div>
+</div>
 
-    <div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body" id="modal-body">
-                    Товар добавлен в корзину
-                </div>
+
+<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-body">
+                Товар добавлен в корзину
             </div>
         </div>
     </div>
-
+</div>
 
 <div class="modal fade" id="your-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
