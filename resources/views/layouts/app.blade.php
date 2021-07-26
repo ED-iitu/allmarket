@@ -828,11 +828,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                             <div class="container product-container" id="product-container-{{$id}}">
                                                 <hr class="cart-product-devider">
                                             </div>
-                                            </div>
                                             @endif
                                         @endforeach
                                     <h2 class="cart-top-title">Предложения:</h2>
-                                    <div class="newcart" id="for_the_scroll">
+                                    <div class="newcart">
                                             <div id="cartSales" style="margin-bottom: 200px">
                                                 @foreach(session('cart') as $id => $details)
                                                     @if(array_key_exists('type', $details))
@@ -1833,7 +1832,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                    var productPrice = value['price'];
 
                    if  (value['type'] == "sales") {
-                       var productInfo = '<div id="for_the_scroll"><div id="ajax-cart">'+ '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                       var productInfo = '<div id="ajax-cart">'+ '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
                            '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
                            '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
                            '<div class="col-md-6 cart-title-style" style="width: 170px">' +
@@ -1843,11 +1842,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                            '<input type="hidden" value="' + productPrice + '" id="current-price-' + value['product_id'] + '">' +
                            '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
                            '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
-                           '<img src="/images/exit.png" alt=""></span></div></div></div></div></div></div>';
+                           '<img src="/images/exit.png" alt=""></span></div></div></div></div></div>';
                    } else {
 
 
-                       var productInfo = '<div id="for_the_scroll"><div id="ajax-cart">' + '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                       var productInfo = '<div id="ajax-cart">' + '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
                            '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
                            '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
                            '<div class="col-md-6 cart-title-style" style="width: 170px">' +
@@ -1860,7 +1859,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                            '<input type="number" class="cart-count" name="qty" value="' + value['count'] + '" id="cart-count-' + value['product_id'] + '" disabled="">' +
                            '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
                            '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
-                           '<img src="/images/exit.png" alt=""></span></div></div></div></div></div></div>';
+                           '<img src="/images/exit.png" alt=""></span></div></div></div></div></div>';
                    }
 
                    if (value['type'] == "sales") {
