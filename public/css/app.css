@@ -11039,6 +11039,7 @@ a.text-dark:focus {
 .minus-z-index #app {
     background: #0060a99c;
     opacity: 0.2;
+    pointer-events: none;
 }
 
 
