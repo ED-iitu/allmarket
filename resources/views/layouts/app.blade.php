@@ -884,10 +884,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                 </div>
                                 <div id="cart-data-table">
                                 </div>
-                                <h2 class="cart-top-title" style="display: none">Предложения:</h2>
-                                <div id="cartSales">
+                                {{--<h2 class="cart-top-title" style="display: none">Предложения:</h2>--}}
+                                {{--<div id="cartSales">--}}
 
-                                </div>
+                                {{--</div>--}}
                             @endif
                         </div>
                     </div>
@@ -1676,7 +1676,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             },
 
             success: function (data) {
-               // updateCart()
+                updateCart()
                 updateCartData()
                // $('.loading-cart').css('display', 'none')
             },
@@ -1773,6 +1773,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             success: function (data) {
                 $('.cart-product-count').html(data.count)
                 $('.cart-product-price').html(data.prices)
+
+                $('.loading-cart').css('display', 'none')
             },
         });
     }
