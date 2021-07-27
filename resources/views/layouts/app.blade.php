@@ -1446,7 +1446,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     }
 
 
-    function addToFavourites(id) {
+    function addToFavourites(id, page = 'main') {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1458,13 +1458,14 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             type: 'POST',
             data: {
                 product_id: id,
+                page: page,
             },
             success: function (data) {
-                $('#modal-body').html('')
+                $('#favorite-modal-body').html('')
 
                 if ($("#loginUsername").val() == 'not') {
-                    $('#modal-body').append("Вы должны быть авторизованным")
-                    $('#your-modal').modal('toggle');
+                    $('#favorite-modal-body').append("Вы должны быть авторизованным")
+                    $('#favoriteModal').modal('toggle');
                     // $("#addToFavorite"+id).attr('src','/images/dislike.png');
 
                 } else {
@@ -1474,8 +1475,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         $("#addToFavorite" + id).css('margin-left', '9px')
                         $("#addToFavorite" + id).css('margin-top', '30px')
                         $("#addToFavorite" + id).attr('src', '/images/like.png')
-                        $('#modal-body').append("Товар удален из избранных")
-                        $('#your-modal').modal('toggle');
+                        $('#favorite-modal-body').append("Товар удален из избранных")
+                        $('#favoriteModal').modal('toggle');
 
                     } else {
                         $("#addToFavorite" + id).attr('src', '/images/dislike.png')
@@ -1483,8 +1484,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         $("#addToFavorite" + id).css('height', '45px')
                         $("#addToFavorite" + id).css('margin-left', '0px')
                         $("#addToFavorite" + id).css('margin-top', '15px')
-                        $('#modal-body').append("Товар добавлен в избранное")
-                        $('#your-modal').modal('toggle');
+                        $('#favorite-modal-body').append("Товар добавлен в избранное")
+                        $('#favoriteModal').modal('toggle');
                     }
 
                 }
@@ -1902,6 +1903,16 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body" id="promocode-modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="favoriteModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="favorite-modal-body">
 
                 </div>
             </div>
