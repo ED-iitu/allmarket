@@ -891,6 +891,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             @endif
                         </div>
                     </div>
+                                <h2 class="cart-top-title" style="display: none">Предложения:</h2>
+                                <div id="cartSales">
+
+                                </div>
                 </div>
             </div>
 
@@ -1789,17 +1793,17 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     document.getElementById("cart-data-table").innerHTML = "";
                 }
 
-                //document.getElementById("cartSales").innerHTML = "";
-
                 $('.cart-total-price-money').html(data.total_sum + ' тг')
                 $('.cart-product-count').html(data.count_products)
                 $('.cart-product-price').html(data.total_sum)
+                var productSales = '';
+                var productInfo = '';
                 $.each(data.products, function (key, value) {
 
                    var productPrice = value['price'];
 
                    if  (value['type'] == "sales") {
-                       var productInfo = '<div id="ajax-cart">'+ '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                       productSales += '<div id="ajax-cart">'+ '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
                            '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
                            '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
                            '<div class="col-md-6 cart-title-style" style="width: 170px">' +
@@ -1813,7 +1817,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                    } else {
 
 
-                       var productInfo = '<div id="ajax-cart">' + '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
+                       productInfo += '<div id="ajax-cart">' + '<div class="cart-product" id="cart-product-' + value['product_id'] + '" style="padding: 20px;">' +
                            '<div class="row"><div class="col-md-4 cart-img"> <div class="div-cart-image" style="height: 80px; display: flex; justify-content: center">' +
                            '<img class="cart-image" src="' + value['image'] + '" alt=""></div></div>' +
                            '<div class="col-md-6 cart-title-style" style="width: 170px">' +
@@ -1829,13 +1833,18 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                            '<img src="/images/exit.png" alt=""></span></div></div></div></div></div>';
                    }
 
-                   if (value['type'] == "sales") {
-                       $(".card-top-title").show()
-                       $("#cartSales").append(productInfo)
-                   } else if(value['type'] == "main") {
-                       $("#cart-data-table").append(productInfo)
-                   }
+
                 })
+
+                $("#cartSales").html(productSales)
+                $("#cart-data-table").html(productInfo)
+
+                // if (value['type'] == "sales") {
+                //     $(".card-top-title").show()
+                //     $("#cartSales").append(productInfo)
+                // } else if(value['type'] == "main") {
+                //     $("#cart-data-table").append(productInfo)
+                // }
 
                 $('.loading-cart').css('display', 'none')
                // updateCart()

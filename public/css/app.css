@@ -11020,6 +11020,14 @@ a.text-dark:focus {
     color: #565B61;
 }
 
+#cartSales {
+    padding-bottom: 20vh;
+}
+
+#cart-data-table {
+    padding-bottom: 5vh;
+}
+
 .search-div {
     margin-left: 50px;
 }
