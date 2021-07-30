@@ -10,6 +10,10 @@
             display: none;
         }
 
+        #account-order {
+            display: none;
+        }
+
         .category-left-menu {
             width: 320px;
             left: 58px;
@@ -235,7 +239,7 @@
                             <div class="tab">
                                 <a href="#account-favorite" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">Избранные товары</li></a>
                             </div>
-                            <div class="tab active">
+                            <div class="tab">
                                 <a href="#account-order" class="showproduct" style="text-decoration: none"><li class="category-list" style="font-size: 18px;">История заказов</li></a>
                             </div>
                             <div class="tab">
@@ -304,7 +308,7 @@
                         @endif
 
                 </div>
-                <div id="account-order" style="margin-top: 75px; display: block !important;" class="active">
+                <div id="account-order" style="margin-top: 75px;" class="">
 
                     @if(!$orders)
                         <div style="display: flex; justify-content: center; align-items: center">
@@ -407,28 +411,28 @@
     </div>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.tab a').on('click', function (e) {
+            $('.showproduct').on('click', function (e) {
                 e.preventDefault();
 
                 $(this).parent().addClass('active');
                 $(this).parent().siblings().removeClass('active');
 
+
                 var href = $(this).attr('href');
+                window.location.hash = href;
+
                 $('.form > div').hide();
                 $(href).fadeIn(500);
+
             });
-        });
     </script>
 
     <script>
-        $(document).ready(function(){
-            var tab = $(location).attr('hash')
-            activaTab(tab);
-        });
 
+        var tab = $(location).attr('hash')
+        activeTab(tab);
 
-        function activaTab(tab){
+        function activeTab(tab){
 
             $(tab).addClass('active');
             $("#account-favorite").removeClass('active');
