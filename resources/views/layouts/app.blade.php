@@ -1478,7 +1478,9 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         $('#favorite-modal-body').append("Товар удален из избранных")
                         $('#favoriteModal').modal('toggle');
 
+
                     } else {
+                        console.log('sssssssssssssssssssssssssssssss')
                         $("#addToFavorite" + id).attr('src', '/images/dislike.png')
                         $("#addToFavorite" + id).css('width', '75px')
                         $("#addToFavorite" + id).css('height', '45px')

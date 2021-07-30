@@ -257,10 +257,10 @@
                     @else
                     <div class="row">
                         @foreach($favorites as $favorite)
-                            <div class="col-md-4 product-list-mobile">
+                            <div class="col-md-4 product-list-mobile" id="favorite-block-{{$loop->iteration}}">
                                 <div class="product">
                                     <div class="favorite">
-                                        <img id="addToFavorite{{$favorite->product->id}}" class="fav-image" src="/images/dislike.png" alt="" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" onClick="addToFavourites({{$favorite->product->id}})">
+                                        <img id="addToFavorite{{$favorite->product->id}}" class="fav-image" src="/images/dislike.png" alt="" style="width: 75px; height: 45px; margin-left: 0px;margin-top: 15px" onClick="addToFavourites({{$favorite->product->id}});$('#favorite-block-{{$loop->iteration}}').remove()">
                                     </div>
                                     <div class="container" style="padding: 15px">
                                         <a href="{{route('product', $favorite->product->id)}}">
@@ -453,8 +453,6 @@
                     id: id
                 },
                 success: function (data) {
-
-                    console.log(data)
                     productPrice = 0
                     offerPrice = 0
                     document.getElementById('orders-content-' +id+ '').innerHTML = "";
