@@ -463,7 +463,7 @@
                     document.getElementById('orders-content-total-' + id + '').innerHTML = "";
                     $.each(data, function (key, value) {
                         if (value.product != null)  {
-                            productPrice = productPrice + value.price
+                            productPrice = productPrice + value.price * value.count
                             var product =
                                 '<div>' +
                                 '<div class="col-md-4 product-list-mobile">' +
@@ -485,13 +485,13 @@
                                 '</div>' +
                                 '<div>' +
                                 '<div class="" style="display: flex;align-items: center;justify-content: space-between;    margin-top: 2rem !important;"> '+
-                                '<div class="new-price">'+ value.price+' тг'+'</div>' +
+                                '<div class="new-price">' + value.price + ' тг '+ '<span style="color:black">X '+ value.count +'</span>'+'</div>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>'
                         } else {
-                            offerPrice = productPrice + value.product.price
+                            offerPrice = productPrice + value.product.price * value.count
                             var offer =
                                 '<div>' +
                                 '<div class="col-md-4 product-list-mobile">' +
