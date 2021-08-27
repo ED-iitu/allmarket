@@ -1680,7 +1680,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             success: function (data) {
                 updateCart()
                 updateCartData()
-               // $('.loading-cart').css('display', 'none')
+                $('.loading-cart').css('display', 'none')
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1718,12 +1718,16 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                // updateCart()
                 updateCartData()
 
+                $('.loading-cart').css('display', 'none')
+
 
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
                 $('#modal-body').append('Произошла ошибка попробуйте позже')
                 $('#your-modal').modal('toggle');
+
+                $('.loading-cart').css('display', 'none')
             }
         });
     }
@@ -1779,6 +1783,8 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 $('.loading-cart').css('display', 'none')
             },
         });
+
+        $('.loading-cart').css('display', 'none')
     }
 
     function updateCartData() {

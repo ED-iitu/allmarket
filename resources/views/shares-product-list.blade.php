@@ -48,9 +48,9 @@
                                     </div>
 
                                     <div>
-                                        <div class="old-price">{{$shareProduct->price_sale}} тг</div>
+                                        <div class="old-price">{{$shareProduct->price}} тг</div>
                                         <div class="share_price">
-                                            <div class="new-price">{{$shareProduct->price}} тг</div>
+                                            <div class="new-price">{{$shareProduct->price_sale}} тг</div>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 @endforeach
-            </div>s
+            </div>
         </div>
         @if($share->offers[0]->type->addable_to_basket)
         <div style="display: flex; justify-content: center;">
