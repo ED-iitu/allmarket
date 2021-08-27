@@ -1425,12 +1425,13 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             url: '{{ route('deleteCart') }}',
             type: 'GET',
             success: function (data) {
+                $('.loading-cart').css('display', 'block')
                 $('.cart-top-title').hide()
                 $('.cart-bottom').hide()
                 $('.cart-empty').show()
                 document.getElementById('cart-data-table').innerHTML = "";
                 document.getElementById('cartSales').innerHTML = "";
-                $('.loading-cart').css('display', 'block')
+                $('.loading-cart').css('display', 'none')
 
             },
             error: function (XMLHttpRequest) {
