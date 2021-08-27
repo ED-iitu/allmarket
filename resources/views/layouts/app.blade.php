@@ -1470,6 +1470,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
                 } else {
                     if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png') {
+                        console.log('Huinya ebannaya')
                         $("#addToFavorite" + id).css('width', '31px')
                         $("#addToFavorite" + id).css('height', '26px')
                         $("#addToFavorite" + id).css('margin-left', '9px')
