@@ -279,19 +279,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <hr>
                     <div class="d-flex flex-row" style="justify-content: center;">
                         <div class="social-mobile">
-                            <a href="https://apps.apple.com/kz/app/allmarket-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%81%D1%83%D0%BF%D0%B5%D1%80%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82/id1438100445"><img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px"></a>
+                            <a href="https://apps.apple.com/kz/app/allmarket-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%81%D1%83%D0%BF%D0%B5%D1%80%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82/id1438100445"><img class="social-img" src="/images/apple.svg" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <a href="https://play.google.com/store/apps/details?id=com.batman.almas.altyn_alma&hl=ru"><img class="social-img" src="/images/playmarket.png" alt="" width="48px" height="49px"></a>
+                            <a href="https://play.google.com/store/apps/details?id=com.batman.almas.altyn_alma&hl=ru"><img class="social-img" src="/images/play.svg" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <a href=""><img class="social-img" src="/images/facebook.png" alt="" width="48px" height="49px"></a>
+                            <a href=""><img class="social-img" src="/images/fb.svg" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <a href="https://instagram.com/allmarket.kz?igshid=1kn0k00hbuy31"><img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px"></a>
+                            <a href="https://instagram.com/allmarket.kz?igshid=1kn0k00hbuy31"><img class="social-img" src="/images/inst.svg" alt="" width="48px" height="49px"></a>
                         </div>
                         <div class="social-mobile">
-                            <a href="https://wa.me/77712101512"><img class="social-img" src="/images/whatsapp.png" alt="" width="48px" height="49px"></a>
+                            <a href="https://wa.me/77712101512"><img class="social-img" src="/images/wpp.svg" alt="" width="48px" height="49px"></a>
                         </div>
                     </div>
                 </div>
@@ -435,7 +435,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <input id="search" type="text" class="search" name="title" placeholder="Что то искали?"
                                style="outline:none;" required>
                         <button type="submit" class="btn-search" style="outline:none;">
-                            <img src="/images/search.png" alt="">
+                            <img src="/images/search.svg" alt="">
                         </button>
                     </form>
 
@@ -557,18 +557,18 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div class="d-flex flex-row">
                             <div class="social">
                                 <a href="https://apps.apple.com/kz/app/allmarket-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%81%D1%83%D0%BF%D0%B5%D1%80%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82/id1438100445">
-                                    <img class="social-img" src="/images/apple.png" alt="" width="48px" height="49px">
+                                    <img class="social-img" src="/images/apple.svg" alt="" width="48px" height="49px">
                                 </a>
                             </div>
                             <div class="social">
                                 <a href="https://play.google.com/store/apps/details?id=com.batman.almas.altyn_alma&hl=ru">
-                                    <img class="social-img" src="/images/playmarket.png" alt="" width="48px"
+                                    <img class="social-img" src="/images/play.svg" alt="" width="48px"
                                          height="49px" style="margin-left: 4px">
                                 </a>
                             </div>
                             <div class="social">
                                 <a href="">
-                                    <img class="social-img" src="/images/facebook.png" alt="" width="48px"
+                                    <img class="social-img" src="/images/fb.svg" alt="" width="48px"
                                          height="49px">
                                 </a>
                             </div>
@@ -579,7 +579,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             </div>
                             <div class="social">
                                 <a href="https://wa.me/77712101512">
-                                    <img class="social-img" src="/images/whatsapp.png" alt="" width="48px"
+                                    <img class="social-img" src="/images/wpp.svg" alt="" width="48px"
                                          height="49px">
                                 </a>
                             </div>
