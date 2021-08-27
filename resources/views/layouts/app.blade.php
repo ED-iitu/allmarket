@@ -1473,6 +1473,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     console.log(page)
 
                     if (page == 'favorite') {
+                        $('#favorite-modal-body').html('')
                         $("#addToFavorite" + id).css('width', '31px')
                         $("#addToFavorite" + id).css('height', '26px')
                         $("#addToFavorite" + id).css('margin-left', '9px')
@@ -1480,26 +1481,30 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         $("#addToFavorite" + id).attr('src', '/images/like.png')
                         $('#favorite-modal-body').append("Товар удален из избранных")
                         $('#favoriteModal').modal('toggle');
-                    }
-                    if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png') {
-                        $("#addToFavorite" + id).css('width', '31px')
-                        $("#addToFavorite" + id).css('height', '26px')
-                        $("#addToFavorite" + id).css('margin-left', '9px')
-                        $("#addToFavorite" + id).css('margin-top', '30px')
-                        $("#addToFavorite" + id).attr('src', '/images/like.png')
-                        $('#favorite-modal-body').append("Товар удален из избранных")
-                        $('#favoriteModal').modal('toggle');
-
-
                     } else {
-                        $("#addToFavorite" + id).attr('src', '/images/dislike.png')
-                        $("#addToFavorite" + id).css('width', '75px')
-                        $("#addToFavorite" + id).css('height', '45px')
-                        $("#addToFavorite" + id).css('margin-left', '0px')
-                        $("#addToFavorite" + id).css('margin-top', '15px')
-                        $('#favorite-modal-body').append("Товар добавлен в избранное")
-                        $('#favoriteModal').modal('toggle');
+                        if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png') {
+                            $('#favorite-modal-body').html('')
+                            $("#addToFavorite" + id).css('width', '31px')
+                            $("#addToFavorite" + id).css('height', '26px')
+                            $("#addToFavorite" + id).css('margin-left', '9px')
+                            $("#addToFavorite" + id).css('margin-top', '30px')
+                            $("#addToFavorite" + id).attr('src', '/images/like.png')
+                            $('#favorite-modal-body').append("Товар удален из избранных")
+                            $('#favoriteModal').modal('toggle');
+
+
+                        } else {
+                            $("#addToFavorite" + id).attr('src', '/images/dislike.png')
+                            $('#favorite-modal-body').html('')
+                            $("#addToFavorite" + id).css('width', '75px')
+                            $("#addToFavorite" + id).css('height', '45px')
+                            $("#addToFavorite" + id).css('margin-left', '0px')
+                            $("#addToFavorite" + id).css('margin-top', '15px')
+                            $('#favorite-modal-body').append("Товар добавлен в избранное")
+                            $('#favoriteModal').modal('toggle');
+                        }
                     }
+
 
                 }
 
