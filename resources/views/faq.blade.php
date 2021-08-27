@@ -17,7 +17,7 @@
 
         .uk-accordion-title::before {
             font-size: 30px ;
-            background-image: url("/images/plus.png");
+            background-image: url("/images/plus.svg");
         }
         .uk-open>.uk-accordion-title::before {
             font-size: 30px ;

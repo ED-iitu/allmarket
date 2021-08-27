@@ -474,7 +474,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     <div class="d-flex" id="cart">
                         <button class="btn-cart" style="outline:none;"
                                 onclick="$('#cart-cont').addClass('open');$('body').addClass('nooverflow1 cart-active-bg minus-z-index');$('body').addClass('nooverflow'); $('.carzina-sign').html('X'); $('.display-after-cart').addClass('do_not_display')">
-                            <img class="carzina-sign" src="/images/corzina.png" alt="">
+                            <img class="carzina-sign" src="/images/corzina.svg" alt="">
                         </button>
                         <div>
                             <div style="display: flex;align-items: center;justify-content: space-between">
@@ -574,7 +574,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                             </div>
                             <div class="social">
                                 <a href="https://instagram.com/allmarket.kz?igshid=1kn0k00hbuy31">
-                                    <img class="social-img" src="/images/inst.png" alt="" width="48px" height="49px">
+                                    <img class="social-img" src="/images/inst.svg" alt="" width="48px" height="49px">
                                 </a>
                             </div>
                             <div class="social">
