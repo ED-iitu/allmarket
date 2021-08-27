@@ -1446,7 +1446,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
     }
 
 
-    function addToFavourites(id, page = 'main') {
+    function addToFavourites(id, page='main') {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
