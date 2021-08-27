@@ -1469,7 +1469,19 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     // $("#addToFavorite"+id).attr('src','/images/dislike.png');
 
                 } else {
-                    if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png' || page == 'favorite') {
+
+                    console.log(page)
+
+                    if (page == 'favorite') {
+                        $("#addToFavorite" + id).css('width', '31px')
+                        $("#addToFavorite" + id).css('height', '26px')
+                        $("#addToFavorite" + id).css('margin-left', '9px')
+                        $("#addToFavorite" + id).css('margin-top', '30px')
+                        $("#addToFavorite" + id).attr('src', '/images/like.png')
+                        $('#favorite-modal-body').append("Товар удален из избранных")
+                        $('#favoriteModal').modal('toggle');
+                    }
+                    if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png') {
                         $("#addToFavorite" + id).css('width', '31px')
                         $("#addToFavorite" + id).css('height', '26px')
                         $("#addToFavorite" + id).css('margin-left', '9px')
