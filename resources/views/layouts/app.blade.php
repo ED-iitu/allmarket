@@ -1233,9 +1233,10 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         total_price()
         var price = parseInt($('.cart-total-price-money').text())
         if (price < 5000) {
-            $('#modal-body').html('')
-            $('#modal-body').append('Минимальная сумма заказа 5000 тенге')
-            $('#your-modal').modal('toggle');
+            $('#favorite-modal-body').html('')
+            $('#favorite-modal-body').append('Минимальная сумма заказа 5000 тенге')
+            $('#favoriteModal').modal('toggle');
+
         } else {
             $.ajax({
                 url: '{{ route('checkoutCart') }}',
