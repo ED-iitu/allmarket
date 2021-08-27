@@ -982,48 +982,48 @@ class HomeController extends Controller
         $totalPrice = session()->get('totalPrice');
 
 
-        if ($totalPrice && (int)$totalPrice > 5000) {
-            $share = $this->getShareById(356);
-
-            dd($share);
-
-            foreach ($share as $product) {
-
-                // if cart is empty then this the first product
-                if (!$cart) {
-                    $cart = [
-                        $product->id => [
-                            "title" => $product->title,
-                            "category" => $product->category->title,
-                            "quantity" => $product->count,
-                            "price" => 1,
-                            "image" => $product->image,
-                            "type" => 'sales',
-                        ]
-                    ];
-                    session()->put('cart', $cart);
-                } else {
-
-                    foreach ($cart as $key => $cartProduct) {
-                        if (in_array($product->id, $cart)) {
-                            continue;
-                        } else {
-                            // if item not exist in cart then add to cart with quantity = 1
-                            $cart[$product->id] = [
-                                "title" => $product->title,
-                                "category" => $product->category->title,
-                                "quantity" => $product->count,
-                                "price" => 1,
-                                "image" => $product->image,
-                                "type" => 'sales'
-                            ];
-                            session()->put('cart', $cart);
-                        }
-                    }
-
-                }
-            }
-        }
+//        if ($totalPrice && (int)$totalPrice > 5000) {
+//            $share = $this->getShareById(356);
+//
+//            dd($share);
+//
+//            foreach ($share as $product) {
+//
+//                // if cart is empty then this the first product
+//                if (!$cart) {
+//                    $cart = [
+//                        $product->id => [
+//                            "title" => $product->title,
+//                            "category" => $product->category->title,
+//                            "quantity" => $product->count,
+//                            "price" => 1,
+//                            "image" => $product->image,
+//                            "type" => 'sales',
+//                        ]
+//                    ];
+//                    session()->put('cart', $cart);
+//                } else {
+//
+//                    foreach ($cart as $key => $cartProduct) {
+//                        if (in_array($product->id, $cart)) {
+//                            continue;
+//                        } else {
+//                            // if item not exist in cart then add to cart with quantity = 1
+//                            $cart[$product->id] = [
+//                                "title" => $product->title,
+//                                "category" => $product->category->title,
+//                                "quantity" => $product->count,
+//                                "price" => 1,
+//                                "image" => $product->image,
+//                                "type" => 'sales'
+//                            ];
+//                            session()->put('cart', $cart);
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
 
 
         return response()->json(['count' => $count, 'prices' => $prices, 'shares' => $share], 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
