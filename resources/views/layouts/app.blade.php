@@ -1469,8 +1469,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     // $("#addToFavorite"+id).attr('src','/images/dislike.png');
 
                 } else {
-                    if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png') {
-                        console.log('Huinya ebannaya')
+                    if ($("#addToFavorite" + id).attr('src') == '/images/dislike.png' || page == 'favorite') {
                         $("#addToFavorite" + id).css('width', '31px')
                         $("#addToFavorite" + id).css('height', '26px')
                         $("#addToFavorite" + id).css('margin-left', '9px')
@@ -1481,7 +1480,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
 
 
                     } else {
-                        console.log('sssssssssssssssssssssssssssssss')
                         $("#addToFavorite" + id).attr('src', '/images/dislike.png')
                         $("#addToFavorite" + id).css('width', '75px')
                         $("#addToFavorite" + id).css('height', '45px')
