@@ -24,6 +24,9 @@ Route::get('section/{section_id}/category/{category_id}', 'HomeController@getPro
 Route::post('registration', 'HomeController@registration')->name('registration');
 Route::post('/login', 'HomeController@login')->name('login');
 Route::get('account', 'HomeController@account')->name('account');
+Route::get('/account/favorite', 'AccountController@favorite')->name('accountFavorite');
+Route::get('/account/my-orders', 'AccountController@orders')->name('accountOrders');
+Route::get('/account/profile', 'AccountController@profile')->name('accountProfile');
 Route::get('/account/orders', 'HomeController@getAccountOrderById')->name('accountOrdersById');
 Route::get('logout', 'HomeController@logout')->name('logout');
 Route::post('sendSms', 'HomeController@sendSms')->name('sendSms');
@@ -49,7 +52,5 @@ Route::post('addRaiting', 'HomeController@addRaiting')->name('addRaiting');
 Route::get('select-city/{id}/{title}', 'HomeController@selectCity')->name('selectCity');
 Route::get('/addReview', 'HomeController@addReview')->name('addReview');
 Route::get('/promo-code/check', 'HomeController@checkPromoCode')->name('checkPromoCode');
-
-
 
 

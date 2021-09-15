@@ -149,10 +149,10 @@
                                 {{$message}}
                             </a>
                             <div class="dropdown-menu profile-menu">
-                                <a class="dropdown-item profile-list" href="/account#account-favorite">Избранные
+                                <a class="dropdown-item profile-list" href="{{route('accountFavorite')}}">Избранные
                                     товары</a>
-                                <a class="dropdown-item profile-list" href="/account#account-order">История заказов</a>
-                                <a class="dropdown-item profile-list" href="/account#account-profile">Мои данные</a>
+                                <a class="dropdown-item profile-list" href="{{route('accountOrders')}}">История заказов</a>
+                                <a class="dropdown-item profile-list" href="{{route('accountProfile')}}">Мои данные</a>
                                 <a class="dropdown-item profile-list" href="{{route('logout')}}">Выход</a>
                             </div>
                         @else
@@ -1292,11 +1292,11 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
             </div>
         </div>
         <div style="display: flex; justify-content: center; margin-top: 10px">
-            <input type="text" class="input-street" name="street" placeholder="Улица">
+            <input type="text" class="input-street" name="street" placeholder="Улица" required>
         </div>
         <div class="flex-row" style="display: flex;justify-content: center; margin-top:10px">
-            <input type="" class="input-house" name="home" placeholder="Дом">
-            <input type="" class="input-house" name="apt" placeholder="Квартира" style="margin-left: 6px">
+            <input type="" class="input-house" name="home" placeholder="Дом" required>
+            <input type="" class="input-house" name="apt" placeholder="Квартира" style="margin-left: 6px" required>
         </div>
         <div class="address-cart">
             <h2 class="cart-top-title">Время доставки:</h2>
@@ -1304,7 +1304,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
         <hr class="cart-hr">
         <div class="checkout-address" style="display: flex; justify-content: center">
             <div class="input-select justify-content-center" style="background: linear-gradient(0deg, #E3EDF7, #E3EDF7);box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);border-radius: 17.5px;width: 90%;height: 35px; align-items: center">
-                <select id="" class="input-select-option" name="delivery_time_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)">
+                <select id="" class="input-select-option" name="delivery_time_id" style="font-family: Montserrat;font-style: normal;font-weight: 500;font-size: 13px;line-height: 16px;align-items: center;text-align: center;color: #43637A;background: linear-gradient(0deg, #E3EDF7, #E3EDF7)" required>
                     <option class="input-select-option-inside" value="">Время доставки</option>
                     @if(Session::get('username') != null)
                     @foreach (Session::get('orders_delivery_times') as $time)
@@ -1361,27 +1361,28 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 payment_type: payment_type
             },
             success: function (data) {
-                var obj = JSON.parse(data)
-                url = obj.epay.url
-
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    data: {
-                        'Signed_Order_B64': obj.epay.params.Signed_Order_B64,
-                        'appendix': obj.epay.params.appendix,
-                        'BackLink': obj.epay.params.BackLink,
-                        'FailureBackLink': obj.epay.params.FailureBackLink,
-                        'PostLink': obj.epay.params.PostLink,
-                        'email': obj.epay.params.email,
-                        'person_id': obj.epay.params.person_id
-                    },
-                    success: function (data) {
-
-                    },
-                    error: function (XMLHttpRequest) {
-                    }
-                });
+                setTimeout(updateCartAfter(), 2000)
+                // var obj = JSON.parse(data)
+                // url = obj.epay.url
+                //
+                // $.ajax({
+                //     url: url,
+                //     type: 'POST',s
+                //     data: {
+                //         'Signed_Order_B64': obj.epay.params.Signed_Order_B64,
+                //         'appendix': obj.epay.params.appendix,
+                //         'BackLink': obj.epay.params.BackLink,
+                //         'FailureBackLink': obj.epay.params.FailureBackLink,
+                //         'PostLink': obj.epay.params.PostLink,
+                //         'email': obj.epay.params.email,
+                //         'person_id': obj.epay.params.person_id
+                //     },
+                //     success: function (data) {
+                //
+                //     },
+                //     error: function (XMLHttpRequest) {
+                //     }
+                // });
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
@@ -1397,14 +1398,18 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                         <div class="top-cart-cart">Корзина: Оформить заказ</div>
                     </div>
 
-                <div class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
+                <div id="checkout-body-finish" class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
                     <h2 class="thanks-cart" style="display: flex; justify-content: center; align-items: center">Спасибо за заказ</h2>
                 </div>
-                <div class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top:20px">
+                <div id="checkout-body-finish" class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top:20px">
                     <img src="/images/thanks.png" alt="">
                 </div>
-                 <div class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
+                 <div id="checkout-body-finish" class="checkout-body-finish" style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
                     <h2 class="thanks-cart-subtitle" style="display: flex; justify-content: center; align-items: center">Наш оператор свяжется с Вами сразу после обработки заказа</h2>
+                </div>
+                <div class="cart-empty"
+                     style="display:none;align-items:center !important;justify-content:center;padding: 66px">
+                    <h2 class="empty-title">Ваша корзина пуста</h2>
                 </div>
 
 
@@ -1414,7 +1419,23 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                     </div>
                 </div>
 
-            `)
+            `);
+
+        updateCart();
+        updateCartData();
+
+
+
+
+
+    }
+
+    function updateCartAfter() {
+        $('.cart-empty').show()
+        console.log("Clear cart")
+        $('.checkout-body-finish').hide()
+        checkout_finish_reload()
+
     }
 
     function checkout_finish_reload() {
@@ -1818,7 +1839,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 if (document.getElementById("cartSales") != null)  {
                     document.getElementById("cartSales").innerHTML = "";
                     document.getElementById("cart-data-table").innerHTML = "";
-                } else {
+                } else if(document.getElementById("cart-data-table") != null) {
                     document.getElementById("cart-data-table").innerHTML = "";
                 }
 
