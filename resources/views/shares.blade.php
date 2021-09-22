@@ -23,6 +23,7 @@
         @else
         <div class="row">
             @foreach($shares->sales as $share)
+                <a href="{{route('share', $share->id)}}" class="card-link">
             <div class="col-md-4 mt-5">
                 <div class="card">
                     <img class="card-img-top" src="{{$share->image}}" alt="Card image cap">
@@ -41,6 +42,7 @@
                     </div>
                 </div>
             </div>
+                </a>
             @endforeach
                 @endif
         </div>
