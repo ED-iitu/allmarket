@@ -13338,7 +13338,7 @@ and (max-width: 768px) {
     }
 
     .signIn {
-        width: 163.05px;
+        width: 50%;
         height: 59.23px;
         position: relative;
 
@@ -13350,7 +13350,7 @@ and (max-width: 768px) {
 
         position: inherit;
         margin-left: 0px;
-        width: 163.05px;
+        width: 50%;
         height: 59.23px;
         left: 188.05px;
         top: 240.29px;
@@ -13360,14 +13360,14 @@ and (max-width: 768px) {
     }
 
     .login-form {
-        width: 324px;
+        width: 100%;
 
         background: #E3EDF7;
         border-radius: 0px 0px 6.65493px 6.65493px;
     }
 
     .signUp-form {
-        width: 324px;
+        width: 100%;
 
 
         background: #AFC5DB;
