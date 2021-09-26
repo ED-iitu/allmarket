@@ -13723,6 +13723,10 @@ and (max-width: 768px) {
 @media only screen
 and (max-device-width: 375px) {
 
+    .card {
+        height: 370px;
+    }
+
     .section-item {
         width: 345px !important;
     }
@@ -13737,11 +13741,11 @@ and (max-device-width: 375px) {
     }
 
     .signUp-form {
-        width: 310px;
+        width: 100% !important;
     }
 
     .login-form {
-        width: 325px;
+        width: 100% !important;
     }
 
     [class*=uk-modal-close-] {
@@ -14243,6 +14247,9 @@ and (max-device-width: 375px) {
 
 
 @media only screen and (max-width: 320px) {
+    .card {
+        height: 360px;
+    }
     .nav-link {
         padding: 0.8rem 0.7rem;
         margin-top: 2px;
@@ -14273,12 +14280,18 @@ and (max-device-width: 375px) {
 
 @media only screen and (max-width: 600px)
 and (min-width: 376px){
+    .card {
+        height: 370px;
+    }
     .additional-menu {
         display: none;
     }
 }
 
 @media only screen and (max-width: 371px) {
+    .card {
+        height: 360px;
+    }
     .search {
         width: 260px;
     }
@@ -14314,6 +14327,10 @@ and (min-width: 376px){
 
 @media only screen and (max-width: 365px) {
 
+    .card {
+        height: 360px;
+    }
+
     .cart-img {
         width: 120px;
     }
@@ -14343,7 +14360,7 @@ and (min-width: 376px){
         width: 325px !important;
     }
     .login-form {
-        width: 310px;
+        width: 313px;
     }
 
     .signIn-form {
@@ -14362,6 +14379,10 @@ and (min-width: 376px){
     }
 
 @media only screen and (max-width: 345px) {
+
+    .card {
+        height: 360px;
+    }
 
     #for_the_scroll {
         overflow: auto;
