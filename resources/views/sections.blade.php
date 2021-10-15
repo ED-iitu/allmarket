@@ -9,7 +9,7 @@
             margin-top: 30px;
             width: 1110px;
             height: 141px;
-            background: #3F9B8A;
+            background-image: url("{{$banners[0]->main_image}}");
             border-radius: 19px;
         }
 
@@ -59,7 +59,8 @@
     </div>
 
     <div class="container">
-        <div class="section-banner"></div>
+        <div class="section-banner">
+        </div>
     </div>
 
     <div class="container">
@@ -172,7 +173,7 @@
             </a>
 
             <div class="col-md-4 sections-banner">
-                <img src="/images/test.jpg" alt="" style="border-radius: 20px;height: 333px;width: 345px;">
+                <img src="{{$banners[0]->adv_image}}" alt="" style="border-radius: 20px;height: 333px;width: 345px;">
             </div>
 
             <a href="{{route('sectionById', 7)}}" style="text-decoration: none">

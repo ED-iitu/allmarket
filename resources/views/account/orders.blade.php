@@ -36,44 +36,6 @@
             background: #F8FBFF;
         }
 
-        .account-input {
-            outline: none;
-
-            height: 43px;
-            left: calc(50% - 516.98px/2 + 296.51px);
-            top: 331px;
-
-            background: rgba(205, 223, 239, 0.85);
-            box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.49), inset 3px 4px 3px rgba(93, 148, 204, 0.25);
-            border-radius: 7px;
-        }
-
-        .account-input::placeholder {
-            padding-left: 15px;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 45px;
-            /* or 253% */
-
-            letter-spacing: -0.540636px;
-
-            color: #96B2CC;
-        }
-
-        .account-label {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 18px;
-            line-height: 45px;
-            /* or 253% */
-
-            letter-spacing: -0.540636px;
-
-            color: #43637A;
-        }
 
         input[type=checkbox] {
             align-items: center;
@@ -102,63 +64,7 @@
             color: #fff;
         }
 
-        .account-agree {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 14px;
-            line-height: 20px;
-            /* or 143% */
 
-            letter-spacing: -0.540636px;
-
-            color: #43637A;
-        }
-
-        .account-submit {
-            outline: none;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 18px;
-            line-height: 21px;
-            /* or 115% */
-
-            text-align: center;
-            letter-spacing: -0.540636px;
-
-            color: #43637A;
-
-
-            width: 317px;
-            height: 51px;
-            left: calc(50% - 317px/2 + 513.5px);
-            top: 649px;
-
-            background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
-            box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.8), 3px 3px 4px rgba(93, 148, 204, 0.25);
-            border-radius: 5px;
-        }
-
-        .totalPrice {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 21px;
-            /* identical to box height, or 129% */
-
-            letter-spacing: -0.540636px;
-
-            color: #43637A;
-
-            text-shadow: 1px 1px 2px #FFFFFF;
-        }
-
-        .cloneBtn {
-            background: #3F9B8A;
-            border-radius: 12px;
-        }
 
         .statusOrder {
             font-family: Montserrat;
@@ -174,6 +80,42 @@
             font-weight: 600;
             font-size: 16px;
             color: #30EE4E;
+        }
+
+
+        .loading-order {
+            display: none;
+            position: fixed;
+            top: 0; right: 0;
+            bottom: 0; left: 0;
+            z-index: 100000;
+        }
+        .loader {
+            display: none;
+            left: 50%;
+            margin-left: -4em;
+            font-size: 10px;
+            border: .8em solid rgba(218, 219, 223, 1);
+            border-left: .8em solid rgba(58, 166, 165, 1);
+            animation: spin 1.1s infinite linear;
+        }
+        .loader, .loader:after {
+            border-radius: 50%;
+            width: 8em;
+            height: 8em;
+            display: block;
+            position: absolute;
+            top: 50%;
+            margin-top: -4.05em;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
         }
     </style>
     <div class="container">
@@ -218,6 +160,9 @@
 
                         @foreach($orders as $order)
 
+                            <div class="loading-order">
+                                <div class="loader"></div>
+                            </div>
                             <?php $totalPrice = 0; ?>
 
                             <ul uk-accordion >
@@ -258,6 +203,7 @@
 
     <script>
         function getOrders(id) {
+            $('.loading-order').css('display', 'block');
             $.ajax({
                 url: '{{ route('accountOrdersById') }}',
                 type: 'GET',
@@ -266,6 +212,7 @@
                     id: id
                 },
                 success: function (data) {
+                    $('.loading-order').css('display', 'none');
                     productPrice = 0
                     offerPrice = 0
                     document.getElementById('orders-content-' +id+ '').innerHTML = "";
@@ -355,8 +302,13 @@
                     $('#modal-body').html('')
                     $('#modal-body').append('Произошла ошибка попробуйте позже')
                     $('#your-modal').modal('toggle');
+
+                    $('.loading-order').css('display', 'none');
                 }
             });
+
+
+
         }
     </script>
 @endsection

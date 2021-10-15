@@ -99,6 +99,10 @@
 
                 @endif
 
+                    <br>
+
+                @if(empty($additionalBanners))
+
                 <div class="uk-position-relative uk-light" uk-slideshow style="margin-top: 20px">
 
                     <ul class="uk-slideshow-items">
@@ -119,6 +123,34 @@
                     </div>
 
                 </div>
+
+                @else
+
+                        <div class="uk-position-relative uk-light" uk-slideshow>
+
+                            <ul class="uk-slideshow-items">
+                                @foreach($additionalBanners as $key => $banner)
+                                    <li>
+                                        @if($isMobile)
+                                            {{--<div class="banner-home" uk-cover></div>--}}
+                                            <img src="{{$banner->image_mobile}}" alt="" uk-cover>
+                                        @else
+                                            <img src="{{$banner->image}}" alt="" uk-cover>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            <div class="uk-position-bottom-center uk-position-small">
+                                <ul class="uk-dotnav dots-left">
+                                    @foreach($banners as $key => $banner)
+                                        <li uk-slideshow-item="{{$key}}"><a href="#">{{$key}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                        </div>
+                @endif
 
 
             <section id="popular">

@@ -35,6 +35,7 @@ class HomeController extends Controller
         $sale        = $this->getSaleProducts();
         $sections    = $this->getAllSections();
         $banners     = $this->getBanners();
+        $additionalbanners = $this->getAdditionalBanners();
         $isMob       = is_numeric(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), "mobile"));
         $token       = session()->get('token');
         $favIds      = [];
@@ -58,6 +59,7 @@ class HomeController extends Controller
             'sections' => $sections->sections,
             'cities' => $this->getAvailableCitites(),
             'banners' => $banners->banners,
+            'additionalBanners' => $additionalbanners->banners,
             'isMobile' => $isMob
         ]);
     }
@@ -232,8 +234,10 @@ class HomeController extends Controller
     public function sections()
     {
         $sections = $this->getAllSections();
+        $banners = $this->getASectionBanners();
 
         return view('sections', [
+            'banners' => $banners->banners,
             'sections' => $sections->sections,
             'cities' => $this->getAvailableCitites()
         ]);
@@ -1806,6 +1810,40 @@ class HomeController extends Controller
     public function getBanners()
     {
         $responce = $this->client->request('GET', env('API_URL') . '/site/banners', [
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $responce = $responce->getBody()->getContents();
+
+        return json_decode($responce);
+    }
+
+    public function getAdditionalBanners()
+    {
+        $responce = $this->client->request('GET', 'http://api.allmarket.kz/api/v2/site/additional_banners', [
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $responce = $responce->getBody()->getContents();
+
+        return json_decode($responce);
+    }
+
+    public function getASectionBanners()
+    {
+        $responce = $this->client->request('GET', 'http://api.allmarket.kz/api/v2/site/section_banners', [
             'headers' => [
                 'Accept' => 'application/json'
             ],
