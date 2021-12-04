@@ -919,6 +919,8 @@ class HomeController extends Controller
             session()->put('cart', $cart);
         }
 
+       // dd($cart);
+
         return redirect()->back()->with('success', 'Акцния успешно добавлена в корзину');
     }
 
@@ -1525,9 +1527,9 @@ class HomeController extends Controller
         $data = json_decode($data);
         $products = [];
 
-        //dd($data);
+        //dd($data->sale->offers[0]->id);
 
-        $products["id"] = $data->sale->id;
+        $products["id"] = $data->sale->offers[0]->id;
         $products["title"] = $data->sale->title;
         $products["image"] = $data->sale->image;
 
