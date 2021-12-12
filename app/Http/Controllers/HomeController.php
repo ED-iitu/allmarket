@@ -1531,6 +1531,9 @@ class HomeController extends Controller
         $result["id"]    = $data->sale->offers[0]->id;
         $result["title"] = $data->sale->title;
         $result["image"] = $data->sale->image;
+        $result['price'] = $data->sale->offers[0]->price ?? 0;
+
+       // dd($data);
 
 
         foreach ($data->sale->offers as $offer) {

@@ -26,7 +26,7 @@
 
         <div class="share_product_list">
             <div class="row" style="display: flex; justify-content: center">
-                <?php $price = 0; ?>
+                <?php $price = $shareProducts->price; ?>
                 @if(isset($shareProducts->base_items))
                 @foreach($shareProducts->base_items as $shareProduct)
                     <div class="col-md-4 product-list-mobile">
@@ -60,8 +60,6 @@
                                                 <div class="new-price">{{$shareProduct->product->price}} тг</div>
                                             </div>
                                         @endif
-
-                                        <?php $price += $shareProduct->product->price; ?>
                                     </div>
                                 </div>
                             </div>
@@ -72,10 +70,12 @@
             </div>
         </div>
 
+        <br>
 
         @if(isset($shareProducts->sale_items))
             <div class="share_product_list">
                 <h1>Скидочные товары</h1>
+                <hr>
                 <div class="row" style="display: flex; justify-content: center">
                     @foreach($shareProducts->sale_items as $shareProduct)
                         <div class="col-md-4 product-list-mobile">
@@ -102,8 +102,6 @@
                                             <div class="share_price">
                                                 <div class="new-price">{{$shareProduct->price}} тг</div>
                                             </div>
-
-                                            <?php $price += $shareProduct->price; ?>
                                         </div>
                                     </div>
                                 </div>
