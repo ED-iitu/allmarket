@@ -6,11 +6,23 @@
 
     <style>
         .section-banner {
+             margin-top: 30px;
+             width: 1110px;
+             height: 141px;
+             background-image: url("{{$banners[0]->main_image}}");
+             border-radius: 19px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+         }
+
+        .section-banner-mobile {
             margin-top: 30px;
-            width: 1110px;
+            width: 100%;
             height: 141px;
-            background-image: url("{{$banners[0]->main_image}}");
+            background-image: url("{{$banners[0]->main_image_mobile}}");
             border-radius: 19px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
         }
 
         .section-item {
@@ -58,10 +70,15 @@
         <div class="bread"><a class="bredLink" href="{{route('home')}}">Главная</a> / Разделы</div>
     </div>
 
-    <div class="container">
-        <div class="section-banner">
+    @if ($isMobile)
+        <div class="container">
+            <div class="section-banner-mobile"></div>
         </div>
+    @else
+    <div class="container">
+        <div class="section-banner"></div>
     </div>
+    @endif
 
     <div class="container">
         <div class="row">
@@ -238,7 +255,7 @@
             {{--@endforeach--}}
 
                 <div class="col-md-4 sections-banner-mobile" style="display: none">
-                    <img src="/images/test.jpg" alt="" style="border-radius: 20px;height: 333px;width: 345px;">
+                    <img src="{{$banners[0]->adv_image_mobile}}" alt="" style="border-radius: 20px;height: 333px;width: 345px;">
                 </div>
         </div>
     </div>

@@ -238,6 +238,7 @@ class HomeController extends Controller
 
         return view('sections', [
             'banners' => $banners->banners,
+            'isMobile' => is_numeric(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), "mobile")),
             'sections' => $sections->sections,
             'cities' => $this->getAvailableCitites()
         ]);
@@ -1513,6 +1514,7 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
 
         $shareProducts = $this->getShareProducts($response);
+       // dd($shareProducts);
         $response = json_decode($response);
         return view('shares-product-list', [
             'sections' => $sections->sections,
@@ -1524,91 +1526,24 @@ class HomeController extends Controller
 
     protected function getShareProducts($data)
     {
-        $data = json_decode($data);
-        $products = [];
+        $data            = json_decode($data);
+        $result          = [];
+        $result["id"]    = $data->sale->offers[0]->id;
+        $result["title"] = $data->sale->title;
+        $result["image"] = $data->sale->image;
 
-        //dd($data->sale->offers[0]->id);
-
-        $products["id"] = $data->sale->offers[0]->id;
-        $products["title"] = $data->sale->title;
-        $products["image"] = $data->sale->image;
 
         foreach ($data->sale->offers as $offer) {
-            if ($offer->price == 0) {
-                $products["type"] = "sale";
-                $products["order_total_sum"] = $offer->rules->order_total;
-                $products["offer_price"] = $offer->price;
+            if (isset($offer->rules->base_items)) {
+                $result['base_items'] = $offer->rules->base_items;
+            }
 
-                foreach ($offer->rules->sale_items as $sale) {
-
-                    $products["count"] = $sale->count;
-                    $products["products"][] = [
-                        "id" => $sale->product->id,
-                        "title" => $sale->product->title,
-                        "category" => $sale->product->category->title,
-                        "price" => $sale->product->price,
-                        "price_sale" => $sale->product->price_sale,
-                        "image" => $sale->product->image
-                    ];
-                }
-            } else {
-                $products["offer_price"] = $offer->price;
-                $products["type"] = "not_sale";
-                $products["order_total_sum"] = 0;
-
-                foreach ($offer->rules->base_items as $base) {
-                    $products["count"] = $base->count;
-                    $products["products"][] = [
-                        "id" => $base->product->id,
-                        "title" => $base->product->title,
-                        "category" => $base->product->category->title,
-                        "price" => $base->product->price,
-                        "price_sale" => $base->product->price_sale,
-                        "image" => $base->product->image
-                    ];
-
-                }
+            if (isset($offer->rules->sale_items)) {
+                $result['sale_items'] = $offer->rules->sale_items;
             }
         }
 
-//        foreach ($data->sale->offers as $offers) {
-//            if (isset($offers->rules->sale_items)) {
-//                foreach ($offers->rules->sale_items as $items) {
-//                    if ($items->price) {
-//                        $items->product->price = $items->price;
-//                    }
-//
-//                    $products[] = [
-//                        "id" => $items->product->id,
-//                        "title" => $items->product->title,
-//                        "category" => $items->product->category->title,
-//                        "quantity" => $items->count,
-//                        "price" => $items->product->price,
-//                        "price_sale" => $items->product->price_sale,
-//                        "image" => $items->product->image
-//                    ];
-//
-//
-//                    //$products[] = $items->product;
-//                }
-//            }
-//            if (isset($offers->rules->base_items)) {
-//                foreach ($offers->rules->base_items as $items) {
-//                    $products[] = [
-//                        "id" => $items->product->id,
-//                        "title" => $items->product->title,
-//                        "category" => $items->product->category->title,
-//                        "quantity" => 1,
-//                        "price" => $items->price,
-//                        "price_sale" => $items->price,
-//                        "image" => $items->product->image
-//                    ];
-//
-//                    //$products[] = $items->product;
-//                }
-//            }
-//        }
-        return json_decode(json_encode($products));
+        return json_decode(json_encode($result));
     }
 
 

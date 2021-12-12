@@ -14539,3 +14539,9 @@ button:focus {outline:0;}
         right: 23rem !important;
     }
 }
+
+@media only screen and (max-width: 1280px) {
+    .cart-bottom {
+        width: 316px;
+    }
+}

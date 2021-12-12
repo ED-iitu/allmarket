@@ -805,7 +805,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                         <input type="hidden" value="{{$details['price']}}"
                                                                id="current-price-{{$id}}">
                                                         <div
-                                                            style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">
+                                                            style="margin-top: 29px; position: absolute; left: 88px; bottom: 0">
                                                             <div class="cart-qty">
                                                                 <span id="cart-minus"
                                                                       class="cart-minus-{{$id}}">-</span>
