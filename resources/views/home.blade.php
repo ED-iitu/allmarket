@@ -143,7 +143,7 @@
 
                             <div class="uk-position-bottom-center uk-position-small">
                                 <ul class="uk-dotnav dots-left">
-                                    @foreach($banners as $key => $banner)
+                                    @foreach($additionalBanners as $key => $banner)
                                         <li uk-slideshow-item="{{$key}}"><a href="#">{{$key}}</a></li>
                                     @endforeach
                                 </ul>

@@ -882,6 +882,8 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
         $shareProducts = $this->getShareProducts($response);
 
+       // dd($shareProducts);
+
         // if cart is empty then this the first product
         $cart = session()->get('cart');
         if (!$cart) {
@@ -892,8 +894,8 @@ class HomeController extends Controller
                         "id" => $shareProducts->id,
                         "title" => $shareProducts->title,
                         "category" => '',
-                        "quantity" => $shareProducts->count,
-                        "price" => $shareProducts->offer_price,
+                        "quantity" => 1,
+                        "price" => $shareProducts->price,
                         "price_sale" => 0,
                         "image" => $shareProducts->image,
                         "type" => 'sales',

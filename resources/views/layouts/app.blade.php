@@ -805,7 +805,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                                                         <input type="hidden" value="{{$details['price']}}"
                                                                id="current-price-{{$id}}">
                                                         <div
-                                                            style="margin-top: 29px; position: absolute; left: 88px; bottom: 0">
+                                                            style="margin-top: 29px; position: absolute; left: 79px; bottom: 0">
                                                             <div class="cart-qty">
                                                                 <span id="cart-minus"
                                                                       class="cart-minus-{{$id}}">-</span>
@@ -1861,7 +1861,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                            '<div class="cart-category">' + value['category_title'] + '</div>' +
                            '<div class="cart-price" id="cart-price-' + value['product_id'] + '" style="margin-top: 10px">' + productPrice * value['count']  + ' тг</div>' +
                            '<input type="hidden" value="' + productPrice + '" id="current-price-' + value['product_id'] + '">' +
-                           '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
+                           '<div style="margin-top: 29px; position: absolute; left: 79px; bottom: 0">' +
                            '<div class="col-md-2" style="width: 50px"><div><span class="remove-from-cart" onclick="remove_cart(' + value['product_id'] + ')">' +
                            '<img src="/images/exit.png" alt=""></span></div></div></div></div></div>';
                    } else {
@@ -1875,7 +1875,7 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                            '<div class="cart-category">' + value['category_title'] + '</div>' +
                            '<div class="cart-price" id="cart-price-' + value['product_id'] + '" style="margin-top: 10px">' + productPrice * value['count'] + ' тг</div>' +
                            '<input type="hidden" value="' + productPrice + '" id="current-price-' + value['product_id'] + '">' +
-                           '<div style="margin-top: 29px; position: absolute; left: 106px; bottom: 0">' +
+                           '<div style="margin-top: 29px; position: absolute; left: 79px; bottom: 0">' +
                            '<div class="cart-qty"><span id="cart-minus" class="cart-minus-' + value['product_id'] + '">-</span>' +
                            '<input type="number" class="cart-count" name="qty" value="' + value['count'] + '" id="cart-count-' + value['product_id'] + '" disabled="">' +
                            '<span id="cart-plus" class="cart-plus-' + value['product_id'] + '">+</span></div></div></div>' +
