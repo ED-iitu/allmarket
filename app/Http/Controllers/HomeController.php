@@ -912,7 +912,7 @@ class HomeController extends Controller
                         "title" => $shareProducts->title,
                         "category" => '',
                         "quantity" => 1,
-                        "price" => $shareProducts->offer_price,
+                        "price" => $shareProducts->price,
                         "price_sale" => 0,
                         "image" => $shareProducts->image,
                         "type" => 'sales',
