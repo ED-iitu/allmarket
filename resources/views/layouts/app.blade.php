@@ -1361,28 +1361,12 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 payment_type: payment_type
             },
             success: function (data) {
-                setTimeout(updateCartAfter(), 2000)
-                // var obj = JSON.parse(data)
-                // url = obj.epay.url
-                //
-                // $.ajax({
-                //     url: url,
-                //     type: 'POST',s
-                //     data: {
-                //         'Signed_Order_B64': obj.epay.params.Signed_Order_B64,
-                //         'appendix': obj.epay.params.appendix,
-                //         'BackLink': obj.epay.params.BackLink,
-                //         'FailureBackLink': obj.epay.params.FailureBackLink,
-                //         'PostLink': obj.epay.params.PostLink,
-                //         'email': obj.epay.params.email,
-                //         'person_id': obj.epay.params.person_id
-                //     },
-                //     success: function (data) {
-                //
-                //     },
-                //     error: function (XMLHttpRequest) {
-                //     }
-                // });
+                jsonData = JSON.parse(data)
+                jsonData.epay.params.BackLink = "{{env('APP_URL')}}"
+                jsonData.epay.params.FailureBackLink = "{{env('APP_URL')}}"
+                console.log(jsonData)
+                params = $.param( jsonData.epay.params)
+                location.href=jsonData.epay.url + '?' + params
             },
             error: function (XMLHttpRequest) {
                 $('#modal-body').html('')
