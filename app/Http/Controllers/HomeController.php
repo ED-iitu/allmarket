@@ -1516,7 +1516,7 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
 
         $shareProducts = $this->getShareProducts($response);
-       // dd($shareProducts);
+
         $response = json_decode($response);
         return view('shares-product-list', [
             'sections' => $sections->sections,
