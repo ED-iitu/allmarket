@@ -1364,7 +1364,6 @@ $('#mobile_cart').show(); $('#mobile_close').hide();"
                 jsonData = JSON.parse(data)
                 jsonData.epay.params.BackLink = "{{env('APP_URL')}}"
                 jsonData.epay.params.FailureBackLink = "{{env('APP_URL')}}"
-                console.log(jsonData)
                 params = $.param( jsonData.epay.params)
                 location.href=jsonData.epay.url + '?' + params
             },
