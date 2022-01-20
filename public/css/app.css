@@ -14540,8 +14540,12 @@ button:focus {outline:0;}
     }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1260px) {
     .cart-bottom {
         width: 316px;
+    }
+
+    .cart-total-price-money {
+        font-size: 13px;
     }
 }
