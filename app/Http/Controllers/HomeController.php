@@ -834,6 +834,30 @@ class HomeController extends Controller
         }
 
 
+        if ($productPriceSession > 20000) {
+            $shares = $this->getSharesList();
+
+            foreach ($shares->sales as $share) {
+                $stock = $this->getStocksById($share->id);
+
+                if ($stock->sale->offers[0]->type->id == 8) {
+                    if ($productPriceSession >= $stock->sale->offers[0]->rules->order_total) {
+                        foreach ($stock->sale->offers[0]->rules->sale_items as $item) {
+                            $cart[$item->product->id] = [
+                                "id" => $item->product->id,
+                                "title" => $item->product->title,
+                                "category" => $item->product->category->title,
+                                "quantity" => 1,
+                                "price" => $item->price,
+                                "image" => $item->product->image
+                            ];
+
+                            session()->put('cart', $cart);
+                        }
+                    }
+                }
+            }
+        }
 
         // if cart is empty then this the first product
         if (!$cart) {
@@ -1454,6 +1478,7 @@ class HomeController extends Controller
 
     public function getSharesList()
     {
+
         $response = $this->client->request('GET', env('API_URL') . '/sales', [
             'query' => [
                 'city_id' => session()->get('city')['id'] ?? 6,
@@ -1500,6 +1525,24 @@ class HomeController extends Controller
     }
 
 
+    public function getStocksById($id)
+    {
+        $response = $this->client->request('GET', env('API_URL') . '/sales/' . $id, [
+            'query' => [
+                'city_id' => session()->get('city')['id'] ?? 6,
+            ],
+            'auth' => [
+                'dev@allmarket.kz',
+                'dev'
+            ]
+        ]);
+
+        $response = $response->getBody()->getContents();
+
+        return json_decode($response);
+    }
+
+
     public function getSharesById($id)
     {
         $sections = $this->getAllSections();
@@ -1516,7 +1559,7 @@ class HomeController extends Controller
         $response = $response->getBody()->getContents();
 
         $shareProducts = $this->getShareProducts($response);
-
+        //dd(json_decode($response));
         $response = json_decode($response);
         return view('shares-product-list', [
             'sections' => $sections->sections,
@@ -1638,7 +1681,6 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Необходима авторизация');
         }
 
-        //https://dev-api.allmarket.kz/api/v2/products/11/reviews
         try {
             $this->client->request('POST', env('API_URL') . '/products/' . $request->productId . '/reviews', [
                 'form_params' => [
